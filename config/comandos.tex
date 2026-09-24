@@ -1,0 +1,94 @@
+% =====================================================================
+%  Comandos e ambientes próprios do MOP
+%  (usados em todas as atividades -- manter a mesma forma de uso)
+% =====================================================================
+
+% ---------------------------------------------------------------------
+% \pendencia{texto}
+%   Registra, no ponto do texto, uma inconsistência ou lacuna a
+%   resolver. Todas aparecem listadas no Apêndice A. Para ocultá-las
+%   na versão final, usar \mostrarpendenciasfalse em main.tex.
+% ---------------------------------------------------------------------
+\newcommand{\pendencia}[1]{%
+  \todo[inline, color=laranjaclaro, bordercolor=orange,
+        caption={#1}]{\textbf{Pendência:} #1}}
+
+% Lista das pendências (sem título próprio), usada no Apêndice A
+\makeatletter
+\newcommand{\listapendencias}{\@starttoc{tdo}}
+\makeatother
+
+% ---------------------------------------------------------------------
+% \atividade{3.2.2.x}
+%   Grafia padronizada do código de uma atividade no texto corrido.
+% ---------------------------------------------------------------------
+\newcommand{\atividade}[1]{Atividade~#1}
+
+% ---------------------------------------------------------------------
+% Ambiente fichaatividade  -- ficha-síntese de cada atividade
+%
+%   \begin{fichaatividade}{Título do quadro}{rótulo}
+%     \campo{Campo}{Conteúdo}
+%     ...
+%   \end{fichaatividade}
+%
+% Campos padronizados (usar sempre esta ordem):
+%   Código | Tipo de atividade | Forma de execução | Fonte de recursos |
+%   Responsável | Dependências institucionais | Prazo estimado |
+%   Produto esperado | Unidade de medida | Evidência de comprovação |
+%   Periodicidade | Validação
+% ---------------------------------------------------------------------
+\newenvironment{fichaatividade}[2]{%
+  \quadro[htbp]% (sem \begin, para o tabularx achar \end{fichaatividade})
+  \caption{#1}\label{#2}
+  \small
+  \renewcommand{\arraystretch}{1.25}
+  \tabularx{\textwidth}{|>{\columncolor{azulclaro}\bfseries\raggedright\arraybackslash}p{0.32\textwidth}|X|}
+  \hline
+}{%
+  \endtabularx
+  \fonte{Adaptado de \citeonline{mop2026}.}
+  \endquadro
+}
+\newcommand{\campo}[2]{#1 & #2 \\ \hline}
+
+% ---------------------------------------------------------------------
+% Cabeçalho de quadros/tabelas (linha colorida em negrito)
+% ---------------------------------------------------------------------
+\newcommand{\cab}[1]{\cellcolor{azulclaro}\textbf{#1}}
+
+% Colunas utilitárias para tabularx
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Q}[1]{>{\centering\arraybackslash}p{#1}}
+
+% ---------------------------------------------------------------------
+% Estilos TikZ dos fluxogramas
+% ---------------------------------------------------------------------
+\tikzset{
+  etapa/.style={draw=azulpsh, fill=azulclaro, rounded corners=2pt,
+                align=center, font=\footnotesize, inner sep=4pt,
+                minimum height=0.9cm, text width=#1},
+  etapa/.default={3.4cm},
+  marco/.style={draw=azulpsh, fill=azulpsh, text=white, rounded corners=2pt,
+                align=center, font=\footnotesize\bfseries, inner sep=4pt,
+                minimum height=0.9cm, text width=#1},
+  marco/.default={7.4cm},
+  externo/.style={draw=gray, fill=cinzaclaro, rounded corners=2pt,
+                  align=center, font=\footnotesize, inner sep=4pt,
+                  minimum height=0.9cm, text width=#1},
+  externo/.default={3.4cm},
+  decisao/.style={draw=orange!80!black, fill=laranjaclaro, diamond, aspect=2.2,
+                  align=center, font=\footnotesize, inner sep=1pt},
+  correcao/.style={draw=orange!80!black, fill=laranjaclaro, rounded corners=2pt,
+                   align=center, font=\footnotesize, inner sep=4pt,
+                   minimum height=0.9cm, text width=#1},
+  correcao/.default={2.6cm},
+  transversal/.style={draw=verdeclaro!50!black, fill=verdeclaro, dashed,
+                      rounded corners=2pt, align=center, font=\footnotesize,
+                      inner sep=4pt, text width=#1},
+  seta/.style={-{Stealth[length=2.2mm]}, thick, draw=azulpsh!80!black},
+  setatracejada/.style={-{Stealth[length=2.2mm]}, thick, dashed, draw=gray},
+  rotulo/.style={font=\scriptsize\itshape, fill=white, inner sep=1pt}
+}

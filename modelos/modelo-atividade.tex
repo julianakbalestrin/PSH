@@ -1,0 +1,111 @@
+% =====================================================================
+%  MODELO EM BRANCO -- uma atividade do MOP em formato metodológico
+%
+%  Como usar:
+%   1. Copie este arquivo para capitulos/<subcomponente>/04-x-<nome>.tex
+%   2. Substitua tudo o que estiver entre << >>
+%   3. Inclua o arquivo no capitulo.tex do subcomponente com \input{...}
+%
+%  Regras de redação (ver "Apresentação do modelo"):
+%   - texto impessoal, no futuro do presente ("serão realizadas");
+%   - informação textual em quadro; dados numéricos em tabela;
+%   - toda figura, quadro e tabela com \fonte{...};
+%   - inconsistências do MOP registradas com \pendencia{...}.
+% =====================================================================
+\subsection{Atividade <<X.X.X.X>> -- <<Nome da atividade, com verbo no infinitivo>>}
+\label{subsec:<<rotulo-curto>>}
+
+% ---------------------------------------------------------------------
+\subsubsection{Objetivo e fundamentação}
+% O que a atividade entrega (1 frase) + por que é necessária (1 a 2
+% parágrafos) + premissas ou dependências de partida.
+% ---------------------------------------------------------------------
+
+<<Objetivo da atividade.>>
+
+<<Fundamentação: problema que a atividade resolve e referências
+normativas ou técnicas que a sustentam \cite{mop2026}.>>
+
+% ---------------------------------------------------------------------
+% Ficha-síntese: manter TODOS os campos e nesta ordem.
+% Quando o MOP não trouxer a informação, escrever "A definir" e
+% registrar uma \pendencia{...}.
+% ---------------------------------------------------------------------
+\begin{fichaatividade}{Ficha-síntese da Atividade <<X.X.X.X>>}{qua:ficha-<<rotulo-curto>>}
+  \campo{Código}{<<X.X.X.X>>}
+  \campo{Tipo de atividade}{<<Estudo e mobilização | Serviço e obra | Aquisição | ...>>}
+  \campo{Forma de execução}{<<Contratação pública (licitação) | Convênio | Execução direta>>}
+  \campo{Fonte de recursos}{<<BIRD | Contrapartida | Tesouro estadual>>}
+  \campo{Responsável}{<<Instituição executora>>}
+  \campo{Dependências institucionais}{<<Instituições das quais a execução depende>>}
+  \campo{Prazo estimado}{<<Ano X ao ano Y>>}
+  \campo{Produto esperado}{<<Produto final, com quantidade>>}
+  \campo{Unidade de medida}{<<Unidade>>}
+  \campo{Evidência de comprovação}{<<Documento que comprova a entrega>>}
+  \campo{Periodicidade}{<<Única | Por lote | Semestral | Contínua>>}
+  \campo{Validação}{<<Instituição que valida>>}
+\end{fichaatividade}
+
+% ---------------------------------------------------------------------
+\subsubsection{Procedimentos}
+% Agrupar os passos em FASES (\paragraph). Em cada passo: nome em
+% negrito + o que será feito. Usar "resume" para continuar a numeração
+% das alíneas entre fases.
+% ---------------------------------------------------------------------
+
+\paragraph{Fase 1 -- <<Nome da fase>>.}
+\begin{enumerate}[label=\alph*)]
+  \item \textbf{<<passo>>}: <<descrição do que será feito>>;
+  \item \textbf{<<passo>>}: <<descrição>>.
+\end{enumerate}
+
+\paragraph{Fase 2 -- <<Nome da fase>>.}
+\begin{enumerate}[label=\alph*), resume]
+  \item \textbf{<<passo>>}: <<descrição>>.
+\end{enumerate}
+
+% Opcional: fluxograma da atividade (ver figuras/fluxograma-esgotamento.tex)
+% \begin{figure}[htbp]
+%   \centering
+%   \caption{Fluxograma da Atividade <<X.X.X.X>>}
+%   \label{fig:fluxograma-<<rotulo-curto>>}
+%   \input{figuras/<<arquivo>>}
+%   \fonte{Elaborado pelo IAT (2026).}
+% \end{figure}
+
+% ---------------------------------------------------------------------
+\subsubsection{Etapas, produtos e evidências}
+% Quadro detalhado por etapa, em página paisagem. Mesmas colunas em
+% todas as atividades.
+% ---------------------------------------------------------------------
+
+\begin{landscape}
+\begin{quadro}[p]
+\caption{Etapas da Atividade <<X.X.X.X>>}
+\label{qua:etapas-<<rotulo-curto>>}
+\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{|P{2.6cm}|L|P{2.1cm}|Q{1.3cm}|P{2.5cm}|P{2cm}|P{2.6cm}|Q{1.4cm}|P{1.7cm}|}
+\hline
+\cab{Etapa} & \cab{Descrição técnica} & \cab{Responsável} & \cab{Prazo} &
+\cab{Produto esperado} & \cab{Unidade} & \cab{Evidência} & \cab{Periodic.} &
+\cab{Validação} \\ \hline
+1. <<Etapa>> & 1.1 <<subetapa>>; 1.2 <<subetapa>> & <<>> & <<Ano X a Y>> &
+<<>> & <<>> & <<>> & <<>> & <<>> \\ \hline
+2. <<Etapa>> & 2.1 <<subetapa>> & <<>> & <<>> &
+<<>> & <<>> & <<>> & <<>> & <<>> \\ \hline
+\end{tabularx}
+\fonte{Adaptado de \citeonline{mop2026}.}
+\end{quadro}
+\end{landscape}
+
+% ---------------------------------------------------------------------
+\subsubsection{Interfaces}
+% Com quais atividades, subcomponentes ou indicadores esta atividade se
+% relaciona, e em que sentido (recebe insumo de / entrega produto para).
+% ---------------------------------------------------------------------
+
+\begin{itemize}
+  \item \atividade{<<X.X.X.X>>}: <<relação>>.
+  \item Indicador <<nome do indicador>>: <<contribuição>>.
+\end{itemize}

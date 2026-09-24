@@ -1,0 +1,107 @@
+% =====================================================================
+%  PSH-PR -- Manual Operativo do Projeto (MOP)
+%  Modelo de estrutura metodológica -- Subcomponente 3.2.b
+%  Instituto Água e Terra (IAT)
+%
+%  Compilar com:  latexmk -pdf main.tex
+% =====================================================================
+\documentclass[
+  12pt,
+  oneside,
+  a4paper,
+  english,
+  brazil
+]{abntex2}
+
+% Mostrar (true) ou ocultar (false) as notas de pendência no PDF.
+% Para a versão final, trocar \mostrarpendenciastrue por \mostrarpendenciasfalse.
+\newif\ifmostrarpendencias
+\mostrarpendenciastrue
+
+\input{config/preambulo}
+\input{config/comandos}
+
+% ---------------------------------------------------------------------
+% Dados do documento
+% ---------------------------------------------------------------------
+\titulo{Manual Operativo do Projeto de Segurança Hídrica do Paraná (PSH-PR)}
+\autor{Instituto Água e Terra -- IAT}
+\local{Curitiba}
+\data{2026}
+\instituicao{Governo do Estado do Paraná\par Instituto Água e Terra}
+\tipotrabalho{Manual Operativo}
+\preambulo{Subcomponente 3.2.b -- Implantação e reabilitação de sistemas
+coletivos de abastecimento de água e esgotamento sanitário no meio rural.
+Modelo de estrutura metodológica.}
+
+\begin{document}
+
+\selectlanguage{brazil}
+\frenchspacing
+
+% ---------------------------------------------------------------------
+% Elementos pré-textuais
+% ---------------------------------------------------------------------
+\pretextual
+\imprimirfolhaderosto
+
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+
+\pdfbookmark[0]{\listofquadrosname}{loq}
+\listofquadros*
+\cleardoublepage
+
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+
+\begin{siglas}
+  \item[BIRD] Banco Internacional para Reconstrução e Desenvolvimento (Banco Mundial)
+  \item[ESMF] \textit{Environmental and Social Management Framework}
+  \item[IAT] Instituto Água e Terra
+  \item[IDR-Paraná] Instituto de Desenvolvimento Rural do Paraná
+  \item[IPDM] Índice Ipardes de Desempenho Municipal
+  \item[LMP] \textit{Labor Management Procedures}
+  \item[MGAS] Marco de Gestão Ambiental e Social
+  \item[MQR] Mecanismo de Queixas e Reclamações
+  \item[MRF] Marco de Política de Reassentamento
+  \item[O\&M] Operação e manutenção
+  \item[PEPI] Plano de Engajamento das Partes Interessadas
+  \item[PGR] Procedimentos de Gestão de Mão de Obra
+  \item[PIP] Plano Integrado de Propriedade
+  \item[PSH-PR] Projeto de Segurança Hídrica do Paraná
+  \item[RWSS] \textit{Rural Water Supply and Sanitation}
+  \item[SECID] Secretaria de Estado das Cidades
+  \item[SEP] \textit{Stakeholder Engagement Plan}
+  \item[TR] Termo de Referência
+  \item[TRD] Termo de Recebimento Definitivo
+  \item[UGP] Unidade de Gerenciamento do Programa
+\end{siglas}
+
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+% ---------------------------------------------------------------------
+% Elementos textuais
+% ---------------------------------------------------------------------
+\textual
+
+\input{capitulos/apresentacao}
+\input{capitulos/subcomponente-3-2-b/capitulo}
+
+% ---------------------------------------------------------------------
+% Elementos pós-textuais
+% ---------------------------------------------------------------------
+\postextual
+
+\bibliography{referencias}
+
+\begin{apendicesenv}
+\partapendices
+\input{apendices/pendencias}
+\end{apendicesenv}
+
+\end{document}

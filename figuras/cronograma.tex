@@ -1,0 +1,40 @@
+% Cronograma (diagrama de Gantt) do Subcomponente 3.2.b
+% Colunas: Ano 0 (coluna 1) a Ano 6 (coluna 7), conforme o MOP.
+\begin{ganttchart}[
+    hgrid,
+    vgrid={*1{draw=gray!40, dotted}},
+    x unit=1.15cm,
+    y unit title=0.55cm,
+    y unit chart=0.62cm,
+    title/.append style={fill=azulclaro, draw=azulpsh},
+    title label font=\scriptsize\bfseries,
+    bar/.append style={fill=azulpsh!75, draw=azulpsh},
+    bar height=0.55,
+    bar label font=\scriptsize,
+    bar label node/.append style={align=right, text width=6.2cm},
+    group/.append style={fill=azulpsh, draw=azulpsh},
+    group label font=\scriptsize\bfseries,
+    group label node/.append style={align=right, text width=6.2cm},
+    milestone/.append style={fill=orange, draw=orange!70!black},
+    milestone label font=\scriptsize,
+    milestone label node/.append style={align=right, text width=6.2cm}
+  ]{1}{7}
+  \gantttitle{Ano de execução}{7} \\
+  \gantttitle{0}{1} \gantttitle{1}{1} \gantttitle{2}{1} \gantttitle{3}{1}
+  \gantttitle{4}{1} \gantttitle{5}{1} \gantttitle{6}{1} \\
+
+  \ganttgroup{I. Estruturação institucional e social}{1}{7} \\
+  \ganttbar{3.2.2.1 Modelos de gestão}{1}{7} \\
+  \ganttbar{3.2.2.2 Trabalho técnico-social}{2}{5} \\
+
+  \ganttgroup{II. Implantação física}{2}{6} \\
+  \ganttbar{3.2.2.3 Abastecimento de água}{3}{6} \\
+  \ganttbar{3.2.2.4 Esgotamento -- comunidades}{3}{6} \\
+  \ganttbar{3.2.2.5 Esgotamento -- área IDR-Paraná}{3}{6} \\
+  \ganttbar{3.2.2.6 Sanepar Rural}{2}{6} \\
+
+  \ganttgroup{III. Monitoramento e encerramento}{3}{7} \\
+  \ganttbar{Supervisão técnica e monitoramento}{3}{7} \\
+  \ganttbar{Relatórios finais e encerramento}{6}{7} \\
+  \ganttmilestone{Termo de Recebimento Definitivo}{7}
+\end{ganttchart}

@@ -1,0 +1,70 @@
+% Fluxograma metodológico geral do Subcomponente 3.2.b
+\begin{tikzpicture}[node distance=0.55cm and 0.4cm]
+
+  % --- Bloco I: estruturação institucional e social -----------------
+  \node[marco] (sel) {Seleção de áreas e comunidades\\
+    \normalfont\scriptsize critérios estaduais de seleção};
+
+  \node[etapa=7.4cm, below=of sel] (gestao) {\textbf{3.2.2.1 -- Modelos de gestão}\\
+    definição do modelo, pactuação e termo de cooperação};
+
+  \node[etapa=7.4cm, below=of gestao] (tts) {\textbf{3.2.2.2 -- Trabalho técnico-social}\\
+    mobilização, diagnóstico, enquadramento e adesão das famílias};
+
+  \node[externo, left=0.5cm of tts] (concessao) {Municípios com contrato de concessão com a Sanepar};
+  \node[externo, right=0.5cm of tts] (pip) {PIP elaborados pelo IDR-Paraná (Subcomp.~2.3)};
+
+  % --- Bloco II: implantação física --------------------------------
+  \node[etapa, below=1.1cm of concessao] (sanepar) {\textbf{3.2.2.6}\\ Sanepar Rural\\
+    \scriptsize convênio -- contrapartida};
+  \node[etapa, below=1.1cm of pip] (esgidr) {\textbf{3.2.2.5}\\ Esgotamento -- área IDR\\
+    \scriptsize 2.300 sistemas};
+
+  \path (sanepar) -- (esgidr) coordinate[pos=0.5] (meio);
+  \node[etapa=3.2cm] (agua) at ($(meio)+(-2.0cm,0)$) {\textbf{3.2.2.3}\\ Abastecimento de água\\
+    \scriptsize 83 comunidades};
+  \node[etapa=3.2cm] (esgcom) at ($(meio)+(2.0cm,0)$) {\textbf{3.2.2.4}\\ Esgotamento -- comunidades\\
+    \scriptsize 4.067 domicílios};
+
+  % --- Bloco III: entrega, monitoramento e encerramento ------------
+  \node[etapa=15.2cm, anchor=north] (entrega) at ($(meio |- agua.south)+(0,-1.1cm)$) {\textbf{Entrega e capacitação}\\
+    capacitação dos beneficiários, entrega à entidade gestora ou ao proprietário e aceite formal};
+
+  \node[marco=15.2cm, below=of entrega] (fim) {Monitoramento, avaliação e encerramento\\
+    \normalfont\scriptsize relatórios semestrais, indicadores, relatório final e Termo de Recebimento Definitivo};
+
+  \node[transversal=15.2cm, below=0.45cm of fim] (salv) {\textbf{Transversal:}
+    salvaguardas ambientais e sociais -- MGAS, PEPI, PGR, MRF e MQR (\autoref{sec:salvaguardas})};
+
+  % --- Ligações ----------------------------------------------------
+  \draw[seta] (sel) -- (gestao);
+  \draw[seta] (gestao) -- node[rotulo, right=2pt] {modelo pactuado antes das obras} (tts);
+  \draw[seta] (tts.south) ++(-2.0cm,0) -- (agua.north);
+  \draw[seta] (tts.south) ++(2.0cm,0) -- (esgcom.north);
+  \draw[seta] (agua) -- node[rotulo, above] {70\%} (esgcom);
+  \draw[seta] (concessao) -- (sanepar);
+  \draw[seta] (pip) -- (esgidr);
+  \draw[setatracejada] (gestao.west) -| (sanepar.north west);
+
+  \foreach \n in {sanepar, agua, esgcom, esgidr}
+    \draw[seta] (\n.south) -- (\n.south |- entrega.north);
+  \draw[seta] (entrega) -- (fim);
+
+  % --- Rótulos dos blocos -------------------------------------------
+  \begin{scope}[on background layer]
+    \node[fill=cinzaclaro!60, rounded corners, inner sep=6pt,
+          fit=(sel)(gestao)(tts)(concessao)(pip)] (b1) {};
+    \node[fill=cinzaclaro!60, rounded corners, inner sep=6pt,
+          fit=(sanepar)(agua)(esgcom)(esgidr)] (b2) {};
+    \node[fill=cinzaclaro!60, rounded corners, inner sep=6pt,
+          fit=(entrega)(fim)] (b3) {};
+  \end{scope}
+  \node[font=\scriptsize\bfseries, anchor=south west, text=azulpsh]
+    at (b1.north west) {I. Estruturação institucional e social};
+  % rótulos centrados no espaço livre entre as setas de 3.2.2.6 e 3.2.2.3
+  \path (sanepar.center) -- (agua.center) coordinate[pos=0.5] (livre);
+  \node[font=\scriptsize\bfseries, anchor=south, text=azulpsh]
+    at (livre |- b2.north) {II. Implantação física};
+  \node[font=\scriptsize\bfseries, anchor=south, text=azulpsh]
+    at (livre |- b3.north) {III. Entrega e encerramento};
+\end{tikzpicture}

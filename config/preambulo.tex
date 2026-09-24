@@ -1,0 +1,87 @@
+% =====================================================================
+%  Pacotes e configurações gerais
+% =====================================================================
+
+% --- Fontes e codificação ---------------------------------------------
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+
+% --- Parágrafos, listas e tabelas -------------------------------------
+\usepackage{indentfirst}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{pdflscape}
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=*, itemsep=2pt}
+
+% --- Figuras (fluxogramas e cronograma) -------------------------------
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric, calc, fit, backgrounds}
+\usepackage{pgfgantt}
+
+% --- Notas de pendência (revisão do MOP) ------------------------------
+\ifmostrarpendencias
+  \usepackage[colorinlistoftodos, textsize=footnotesize,
+              figwidth=\linewidth]{todonotes}
+\else
+  \usepackage[disable]{todonotes}
+\fi
+
+% --- Citações (ABNT, autor-data) --------------------------------------
+\usepackage[alf, abnt-emphasize=bf]{abntex2cite}
+
+% --- Cores do documento -----------------------------------------------
+\definecolor{azulpsh}{RGB}{0,84,147}
+\definecolor{azulclaro}{RGB}{222,235,247}
+\definecolor{verdeclaro}{RGB}{226,239,218}
+\definecolor{laranjaclaro}{RGB}{252,228,214}
+\definecolor{cinzaclaro}{RGB}{242,242,242}
+
+% --- Hiperlinks -------------------------------------------------------
+\makeatletter
+\hypersetup{
+  pdftitle={\@title},
+  pdfauthor={\@author},
+  pdfsubject={Subcomponente 3.2.b -- estrutura metodológica},
+  pdfkeywords={PSH-PR}{MOP}{saneamento rural}{IAT},
+  colorlinks=true,
+  linkcolor=azulpsh,
+  citecolor=azulpsh,
+  filecolor=azulpsh,
+  urlcolor=azulpsh,
+  bookmarksdepth=4
+}
+\makeatother
+
+% --- Quadros (ABNT NBR 14724) -----------------------------------------
+% A ABNT distingue "quadro" (conteúdo textual) de "tabela" (dados
+% numéricos). O abnTeX2 não traz o ambiente pronto; ele é criado aqui.
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space}
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+\setfloatlocations{quadro}{htbp}
+
+% Numeração contínua de figuras e tabelas (sem prefixo do capítulo)
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+
+% Numeração e sumário até \subsubsection (as fases, em \paragraph, não
+% são numeradas nem entram no sumário)
+\setsecnumdepth{subsubsection}
+\settocdepth{subsubsection}
+
+% --- Espaçamentos -----------------------------------------------------
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0.2cm}
