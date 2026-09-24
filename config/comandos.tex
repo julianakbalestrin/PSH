@@ -19,38 +19,17 @@
 \makeatother
 
 % ---------------------------------------------------------------------
+% \fluxograma{arquivo}
+%   Insere um fluxograma da pasta figuras/, reduzindo-o apenas se for
+%   mais largo que a mancha de texto.
+% ---------------------------------------------------------------------
+\newcommand{\fluxograma}[1]{\adjustbox{max width=\linewidth}{\input{figuras/#1}}}
+
+% ---------------------------------------------------------------------
 % \atividade{3.2.2.x}
 %   Grafia padronizada do código de uma atividade no texto corrido.
 % ---------------------------------------------------------------------
 \newcommand{\atividade}[1]{Atividade~#1}
-
-% ---------------------------------------------------------------------
-% Ambiente fichaatividade  -- ficha-síntese de cada atividade
-%
-%   \begin{fichaatividade}{Título do quadro}{rótulo}
-%     \campo{Campo}{Conteúdo}
-%     ...
-%   \end{fichaatividade}
-%
-% Campos padronizados (usar sempre esta ordem):
-%   Código | Tipo de atividade | Forma de execução | Fonte de recursos |
-%   Responsável | Dependências institucionais | Prazo estimado |
-%   Produto esperado | Unidade de medida | Evidência de comprovação |
-%   Periodicidade | Validação
-% ---------------------------------------------------------------------
-\newenvironment{fichaatividade}[2]{%
-  \quadro[htbp]% (sem \begin, para o tabularx achar \end{fichaatividade})
-  \caption{#1}\label{#2}
-  \small
-  \renewcommand{\arraystretch}{1.25}
-  \tabularx{\textwidth}{|>{\columncolor{azulclaro}\bfseries\raggedright\arraybackslash}p{0.32\textwidth}|X|}
-  \hline
-}{%
-  \endtabularx
-  \fonte{Adaptado de \citeonline{mop2026}.}
-  \endquadro
-}
-\newcommand{\campo}[2]{#1 & #2 \\ \hline}
 
 % ---------------------------------------------------------------------
 % Cabeçalho de quadros/tabelas (linha colorida em negrito)
@@ -90,5 +69,20 @@
                       inner sep=4pt, text width=#1},
   seta/.style={-{Stealth[length=2.2mm]}, thick, draw=azulpsh!80!black},
   setatracejada/.style={-{Stealth[length=2.2mm]}, thick, dashed, draw=gray},
-  rotulo/.style={font=\scriptsize\itshape, fill=white, inner sep=1pt}
+  rotulo/.style={font=\scriptsize\itshape, fill=white, inner sep=1pt},
+  % etapa em forma de seta (linhas do tempo)
+  fase/.style={signal, signal to=east, signal from=west, draw=azulpsh,
+               fill=azulclaro, align=center, font=\scriptsize\bfseries,
+               minimum height=1.1cm, text width=#1, inner sep=2pt},
+  fase/.default={2.1cm},
+  % caixa de produto ou documento resultante de uma etapa
+  produto/.style={draw=azulpsh!70, fill=white, align=center, font=\scriptsize,
+                  text width=#1, inner sep=3pt, minimum height=0.7cm,
+                  rounded corners=1pt},
+  produto/.default={2.1cm},
+  % faixa (raia) de responsável em fluxogramas do tipo swimlane
+  raia/.style={draw=gray!60, fill=cinzaclaro!70, minimum width=#1,
+               minimum height=0.9cm, anchor=north west},
+  titulo raia/.style={font=\scriptsize\bfseries, text=azulpsh, align=center,
+                      text width=1.6cm}
 }

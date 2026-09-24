@@ -1,0 +1,30 @@
+% Medição, comprovação, verificação independente e pagamento (raias verticais)
+\begin{tikzpicture}[passo/.style={etapa=4.3cm, minimum height=0.85cm}]
+  % raias (colunas)
+  \def\alt{12.3cm}
+  \node[raia=4.9cm, minimum height=\alt] at (0,0)     {};
+  \node[raia=4.9cm, minimum height=\alt] at (5.2,0)   {};
+  \node[raia=4.9cm, minimum height=\alt] at (10.4,0)  {};
+  \node[font=\scriptsize\bfseries, text=azulpsh] at (2.45,-0.35)  {Empresa contratada};
+  \node[font=\scriptsize\bfseries, text=azulpsh] at (7.65,-0.35)  {Proprietário (beneficiário)};
+  \node[font=\scriptsize\bfseries, text=azulpsh] at (12.85,-0.35) {IAT (fiscalização e validação)};
+
+  \node[passo] (m1) at (2.45,-1.25)   {Relatórios de medição do projeto e da implantação};
+  \node[passo] (m2) at (2.45,-2.55)   {Comprovação da implementação: documentos e evidências};
+  \node[passo] (m3) at (7.65,-3.85)   {Assinatura confirmando a execução das melhorias};
+  \node[passo] (m4) at (12.85,-5.15)  {Auditoria documental};
+  \node[passo] (m5) at (12.85,-6.45)  {Verificação \textit{in loco} das intervenções};
+  \node[passo] (m6) at (2.45,-7.75)   {Relatório de medição final (consolidação)};
+  \node[passo] (m7) at (12.85,-9.05)  {Amostragem \textit{in loco} da qualidade das unidades};
+  \node[passo] (m8) at (12.85,-10.35) {Ordenação das despesas e pagamento};
+  \node[marco=4.3cm, minimum height=0.85cm] (m9) at (7.65,-11.55) {Finalização};
+
+  \draw[seta] (m1) -- (m2);
+  \draw[seta] (m2) |- (m3);
+  \draw[seta] (m3) -| (m4);
+  \draw[seta] (m4) -- (m5);
+  \draw[seta] (m5) -| (m6);
+  \draw[seta] (m6) |- (m7);
+  \draw[seta] (m7) -- (m8);
+  \draw[seta] (m8) |- (m9);
+\end{tikzpicture}

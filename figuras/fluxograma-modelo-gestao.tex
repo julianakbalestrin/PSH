@@ -1,0 +1,35 @@
+% Linha do tempo da implantação do modelo de gestão (Quadro 28 do MOP)
+\begin{tikzpicture}[node distance=0.06cm]
+  \node[fase=1.95cm] (g1) {Estudos\\ preliminares};
+  \node[fase=1.95cm, right=of g1] (g2) {Implantação};
+  \node[fase=1.95cm, right=of g2] (g3) {Gestão};
+  \node[fase=1.95cm, right=of g3] (g4) {Supervisão\\ técnica};
+  \node[fase=1.95cm, right=of g4] (g5) {Monitoramento\\ e avaliação};
+  \node[fase=1.95cm, fill=azulpsh, text=white, right=of g5] (g6) {Relatórios e\\ encerramento};
+
+  % prazos
+  \foreach \n/\t in {g1/Ano 0 a 1, g2/Ano 1 a 2, g3/Ano 3 a 5, g4/Ano 2 a 6, g5/Ano 2 a 6, g6/Ano 5 e 6}
+    \node[font=\scriptsize\itshape, above=2pt of \n] {\t};
+
+  % o que se faz
+  \node[produto=1.95cm, minimum height=2.3cm, below=0.35cm of g1, anchor=north] (a1)
+    {instrumentos de gestão, parceiros, critérios e indicadores; contato com município e comunidade};
+  \node[produto=1.95cm, minimum height=2.3cm, below=0.35cm of g2, anchor=north] (a2)
+    {estatuto, manuais e cartilhas; enquadramento jurídico; adesão familiar};
+  \node[produto=1.95cm, minimum height=2.3cm, below=0.35cm of g3, anchor=north] (a3)
+    {manuais de desempenho; estrutura de monitoramento; treinamento};
+  \node[produto=1.95cm, minimum height=2.3cm, below=0.35cm of g4, anchor=north] (a4)
+    {acompanhamento da implantação};
+  \node[produto=1.95cm, minimum height=2.3cm, below=0.35cm of g5, anchor=north] (a5)
+    {avaliação do desempenho da gestão nas comunidades};
+  \node[produto=1.95cm, minimum height=2.3cm, below=0.35cm of g6, anchor=north] (a6)
+    {consolidação de resultados e prestação de contas};
+
+  % produtos
+  \foreach \n/\t in {a1/Contratos de pré-adesão, a2/Associações regularizadas,
+                     a3/Pessoas capacitadas, a4/Relatório de supervisão,
+                     a5/Relatórios semestrais no SIGARH e GeoPR, a6/Termo de Recebimento Definitivo}
+    \node[marco=1.95cm, font=\scriptsize\bfseries, minimum height=0.8cm,
+          below=0.3cm of \n.south, anchor=north] {\t};
+
+\end{tikzpicture}

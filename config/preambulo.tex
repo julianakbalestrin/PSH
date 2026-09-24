@@ -22,8 +22,9 @@
 
 % --- Figuras (fluxogramas e cronograma) -------------------------------
 \usepackage{tikz}
-\usetikzlibrary{positioning, arrows.meta, shapes.geometric, calc, fit, backgrounds}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric, shapes.symbols, calc, fit, backgrounds}
 \usepackage{pgfgantt}
+\usepackage{adjustbox}
 
 % --- Notas de pendência (revisão do MOP) ------------------------------
 \ifmostrarpendencias
@@ -42,6 +43,11 @@
 \definecolor{verdeclaro}{RGB}{226,239,218}
 \definecolor{laranjaclaro}{RGB}{252,228,214}
 \definecolor{cinzaclaro}{RGB}{242,242,242}
+% fases do cronograma do POA (Anexo A)
+\definecolor{corTR}{RGB}{189,215,238}
+\definecolor{corLicitacao}{RGB}{255,192,0}
+\definecolor{corExecucao}{RGB}{0,84,147}
+\definecolor{corInterna}{RGB}{112,173,71}
 
 % --- Hiperlinks -------------------------------------------------------
 \makeatletter

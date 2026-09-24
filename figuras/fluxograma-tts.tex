@@ -1,0 +1,36 @@
+% Trabalho técnico-social: sequência e produtos
+\begin{tikzpicture}[node distance=0.42cm,
+    passo/.style={etapa=6.2cm, minimum height=0.95cm},
+    liga/.style={draw=azulpsh!50, dashed}]
+
+  \node[passo] (t1) {\textbf{Contratação da empresa}\\ TR, edital e licitação (regras BIRD)};
+  \node[passo, below=of t1] (t2) {\textbf{Mobilização e sensibilização}\\ municípios, comunidades, associações e proprietários};
+  \node[passo, below=of t2] (t3) {\textbf{Busca ativa e trabalho social}\\ capacitação e organização comunitária};
+  \node[passo, below=of t3] (t4) {\textbf{Diagnóstico coletivo}\\ formas de abastecimento e de esgotamento};
+  \node[passo, below=of t4] (t5) {\textbf{Levantamento das condições domiciliares}};
+  \node[passo, below=of t5] (t6) {\textbf{Enquadramento das famílias}\\ critérios sociais, territoriais e técnicos};
+  \node[passo, below=of t6] (t7) {\textbf{Termo de adesão das famílias}\\ compromisso com uso e manutenção};
+  \node[marco=6.2cm, below=of t7] (t8) {Compilação e apresentação dos resultados};
+
+  \foreach \a/\b in {t1/t2,t2/t3,t3/t4,t4/t5,t5/t6,t6/t7,t7/t8}
+    \draw[seta] (\a) -- (\b);
+
+  % produtos à direita
+  \node[produto=3.4cm, right=0.9cm of t1] (q1) {Contrato assinado};
+  \node[produto=3.4cm, right=0.9cm of t3] (q3) {Cadastro das famílias};
+  \node[produto=3.4cm, right=0.9cm of t4] (q4) {Diagnóstico por comunidade};
+  \node[produto=3.4cm, right=0.9cm of t6] (q6) {Famílias a serem atendidas};
+  \node[produto=3.4cm, right=0.9cm of t7] (q7) {Termos de adesão assinados};
+  \node[produto=3.4cm, right=0.9cm of t8] (q8) {Relatório final e baixa no Termo de Cooperação};
+  \foreach \a/\b in {t1/q1,t3/q3,t4/q4,t6/q6,t7/q7,t8/q8}
+    \draw[liga] (\a) -- (\b);
+
+  % usos dos resultados à esquerda
+  \node[externo=3.3cm, left=0.9cm of t4] (u1) {Captação e projeto do sistema de água (\ref{subsec:captacao})};
+  \node[externo=3.3cm, left=0.9cm of t6] (u2) {Esgotamento nas comunidades (\ref{sec:esgotamento})};
+  \draw[setatracejada] (t4) -- (u1);
+  \draw[setatracejada] (t5.west) -| (u2.north);
+
+  \node[font=\scriptsize\bfseries, text=azulpsh, above=0.1cm of q1] {Produtos};
+  \node[font=\scriptsize\bfseries, text=azulpsh, above=0.1cm of u1] {Usos do diagnóstico};
+\end{tikzpicture}

@@ -1,0 +1,33 @@
+% Seleção e adesão dos municípios e comunidades, por responsável (raias)
+\begin{tikzpicture}[passo/.style={etapa=2.2cm, minimum height=1.0cm}]
+  % raias (linhas horizontais) e seus títulos
+  \foreach \i/\t in {0/IAT, 1/Município, 2/Comunidade} {
+    \node[raia=15.6cm, minimum height=1.9cm] at (0,{-\i*1.95}) {};
+    \node[titulo raia] at (0.9,{-\i*1.95-0.95}) {\t};
+  }
+  \draw[gray!60] (1.8,0) -- (1.8,-5.8);
+
+  % IAT
+  \node[passo] (p1) at (3.2,-0.95)  {Planejamento integrado (com o IDR)};
+  \node[passo] (p2) at (5.9,-0.95)  {Seleção dos municípios};
+  \node[passo] (p3) at (8.6,-0.95)  {Sensibilização das prefeituras};
+  \node[passo] (p6) at (14.0,-0.95) {Contato inicial com a comunidade};
+  % Município
+  \node[passo] (p4) at (8.6,-2.9)   {Adesão formal ao Programa};
+  \node[passo] (p5) at (11.3,-2.9)  {Termo de Cooperação com o IAT};
+  % Comunidade
+  \node[passo] (p7) at (14.0,-4.85) {Pré-adesão da comunidade};
+
+  \draw[seta] (p1) -- (p2);
+  \draw[seta] (p2) -- (p3);
+  \draw[seta] (p3) -- (p4);
+  \draw[seta] (p4) -- (p5);
+  \draw[seta] (p5.north) |- (p6.west);
+  \draw[seta] (p6) -- (p7);
+
+  % produtos (marcos do POA e do MOP)
+  \node[rotulo, fill=none, below=2pt of p2] {mapa};
+  \node[rotulo, fill=none, below=2pt of p4] {lista de municípios};
+  \node[rotulo, fill=none, right=2pt of p5] {termo assinado};
+  \node[rotulo, fill=none, below=2pt of p7] {contratos de pré-adesão};
+\end{tikzpicture}

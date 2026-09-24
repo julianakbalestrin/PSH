@@ -1,0 +1,34 @@
+% Implementação do esgotamento sanitário descentralizado, do começo ao fim:
+% duas frentes de origem que convergem para um procedimento comum
+\begin{tikzpicture}[node distance=0.4cm,
+    passo/.style={etapa=5.2cm, minimum height=0.95cm},
+    comum/.style={etapa=11.6cm, minimum height=0.9cm}]
+
+  % --- Frente comunidades ---------------------------------------------
+  \node[font=\footnotesize\bfseries, text=azulpsh, align=center] (h1) at (0,0) {Frente comunidades\\ (4.067 domicílios)};
+  \node[passo, below=0.25cm of h1] (a1) {Comunidades atendidas pelo abastecimento de água (\autoref{sec:abastecimento})};
+  \node[passo, below=of a1] (a2) {Diagnóstico domiciliar do trabalho técnico-social: disposição atual do esgoto};
+  \node[passo, below=of a2] (a3) {Estudo das melhores alternativas de esgotamento para comunidades rurais};
+  \node[passo, below=of a3] (a4) {TR, licitação e contratação (aquisição de materiais e obras civis)};
+
+  % --- Frente mananciais (IDR-Paraná) --------------------------------
+  \node[font=\footnotesize\bfseries, text=azulpsh, align=center] (h2) at (6.4,0) {Frente mananciais -- IDR-Paraná\\ (2.300 domicílios)};
+  \node[passo] (b1) at (h2 |- a1) {Propriedades rurais em mananciais prioritários do PSH-PR};
+  \node[passo] (b2) at (h2 |- a2) {Planos Integrados de Propriedade (PIP) elaborados pelo IDR-Paraná};
+  \node[passo] (b4) at (h2 |- a4) {TR, licitação e contratação (materiais e implantação)};
+
+  % --- Procedimento comum -------------------------------------------
+  \coordinate (m) at ($(a4.south)!0.5!(b4.south)$);
+  \node[comum, below=0.8cm of m] (c1) {Projeto sanitário individual de cada propriedade};
+  \node[comum, below=of c1] (c2) {Instalação do sistema e verificação de funcionamento (\autoref{fig:esgotamento-instalacao})};
+  \node[comum, below=of c2] (c3) {Capacitação dos proprietários para uso e manutenção};
+  \node[comum, below=of c3] (c4) {Medição, comprovação, verificação independente e pagamento (\autoref{fig:esgotamento-medicao})};
+  \node[marco=11.6cm, below=of c4] (c5) {Finalização e monitoramento};
+
+  \foreach \x/\y in {a1/a2,a2/a3,a3/a4,b1/b2,b2/b4,c1/c2,c2/c3,c3/c4,c4/c5}
+    \draw[seta] (\x) -- (\y);
+  \draw[seta] (a4.south) -- (a4.south |- c1.north);
+  \draw[seta] (b4.south) -- (b4.south |- c1.north);
+
+  \node[rotulo, anchor=west] at ($(a1.south)!0.5!(a2.north)+(0.1,0)$) {70\% dos domicílios};
+\end{tikzpicture}

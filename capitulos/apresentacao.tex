@@ -5,65 +5,38 @@
 \addcontentsline{toc}{chapter}{Apresentação do modelo}
 
 Este documento propõe uma nova forma de apresentar as ações do Instituto
-Água e Terra (IAT) no Manual Operativo do Projeto (MOP) do PSH-PR. Toma-se
-como piloto o Subcomponente 3.2.b -- \textit{Implantação e reabilitação de
-sistemas coletivos de abastecimento de água e esgotamento sanitário no meio
-rural} (item B.3.2.2 do MOP de 17 de março de 2026). O conteúdo técnico
-foi preservado; o que muda é a organização. As atividades passam a ser
-descritas como o capítulo de metodologia de uma dissertação: justificativa
-e objetivos, área de estudo e critérios de seleção, delineamento, procedimentos
-por atividade, salvaguardas, monitoramento e cronograma.
+Água e Terra (IAT) no Manual Operativo do Projeto (MOP) do PSH-PR. O piloto é
+o Subcomponente 3.2.b, \textit{Implantação e reabilitação de sistemas
+coletivos de abastecimento de água e esgotamento sanitário no meio rural}
+(item B.3.2.2 do MOP de 17 de março de 2026). O conteúdo técnico do MOP foi
+preservado. O que muda é a forma de apresentá-lo, que passa a ser a de um
+capítulo de metodologia de dissertação: um texto corrido que explica, na
+ordem em que as coisas acontecem, como a ação será implementada, apoiado por
+fluxogramas.
 
-A mesma estrutura deve ser replicada nos demais subcomponentes sob
-responsabilidade do IAT (Componente~1 e Subcomponente~3.2.b). O arquivo
-\texttt{modelos/modelo-atividade.tex} contém o esqueleto em branco de uma
-atividade.
+Em vez de descrever cada atividade isoladamente, o capítulo acompanha o
+percurso completo de cada tipo de sistema. Depois da contextualização, dos
+critérios de seleção e do arranjo institucional, a Seção~\ref{sec:abastecimento}
+descreve o abastecimento de água do começo ao fim: a adesão do município, o
+modelo de gestão, o trabalho técnico-social, o poço, o projeto, a obra e a
+entrega à entidade gestora. Em seguida, a Seção~\ref{sec:esgotamento} faz o
+mesmo para o esgotamento sanitário, da identificação dos domicílios ao
+pagamento e à finalização. As salvaguardas, o monitoramento e o cronograma
+fecham o capítulo. As datas de 2026 e 2027 vêm do Plano Operativo Anual
+(POA), e o cronograma mensal desses dois anos está no Anexo~\ref{an:cronograma}.
 
-\section*{Estrutura padrão do capítulo}
+Cada etapa relevante é acompanhada de um fluxograma, e há três tipos de
+figura. As sequências mostram a ordem das etapas. As raias mostram quem faz
+o quê, quando várias instituições participam. As linhas do tempo mostram as
+fases com seus prazos e produtos. Os quadros longos do MOP, com as etapas,
+os produtos, as evidências e os responsáveis pela validação, foram mantidos
+no Apêndice~\ref{ap:quadros} para consulta, sem interromper a leitura. As
+inconsistências encontradas durante a reestruturação aparecem no texto em
+caixas de pendência e estão listadas no Apêndice~\ref{ap:pendencias}.
 
-\begin{enumerate}[label=\arabic*.]
-  \item \textbf{Contextualização e objetivos}: justificativa, objetivo geral,
-        objetivos específicos e metas físicas.
-  \item \textbf{Área de abrangência e critérios de seleção}: onde a ação
-        acontece e como são escolhidos os territórios e beneficiários.
-  \item \textbf{Delineamento metodológico}: premissas, encadeamento das
-        atividades (fluxograma) e arranjo institucional e financeiro.
-  \item \textbf{Procedimentos metodológicos por atividade}: uma seção por
-        atividade, sempre com as mesmas subdivisões:
-        \begin{enumerate}[label=\alph*)]
-          \item objetivo e fundamentação;
-          \item ficha-síntese (quadro padronizado);
-          \item procedimentos, organizados em fases;
-          \item etapas, produtos e evidências (quadro detalhado, quando houver);
-          \item interfaces com outras atividades.
-        \end{enumerate}
-  \item \textbf{Salvaguardas ambientais e sociais}: riscos, mitigação e
-        instrumentos do Quadro Ambiental e Social do Banco Mundial.
-  \item \textbf{Monitoramento, avaliação e indicadores}: indicadores, metas,
-        fontes de verificação e fluxo de validação.
-  \item \textbf{Cronograma de execução}: diagrama de Gantt.
-\end{enumerate}
-
-\section*{Convenções de redação e formatação}
-
-\begin{itemize}
-  \item Redação impessoal, no futuro do presente (\textit{serão realizadas},
-        \textit{será elaborado}), como em um projeto de pesquisa.
-  \item Informação textual vai em \textbf{quadro} e dados numéricos vão em
-        \textbf{tabela} (ABNT NBR 14724). Todo quadro, tabela e figura traz
-        a fonte.
-  \item Os códigos das atividades (3.2.2.1 a 3.2.2.6) seguem o MOP e são
-        citados com o comando \verb|\atividade{3.2.2.x}|.
-  \item Inconsistências encontradas durante a reestruturação são marcadas
-        com \verb|\pendencia{...}| e listadas no Apêndice~\ref{ap:pendencias}.
-        Para ocultá-las na versão final, basta desativar a opção em
-        \texttt{main.tex}.
-\end{itemize}
-
-\section*{Correspondência com o MOP vigente}
-
-O \autoref{qua:correspondencia} indica onde o conteúdo do item B.3.2.2 do MOP
-foi reposicionado na nova estrutura.
+O \autoref{qua:correspondencia} indica onde o conteúdo do MOP foi
+reposicionado. A mesma estrutura pode ser replicada nas demais ações do IAT
+no Componente~1 a partir do arquivo \texttt{modelos/modelo-secao.tex}.
 
 \begin{quadro}[htbp]
 \caption{Correspondência entre o MOP (versão de 17/03/2026) e a estrutura proposta}
@@ -73,16 +46,19 @@ foi reposicionado na nova estrutura.
 \begin{tabularx}{\textwidth}{|L|L|}
 \hline
 \cab{MOP -- item B.3.2.2} & \cab{Estrutura proposta} \\ \hline
-Texto introdutório e objetivos específicos & \ref{sec:contexto} Contextualização e objetivos \\ \hline
-Frentes de trabalho (83 comunidades; 2.300 sistemas) & \ref{subsec:metas} Metas \\ \hline
+Texto introdutório, objetivos e frentes de trabalho & \ref{sec:contexto} Contextualização e objetivos \\ \hline
 Área de abrangência e critérios de seleção & \ref{sec:area} Área de abrangência e critérios de seleção \\ \hline
-Executor, forma de execução, prazo e custo & \ref{subsec:arranjo} Arranjo institucional e financiamento \\ \hline
+Executor, forma de execução, prazo e custo & \ref{sec:arranjo} Arranjo institucional e visão geral \\ \hline
+B.3.2.2.1 Modelos de gestão & \ref{subsec:adesao} e \ref{subsec:modelos-gestao} (abastecimento) \\ \hline
+B.3.2.2.2 Trabalho técnico-social & \ref{subsec:tts} (abastecimento) e \ref{subsec:esgotamento-demanda} (esgotamento) \\ \hline
+B.3.2.2.3 Sistemas coletivos de abastecimento & \ref{subsec:captacao} a \ref{subsec:entrega} \\ \hline
+B.3.2.2.6 Programa Sanepar Rural & \ref{subsec:sanepar-rural} \\ \hline
+B.3.2.2.4 e B.3.2.2.5 Esgotamento descentralizado & \ref{sec:esgotamento} Implementação do esgotamento sanitário \\ \hline
 Quadro 26 -- Aspectos socioambientais & \ref{sec:salvaguardas} Salvaguardas ambientais e sociais \\ \hline
 Quadro 27 -- Indicadores & \ref{sec:monitoramento} Monitoramento, avaliação e indicadores \\ \hline
-B.3.2.2.1 a B.3.2.2.6 (atividades) & \ref{sec:procedimentos} Procedimentos metodológicos por atividade \\ \hline
-Quadros 28 e 29 -- Etapas das atividades & Quadros de etapas dentro de cada atividade \\ \hline
-Quadro 30 -- Atividades, responsáveis e prazos & Fichas-síntese de cada atividade e \ref{sec:cronograma} Cronograma \\ \hline
-Quadro 31 -- Produtos e evidências & Fichas-síntese de cada atividade \\ \hline
+Quadros 28 e 29 -- Etapas das atividades & Apêndice~\ref{ap:quadros} \\ \hline
+Quadros 30 e 31 -- Atividades e produtos & Quadros-síntese nas Seções \ref{sec:abastecimento} e \ref{sec:esgotamento} \\ \hline
+POA 2026--2027 (Componente 3) & Anexo~\ref{an:cronograma} \\ \hline
 \end{tabularx}
 \fonte{Elaborado pelo IAT (2026).}
 \end{quadro}

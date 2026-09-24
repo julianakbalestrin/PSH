@@ -1,0 +1,28 @@
+% Pré-operação, capacitação, entrega e operação dos sistemas de abastecimento
+% linha 1 da esquerda para a direita; linha 2 da direita para a esquerda
+\begin{tikzpicture}[node distance=0.1cm,
+    volta/.style={fase=3.3cm, signal to=west, signal from=east, fill=verdeclaro}]
+  % linha 1: comissionamento e transferência
+  \node[fase=3.3cm] (e1) {Pré-operação\\ e testes};
+  \node[fase=3.3cm, right=of e1] (e2) {Capacitação dos\\ operadores locais};
+  \node[fase=3.3cm, right=of e2] (e3) {Reunião técnica\\ de entrega};
+  \node[fase=3.3cm, right=of e3] (e4) {Aceite da\\ entidade gestora};
+  % linha 2: operação e encerramento
+  \node[volta, below=1.2cm of e4] (e5) {Operação pela\\ entidade gestora};
+  \node[volta, left=of e5] (e6) {Suporte técnico\\ pós-implantação};
+  \node[volta, left=of e6] (e7) {Avaliação semestral\\ de desempenho};
+  \node[volta, fill=azulpsh, text=white, left=of e7] (e8) {TRD e encerramento\\ do Termo de Cooperação};
+
+  \draw[seta] (e4.south) -- (e5.north);
+
+  % evidências (acima da linha 1 e abaixo da linha 2)
+  \node[produto=3.0cm, above=0.25cm of e2] {lista de presença e certificados};
+  \node[produto=3.0cm, above=0.25cm of e4] {confirmação formal do recebimento};
+  \node[produto=3.0cm, below=0.25cm of e7] {relatórios de conformidade no SIGARH e GeoPR};
+  \node[produto=3.0cm, below=0.25cm of e8] {relatório final e prestação de contas};
+
+  \node[font=\scriptsize\bfseries, text=azulpsh, anchor=south west] at ($(e1.north west)+(0,0.25)$)
+    {Transferência do sistema};
+  \node[font=\scriptsize\bfseries, text=azulpsh, anchor=north east] at ($(e5.south east)+(0,-0.25)$)
+    {Operação e encerramento};
+\end{tikzpicture}

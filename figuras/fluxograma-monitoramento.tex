@@ -1,0 +1,34 @@
+% Fluxo de monitoramento, validação e reporte
+\begin{tikzpicture}[node distance=0.4cm,
+    fonte/.style={externo=3.6cm, minimum height=0.9cm},
+    passo/.style={etapa=3.8cm, minimum height=1.1cm}]
+
+  % fontes de informação
+  \node[fonte] (f1) at (0,0)     {Supervisão e fiscalização das obras};
+  \node[fonte] (f2) at (0,-1.3)  {Mecanismo de Queixas e Reclamações};
+  \node[fonte] (f3) at (0,-2.6)  {Entidades gestoras e associações};
+  \node[fonte] (f4) at (0,-3.9)  {Programa Sanepar Rural};
+
+  % consolidação pelos executores
+  \node[passo] (p1) at (4.8,-0.45) {IAT: relatórios semestrais de conformidade técnica e ambiental};
+  \node[passo] (p2) at (4.8,-3.45) {IAT e Sanepar: reporte anual dos indicadores de resultado};
+
+  % sistemas
+  \node[produto=2.6cm, minimum height=0.8cm] (s) at (4.8,-1.95) {SIGARH e GeoPR};
+
+  % UGP e Banco Mundial
+  \node[passo] (u) at (9.4,-1.95) {UGP: consolidação e validação à luz do MGAS};
+  \node[marco=3.2cm, minimum height=1.1cm] (bm) at (13.3,-1.95) {Banco Mundial};
+
+  \draw[seta] (f1.east) -- ++(0.45,0) |- (p1.west);
+  \draw[seta] (f2.east) -- ++(0.45,0) |- (p1.west);
+  \draw[seta] (f3.east) -- ++(0.45,0) |- (p2.west);
+  \draw[seta] (f4.east) -- ++(0.45,0) |- (p2.west);
+  \draw[seta] (p1) -- (s);
+  \draw[seta] (p1.east) -- ++(0.35,0) |- (u.west);
+  \draw[seta] (p2.east) -- ++(0.35,0) |- (u.west);
+  \draw[seta] (u) -- (bm);
+
+  \node[rotulo, below=0.1cm of bm, text width=3.2cm, align=center]
+    {relatórios de progresso; validação do encerramento (TRD)};
+\end{tikzpicture}

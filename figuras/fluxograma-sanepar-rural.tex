@@ -1,0 +1,29 @@
+% Programa Sanepar Rural: sequência de atividades por responsável (raias)
+\begin{tikzpicture}[passo/.style={etapa=2.2cm, minimum height=1.05cm}]
+  % raias e seus títulos
+  \foreach \i/\t in {0/Sanepar, 1/Município, 2/Comunidade} {
+    \node[raia=15.6cm, minimum height=1.9cm] at (0,{-\i*1.95}) {};
+    \node[titulo raia] at (0.9,{-\i*1.95-0.95}) {\t};
+  }
+  \draw[gray!60] (1.8,0) -- (1.8,-5.8);
+
+  % Sanepar
+  \node[passo] (s1) at (3.2,-0.95)  {Levantamento e estudo técnico de engenharia};
+  \node[passo] (s3) at (5.9,-0.95)  {Projetos de engenharia do SAA};
+  \node[passo] (s4) at (8.6,-0.95)  {Fornecimento de materiais hidráulicos};
+  \node[passo] (s8) at (14.0,-0.95) {Monitoramento e suporte pós-obra};
+  % Município
+  \node[passo] (s2) at (3.2,-2.9)   {Termo de Compromisso e Responsabilidade};
+  \node[passo] (s5) at (8.6,-2.9)   {Execução das obras, com apoio técnico da Sanepar};
+  % Comunidade
+  \node[passo] (s6) at (11.3,-4.85) {Formação da associação de moradores};
+  \node[passo] (s7) at (14.0,-4.85) {Treinamento e educação ambiental};
+
+  \draw[seta] (s1) -- (s2);
+  \draw[seta] (s2.east) -| (s3.south);
+  \draw[seta] (s3) -- (s4);
+  \draw[seta] (s4) -- (s5);
+  \draw[seta] (s5.south) |- (s6.west);
+  \draw[seta] (s6) -- (s7);
+  \draw[seta] (s7) -- (s8);
+\end{tikzpicture}

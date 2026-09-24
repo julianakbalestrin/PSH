@@ -1,0 +1,87 @@
+% =====================================================================
+%  MODELO EM BRANCO -- seção de implementação em formato metodológico
+%
+%  Use uma seção para cada "percurso" completo de implementação (por
+%  exemplo: abastecimento de água; esgotamento sanitário; estações de
+%  monitoramento). A seção descreve o percurso DO COMEÇO AO FIM, na ordem
+%  em que as coisas acontecem, e não atividade por atividade.
+%
+%  Como usar:
+%   1. Copie este arquivo para capitulos/<subcomponente>/0X-<nome>.tex
+%   2. Substitua tudo o que estiver entre << >>
+%   3. Inclua o arquivo no capitulo.tex do subcomponente com \input{...}
+%
+%  Regras de redação:
+%   - TEXTO CORRIDO. Parágrafos de 5 a 10 linhas, que expliquem o que
+%     será feito, por quem, em que ordem, com que produto e por quê.
+%     Evite listas de tópicos com frases curtas.
+%   - Poucos títulos: \section para o percurso e \subsection para cada
+%     fase. Não use \subsubsection nem \paragraph.
+%   - Um fluxograma por fase relevante (ver pasta figuras/):
+%       * sequência ....... figuras/fluxograma-captacao-projeto.tex
+%       * raias (quem faz o quê) .. figuras/fluxograma-obras.tex
+%       * linha do tempo com produtos .. figuras/fluxograma-modelo-gestao.tex
+%   - Datas de 2026-2027: use o POA e remeta ao Anexo A.
+%   - Cite o código da atividade do MOP no texto (\atividade{X.X.X.X}).
+%   - Quadros longos de etapas vão para o Apêndice B.
+%   - Inconsistências: \pendencia{...} logo após o parágrafo afetado.
+% =====================================================================
+\section{Implementação de <<percurso: ex. sistemas de abastecimento de água>>}
+\label{sec:<<rotulo>>}
+
+<<Parágrafo de abertura: em quantas fases o percurso se divide, do que
+trata cada uma e quais atividades do MOP ele reúne (\atividade{X.X.X.X}).
+Remeter à figura geral do percurso.>>
+
+\begin{figure}[htbp]
+  \centering
+  \caption{<<Implementação de ...>>, do começo ao fim}
+  \label{fig:<<rotulo>>}
+  \fluxograma{<<fluxograma-geral-do-percurso>>}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+% ---------------------------------------------------------------------
+\subsection{<<Fase 1: ex. Seleção e adesão>>}
+\label{subsec:<<rotulo-fase1>>}
+
+<<Como a fase começa (o que a antecede), quem conduz, o que será feito em
+cada passo, com que critérios ou normas, que produto resulta e como ele é
+comprovado. Incluir as datas do POA quando houver.>>
+
+<<Segundo parágrafo, se necessário: decisões, pontos de verificação,
+riscos específicos e o que a fase entrega para a fase seguinte.>>
+
+\begin{figure}[htbp]
+  \centering
+  \caption{<<Título do fluxograma da fase>>}
+  \label{fig:<<rotulo-fase1>>}
+  \fluxograma{<<arquivo>>}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+% ---------------------------------------------------------------------
+\subsection{<<Fase 2>>}
+\label{subsec:<<rotulo-fase2>>}
+
+<<...>>
+
+% ---------------------------------------------------------------------
+% Fechamento do percurso: quadro-síntese curto (uma linha por atividade)
+% ---------------------------------------------------------------------
+O \autoref{qua:sintese-<<rotulo>>} resume, para cada atividade, o
+responsável, o prazo, o produto e a forma de comprovação.
+
+\begin{quadro}[htbp]
+\caption{Síntese das atividades de <<percurso>>}
+\label{qua:sintese-<<rotulo>>}
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|P{2.9cm}|P{2.0cm}|Q{1.3cm}|L|L|P{1.4cm}|}
+\hline
+\cab{Atividade} & \cab{Responsável} & \cab{Prazo} & \cab{Produto} &
+\cab{Evidência} & \cab{Validação} \\ \hline
+<<X.X.X.X Nome>> & <<>> & <<Anos X a Y>> & <<>> & <<>> & <<>> \\ \hline
+\end{tabularx}
+\fonte{Adaptado de \citeonline{mop2026}.}
+\end{quadro}

@@ -1,0 +1,14 @@
+% Ciclo das contratações financiadas pelo BIRD (regra do POA 2026-2027)
+\begin{tikzpicture}[node distance=0.12cm]
+  \node[fase=2.55cm, fill=corTR] (f1) {Elaboração\\ do TR};
+  \node[fase=2.55cm, fill=corTR!60, right=of f1] (f2) {TR pronto e\\ enviado ao Banco};
+  \node[fase=2.55cm, fill=corLicitacao!70, right=of f2] (f3) {Processo\\ licitatório};
+  \node[fase=2.55cm, fill=corLicitacao!40, right=of f3] (f4) {Contrato\\ assinado};
+  \node[fase=2.55cm, fill=corExecucao, text=white, right=of f4] (f5) {Execução};
+
+  \node[produto=2.4cm, below=0.35cm of f1] {cerca de 3 meses\\ equipe do IAT};
+  \node[produto=2.4cm, below=0.35cm of f2] {marco:\\ ``TR concluído''};
+  \node[produto=2.4cm, below=0.35cm of f3] {até o mês anterior\\ ao início da execução};
+  \node[produto=2.4cm, below=0.35cm of f4] {marco:\\ ``Contrato assinado''};
+  \node[produto=2.4cm, below=0.35cm of f5] {serviço, obra ou\\ fornecimento};
+\end{tikzpicture}

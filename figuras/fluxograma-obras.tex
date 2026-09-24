@@ -1,0 +1,31 @@
+% Execução, supervisão e fiscalização das obras de abastecimento (raias)
+\begin{tikzpicture}[passo/.style={etapa=2.1cm, minimum height=1.05cm}]
+  % raias e seus títulos
+  \foreach \i/\t in {0/Executor da obra, 1/Supervisão, 2/Fiscalização (IAT)} {
+    \node[raia=15.9cm, minimum height=1.9cm] at (0,{-\i*1.95}) {};
+    \node[titulo raia] at (0.9,{-\i*1.95-0.95}) {\t};
+  }
+  \draw[gray!60] (1.8,0) -- (1.8,-5.8);
+
+  % Fiscalização (IAT)
+  \node[passo] (o1) at (3.2,-4.85)  {Contratação da supervisão e gerenciamento};
+  % Executor
+  \node[passo] (o2) at (5.8,-0.95)  {Execução da obra};
+  % Supervisão
+  \node[passo] (o3) at (5.8,-2.9)   {Acompanhamento e relatórios de supervisão};
+  % Fiscalização
+  \node[passo] (o4) at (8.5,-4.85)  {Verificação e relatórios de fiscalização};
+  \node[decisao, font=\scriptsize, text width=1.35cm] (d) at (11.35,-4.85) {Conforme projeto e normas?};
+  % Executor
+  \node[correcao=2.1cm] (o5) at (11.35,-0.95) {Ajustes na obra};
+  % Fiscalização
+  \node[marco=2.1cm, minimum height=1.05cm] (o7) at (14.55,-4.85) {Atesto de recebimento, laudos e \textit{as built}};
+
+  \draw[seta] (o1) |- (o2);
+  \draw[seta] (o2) -- (o3);
+  \draw[seta] (o3.south) |- (o4.west);
+  \draw[seta] (o4) -- (d);
+  \draw[seta] (d) -- node[rotulo, right] {Não} (o5);
+  \draw[seta] (o5.west) -| (o4.north);
+  \draw[seta] (d) -- node[rotulo, above] {Sim} (o7);
+\end{tikzpicture}

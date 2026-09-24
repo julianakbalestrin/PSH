@@ -1,0 +1,42 @@
+% Aplicação dos critérios de seleção e definição das frentes de trabalho
+\begin{tikzpicture}[node distance=0.35cm]
+
+  \node[marco=15.4cm] (topo) {Municípios e comunidades rurais do Paraná\\
+    \normalfont\scriptsize Microrregiões de Água e Esgoto};
+
+  % --- Coluna 1: comunidades (abastecimento + esgotamento) ----------
+  \node[etapa=4.8cm, below=0.9cm of topo.south west, anchor=north west] (c1)
+    {Comunidade ou conjunto com\\ $\geq$ 70 domicílios ocupados};
+  \node[etapa=4.8cm, below=of c1] (c2) {Índice Ipardes de Desempenho\\ Municipal (IPDM)};
+  \node[etapa=4.8cm, below=of c2] (c3) {Associações de moradores com\\ sistemas a complementar};
+  \node[marco=4.8cm, below=0.6cm of c3] (r1) {Frente comunidades\\
+    \normalfont\scriptsize 83 comunidades com abastecimento de água\\
+    e esgotamento em 70\% dos domicílios};
+
+  % --- Coluna 2: Sanepar Rural ---------------------------------------
+  \node[externo=4.8cm, below=0.9cm of topo.south, anchor=north] (s1)
+    {Municípios com Contrato de Concessão ou de Programa com a Sanepar};
+  \node[externo=4.8cm, below=of s1] (s2) {Critérios do\\ Programa Sanepar Rural};
+  \node[marco=4.8cm] (r2) at (s2 |- r1) {Frente Sanepar Rural\\
+    \normalfont\scriptsize abastecimento de água\\ por convênio};
+
+  % --- Coluna 3: mananciais (somente esgotamento) --------------------
+  \node[etapa=4.8cm, below=0.9cm of topo.south east, anchor=north east] (m1)
+    {Mananciais prioritários\\ do PSH-PR};
+  \node[etapa=4.8cm, below=of m1] (m2) {Mananciais de abastecimento\\ com atuação do IDR-Paraná};
+  \node[etapa=4.8cm, below=of m2] (m3) {Domicílios em área rural\\ (Censo 2022)};
+  \node[marco=4.8cm] (r3) at (m3 |- r1) {Frente mananciais\\
+    \normalfont\scriptsize 2.300 domicílios com\\ esgotamento descentralizado};
+
+  % --- Ligações ------------------------------------------------------
+  \draw[seta] (topo.south -| c1) -- (c1);
+  \draw[seta] (topo.south -| s1) -- (s1);
+  \draw[seta] (topo.south -| m1) -- (m1);
+  \draw[seta] (c1) -- (c2);  \draw[seta] (c2) -- (c3);  \draw[seta] (c3) -- (r1);
+  \draw[seta] (s1) -- (s2);  \draw[seta] (s2) -- (r2);
+  \draw[seta] (m1) -- (m2);  \draw[seta] (m2) -- (m3);  \draw[seta] (m3) -- (r3);
+
+  \node[rotulo, below=0.15cm of r1] {Seções \ref{sec:abastecimento} e \ref{sec:esgotamento}};
+  \node[rotulo, below=0.15cm of r2] {\autoref{subsec:sanepar-rural}};
+  \node[rotulo, below=0.15cm of r3] {\autoref{subsec:esgotamento-idr}};
+\end{tikzpicture}

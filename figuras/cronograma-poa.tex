@@ -1,0 +1,63 @@
+% Cronograma mensal 2026-2027 do Subcomponente 3.2.b (POA)
+% Colunas 1 a 12 = jan a dez/2026; 13 a 24 = jan a dez/2027.
+\newcommand{\fTR}[3]{\ganttbar[bar/.append style={fill=corTR}]{#1}{#2}{#3}}
+\newcommand{\fLic}[2]{\ganttbar[bar/.append style={fill=corLicitacao}]{}{#1}{#2}}
+\newcommand{\fExe}[2]{\ganttbar[bar/.append style={fill=corExecucao}]{}{#1}{#2}}
+\newcommand{\fInt}[3]{\ganttbar[bar/.append style={fill=corInterna}]{#1}{#2}{#3}}
+\begin{ganttchart}[
+    hgrid={*1{draw=gray!30}},
+    vgrid={*1{draw=gray!25, dotted}},
+    x unit=0.6cm,
+    y unit title=0.5cm,
+    y unit chart=0.52cm,
+    title/.append style={fill=azulclaro, draw=azulpsh},
+    title label font=\scriptsize\bfseries,
+    bar/.append style={draw=gray!60!black},
+    bar height=0.6,
+    bar label font=\scriptsize,
+    bar label node/.append style={align=right, text width=9.2cm},
+    group/.append style={fill=none, draw=none},
+    group label font=\scriptsize\bfseries\color{azulpsh},
+    group label node/.append style={align=right, text width=9.2cm},
+    group right shift=0, group top shift=0.45, group height=0.1,
+    group peaks height=0
+  ]{1}{24}
+  \gantttitle{2026}{12} \gantttitle{2027}{12} \\
+  \gantttitle{J}{1} \gantttitle{F}{1} \gantttitle{M}{1} \gantttitle{A}{1}
+  \gantttitle{M}{1} \gantttitle{J}{1} \gantttitle{J}{1} \gantttitle{A}{1}
+  \gantttitle{S}{1} \gantttitle{O}{1} \gantttitle{N}{1} \gantttitle{D}{1}
+  \gantttitle{J}{1} \gantttitle{F}{1} \gantttitle{M}{1} \gantttitle{A}{1}
+  \gantttitle{M}{1} \gantttitle{J}{1} \gantttitle{J}{1} \gantttitle{A}{1}
+  \gantttitle{S}{1} \gantttitle{O}{1} \gantttitle{N}{1} \gantttitle{D}{1} \\
+
+  \ganttgroup{Preparação institucional}{1}{24} \\
+  \fInt{1. Planejamento integrado das ações de 2027}{5}{10} \\
+  \fInt{2. Seleção dos municípios (mapa)}{5}{12} \\
+  \fInt{3. Articulação e adesão dos municípios}{5}{12} \\
+  \fInt{4. Termo de Cooperação com o município}{5}{12} \\
+  \fInt{5. Definição do modelo de gestão piloto}{4}{12} \\
+
+  \ganttgroup{Abastecimento de água}{1}{24} \\
+  \fTR{6. Mobilização social, estudos do poço e cadastro}{9}{11} \fLic{12}{21} \fExe{22}{24} \\
+  \fTR{7. Materiais para perfuração de poços}{10}{12} \fLic{13}{22} \fExe{23}{24} \\
+  \fTR{8. Projetos das redes de água e esgoto}{11}{13} \fLic{14}{23} \fExe{24}{24} \\
+  \fTR{9. Materiais para rede de abastecimento (25 un.)}{12}{14} \fLic{15}{24} \\
+  \fTR{10. Materiais para rede de abastecimento (30 un.)}{24}{24} \\
+  \fTR{11. Supervisão das obras de água e esgoto}{12}{14} \fLic{15}{24} \\
+
+  \ganttgroup{Esgotamento sanitário}{1}{24} \\
+  \fInt{12. Estudo de alternativas de esgotamento}{10}{12} \\
+  \fTR{13. Material para esgotamento nas comunidades}{13}{15} \fLic{16}{24} \\
+  \fTR{14. Materiais e implantação -- área do IDR-Paraná}{16}{18} \fLic{19}{24} \\
+
+  \ganttgroup{Modelo de gestão}{1}{24} \\
+  \fTR{15. Infraestrutura para o modelo de gestão}{23}{24}
+\end{ganttchart}
+
+\vspace{0.3cm}
+{\scriptsize
+\tikz\fill[corInterna, draw=gray!60!black] (0,0) rectangle (0.5,0.25); Equipe interna do IAT \quad
+\tikz\fill[corTR, draw=gray!60!black] (0,0) rectangle (0.5,0.25); Elaboração do TR \quad
+\tikz\fill[corLicitacao, draw=gray!60!black] (0,0) rectangle (0.5,0.25); Processo licitatório \quad
+\tikz\fill[corExecucao, draw=gray!60!black] (0,0) rectangle (0.5,0.25); Execução
+}
