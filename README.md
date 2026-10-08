@@ -11,8 +11,7 @@ rural. Prazos, metas e custos seguem a **planilha de custos do PSH-PR**.
 main.tex                     documento completo: preâmbulo, texto, figuras,
                              apêndices e referências (gravadas em
                              referencias.bib durante a compilação)
-figuras/mapa-3-2-b.pdf       mapa dos municípios (único arquivo externo)
-mapa/                        malha municipal do IBGE, CSV da seleção e script do mapa
+figuras/mapa-saneamento-rural.pdf  mapa do item 1.3 (único arquivo externo)
 modelos/modelo-acao.tex      esqueleto em branco dos 13 tópicos, para outras ações
 ```
 
@@ -38,13 +37,9 @@ antes de cada seção e subseção.
 
 ## Mapa
 
-Preencha `mapa/municipios_selecionados.csv` (código IBGE, município e frente:
-`comunidades`, `mananciais_idr` ou `sanepar_rural`) e rode:
-
-```bash
-pip install matplotlib
-python3 mapa/gerar_mapa.py
-```
+O item 1.3 usa o mapa inicial elaborado pelo IAT e pelo IDR-Paraná (11/11/2025):
+áreas prioritárias, associações de municípios, CISPAR e concentração de
+domicílios rurais. Para trocá-lo, substitua `figuras/mapa-saneamento-rural.pdf`.
 
 ## Pendências
 

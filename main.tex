@@ -490,27 +490,51 @@ os aplica.}
 \label{sec:mapa}
 
 O Acordo de Empréstimo exige que o MOP identifique as áreas rurais em que a
-Parte 3.2 do projeto vai intervir. A \autoref{fig:mapa} localiza os municípios
-de cada frente sobre a malha municipal do Paraná: em azul, a frente das
-comunidades (água e esgoto); em verde, a frente dos mananciais (esgoto); em
-amarelo, o Programa Sanepar Rural.
+Parte 3.2 do projeto vai intervir. A \autoref{fig:mapa} é o mapa inicial
+dessas áreas. Ele mostra onde os domicílios rurais estão mais concentrados no
+Paraná e quais municípios já participam de arranjos intermunicipais em que o
+modelo de gestão pode se apoiar.
 
-Enquanto a seleção não for concluída, o mapa mostra apenas a base municipal e a
-legenda. Para atualizá-lo, basta preencher a planilha
-\texttt{mapa/municipios\_selecionados.csv} com o código IBGE, o nome e a frente
-de cada município e executar o script \texttt{mapa/gerar\_mapa.py}, que
-redesenha o arquivo \texttt{figuras/mapa-3-2-b.pdf}.
+O mapa sobrepõe três camadas de informação. A primeira é a concentração de
+domicílios rurais. São 2.571 locais em que os domicílios estão a menos de
+350~m uns dos outros, agrupados em nove classes conforme o número de
+domicílios, de 20 a 30 (626 locais) até 596 a 1.058 (2 locais). Uma mancha de
+densidade, do amarelo (denso) ao branco (esparso), destaca as regiões com
+maior número de domicílios próximos. A segunda camada mostra os arranjos
+institucionais: os limites das associações de municípios e, em verde, os 112
+municípios consorciados ao Consórcio Intermunicipal de Saneamento do Paraná
+(CISPAR). A terceira camada mostra as áreas prioritárias do PSH-PR: as grandes
+bacias e os municípios da Região do Caiuá.
 
-\begin{figure}[!htbp]
+A leitura do mapa se liga diretamente aos critérios de seleção
+(\autoref{sec:criterios}). O critério de adensamento, de 70 ou mais domicílios
+ocupados, é atendido com folga pelos 298 locais das classes a partir de 96
+domicílios. Os 391 locais da classe de 62 a 95 domicílios precisam ser
+verificados caso a caso. As maiores concentrações estão na Região
+Metropolitana de Curitiba e no Centro-Sul e Sudeste do Estado, com núcleos
+também no Norte. A presença do CISPAR indica onde o arranjo intermunicipal em
+análise para o modelo de gestão (\autoref{subsec:modelos-gestao}) já tem base
+institucional.
+
+Este é um mapa de potencial, e não da seleção final. As comunidades atendidas
+serão definidas pela aplicação dos demais critérios, como o IPDM e a
+existência de associações de moradores, e confirmadas pelo trabalho
+técnico-social (\autoref{subsec:tts}).
+
+\pendencia{O mapa é inicial: mostra onde há potencial, mas não as comunidades
+selecionadas. Para atender ao Acordo de Empréstimo, inserir a versão com as
+comunidades de cada frente ou descrever como a lista será aprovada com o Banco
+Mundial.}
+
+\begin{landscape}
+\begin{figure}[p]
   \centering
-  \caption{Municípios de atuação do Subcomponente 3.2.b, por frente de trabalho}
+  \caption{Áreas prioritárias, associações de municípios, CISPAR e concentração de domicílios rurais}
   \label{fig:mapa}
-  \includegraphics[width=\linewidth]{figuras/mapa-3-2-b.pdf}
-  \fonte{Elaborado pelo IAT (2026) sobre a malha municipal do IBGE.}
+  \includegraphics[width=\linewidth, height=0.85\textheight, keepaspectratio]{figuras/mapa-saneamento-rural.pdf}
+  \fonte{Elaborado pelo IAT e pelo IDR-Paraná (2025). Hidrografia: IAT (2020) e GeoPR (2025); limites político-administrativos: GeoPR (2025).}
 \end{figure}
-
-\pendencia{Inserir o mapa com os municípios selecionados ou descrever como a
-lista será aprovada com o Banco Mundial.}
+\end{landscape}
 
 % =====================================================================
 %  1.4 RESPONSABILIDADES
@@ -1960,7 +1984,6 @@ Supervisão das obras (profissionais-mês) & -- & -- & 6 & 12 & 12 & 6 & -- & 36
 \end{adjustbox}
 \fonte{Adaptado da planilha de custos do PSH-PR, aba ``Consolidado R\$'' \cite{custo2026}.}
 \end{table}
-
 
 \FloatBarrier
 
