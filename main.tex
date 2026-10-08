@@ -129,6 +129,8 @@
 \setfloatlocations{quadro}{htbp}
 \counterwithout{figure}{chapter}
 \counterwithout{table}{chapter}
+% [H] = exatamente aqui. O pacote float precisa vir DEPOIS do \newfloat do quadro
+\usepackage{float}
 \setsecnumdepth{subsubsection}
 \settocdepth{subsubsection}
 \setlength{\parindent}{1.25cm}
@@ -261,7 +263,7 @@ inconsistências encontradas aparecem no texto em caixas de pendência e estão
 listadas no Apêndice~\ref{ap:pendencias}. Os quadros detalhados de etapas do
 MOP estão no Apêndice~\ref{ap:quadros}.
 
-\begin{quadro}[!htbp]
+\begin{quadro}[H]
 \caption{Estrutura padrão e origem do conteúdo}
 \label{qua:correspondencia}
 \footnotesize
@@ -321,7 +323,7 @@ A \autoref{fig:mapa-mental} resume a ação em oito temas. Cada ramo traz os
 números e as decisões principais e indica o tópico deste capítulo que o
 detalha.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Mapa mental do Subcomponente 3.2.b}
   \label{fig:mapa-mental}
@@ -429,7 +431,7 @@ domicílios rurais do Censo 2022 \cite{ibge2022}. O Programa Sanepar Rural atend
 os municípios com contrato de concessão ou de programa com a Sanepar, segundo
 os critérios do próprio programa.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Critérios de seleção e frentes de trabalho}
   \label{fig:selecao}
@@ -510,7 +512,7 @@ municípios consorciados ao Consórcio Intermunicipal de Saneamento do Paraná
 (CISPAR). A terceira camada mostra as áreas prioritárias do PSH-PR: as grandes
 bacias e os municípios da Região do Caiuá.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Áreas prioritárias, associações de municípios, CISPAR e concentração de domicílios rurais}
   \label{fig:mapa}
@@ -560,7 +562,7 @@ O \autoref{qua:roteiro} apresenta o roteiro de cada ação, na ordem em que
 acontecem. Para cada uma, indica as entradas de que depende, quem a executa,
 quais órgãos apoiam ou validam e o que ela entrega para a ação seguinte.
 
-\begin{quadro}[!htbp]
+\begin{quadro}[H]
 \caption{Roteiro por ação: entradas, responsáveis e órgãos envolvidos}
 \label{qua:roteiro}
 \scriptsize
@@ -607,7 +609,7 @@ O \autoref{qua:matriz-responsabilidades} resume os mesmos papéis em uma matriz:
 para cada ação, mostra quem executa (E), quem apoia (A) e quem valida ou
 fiscaliza (V).
 
-\begin{quadro}[!htbp]
+\begin{quadro}[H]
 \caption{Matriz de responsabilidades por ação}
 \label{qua:matriz-responsabilidades}
 \scriptsize
@@ -658,7 +660,7 @@ comunidades são definidas pelo trabalho técnico-social, e o modelo de gestão 
 pactuado antes das obras, para que nenhum sistema seja entregue sem uma
 entidade preparada para operá-lo \cite{mop2026}.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Visão geral da implementação do Subcomponente 3.2.b}
   \label{fig:fluxograma-geral}
@@ -745,7 +747,7 @@ diretamente pela equipe técnica do instituto, no caso do planejamento, da
 seleção e da articulação institucional. Toda contratação financiada pelo BIRD
 segue o ciclo da \autoref{fig:ciclo-contratacao}.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Ciclo das contratações financiadas pelo BIRD}
   \label{fig:ciclo-contratacao}
@@ -791,7 +793,7 @@ Termo de Cooperação, que registra as obrigações de cada parte até a entrega
 dos sistemas. Em seguida, o IAT procura a comunidade, que manifesta seu
 interesse por meio de contratos de pré-adesão.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Seleção e adesão dos municípios e comunidades, por responsável}
   \label{fig:adesao}
@@ -841,7 +843,7 @@ avaliação semestral acompanham todo o processo, que termina com o relatório
 final e o Termo de Recebimento Definitivo. O detalhamento está no
 \autoref{qua:etapas-3221}, no Apêndice~\ref{ap:quadros}.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Etapas de implantação do modelo de gestão e seus produtos}
   \label{fig:modelo-gestao}
@@ -914,7 +916,7 @@ termo de adesão com o compromisso de uso e manutenção adequados. O relatório
 final consolida os resultados e dá baixa na etapa correspondente do Termo de
 Cooperação.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Sequência e produtos do trabalho técnico-social}
   \label{fig:tts}
@@ -977,7 +979,7 @@ seis fases: preparação institucional, gestão e mobilização, captação, pro
 licenciamento, obras e, por fim, entrega e operação. As subseções seguintes
 detalham as fases técnicas e o Programa Sanepar Rural.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Implementação do abastecimento de água, do começo ao fim}
   \label{fig:abastecimento}
@@ -1068,7 +1070,7 @@ que precisam ser aprovados. A obra só começa com a outorga e as licenças
 ambientais obtidas (\autoref{fig:captacao-projeto}). As etapas, produtos e
 evidências estão no \autoref{qua:etapas-3223}, no Apêndice~\ref{ap:quadros}.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Captação subterrânea, projeto e licenciamento}
   \label{fig:captacao-projeto}
@@ -1133,7 +1135,7 @@ projeto e as normas. Havendo não conformidade, o executor faz os ajustes e a
 obra é verificada de novo. Estando tudo conforme, o IAT emite o atesto de
 recebimento, com os laudos de vistoria e o projeto \textit{as built}.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Execução, supervisão e fiscalização das obras, por responsável}
   \label{fig:obras}
@@ -1185,7 +1187,7 @@ locais são capacitados. A entrega é formalizada em reunião técnica com a
 comunidade e a entidade gestora, que confirma o recebimento
 (\autoref{fig:entrega}).
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Transferência, operação e encerramento dos sistemas de abastecimento}
   \label{fig:entrega}
@@ -1240,7 +1242,7 @@ racional da água, higiene e manutenção. Após a obra, a Sanepar acompanha a
 qualidade da água e dá suporte às associações
 (\autoref{fig:sanepar-rural}) \cite{mop2026,saneparrural}.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Programa Sanepar Rural, por responsável}
   \label{fig:sanepar-rural}
@@ -1300,7 +1302,7 @@ frentes diferem na forma como os domicílios são identificados e contratados,
 mas, a partir do projeto de cada propriedade, seguem o mesmo procedimento
 (\autoref{fig:esgotamento-geral}).
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Implementação do esgotamento sanitário, do começo ao fim}
   \label{fig:esgotamento-geral}
@@ -1360,7 +1362,7 @@ garantia do sistema (\autoref{fig:esgotamento-instalacao}). Se o sistema
 atender aos requisitos, é validado e segue para a medição. Se não atender, a
 empresa faz as correções e o sistema é verificado de novo.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Projeto, instalação e verificação técnica dos sistemas individuais}
   \label{fig:esgotamento-instalacao}
@@ -1408,7 +1410,7 @@ avalia por amostragem a qualidade das unidades. Só então são feitas a
 ordenação das despesas e o pagamento. O relatório técnico aprovado e o
 comprovante de pagamento são a evidência de conclusão de cada lote.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Medição, comprovação, verificação e pagamento, por responsável}
   \label{fig:esgotamento-medicao}
@@ -1461,7 +1463,7 @@ indicados pelos PIP elaborados pelo IDR-Paraná, e não pelo trabalho
 técnico-social; o território é o dos mananciais de abastecimento público; e a
 validação é compartilhada entre o IAT e o IDR-Paraná.
 
-\begin{quadro}[!htbp]
+\begin{quadro}[H]
 \caption{Diferenças entre as frentes de esgotamento sanitário}
 \label{qua:diferencas-esgotamento}
 \small
@@ -1502,7 +1504,7 @@ resultados alimentam os indicadores do Componente~3, e a UGP (Componente 4)
 apoia as aquisições, os desembolsos, o monitoramento e o reporte ao Banco
 Mundial.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Conexões do Subcomponente 3.2.b com outras partes do MOP}
   \label{fig:conexoes}
@@ -1570,7 +1572,7 @@ estanqueidade. Na operação, a capacitação, o modelo de gestão e o manejo do
 lodo garantem que o sistema funcione sem gerar novos impactos
 \cite[Quadros 25 e 26]{mop2026}.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Medidas ambientais e sociais ao longo da ação}
   \label{fig:socioambiental}
@@ -1619,7 +1621,7 @@ evidência que comprova cada uma. Todas as fases contam com reuniões
 comunitárias em linguagem simples e com um canal de queixas e reclamações,
 cujo tempo de resposta é monitorado a cada semestre.
 
-\begin{quadro}[!htbp]
+\begin{quadro}[H]
 \caption{Como a ação trata os riscos ambientais e sociais}
 \label{qua:socioambiental}
 \footnotesize
@@ -1673,7 +1675,7 @@ evidência é verificada por auditoria documental e visitas \textit{in loco} e
 validada pela instituição responsável pelo produto. Só então o resultado entra
 no SIGARH e no GeoPR e é reportado à UGP e ao Banco Mundial.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Cadeia de comprovação e sustentabilidade dos resultados}
   \label{fig:evidencias}
@@ -1715,7 +1717,7 @@ permitem corrigir problemas antes que comprometam o serviço. O
 \autoref{qua:comprovacao} detalha, para cada produto, o registro, a evidência,
 quem verifica e como o resultado se sustenta.
 
-\begin{quadro}[!htbp]
+\begin{quadro}[H]
 \caption{Matriz de comprovação por produto}
 \label{qua:comprovacao}
 \scriptsize
@@ -1755,7 +1757,7 @@ relatórios semestrais de conformidade técnica e ambiental, com dados no SIGARH
 e no GeoPR. O IAT e a Sanepar reportam os indicadores de resultado a cada ano. A
 UGP consolida e valida as informações e as envia ao Banco Mundial.
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Fluxo de monitoramento, validação e reporte}
   \label{fig:monitoramento}
@@ -1800,7 +1802,7 @@ UGP consolida e valida as informações e as envia ao Banco Mundial.
 Os indicadores da ação estão no \autoref{qua:indicadores}. As metas anuais de
 cada produto estão na \autoref{tab:metas-anuais} (\autoref{sec:cronograma}).
 
-\begin{quadro}[!htbp]
+\begin{quadro}[H]
 \caption{Indicadores do Subcomponente 3.2.b}
 \label{qua:indicadores}
 \footnotesize
@@ -1849,7 +1851,7 @@ A \autoref{tab:custos} mostra o custo unitário, a quantidade e o total de
 cada item, e a \autoref{tab:custos-anuais}, a distribuição desses valores por
 ano.
 
-\begin{table}[!htbp]
+\begin{table}[H]
 \centering
 \caption{Composição dos custos do Subcomponente 3.2.b}
 \label{tab:custos}
@@ -1882,7 +1884,7 @@ US\$ 12,3 milhões). A política e o plano estadual de saneamento rural (3.2.a,
 R\$ 10,6 milhões) não fazem parte desta ação.}
 \end{table}
 
-\begin{table}[!htbp]
+\begin{table}[H]
 \centering
 \caption{Distribuição anual dos custos do Subcomponente 3.2.b (R\$ milhões)}
 \label{tab:custos-anuais}
@@ -1932,7 +1934,7 @@ A supervisão das obras ocorre entre 2029 e 2032 \cite{custo2026}.
 \pendencia{Atualizar no restante do MOP as referências a ``seis anos'' e aos
 ``Anos 0 a 6'' para o prazo de sete anos (2027 a 2033).}
 
-\begin{figure}[!htbp]
+\begin{figure}[H]
   \centering
   \caption{Cronograma de execução do Subcomponente 3.2.b}
   \label{fig:cronograma}
@@ -1979,7 +1981,7 @@ A \autoref{tab:metas-anuais} traz as metas físicas de cada ano e os valores
 acumulados, que servem de referência para o acompanhamento anual dos
 resultados.
 
-\begin{table}[!htbp]
+\begin{table}[H]
 \centering
 \caption{Metas físicas anuais do Subcomponente 3.2.b}
 \label{tab:metas-anuais}
@@ -2046,7 +2048,7 @@ Cada quadro do MOP foi dividido em duas partes para caber em página retrato. Os
 MOP de 17/03/2026, que conta os prazos em ``Anos 0 a 6''. Com o prazo de sete
 anos, esses anos correspondem ao período de 2027 a 2033.
 
-\begin{quadro}[!htbp]
+\begin{quadro}[H]
 \caption{Implementação dos modelos de gestão: etapas, responsáveis e prazos}
 \label{qua:etapas-3221}
 \scriptsize
@@ -2070,7 +2072,7 @@ comunidades & IAT & Ano 2 a 6 \\ \hline
 \fonte{Adaptado de \citeonline[Quadro 28]{mop2026}.}
 \end{quadro}
 
-\begin{quadro}[!htbp]
+\begin{quadro}[H]
 \caption{Implementação dos modelos de gestão: produtos, evidências e validação}
 \label{qua:etapas-3221b}
 \scriptsize
@@ -2089,7 +2091,7 @@ comunidades & IAT & Ano 2 a 6 \\ \hline
 \fonte{Adaptado de \citeonline[Quadro 28]{mop2026}.}
 \end{quadro}
 
-\begin{quadro}[!htbp]
+\begin{quadro}[H]
 \caption{Implantação dos sistemas coletivos de abastecimento de água: etapas, responsáveis e prazos}
 \label{qua:etapas-3223}
 \scriptsize
@@ -2112,7 +2114,7 @@ capacitação dos operadores locais; 2.6 Gerenciamento e fiscalização das obra
 \fonte{Adaptado de \citeonline[Quadro 29]{mop2026}.}
 \end{quadro}
 
-\begin{quadro}[!htbp]
+\begin{quadro}[H]
 \caption{Implantação dos sistemas coletivos de abastecimento de água: produtos, evidências e validação}
 \label{qua:etapas-3223b}
 \scriptsize
