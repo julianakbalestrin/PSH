@@ -415,7 +415,12 @@ variam conforme a frente de trabalho e levam a três frentes, representadas na
 Na frente das comunidades, que recebem água e esgoto, o primeiro critério é o
 adensamento: comunidades, ou conjuntos de comunidades, com 70 ou mais
 domicílios ocupados, número que torna viável o modelo de gestão. O segundo é o
-desempenho do município, medido pelo IPDM \cite{ipdm}. O terceiro é a
+desempenho do município, medido pelo Índice Ipardes de Desempenho Municipal
+(IPDM) \cite{ipdm}. O índice varia de 0 a 1 e classifica os municípios em
+quatro estratos: baixo (de 0 a menos de 0,4), médio baixo (de 0,4 a menos de
+0,6), médio (de 0,6 a menos de 0,8) e alto desempenho (de 0,8 a 1,0). A ação
+vai trabalhar apenas com os municípios de médio baixo e de médio desempenho,
+isto é, com IPDM igual ou superior a 0,4 e inferior a 0,8. O terceiro é a
 existência de associações de moradores que já operam sistemas e precisam de
 complementação ou melhorias. Na frente dos mananciais, que recebe apenas
 esgotamento, são considerados os mananciais prioritários do PSH-PR e os
@@ -437,7 +442,7 @@ os critérios do próprio programa.
   % --- Coluna 1: comunidades (abastecimento + esgotamento) ----------
   \node[etapa=4.8cm, below=0.9cm of topo.south west, anchor=north west] (c1)
     {Comunidade ou conjunto com\\ $\geq$ 70 domicílios ocupados};
-  \node[etapa=4.8cm, below=of c1] (c2) {Índice Ipardes de Desempenho\\ Municipal (IPDM)};
+  \node[etapa=4.8cm, below=of c1] (c2) {IPDM de médio baixo ou\\ médio desempenho\\ (de 0,4 a menos de 0,8)};
   \node[etapa=4.8cm, below=of c2] (c3) {Associações de moradores com\\ sistemas a complementar};
   \node[marco=4.8cm, below=0.6cm of c3] (r1) {Frente comunidades\\
     \normalfont\scriptsize 83 comunidades com abastecimento de água\\
@@ -478,7 +483,7 @@ O resultado da aplicação dos critérios é a lista de municípios e comunidade
 cada frente, que alimenta o mapa da \autoref{sec:mapa}.
 
 \pendencia{Os critérios não indicam pesos, limiares (exceto os 70
-domicílios) nem a ordem de aplicação. Descrever como serão ponderados e quem
+domicílios e as faixas do IPDM) nem a ordem de aplicação. Descrever como serão ponderados e quem
 os aplica.}
 
 % =====================================================================
