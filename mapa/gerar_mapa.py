@@ -91,7 +91,7 @@ def main():
     ax.legend(handles=itens, loc="lower left", fontsize=6.5, frameon=True, framealpha=0.95)
 
     if not selecao:
-        ax.text(0.5, 0.5, "Seleção dos municípios em andamento\n(POA: mapa previsto para dez/2026)",
+        ax.text(0.5, 0.5, "Seleção dos municípios em andamento",
                 transform=ax.transAxes, ha="center", va="center", fontsize=9,
                 color="#7F7F7F", style="italic",
                 bbox=dict(boxstyle="round", facecolor="white", edgecolor="#BFBFBF"))

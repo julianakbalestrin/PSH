@@ -1,29 +1,193 @@
 % =====================================================================
 %  PSH-PR -- Manual Operativo do Projeto (MOP)
-%  Modelo de estrutura metodológica -- Subcomponente 3.2.b
-%  Instituto Água e Terra (IAT)
+%  Subcomponente 3.2.b -- Abastecimento de água e esgotamento sanitário
+%  no meio rural.  Instituto Água e Terra (IAT)
 %
-%  Compilar com:  latexmk -pdf main.tex
+%  Documento único: preâmbulo, texto, figuras, apêndices e referências
+%  estão todos neste arquivo. O único arquivo externo é o mapa
+%  (figuras/mapa-3-2-b.pdf), gerado por mapa/gerar_mapa.py.
+%
+%  Compilar com:  latexmk -pdf main.tex   (no Overleaf: pdfLaTeX)
 % =====================================================================
-\documentclass[
-  12pt,
-  oneside,
-  a4paper,
-  english,
-  brazil
-]{abntex2}
 
-% Mostrar (true) ou ocultar (false) as notas de pendência no PDF.
-% Para a versão final, trocar \mostrarpendenciastrue por \mostrarpendenciasfalse.
+% ---------------------------------------------------------------------
+% Referências (gravadas em referencias.bib durante a compilação)
+% ---------------------------------------------------------------------
+\begin{filecontents*}[overwrite]{referencias.bib}
+@manual{mop2026,
+  author       = {{PARANÁ}},
+  title        = {Manual Operativo do Projeto (MOP): Projeto de Segurança Hídrica do Paraná (PSH-PR)},
+  organization = {Governo do Estado do Paraná},
+  address      = {Curitiba},
+  year         = {2026},
+  note         = {Versão de 17 mar. 2026. Documento interno}
+}
+@misc{custo2026,
+  author       = {{PARANÁ}},
+  title        = {Planilha de custos do Projeto de Segurança Hídrica do Paraná (PSH-PR)},
+  howpublished = {Curitiba: Governo do Estado do Paraná},
+  year         = {2026},
+  note         = {Arquivo PSH\_CUSTO -- v2408 -- final. Documento interno}
+}
+@misc{sinisa2024,
+  author       = {{SINISA}},
+  title        = {Sistema Nacional de Informações em Saneamento Básico},
+  howpublished = {Brasília, DF: Ministério das Cidades},
+  year         = {2024},
+  note         = {Dados citados no item B.3.2.1 do MOP. Conferir ano-base e forma de acesso}
+}
+@misc{ibge2022,
+  author       = {{IBGE}},
+  title        = {Censo Demográfico 2022},
+  howpublished = {Rio de Janeiro: Instituto Brasileiro de Geografia e Estatística},
+  year         = {2022}
+}
+@misc{ipdm,
+  author       = {{IPARDES}},
+  title        = {Índice Ipardes de Desempenho Municipal (IPDM)},
+  howpublished = {Curitiba: Instituto Paranaense de Desenvolvimento Econômico e Social},
+  year         = {{[s.d.]}},
+  note         = {Conferir a edição utilizada na seleção das áreas}
+}
+@manual{saneparrural,
+  author       = {{SANEPAR}},
+  title        = {Manual do Programa Sanepar Rural},
+  organization = {Companhia de Saneamento do Paraná},
+  address      = {Curitiba},
+  year         = {{[s.d.]}},
+  note         = {Conferir título, versão e data}
+}
+\end{filecontents*}
+
+\documentclass[12pt, oneside, a4paper, english, brazil]{abntex2}
+
+% Mostrar (true) ou ocultar (false) as caixas de pendência no PDF.
 \newif\ifmostrarpendencias
 \mostrarpendenciastrue
 
-\input{config/preambulo}
-\input{config/comandos}
+% =====================================================================
+%  PACOTES
+% =====================================================================
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{microtype}
+\usepackage{indentfirst}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{pdflscape}
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=*, itemsep=2pt}
+\usepackage{placeins}   % \FloatBarrier: figuras não saem do item em que são citadas
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric, shapes.symbols, calc, fit, backgrounds}
+\usepackage{pgfgantt}
+\usepackage{adjustbox}
+\ifmostrarpendencias
+  \usepackage[colorinlistoftodos, textsize=footnotesize, figwidth=\linewidth]{todonotes}
+\else
+  \usepackage[disable]{todonotes}
+\fi
+\usepackage[alf, abnt-emphasize=bf]{abntex2cite}
 
-% ---------------------------------------------------------------------
-% Dados do documento
-% ---------------------------------------------------------------------
+% =====================================================================
+%  CORES
+% =====================================================================
+\definecolor{azulpsh}{RGB}{0,84,147}
+\definecolor{azulclaro}{RGB}{222,235,247}
+\definecolor{verdeclaro}{RGB}{226,239,218}
+\definecolor{laranjaclaro}{RGB}{252,228,214}
+\definecolor{cinzaclaro}{RGB}{242,242,242}
+\definecolor{corTR}{RGB}{189,215,238}
+\definecolor{corLicitacao}{RGB}{255,192,0}
+\definecolor{corExecucao}{RGB}{0,84,147}
+
+% =====================================================================
+%  CONFIGURAÇÕES
+% =====================================================================
+\makeatletter
+\hypersetup{
+  pdftitle={\@title}, pdfauthor={\@author},
+  pdfsubject={Subcomponente 3.2.b},
+  colorlinks=true, linkcolor=azulpsh, citecolor=azulpsh,
+  filecolor=azulpsh, urlcolor=azulpsh, bookmarksdepth=4
+}
+\makeatother
+
+% Quadros (ABNT NBR 14724): conteúdo textual vai em "quadro"; dados, em "tabela"
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+\setfloatadjustment{quadro}{\centering}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space}
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+\setfloatlocations{quadro}{htbp}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\setsecnumdepth{subsubsection}
+\settocdepth{subsubsection}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{0.2cm}
+
+% =====================================================================
+%  COMANDOS
+% =====================================================================
+% \pendencia{texto}: caixa laranja no texto; todas são listadas no Apêndice A
+\newcommand{\pendencia}[1]{%
+  \todo[inline, color=laranjaclaro, bordercolor=orange, caption={#1}]{\textbf{Pendência:} #1}}
+\makeatletter
+\newcommand{\listapendencias}{\@starttoc{tdo}}
+\makeatother
+
+% Cabeçalho de quadros e tipos de coluna
+\newcommand{\cab}[1]{\cellcolor{azulclaro}\textbf{#1}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{Q}[1]{>{\centering\arraybackslash}p{#1}}
+
+% Estilos dos fluxogramas
+\tikzset{
+  etapa/.style={draw=azulpsh, fill=azulclaro, rounded corners=2pt, align=center,
+                font=\footnotesize, inner sep=4pt, minimum height=0.9cm, text width=#1},
+  etapa/.default={3.4cm},
+  marco/.style={draw=azulpsh, fill=azulpsh, text=white, rounded corners=2pt, align=center,
+                font=\footnotesize\bfseries, inner sep=4pt, minimum height=0.9cm, text width=#1},
+  marco/.default={7.4cm},
+  externo/.style={draw=gray, fill=cinzaclaro, rounded corners=2pt, align=center,
+                  font=\footnotesize, inner sep=4pt, minimum height=0.9cm, text width=#1},
+  externo/.default={3.4cm},
+  decisao/.style={draw=orange!80!black, fill=laranjaclaro, diamond, aspect=2.2,
+                  align=center, font=\footnotesize, inner sep=1pt},
+  correcao/.style={draw=orange!80!black, fill=laranjaclaro, rounded corners=2pt, align=center,
+                   font=\footnotesize, inner sep=4pt, minimum height=0.9cm, text width=#1},
+  correcao/.default={2.6cm},
+  transversal/.style={draw=verdeclaro!50!black, fill=verdeclaro, dashed, rounded corners=2pt,
+                      align=center, font=\footnotesize, inner sep=4pt, text width=#1},
+  seta/.style={-{Stealth[length=2.2mm]}, thick, draw=azulpsh!80!black},
+  setatracejada/.style={-{Stealth[length=2.2mm]}, thick, dashed, draw=gray},
+  rotulo/.style={font=\scriptsize\itshape, fill=white, inner sep=1pt},
+  fase/.style={signal, signal to=east, signal from=west, draw=azulpsh, fill=azulclaro,
+               align=center, font=\scriptsize\bfseries, minimum height=1.1cm,
+               text width=#1, inner sep=2pt},
+  fase/.default={2.1cm},
+  produto/.style={draw=azulpsh!70, fill=white, align=center, font=\scriptsize,
+                  text width=#1, inner sep=3pt, minimum height=0.7cm, rounded corners=1pt},
+  produto/.default={2.1cm},
+  raia/.style={draw=gray!60, fill=cinzaclaro!70, minimum width=#1,
+               minimum height=0.9cm, anchor=north west},
+  titulo raia/.style={font=\scriptsize\bfseries, text=azulpsh, align=center, text width=1.6cm}
+}
+
+% =====================================================================
+%  DADOS DO DOCUMENTO
+% =====================================================================
 \titulo{Manual Operativo do Projeto de Segurança Hídrica do Paraná (PSH-PR)}
 \autor{Instituto Água e Terra -- IAT}
 \local{Curitiba}
@@ -31,17 +195,15 @@
 \instituicao{Governo do Estado do Paraná\par Instituto Água e Terra}
 \tipotrabalho{Manual Operativo}
 \preambulo{Subcomponente 3.2.b -- Implantação e reabilitação de sistemas
-coletivos de abastecimento de água e esgotamento sanitário no meio rural.
-Modelo de estrutura metodológica.}
+coletivos de abastecimento de água e esgotamento sanitário no meio rural.}
 
 \begin{document}
-
 \selectlanguage{brazil}
 \frenchspacing
 
-% ---------------------------------------------------------------------
-% Elementos pré-textuais
-% ---------------------------------------------------------------------
+% =====================================================================
+%  ELEMENTOS PRÉ-TEXTUAIS
+% =====================================================================
 \pretextual
 \imprimirfolhaderosto
 
@@ -59,22 +221,16 @@ Modelo de estrutura metodológica.}
 
 \begin{siglas}
   \item[BIRD] Banco Internacional para Reconstrução e Desenvolvimento (Banco Mundial)
-  \item[ESMF] \textit{Environmental and Social Management Framework}
   \item[IAT] Instituto Água e Terra
   \item[IDR-Paraná] Instituto de Desenvolvimento Rural do Paraná
   \item[IPDM] Índice Ipardes de Desempenho Municipal
-  \item[LMP] \textit{Labor Management Procedures}
   \item[MGAS] Marco de Gestão Ambiental e Social
   \item[MQR] Mecanismo de Queixas e Reclamações
-  \item[MRF] Marco de Política de Reassentamento
-  \item[O\&M] Operação e manutenção
-  \item[PEPI] Plano de Engajamento das Partes Interessadas
-  \item[PGR] Procedimentos de Gestão de Mão de Obra
   \item[PIP] Plano Integrado de Propriedade
   \item[PSH-PR] Projeto de Segurança Hídrica do Paraná
   \item[RWSS] \textit{Rural Water Supply and Sanitation}
   \item[SECID] Secretaria de Estado das Cidades
-  \item[SEP] \textit{Stakeholder Engagement Plan}
+  \item[SIGARH] Sistema de Gestão Ambiental e de Recursos Hídricos
   \item[TR] Termo de Referência
   \item[TRD] Termo de Recebimento Definitivo
   \item[UGP] Unidade de Gerenciamento do Programa
@@ -84,30 +240,1864 @@ Modelo de estrutura metodológica.}
 \tableofcontents*
 \cleardoublepage
 
-% ---------------------------------------------------------------------
-% Elementos textuais
-% ---------------------------------------------------------------------
+% =====================================================================
+%  ELEMENTOS TEXTUAIS
+% =====================================================================
 \textual
 
-\input{capitulos/apresentacao}
-\input{capitulos/subcomponente-3-2-b/capitulo}
+% ---------------------------------------------------------------------
+\chapter*[Apresentação do modelo]{Apresentação do modelo}
+\addcontentsline{toc}{chapter}{Apresentação do modelo}
+
+Este documento propõe uma nova forma de apresentar as ações do Instituto Água
+e Terra (IAT) no Manual Operativo do Projeto (MOP) do PSH-PR, tendo como
+piloto o Subcomponente 3.2.b (item B.3.2.2 do MOP de 17/03/2026). A ação é
+apresentada em 13 tópicos fixos. Cada tópico combina um texto explicativo com
+fluxogramas, quadros ou mapa, de modo que o leitor entenda o que será feito,
+por quem, em que ordem e como será comprovado. Prazos, metas e custos seguem a
+planilha de custos do PSH-PR \cite{custo2026}.
+
+O \autoref{qua:correspondencia} indica a origem do conteúdo de cada tópico. As
+inconsistências encontradas aparecem no texto em caixas de pendência e estão
+listadas no Apêndice~\ref{ap:pendencias}. Os quadros detalhados de etapas do
+MOP estão no Apêndice~\ref{ap:quadros}.
+
+\begin{quadro}[!htbp]
+\caption{Estrutura padrão e origem do conteúdo}
+\label{qua:correspondencia}
+\footnotesize
+\renewcommand{\arraystretch}{1.2}
+\begin{tabularx}{\textwidth}{|P{5.4cm}|L|}
+\hline
+\cab{Tópico} & \cab{Origem do conteúdo} \\ \hline
+\ref{sec:mapa-mental} Mapa mental & Objetivos e metas do item B.3.2.2; planilha de custos \\ \hline
+\ref{sec:criterios} Critérios de seleção & Área de abrangência e critérios de seleção do MOP \\ \hline
+\ref{sec:mapa} Mapa & Malha municipal do IBGE; exigência do Acordo de Empréstimo \\ \hline
+\ref{sec:responsabilidades} Responsabilidades das instituições & Executor, coexecutores e Quadro 30 do MOP \\ \hline
+\ref{sec:arranjo} Visão geral da implementação & Forma de execução do MOP; planilha de custos \\ \hline
+\ref{subsec:modelos-gestao} Modelo de gestão e trabalho técnico-social & B.3.2.2.1, B.3.2.2.2 e Quadro 28 do MOP \\ \hline
+\ref{sec:abastecimento} Abastecimento de água & B.3.2.2.3, B.3.2.2.6 e Quadro 29 do MOP \\ \hline
+\ref{sec:esgotamento} Esgotamento sanitário & B.3.2.2.4 e B.3.2.2.5 do MOP \\ \hline
+\ref{sec:conexoes} Conexão com outros subcomponentes & Descrição dos subcomponentes no MOP \\ \hline
+\ref{sec:salvaguardas} Gestão ambiental e social & Quadros 25 e 26 do MOP \\ \hline
+\ref{sec:monitoramento} Controle de qualidade & Quadros 27, 28, 29 e 31 do MOP \\ \hline
+\ref{sec:custos} Matriz de custos & Planilha de custos \\ \hline
+\ref{sec:cronograma} Cronograma & Planilha de custos \\ \hline
+\end{tabularx}
+\fonte{Elaborado pelo IAT (2026).}
+\end{quadro}
+
+% =====================================================================
+\chapter[Subcomponente 3.2.b -- Abastecimento e esgotamento no meio rural]%
+{Subcomponente 3.2.b -- Implantação e reabilitação de sistemas coletivos de
+abastecimento de água e esgotamento sanitário no meio rural}
+\label{cap:3-2-b}
+
+% =====================================================================
+%  1.1 MAPA MENTAL
+% =====================================================================
+\FloatBarrier
+\section{Mapa mental do Subcomponente 3.2.b}
+\label{sec:mapa-mental}
+
+No Paraná, a rede de abastecimento de água alcança 99,47\% da população urbana,
+mas apenas 15,11\% da população rural. No esgotamento sanitário, a rede
+coletora atende 84,41\% da população urbana e 2,04\% da rural
+\cite{sinisa2024}. No meio rural, a população dispersa exige soluções
+adaptadas a cada comunidade, coletivas ou individuais, acompanhadas de um
+modelo de gestão que mantenha os serviços funcionando depois das obras
+\cite{mop2026}.
+
+O Subcomponente 3.2.b responde a esse quadro com quatro objetivos: implantar
+modelos de gestão que deem sustentabilidade aos serviços; implantar ou
+reabilitar sistemas coletivos de abastecimento de água em comunidades rurais;
+instalar sistemas individuais de esgotamento sanitário nessas comunidades e
+em propriedades situadas em mananciais de abastecimento público; e apoiar o
+Programa Sanepar Rural nos municípios atendidos pela Sanepar. A ação é
+executada pelo IAT, com coexecução do IDR-Paraná e da Sanepar, em sete anos
+(2027 a 2033), com R\$ 183,0 milhões do BIRD e R\$ 67,1 milhões de
+contrapartida da Sanepar \cite{custo2026}.
+
+A \autoref{fig:mapa-mental} resume a ação em oito temas. Cada ramo traz os
+números e as decisões principais e indica o tópico deste capítulo que o
+detalha.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Mapa mental do Subcomponente 3.2.b}
+  \label{fig:mapa-mental}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+    ramo/.style={draw=#1, fill=#1!10, rounded corners=3pt, align=left,
+                 text width=4.5cm, inner sep=5pt, font=\scriptsize},
+    liga/.style={draw=#1, line width=1.3pt}
+  ]
+  \colorlet{c1}{azulpsh}
+  \colorlet{c2}{green!45!black}
+  \colorlet{c3}{orange!85!black}
+  \colorlet{c4}{violet!75!black}
+  \colorlet{c5}{teal!80!black}
+  \colorlet{c6}{cyan!60!black}
+  \colorlet{c7}{brown!80!black}
+  \colorlet{c8}{red!60!black}
+
+  % --- lado esquerdo ------------------------------------------------
+  \node[ramo=c1, anchor=north] (m1) at (-5.9,0) {\textbf{\color{c1}Metas}\\[2pt]
+    \textbullet\ 83 sistemas coletivos de água (IAT)\\
+    \textbullet\ 222 sistemas pelo Sanepar Rural\\
+    \textbullet\ esgoto em 4.067 domicílios das comunidades\\
+    \textbullet\ esgoto em 2.300 domicílios em mananciais};
+  \node[ramo=c2, below=0.45cm of m1] (m2) {\textbf{\color{c2}Seleção e mapa (1.2 e 1.3)}\\[2pt]
+    \textbullet\ $\geq$ 70 domicílios por comunidade\\
+    \textbullet\ IPDM do município\\
+    \textbullet\ associações de moradores existentes\\
+    \textbullet\ mananciais prioritários do PSH-PR};
+  \node[ramo=c3, below=0.45cm of m2] (m3) {\textbf{\color{c3}Responsáveis (1.4)}\\[2pt]
+    \textbullet\ IAT: executor\\
+    \textbullet\ IDR-Paraná e Sanepar: coexecutores\\
+    \textbullet\ SECID, prefeituras e comunidades\\
+    \textbullet\ empresas contratadas e UGP};
+  \node[ramo=c4, below=0.45cm of m3] (m4) {\textbf{\color{c4}Recursos e prazo (1.12 e 1.13)}\\[2pt]
+    \textbullet\ R\$ 183,0 milhões do BIRD (IAT)\\
+    \textbullet\ R\$ 67,1 milhões da Sanepar\\
+    \textbullet\ sete anos: 2027 a 2033\\
+    \textbullet\ custo total: R\$ 250,1 milhões};
+
+  % --- lado direito -------------------------------------------------
+  \node[ramo=c5, anchor=north] (m5) at (5.9,0) {\textbf{\color{c5}Modelo de gestão (1.6)}\\[2pt]
+    \textbullet\ gestão compartilhada: Estado, município e comunidade\\
+    \textbullet\ associações regularizadas\\
+    \textbullet\ trabalho técnico-social com as famílias};
+  \node[ramo=c6, below=0.45cm of m5] (m6) {\textbf{\color{c6}Abastecimento de água (1.7)}\\[2pt]
+    \textbullet\ poço, outorga, projeto e licenças\\
+    \textbullet\ obras com supervisão e fiscalização\\
+    \textbullet\ entrega à entidade gestora\\
+    \textbullet\ Programa Sanepar Rural};
+  \node[ramo=c7, below=0.45cm of m6] (m7) {\textbf{\color{c7}Esgotamento sanitário (1.8)}\\[2pt]
+    \textbullet\ solução individual por domicílio\\
+    \textbullet\ frentes comunidades e mananciais\\
+    \textbullet\ verificação técnica e medição\\
+    \textbullet\ pagamento após comprovação};
+  \node[ramo=c8, below=0.45cm of m7] (m8) {\textbf{\color{c8}Qualidade e salvaguardas (1.10 e 1.11)}\\[2pt]
+    \textbullet\ medidas ambientais e sociais em todas as fases\\
+    \textbullet\ canal de queixas nas comunidades\\
+    \textbullet\ evidência e validação de cada produto\\
+    \textbullet\ metas e indicadores anuais};
+
+  % --- centro (entre a 2ª e a 3ª caixa da coluna esquerda) -----------
+  \node[ellipse, draw=azulpsh, fill=azulpsh, text=white, align=center,
+        minimum width=4.3cm, minimum height=2.3cm, font=\small\bfseries] (c) at ($(m2.south)!0.5!(m3.north) + (5.9,0)$)
+    {Subcomponente 3.2.b\\[2pt]\footnotesize\mdseries Água e esgoto\\ no meio rural};
+
+  % --- ligações -----------------------------------------------------
+  \begin{scope}[on background layer]
+  \foreach \n/\cor in {m1/c1, m2/c2, m3/c3, m4/c4}
+    \draw[liga=\cor] (c.west) to[out=180, in=0] (\n.east);
+  \foreach \n/\cor in {m5/c5, m6/c6, m7/c7, m8/c8}
+    \draw[liga=\cor] (c.east) to[out=0, in=180] (\n.west);
+  \end{scope}
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026} e \citeonline{custo2026}.}
+\end{figure}
+
+% =====================================================================
+%  1.2 CRITÉRIOS DE SELEÇÃO
+% =====================================================================
+\FloatBarrier
+\section{Critérios de seleção}
+\label{sec:criterios}
+
+A ação abrange todo o território do Paraná, mas atende apenas os territórios e
+as famílias escolhidos por critérios definidos em âmbito estadual. Os critérios
+variam conforme a frente de trabalho e levam a três frentes, representadas na
+\autoref{fig:selecao} \cite{mop2026}.
+
+Na frente das comunidades, que recebem água e esgoto, o primeiro critério é o
+adensamento: comunidades, ou conjuntos de comunidades, com 70 ou mais
+domicílios ocupados, número que torna viável o modelo de gestão. O segundo é o
+desempenho do município, medido pelo IPDM \cite{ipdm}. O terceiro é a
+existência de associações de moradores que já operam sistemas e precisam de
+complementação ou melhorias. Na frente dos mananciais, que recebe apenas
+esgotamento, são considerados os mananciais prioritários do PSH-PR e os
+mananciais de abastecimento público em que o IDR-Paraná atua, com base nos
+domicílios rurais do Censo 2022 \cite{ibge2022}. O Programa Sanepar Rural atende
+os municípios com contrato de concessão ou de programa com a Sanepar, segundo
+os critérios do próprio programa.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Critérios de seleção e frentes de trabalho}
+  \label{fig:selecao}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=0.35cm]
+
+  \node[marco=15.4cm] (topo) {Municípios e comunidades rurais do Paraná\\
+    \normalfont\scriptsize Microrregiões de Água e Esgoto};
+
+  % --- Coluna 1: comunidades (abastecimento + esgotamento) ----------
+  \node[etapa=4.8cm, below=0.9cm of topo.south west, anchor=north west] (c1)
+    {Comunidade ou conjunto com\\ $\geq$ 70 domicílios ocupados};
+  \node[etapa=4.8cm, below=of c1] (c2) {Índice Ipardes de Desempenho\\ Municipal (IPDM)};
+  \node[etapa=4.8cm, below=of c2] (c3) {Associações de moradores com\\ sistemas a complementar};
+  \node[marco=4.8cm, below=0.6cm of c3] (r1) {Frente comunidades\\
+    \normalfont\scriptsize 83 comunidades com abastecimento de água\\
+    e esgotamento em 70\% dos domicílios};
+
+  % --- Coluna 2: Sanepar Rural ---------------------------------------
+  \node[externo=4.8cm, below=0.9cm of topo.south, anchor=north] (s1)
+    {Municípios com Contrato de Concessão ou de Programa com a Sanepar};
+  \node[externo=4.8cm, below=of s1] (s2) {Critérios do\\ Programa Sanepar Rural};
+  \node[marco=4.8cm] (r2) at (s2 |- r1) {Frente Sanepar Rural\\
+    \normalfont\scriptsize abastecimento de água\\ por convênio};
+
+  % --- Coluna 3: mananciais (somente esgotamento) --------------------
+  \node[etapa=4.8cm, below=0.9cm of topo.south east, anchor=north east] (m1)
+    {Mananciais prioritários\\ do PSH-PR};
+  \node[etapa=4.8cm, below=of m1] (m2) {Mananciais de abastecimento\\ com atuação do IDR-Paraná};
+  \node[etapa=4.8cm, below=of m2] (m3) {Domicílios em área rural\\ (Censo 2022)};
+  \node[marco=4.8cm] (r3) at (m3 |- r1) {Frente mananciais\\
+    \normalfont\scriptsize 2.300 domicílios com\\ esgotamento descentralizado};
+
+  % --- Ligações ------------------------------------------------------
+  \draw[seta] (topo.south -| c1) -- (c1);
+  \draw[seta] (topo.south -| s1) -- (s1);
+  \draw[seta] (topo.south -| m1) -- (m1);
+  \draw[seta] (c1) -- (c2);  \draw[seta] (c2) -- (c3);  \draw[seta] (c3) -- (r1);
+  \draw[seta] (s1) -- (s2);  \draw[seta] (s2) -- (r2);
+  \draw[seta] (m1) -- (m2);  \draw[seta] (m2) -- (m3);  \draw[seta] (m3) -- (r3);
+
+  \node[rotulo, below=0.15cm of r1] {Seções \ref{sec:abastecimento} e \ref{sec:esgotamento}};
+  \node[rotulo, below=0.15cm of r2] {\autoref{subsec:sanepar-rural}};
+  \node[rotulo, below=0.15cm of r3] {\autoref{subsec:esgotamento-idr}};
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+O resultado da aplicação dos critérios é a lista de municípios e comunidades de
+cada frente, que alimenta o mapa da \autoref{sec:mapa}.
+
+\pendencia{Os critérios não indicam pesos, limiares (exceto os 70
+domicílios) nem a ordem de aplicação. Descrever como serão ponderados e quem
+os aplica.}
+
+% =====================================================================
+%  1.3 MAPA
+% =====================================================================
+\FloatBarrier
+\section{Mapa das áreas de intervenção}
+\label{sec:mapa}
+
+O Acordo de Empréstimo exige que o MOP identifique as áreas rurais em que a
+Parte 3.2 do projeto vai intervir. A \autoref{fig:mapa} localiza os municípios
+de cada frente sobre a malha municipal do Paraná: em azul, a frente das
+comunidades (água e esgoto); em verde, a frente dos mananciais (esgoto); em
+amarelo, o Programa Sanepar Rural.
+
+Enquanto a seleção não for concluída, o mapa mostra apenas a base municipal e a
+legenda. Para atualizá-lo, basta preencher a planilha
+\texttt{mapa/municipios\_selecionados.csv} com o código IBGE, o nome e a frente
+de cada município e executar o script \texttt{mapa/gerar\_mapa.py}, que
+redesenha o arquivo \texttt{figuras/mapa-3-2-b.pdf}.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Municípios de atuação do Subcomponente 3.2.b, por frente de trabalho}
+  \label{fig:mapa}
+  \includegraphics[width=\linewidth]{figuras/mapa-3-2-b.pdf}
+  \fonte{Elaborado pelo IAT (2026) sobre a malha municipal do IBGE.}
+\end{figure}
+
+\pendencia{Inserir o mapa com os municípios selecionados ou descrever como a
+lista será aprovada com o Banco Mundial.}
+
+% =====================================================================
+%  1.4 RESPONSABILIDADES
+% =====================================================================
+\FloatBarrier
+\section{Responsabilidades das instituições}
+\label{sec:responsabilidades}
+
+O IAT é o executor da ação: planeja, contrata, fiscaliza e valida os produtos.
+O IDR-Paraná e a Sanepar são coexecutores. O IDR-Paraná apoia a mobilização
+social e atua na frente dos mananciais, onde elabora os Planos Integrados de
+Propriedade (PIP). A Sanepar executa o Programa Sanepar Rural com recursos
+próprios. A SECID participa do planejamento e valida a implantação dos modelos
+de gestão. As prefeituras integram a governança e fazem a articulação local, e
+as comunidades participam da gestão e da operação cotidiana dos sistemas.
+Empresas contratadas executam os serviços e as obras, e a UGP consolida o
+monitoramento e o reporte ao Banco Mundial \cite{mop2026}.
+
+O \autoref{qua:roteiro} apresenta o roteiro de cada ação, na ordem em que
+acontecem. Para cada uma, indica as entradas de que depende, quem a executa,
+quais órgãos apoiam ou validam e o que ela entrega para a ação seguinte.
+
+\begin{landscape}
+\begin{quadro}[p]
+\caption{Roteiro por ação: entradas, responsáveis e órgãos envolvidos}
+\label{qua:roteiro}
+\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{|P{3.6cm}|L|P{3.2cm}|P{3.9cm}|L|}
+\hline
+\cab{Ação} & \cab{Entradas} & \cab{Responsável pela execução} &
+\cab{Órgão de apoio ou validação} & \cab{Saída} \\ \hline
+Seleção dos municípios e comunidades & Critérios de seleção; Censo 2022; IPDM &
+  IAT (equipe interna) & IDR-Paraná & Mapa dos municípios \\ \hline
+Adesão e Termo de Cooperação & Mapa dos municípios; minuta do termo &
+  IAT & Prefeituras & Lista de municípios; termos assinados \\ \hline
+Definição e implantação do modelo de gestão & Arranjos de gestão em análise; Termo de Cooperação &
+  IAT & SECID (validação); IDR-Paraná; Sanepar; prefeituras; comunidades &
+  Modelo de gestão; associações regularizadas \\ \hline
+Trabalho técnico-social & Termo de Cooperação; TR &
+  Empresa contratada & IAT e IDR-Paraná (validação); prefeituras &
+  Cadastro, diagnóstico e termos de adesão \\ \hline
+Captação: poço e outorga & Diagnóstico; estudo hidrogeológico; anuência prévia &
+  Empresa contratada & IAT (fiscalização e outorga); prefeituras & Poço perfurado e outorgado \\ \hline
+Projetos e licenciamento & Vazão e qualidade da água; anteprojeto &
+  Empresa projetista & IAT (aprovação e licenças) & Projetos aprovados; licenças \\ \hline
+Obras de abastecimento & Projetos; materiais; licenças &
+  Executor da obra & IAT (fiscalização); empresa supervisora; prefeituras &
+  Sistema implantado; \textit{as built} \\ \hline
+Supervisão e gerenciamento das obras & Contrato de supervisão; cronograma das obras &
+  Empresa supervisora & IAT & Relatórios de supervisão \\ \hline
+Esgotamento nas comunidades & Diagnóstico domiciliar; estudo de alternativas &
+  Empresa contratada & IAT (validação); prefeituras; proprietários & Sistemas instalados e pagos \\ \hline
+Esgotamento na área do IDR-Paraná & Planos Integrados de Propriedade (PIP) &
+  Empresa contratada & IAT e IDR-Paraná (validação); proprietários & Sistemas instalados e pagos \\ \hline
+Programa Sanepar Rural & Contrato de concessão; Termo de Compromisso &
+  Sanepar & Prefeituras (obras); comunidades & Sistemas implantados \\ \hline
+Entrega e operação & Sistema concluído; associação regularizada &
+  IAT & Entidade gestora; prefeituras & Aceite da entidade gestora; TRD \\ \hline
+Monitoramento e reporte & Relatórios; dados do SIGARH e GeoPR &
+  IAT e Sanepar & UGP; Banco Mundial & Relatórios semestrais e anuais \\ \hline
+\end{tabularx}
+\fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{quadro}
+\end{landscape}
+
+O \autoref{qua:matriz-responsabilidades} resume os mesmos papéis em uma matriz:
+para cada ação, mostra quem executa (E), quem apoia (A) e quem valida ou
+fiscaliza (V).
+
+\begin{quadro}[!htbp]
+\caption{Matriz de responsabilidades por ação}
+\label{qua:matriz-responsabilidades}
+\scriptsize
+\renewcommand{\arraystretch}{1.3}
+\newcommand{\rE}{\cellcolor{azulpsh}\color{white}\textbf{E}}
+\newcommand{\rA}{\cellcolor{azulclaro}A}
+\newcommand{\rV}{\cellcolor{orange!45}\textbf{V}}
+\begin{tabularx}{\textwidth}{|L|c|c|c|c|c|c|c|c|}
+\hline
+\cab{Ação} & \cab{IAT} & \cab{IDR} & \cab{Sanepar} & \cab{SECID} &
+\cab{Pref.} & \cab{Com.} & \cab{Empr.} & \cab{UGP} \\ \hline
+Planejamento e seleção          & \rE & \rA &    &    &    &    &    &    \\ \hline
+Adesão e Termo de Cooperação    & \rE &    &    &    & \rE &    &    &    \\ \hline
+Modelo de gestão                & \rE & \rA & \rA & \rV & \rA & \rA &    &    \\ \hline
+Trabalho técnico-social         & \rV & \rV &    &    & \rA & \rA & \rE &    \\ \hline
+Captação, projetos e licenças   & \rV &    &    &    & \rA &    & \rE &    \\ \hline
+Obras e supervisão              & \rV &    &    &    & \rA &    & \rE &    \\ \hline
+Esgotamento -- comunidades      & \rV &    &    &    & \rA & \rA & \rE &    \\ \hline
+Esgotamento -- área do IDR      & \rV & \rV &    &    &    & \rA & \rE &    \\ \hline
+Programa Sanepar Rural          &    &    & \rE &    & \rE & \rA &    &    \\ \hline
+Entrega e operação              & \rE &    &    &    & \rA & \rE &    &    \\ \hline
+Monitoramento e reporte         & \rE &    & \rE &    &    &    &    & \rV \\ \hline
+\end{tabularx}
+\fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\nota{E = executa; A = apoia; V = valida ou fiscaliza. Pref.~=~prefeituras;
+Com.~=~comunidades; Empr.~=~empresas contratadas.}
+\end{quadro}
+
+\pendencia{O MOP atribui ao IDR-Paraná corresponsabilidade pelo abastecimento
+(Quadro 30: ``IAT/IDR''), mas não descreve o papel do instituto nessa frente
+além da mobilização social. Detalhar.}
+
+% =====================================================================
+%  1.5 VISÃO GERAL
+% =====================================================================
+\FloatBarrier
+\section{Visão geral da implementação do Subcomponente 3.2.b}
+\label{sec:arranjo}
+
+A implementação se organiza em três blocos (\autoref{fig:fluxograma-geral}). O
+primeiro é a estruturação institucional e social: seleção das comunidades,
+pactuação do modelo de gestão e trabalho técnico-social com as famílias. O
+segundo é a implantação física, dividida em duas frentes: abastecimento de
+água, que inclui o Programa Sanepar Rural, e esgotamento sanitário, que inclui
+a frente do IDR-Paraná. O terceiro compreende a entrega, a capacitação, o
+monitoramento e o encerramento. Duas premissas orientam a sequência: as
+comunidades são definidas pelo trabalho técnico-social, e o modelo de gestão é
+pactuado antes das obras, para que nenhum sistema seja entregue sem uma
+entidade preparada para operá-lo \cite{mop2026}.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Visão geral da implementação do Subcomponente 3.2.b}
+  \label{fig:fluxograma-geral}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=0.55cm and 0.4cm]
+
+  % --- Bloco I: estruturação institucional e social -----------------
+  \node[marco] (sel) {Seleção de áreas e comunidades\\
+    \normalfont\scriptsize critérios estaduais de seleção};
+
+  \node[etapa=7.4cm, below=of sel] (gestao) {\textbf{3.2.2.1 -- Modelos de gestão}\\
+    definição do modelo, pactuação e termo de cooperação};
+
+  \node[etapa=7.4cm, below=of gestao] (tts) {\textbf{3.2.2.2 -- Trabalho técnico-social}\\
+    mobilização, diagnóstico, enquadramento e adesão das famílias};
+
+  \node[externo, left=0.5cm of tts] (concessao) {Municípios com contrato de concessão com a Sanepar};
+  \node[externo, right=0.5cm of tts] (pip) {PIP elaborados pelo IDR-Paraná (Subcomp.~2.3)};
+
+  % --- Bloco II: implantação física --------------------------------
+  \node[etapa, below=1.1cm of concessao] (sanepar) {\textbf{3.2.2.6}\\ Sanepar Rural\\
+    \scriptsize convênio -- contrapartida};
+  \node[etapa, below=1.1cm of pip] (esgidr) {\textbf{3.2.2.5}\\ Esgotamento -- área IDR\\
+    \scriptsize 2.300 sistemas};
+
+  \path (sanepar) -- (esgidr) coordinate[pos=0.5] (meio);
+  \node[etapa=3.2cm] (agua) at ($(meio)+(-2.0cm,0)$) {\textbf{3.2.2.3}\\ Abastecimento de água\\
+    \scriptsize 83 comunidades};
+  \node[etapa=3.2cm] (esgcom) at ($(meio)+(2.0cm,0)$) {\textbf{3.2.2.4}\\ Esgotamento -- comunidades\\
+    \scriptsize 4.067 domicílios};
+
+  % --- Bloco III: entrega, monitoramento e encerramento ------------
+  \node[etapa=15.2cm, anchor=north] (entrega) at ($(meio |- agua.south)+(0,-1.1cm)$) {\textbf{Entrega e capacitação}\\
+    capacitação dos beneficiários, entrega à entidade gestora ou ao proprietário e aceite formal};
+
+  \node[marco=15.2cm, below=of entrega] (fim) {Monitoramento, avaliação e encerramento\\
+    \normalfont\scriptsize relatórios semestrais, indicadores, relatório final e Termo de Recebimento Definitivo};
+
+  \node[transversal=15.2cm, below=0.45cm of fim] (salv) {\textbf{Transversal:}
+    salvaguardas ambientais e sociais -- MGAS, PEPI, PGR, MRF e MQR (\autoref{sec:salvaguardas})};
+
+  % --- Ligações ----------------------------------------------------
+  \draw[seta] (sel) -- (gestao);
+  \draw[seta] (gestao) -- node[rotulo, right=2pt] {modelo pactuado antes das obras} (tts);
+  \draw[seta] (tts.south) ++(-2.0cm,0) -- (agua.north);
+  \draw[seta] (tts.south) ++(2.0cm,0) -- (esgcom.north);
+  \draw[seta] (agua) -- node[rotulo, above] {70\%} (esgcom);
+  \draw[seta] (concessao) -- (sanepar);
+  \draw[seta] (pip) -- (esgidr);
+  \draw[setatracejada] (gestao.west) -| (sanepar.north west);
+
+  \foreach \n in {sanepar, agua, esgcom, esgidr}
+    \draw[seta] (\n.south) -- (\n.south |- entrega.north);
+  \draw[seta] (entrega) -- (fim);
+
+  % --- Rótulos dos blocos -------------------------------------------
+  \begin{scope}[on background layer]
+    \node[fill=cinzaclaro!60, rounded corners, inner sep=6pt,
+          fit=(sel)(gestao)(tts)(concessao)(pip)] (b1) {};
+    \node[fill=cinzaclaro!60, rounded corners, inner sep=6pt,
+          fit=(sanepar)(agua)(esgcom)(esgidr)] (b2) {};
+    \node[fill=cinzaclaro!60, rounded corners, inner sep=6pt,
+          fit=(entrega)(fim)] (b3) {};
+  \end{scope}
+  \node[font=\scriptsize\bfseries, anchor=south west, text=azulpsh]
+    at (b1.north west) {I. Estruturação institucional e social};
+  % rótulos centrados no espaço livre entre as setas de 3.2.2.6 e 3.2.2.3
+  \path (sanepar.center) -- (agua.center) coordinate[pos=0.5] (livre);
+  \node[font=\scriptsize\bfseries, anchor=south, text=azulpsh]
+    at (livre |- b2.north) {II. Implantação física};
+  \node[font=\scriptsize\bfseries, anchor=south, text=azulpsh]
+    at (livre |- b3.north) {III. Entrega e encerramento};
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+O financiamento do BIRD, de R\$ 183,0 milhões (cerca de US\$ 33,5 milhões ao
+câmbio de R\$ 5,46 do PAD), cobre as atividades executadas pelo IAT. A Sanepar
+aplica R\$ 67,1 milhões de contrapartida no Programa Sanepar Rural, executado
+por convênio com os municípios \cite{custo2026}. As atividades do IAT são
+executadas por contratação pública, segundo as regras do Banco Mundial, ou
+diretamente pela equipe técnica do instituto, no caso do planejamento, da
+seleção e da articulação institucional. Toda contratação financiada pelo BIRD
+segue o ciclo da \autoref{fig:ciclo-contratacao}.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Ciclo das contratações financiadas pelo BIRD}
+  \label{fig:ciclo-contratacao}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=0.12cm]
+  \node[fase=2.55cm, fill=corTR] (f1) {Elaboração\\ do TR};
+  \node[fase=2.55cm, fill=corTR!60, right=of f1] (f2) {Revisão do\\ Banco Mundial};
+  \node[fase=2.55cm, fill=corLicitacao!70, right=of f2] (f3) {Processo\\ licitatório};
+  \node[fase=2.55cm, fill=corLicitacao!40, right=of f3] (f4) {Contrato\\ assinado};
+  \node[fase=2.55cm, fill=corExecucao, text=white, right=of f4] (f5) {Execução e\\ fiscalização};
+
+  \node[produto=2.4cm, below=0.35cm of f1] {IAT};
+  \node[produto=2.4cm, below=0.35cm of f2] {não objeção, quando exigida};
+  \node[produto=2.4cm, below=0.35cm of f3] {regras de aquisição do BIRD};
+  \node[produto=2.4cm, below=0.35cm of f4] {IAT e empresa contratada};
+  \node[produto=2.4cm, below=0.35cm of f5] {medições, relatórios e pagamentos};
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+% =====================================================================
+%  1.6 MODELO DE GESTÃO
+% =====================================================================
+\FloatBarrier
+\section{Modelo de gestão}
+\label{subsec:modelos-gestao}
+
+O modelo de gestão é o que garante que o sistema continue funcionando depois
+da entrega. A dispersão das comunidades e a capacidade operacional limitada de
+muitos municípios exigem arranjos que dividam as responsabilidades entre
+Estado, municípios e comunidades. O IAT, a SECID e o IDR-Paraná apoiam o
+planejamento, a coordenação técnica, a mobilização social e o monitoramento;
+os municípios participam da governança e da articulação local; e as
+comunidades, organizadas em associações, operam os sistemas no dia a dia. O
+modelo está em definição, e a alternativa em análise é um arranjo
+intermunicipal, como um consórcio público \cite{mop2026}.
+
+A pactuação começa pelo município e chega à comunidade
+(\autoref{fig:adesao}). O IAT define os critérios, seleciona as áreas e
+sensibiliza as prefeituras. O município formaliza a adesão e assina com o IAT o
+Termo de Cooperação, que registra as obrigações de cada parte até a entrega
+dos sistemas. Em seguida, o IAT procura a comunidade, que manifesta seu
+interesse por meio de contratos de pré-adesão.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Seleção e adesão dos municípios e comunidades, por responsável}
+  \label{fig:adesao}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[passo/.style={etapa=2.2cm, minimum height=1.0cm}]
+  % raias (linhas horizontais) e seus títulos
+  \foreach \i/\t in {0/IAT, 1/Município, 2/Comunidade} {
+    \node[raia=15.6cm, minimum height=1.9cm] at (0,{-\i*1.95}) {};
+    \node[titulo raia] at (0.9,{-\i*1.95-0.95}) {\t};
+  }
+  \draw[gray!60] (1.8,0) -- (1.8,-5.8);
+
+  % IAT
+  \node[passo] (p1) at (3.2,-0.95)  {Definição dos critérios de seleção};
+  \node[passo] (p2) at (5.9,-0.95)  {Seleção das áreas e comunidades};
+  \node[passo] (p3) at (8.6,-0.95)  {Sensibilização das prefeituras};
+  \node[passo] (p6) at (14.0,-0.95) {Contato inicial com a comunidade};
+  % Município
+  \node[passo] (p4) at (8.6,-2.9)   {Adesão formal ao Programa};
+  \node[passo] (p5) at (11.3,-2.9)  {Termo de Cooperação com o IAT};
+  % Comunidade
+  \node[passo] (p7) at (14.0,-4.85) {Pré-adesão da comunidade};
+
+  \draw[seta] (p1) -- (p2);
+  \draw[seta] (p2) -- (p3);
+  \draw[seta] (p3) -- (p4);
+  \draw[seta] (p4) -- (p5);
+  \draw[seta] (p5.north) |- (p6.west);
+  \draw[seta] (p6) -- (p7);
+
+  % produtos
+  \node[rotulo, fill=none, below=2pt of p2] {mapa};
+    \node[rotulo, fill=none, right=2pt of p5] {termo assinado};
+  \node[rotulo, fill=none, below=2pt of p7] {contratos de pré-adesão};
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+A implantação do modelo nas comunidades segue seis etapas
+(\autoref{fig:modelo-gestao}). Nos estudos preliminares, são escolhidos os
+instrumentos de gestão e feitos os primeiros contatos. Na implantação, são
+elaborados o estatuto e os manuais, colhida a adesão de cada família e
+regularizada a associação. Na gestão, a associação recebe manuais de
+desempenho, estrutura de monitoramento e treinamento. Supervisão técnica e
+avaliação semestral acompanham todo o processo, que termina com o relatório
+final e o Termo de Recebimento Definitivo. O detalhamento está no
+\autoref{qua:etapas-3221}, no Apêndice~\ref{ap:quadros}.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Etapas de implantação do modelo de gestão e seus produtos}
+  \label{fig:modelo-gestao}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=0.06cm]
+  \node[fase=1.95cm] (g1) {Estudos\\ preliminares};
+  \node[fase=1.95cm, right=of g1] (g2) {Implantação};
+  \node[fase=1.95cm, right=of g2] (g3) {Gestão};
+  \node[fase=1.95cm, right=of g3] (g4) {Supervisão\\ técnica};
+  \node[fase=1.95cm, right=of g4] (g5) {Monitoramento\\ e avaliação};
+  \node[fase=1.95cm, fill=azulpsh, text=white, right=of g5] (g6) {Relatórios e\\ encerramento};
+
+  % prazos
+  \foreach \n/\t in {g1/2027 a 2028, g2/2028 a 2029, g3/2030 a 2032, g4/2029 a 2033, g5/2029 a 2033, g6/2032 e 2033}
+    \node[font=\scriptsize\itshape, above=2pt of \n] {\t};
+
+  % o que se faz
+  \node[produto=1.95cm, minimum height=2.3cm, below=0.35cm of g1, anchor=north] (a1)
+    {instrumentos de gestão, parceiros, critérios e indicadores; contato com município e comunidade};
+  \node[produto=1.95cm, minimum height=2.3cm, below=0.35cm of g2, anchor=north] (a2)
+    {estatuto, manuais e cartilhas; enquadramento jurídico; adesão familiar};
+  \node[produto=1.95cm, minimum height=2.3cm, below=0.35cm of g3, anchor=north] (a3)
+    {manuais de desempenho; estrutura de monitoramento; treinamento};
+  \node[produto=1.95cm, minimum height=2.3cm, below=0.35cm of g4, anchor=north] (a4)
+    {acompanhamento da implantação};
+  \node[produto=1.95cm, minimum height=2.3cm, below=0.35cm of g5, anchor=north] (a5)
+    {avaliação do desempenho da gestão nas comunidades};
+  \node[produto=1.95cm, minimum height=2.3cm, below=0.35cm of g6, anchor=north] (a6)
+    {consolidação de resultados e prestação de contas};
+
+  % produtos
+  \foreach \n/\t in {a1/Contratos de pré-adesão, a2/Associações regularizadas,
+                     a3/Pessoas capacitadas, a4/Relatório de supervisão,
+                     a5/Relatórios semestrais no SIGARH e GeoPR, a6/Termo de Recebimento Definitivo}
+    \node[marco=1.95cm, font=\scriptsize\bfseries, minimum height=0.8cm,
+          below=0.3cm of \n.south, anchor=north] {\t};
+
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline[Quadro 28]{mop2026}.}
+\end{figure}
+
+O resultado desta atividade é medido pelo número de associações de saneamento
+rural com modelo de gestão adotado, indicador do Componente~3, e sua
+implantação é validada pela SECID.
+
+\pendencia{A planilha de custos prevê três ``unidades'' de implantação do
+modelo de gestão, de R\$ 2,3 milhões cada, sem definir o que é uma unidade. No
+Quadro 28 do MOP, a etapa ``Supervisão técnica'' repete as evidências das obras,
+e a sigla ``EC'' não está definida.}
 
 % ---------------------------------------------------------------------
-% Elementos pós-textuais
+\FloatBarrier
+\subsection{Trabalho técnico-social}
+\label{subsec:tts}
+
+O trabalho técnico-social tem três finalidades: conhecer as famílias e suas
+condições de saneamento, definir quem será atendido e validar socialmente as
+soluções técnicas. Será executado por empresa contratada, que fará os
+inventários sociais e o levantamento das necessidades sanitárias de cada
+domicílio \cite{mop2026}.
+
+A sequência está na \autoref{fig:tts}. A empresa começa pela mobilização dos
+municípios, comunidades, associações e proprietários e segue com a busca ativa
+das famílias, inclusive em áreas remotas. Com base nesse contato, faz o
+diagnóstico coletivo das formas atuais de abastecimento e de esgotamento e o
+levantamento das condições de cada domicílio. Os critérios de enquadramento,
+sociais, territoriais e técnicos, definem as famílias atendidas, que assinam um
+termo de adesão com o compromisso de uso e manutenção adequados. O relatório
+final consolida os resultados e dá baixa na etapa correspondente do Termo de
+Cooperação.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Sequência e produtos do trabalho técnico-social}
+  \label{fig:tts}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=0.42cm,
+    passo/.style={etapa=6.2cm, minimum height=0.95cm},
+    liga/.style={draw=azulpsh!50, dashed}]
+
+  \node[passo] (t1) {\textbf{Contratação da empresa}\\ TR, edital e licitação (regras BIRD)};
+  \node[passo, below=of t1] (t2) {\textbf{Mobilização e sensibilização}\\ municípios, comunidades, associações e proprietários};
+  \node[passo, below=of t2] (t3) {\textbf{Busca ativa e trabalho social}\\ capacitação e organização comunitária};
+  \node[passo, below=of t3] (t4) {\textbf{Diagnóstico coletivo}\\ formas de abastecimento e de esgotamento};
+  \node[passo, below=of t4] (t5) {\textbf{Levantamento das condições domiciliares}};
+  \node[passo, below=of t5] (t6) {\textbf{Enquadramento das famílias}\\ critérios sociais, territoriais e técnicos};
+  \node[passo, below=of t6] (t7) {\textbf{Termo de adesão das famílias}\\ compromisso com uso e manutenção};
+  \node[marco=6.2cm, below=of t7] (t8) {Compilação e apresentação dos resultados};
+
+  \foreach \a/\b in {t1/t2,t2/t3,t3/t4,t4/t5,t5/t6,t6/t7,t7/t8}
+    \draw[seta] (\a) -- (\b);
+
+  % produtos à direita
+  \node[produto=3.4cm, right=0.9cm of t1] (q1) {Contrato assinado};
+  \node[produto=3.4cm, right=0.9cm of t3] (q3) {Cadastro das famílias};
+  \node[produto=3.4cm, right=0.9cm of t4] (q4) {Diagnóstico por comunidade};
+  \node[produto=3.4cm, right=0.9cm of t6] (q6) {Famílias a serem atendidas};
+  \node[produto=3.4cm, right=0.9cm of t7] (q7) {Termos de adesão assinados};
+  \node[produto=3.4cm, right=0.9cm of t8] (q8) {Relatório final e baixa no Termo de Cooperação};
+  \foreach \a/\b in {t1/q1,t3/q3,t4/q4,t6/q6,t7/q7,t8/q8}
+    \draw[liga] (\a) -- (\b);
+
+  % usos dos resultados à esquerda
+  \node[externo=3.3cm, left=0.9cm of t4] (u1) {Captação e projeto do sistema de água (\ref{subsec:captacao})};
+  \node[externo=3.3cm, left=0.9cm of t6] (u2) {Esgotamento nas comunidades (\ref{sec:esgotamento})};
+  \draw[setatracejada] (t4) -- (u1);
+  \draw[setatracejada] (t5.west) -| (u2.north);
+
+  \node[font=\scriptsize\bfseries, text=azulpsh, above=0.1cm of q1] {Produtos};
+  \node[font=\scriptsize\bfseries, text=azulpsh, above=0.1cm of u1] {Usos do diagnóstico};
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+O diagnóstico tem duplo uso. Orienta a captação e o projeto do sistema de água
+(\autoref{subsec:captacao}) e indica, domicílio a domicílio, a situação do
+esgoto, informação de que depende a frente de esgotamento nas comunidades
+(\autoref{sec:esgotamento}).
+
+% =====================================================================
+%  1.7 ABASTECIMENTO
+% =====================================================================
+\FloatBarrier
+\section{Implementação dos sistemas de abastecimento de água}
+\label{sec:abastecimento}
+
+O IAT implantará ou reabilitará 83 sistemas coletivos de abastecimento, com
+captação por poço tubular, atendendo 5.810 domicílios entre 2028 e 2033
+\cite{custo2026}. A \autoref{fig:abastecimento} mostra o percurso completo em
+seis fases: preparação institucional, gestão e mobilização, captação, projeto e
+licenciamento, obras e, por fim, entrega e operação. As subseções seguintes
+detalham as fases técnicas e o Programa Sanepar Rural.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Implementação do abastecimento de água, do começo ao fim}
+  \label{fig:abastecimento}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+    passo/.style={etapa=2.8cm, minimum height=1.1cm},
+    nomefaixa/.style={font=\scriptsize\bfseries, text=azulpsh, align=left,
+                      text width=3.4cm, anchor=west}
+  ]
+  % 4 colunas (x = 5.3, 8.7, 12.1, 15.5) e 6 linhas espaçadas de 1.8 cm
+  % Linha 1 -- esquerda para a direita
+  \node[passo] (a1) at (5.3,0)  {Definição dos critérios de seleção};
+  \node[passo] (a2) at (8.7,0)  {Seleção das áreas e comunidades};
+  \node[passo] (a3) at (12.1,0)  {Articulação e adesão dos municípios};
+  \node[passo] (a4) at (15.5,0) {Termo de Cooperação com o município};
+  % Linha 2 -- direita para a esquerda
+  \node[passo] (b1) at (15.5,-1.8) {Modelo de gestão e pré-adesão da comunidade};
+  \node[passo] (b2) at (12.1,-1.8)  {Mobilização social e busca ativa};
+  \node[passo] (b3) at (8.7,-1.8)  {Diagnóstico e enquadramento das famílias};
+  \node[passo] (b4) at (5.3,-1.8)  {Termo de adesão das famílias};
+  % Linha 3 -- esquerda para a direita
+  \node[passo] (c1) at (5.3,-3.6)  {Estudo hidrogeológico, locação e anuência};
+  \node[passo] (c2) at (8.7,-3.6)  {Perfuração do poço};
+  \node[passo] (c3) at (12.1,-3.6)  {Teste de vazão e análise físico-química};
+  \node[passo] (c4) at (15.5,-3.6) {Outorga de direito de uso da água};
+  % Linha 4 -- direita para a esquerda
+  \node[passo] (d1) at (15.5,-5.4) {Anteprojeto da solução};
+  \node[passo] (d2) at (12.1,-5.4)  {Projeto básico e aprovação};
+  \node[passo] (d3) at (8.7,-5.4)  {Projeto executivo};
+  \node[passo] (d4) at (5.3,-5.4)  {Estudos e licenças ambientais};
+  % Linha 5 -- esquerda para a direita
+  \node[passo] (e1) at (5.3,-7.2)  {Obras: casa química, reservatório e distribuição};
+  \node[passo] (e2) at (8.7,-7.2)  {Supervisão e fiscalização das obras};
+  \node[passo] (e3) at (12.1,-7.2)  {\textit{As built}, pré-operação e testes};
+  \node[passo] (e4) at (15.5,-7.2) {Capacitação dos operadores e usuários};
+  % Linha 6 -- direita para a esquerda
+  \node[passo] (f1) at (15.5,-9.0) {Reunião técnica de entrega};
+  \node[passo] (f2) at (12.1,-9.0)  {Aceite da entidade gestora};
+  \node[passo] (f3) at (8.7,-9.0)  {Operação e suporte pós-implantação};
+  \node[marco=2.8cm, minimum height=1.1cm] (f4) at (5.3,-9.0) {TRD e encerramento};
+
+  % faixas e nomes das fases
+  \begin{scope}[on background layer]
+    \foreach \y in {0,-1.8,-3.6,-5.4,-7.2,-9.0}
+      \fill[cinzaclaro!70, rounded corners=2pt] (-0.2,\y+0.8) rectangle (17.4,\y-0.8);
+  \end{scope}
+  \node[nomefaixa] at (-0.1,0)    {1. Preparação\\ institucional};
+  \node[nomefaixa] at (-0.1,-1.8) {2. Gestão e\\ mobilização};
+  \node[nomefaixa] at (-0.1,-3.6) {3. Captação};
+  \node[nomefaixa] at (-0.1,-5.4) {4. Projeto e\\ licenciamento};
+  \node[nomefaixa] at (-0.1,-7.2) {5. Obras};
+  \node[nomefaixa] at (-0.1,-9.0) {6. Entrega e\\ operação};
+
+  % ligações
+  \foreach \l in {a,c,e} {
+    \draw[seta] (\l1) -- (\l2); \draw[seta] (\l2) -- (\l3); \draw[seta] (\l3) -- (\l4);
+  }
+  \foreach \l in {b,d,f} {
+    \draw[seta] (\l1) -- (\l2); \draw[seta] (\l2) -- (\l3); \draw[seta] (\l3) -- (\l4);
+  }
+  \draw[seta] (a4) -- (b1);
+  \draw[seta] (b4) -- (c1);
+  \draw[seta] (c4) -- (d1);
+  \draw[seta] (d4) -- (e1);
+  \draw[seta] (e4) -- (f1);
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
 % ---------------------------------------------------------------------
+\FloatBarrier
+\subsection{Captação, projeto e licenciamento}
+\label{subsec:captacao}
+
+A captação começa por estudos preliminares de viabilidade e pela verificação da
+titularidade e da situação fundiária das áreas do poço e do reservatório. O
+levantamento geológico e hidrogeológico define a locação do poço e seu projeto
+construtivo, que depende de anuência prévia. Depois da perfuração, o teste de
+vazão e a análise físico-química confirmam se há água em quantidade e
+qualidade suficientes, e os estudos ambientais e sociais permitem obter a
+outorga de uso da água.
+
+A vazão e a qualidade da água orientam o anteprojeto do tratamento e da
+reservação. Depois da contratação, são elaborados os projetos básico e
+executivo da casa química, do reservatório, da parte eletromecânica e da rede,
+que precisam ser aprovados. A obra só começa com a outorga e as licenças
+ambientais obtidas (\autoref{fig:captacao-projeto}). As etapas, produtos e
+evidências estão no \autoref{qua:etapas-3223}, no Apêndice~\ref{ap:quadros}.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Captação subterrânea, projeto e licenciamento}
+  \label{fig:captacao-projeto}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=0.38cm,
+    passo/.style={etapa=5.6cm, minimum height=0.85cm}]
+
+  % --- Coluna 1: captação ----------------------------------------------
+  \node[font=\footnotesize\bfseries, text=azulpsh] (h1) at (0,0) {Captação subterrânea};
+  \node[passo, below=0.25cm of h1] (c1) {Estudos preliminares: viabilidade, titularidade e situação fundiária das áreas};
+  \node[passo, below=of c1] (c2) {Levantamento de campo: estudos geológicos e hidrogeológicos};
+  \node[passo, below=of c2] (c3) {Locação do ponto de captação e projeto construtivo do poço};
+  \node[passo, below=of c3] (c4) {Anuência prévia};
+  \node[passo, below=of c4] (c5) {Perfuração do poço};
+  \node[passo, below=of c5] (c6) {Teste de vazão e análise físico-química da água};
+  \node[passo, below=of c6] (c7) {Estudos ambientais e sociais e outorga de direito de uso da água};
+
+  % --- Coluna 2: projeto e licenciamento ------------------------------
+  \node[font=\footnotesize\bfseries, text=azulpsh] (h2) at (7.4,0) {Projeto e licenciamento};
+  \node[passo] (p1) at (h2 |- c1) {Anteprojeto da solução de tratamento e armazenamento};
+  \node[passo] (p2) at (h2 |- c2) {Ordenação de despesas e contratação};
+  \node[passo] (p3) at (h2 |- c3) {Projeto básico: casa química, reservatório, eletromecânica e distribuição};
+  \node[passo] (p4) at (h2 |- c4) {Projeto executivo};
+  \node[passo] (p5) at (h2 |- c5) {Aprovação dos projetos básico e executivo};
+  \node[passo] (p6) at (h2 |- c6) {Estudos ambientais e sociais para o licenciamento};
+  \node[passo] (p7) at (h2 |- c7) {Obtenção das licenças ambientais};
+
+  \coordinate (meio) at ($(c7.south)!0.5!(p7.south)$);
+  \node[marco=13cm, below=0.7cm of meio] (obra) {Execução das obras de instalação (subseção~\ref*{subsec:obras})};
+
+  \foreach \a/\b in {c1/c2,c2/c3,c3/c4,c4/c5,c5/c6,c6/c7,p1/p2,p2/p3,p3/p4,p4/p5,p5/p6,p6/p7}
+    \draw[seta] (\a) -- (\b);
+  % da outorga para o anteprojeto (a vazão e a qualidade da água orientam o projeto)
+  \draw[seta] (c7.east) -- ++(0.5,0) |- (p1.west);
+  \draw[seta] (c7.south) -- (c7.south |- obra.north);
+  \draw[seta] (p7.south) -- (p7.south |- obra.north);
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+\pendencia{O MOP prevê ``contratação integrada'', mas a define como aquela em
+que o contratado elabora o projeto executivo e executa a obra, o que
+corresponde à contratação semi-integrada (Lei nº~14.133/2021, art.~6º,
+XXXIII). Definir o regime e verificar a compatibilidade com o Regulamento de
+Aquisições do Banco Mundial.}
+
+% ---------------------------------------------------------------------
+\FloatBarrier
+\subsection{Execução das obras}
+\label{subsec:obras}
+
+A obra compreende a casa química, o reservatório, a parte eletromecânica, a
+rede de distribuição e os hidrômetros. Antes do início, o IAT contrata uma
+empresa de supervisão e gerenciamento, que acompanha a execução de forma
+independente \cite{mop2026}.
+
+A execução é acompanhada em três níveis (\autoref{fig:obras}). O executor
+constrói conforme o projeto. A supervisão acompanha a obra e registra o
+andamento em relatórios. A fiscalização do IAT verifica a conformidade com o
+projeto e as normas. Havendo não conformidade, o executor faz os ajustes e a
+obra é verificada de novo. Estando tudo conforme, o IAT emite o atesto de
+recebimento, com os laudos de vistoria e o projeto \textit{as built}.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Execução, supervisão e fiscalização das obras, por responsável}
+  \label{fig:obras}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[passo/.style={etapa=2.1cm, minimum height=1.05cm}]
+  % raias e seus títulos
+  \foreach \i/\t in {0/Executor da obra, 1/Supervisão, 2/Fiscalização (IAT)} {
+    \node[raia=15.9cm, minimum height=1.9cm] at (0,{-\i*1.95}) {};
+    \node[titulo raia] at (0.9,{-\i*1.95-0.95}) {\t};
+  }
+  \draw[gray!60] (1.8,0) -- (1.8,-5.8);
+
+  % Fiscalização (IAT)
+  \node[passo] (o1) at (3.2,-4.85)  {Contratação da supervisão e gerenciamento};
+  % Executor
+  \node[passo] (o2) at (5.8,-0.95)  {Execução da obra};
+  % Supervisão
+  \node[passo] (o3) at (5.8,-2.9)   {Acompanhamento e relatórios de supervisão};
+  % Fiscalização
+  \node[passo] (o4) at (8.5,-4.85)  {Verificação e relatórios de fiscalização};
+  \node[decisao, font=\scriptsize, text width=1.35cm] (d) at (11.35,-4.85) {Conforme projeto e normas?};
+  % Executor
+  \node[correcao=2.1cm] (o5) at (11.35,-0.95) {Ajustes na obra};
+  % Fiscalização
+  \node[marco=2.1cm, minimum height=1.05cm] (o7) at (14.55,-4.85) {Atesto de recebimento, laudos e \textit{as built}};
+
+  \draw[seta] (o1) |- (o2);
+  \draw[seta] (o2) -- (o3);
+  \draw[seta] (o3.south) |- (o4.west);
+  \draw[seta] (o4) -- (d);
+  \draw[seta] (d) -- node[rotulo, right] {Não} (o5);
+  \draw[seta] (o5.west) -| (o4.north);
+  \draw[seta] (d) -- node[rotulo, above] {Sim} (o7);
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+\pendencia{A quantidade de hidrômetros ainda está como ``XXX'' no Quadro 29 do
+MOP.}
+
+% ---------------------------------------------------------------------
+\FloatBarrier
+\subsection{Entrega e operação}
+\label{subsec:entrega}
+
+Concluída a obra, o sistema passa por pré-operação e testes, e os operadores
+locais são capacitados. A entrega é formalizada em reunião técnica com a
+comunidade e a entidade gestora, que confirma o recebimento
+(\autoref{fig:entrega}).
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Transferência, operação e encerramento dos sistemas de abastecimento}
+  \label{fig:entrega}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=0.1cm,
+    volta/.style={fase=3.3cm, signal to=west, signal from=east, fill=verdeclaro}]
+  % linha 1: comissionamento e transferência
+  \node[fase=3.3cm] (e1) {Pré-operação\\ e testes};
+  \node[fase=3.3cm, right=of e1] (e2) {Capacitação dos\\ operadores locais};
+  \node[fase=3.3cm, right=of e2] (e3) {Reunião técnica\\ de entrega};
+  \node[fase=3.3cm, right=of e3] (e4) {Aceite da\\ entidade gestora};
+  % linha 2: operação e encerramento
+  \node[volta, below=1.2cm of e4] (e5) {Operação pela\\ entidade gestora};
+  \node[volta, left=of e5] (e6) {Suporte técnico\\ pós-implantação};
+  \node[volta, left=of e6] (e7) {Avaliação semestral\\ de desempenho};
+  \node[volta, fill=azulpsh, text=white, left=of e7] (e8) {TRD e encerramento\\ do Termo de Cooperação};
+
+  \draw[seta] (e4.south) -- (e5.north);
+
+  % evidências (acima da linha 1 e abaixo da linha 2)
+  \node[produto=3.0cm, above=0.25cm of e2] {lista de presença e certificados};
+  \node[produto=3.0cm, above=0.25cm of e4] {confirmação formal do recebimento};
+  \node[produto=3.0cm, below=0.25cm of e7] {relatórios de conformidade no SIGARH e GeoPR};
+  \node[produto=3.0cm, below=0.25cm of e8] {relatório final e prestação de contas};
+
+  \node[font=\scriptsize\bfseries, text=azulpsh, anchor=south west] at ($(e1.north west)+(0,0.25)$)
+    {Transferência do sistema};
+  \node[font=\scriptsize\bfseries, text=azulpsh, anchor=north east] at ($(e5.south east)+(0,-0.25)$)
+    {Operação e encerramento};
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+Daí em diante, a entidade gestora opera e mantém o sistema. O IAT presta
+suporte técnico e avalia o desempenho a cada semestre, com os dados
+registrados no SIGARH e no GeoPR. A atividade termina com o relatório final, o
+Termo de Recebimento Definitivo (TRD) e o encerramento do Termo de Cooperação.
+
+% ---------------------------------------------------------------------
+\FloatBarrier
+\subsection{Programa Sanepar Rural}
+\label{subsec:sanepar-rural}
+
+Nos municípios com contrato de concessão ou de programa com a Sanepar, o
+Programa Sanepar Rural implantará 222 sistemas coletivos entre 2027 e 2031, com
+R\$ 67,1 milhões de contrapartida da companhia \cite{custo2026}. A Sanepar faz o
+levantamento técnico e os projetos de engenharia, fornece os materiais
+hidráulicos e presta apoio técnico; o município executa as obras; e a
+comunidade forma sua associação de moradores e recebe treinamento em uso
+racional da água, higiene e manutenção. Após a obra, a Sanepar acompanha a
+qualidade da água e dá suporte às associações
+(\autoref{fig:sanepar-rural}) \cite{mop2026,saneparrural}.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Programa Sanepar Rural, por responsável}
+  \label{fig:sanepar-rural}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[passo/.style={etapa=2.2cm, minimum height=1.05cm}]
+  % raias e seus títulos
+  \foreach \i/\t in {0/Sanepar, 1/Município, 2/Comunidade} {
+    \node[raia=15.6cm, minimum height=1.9cm] at (0,{-\i*1.95}) {};
+    \node[titulo raia] at (0.9,{-\i*1.95-0.95}) {\t};
+  }
+  \draw[gray!60] (1.8,0) -- (1.8,-5.8);
+
+  % Sanepar
+  \node[passo] (s1) at (3.2,-0.95)  {Levantamento e estudo técnico de engenharia};
+  \node[passo] (s3) at (5.9,-0.95)  {Projetos de engenharia do SAA};
+  \node[passo] (s4) at (8.6,-0.95)  {Fornecimento de materiais hidráulicos};
+  \node[passo] (s8) at (14.0,-0.95) {Monitoramento e suporte pós-obra};
+  % Município
+  \node[passo] (s2) at (3.2,-2.9)   {Termo de Compromisso e Responsabilidade};
+  \node[passo] (s5) at (8.6,-2.9)   {Execução das obras, com apoio técnico da Sanepar};
+  % Comunidade
+  \node[passo] (s6) at (11.3,-4.85) {Formação da associação de moradores};
+  \node[passo] (s7) at (14.0,-4.85) {Treinamento e educação ambiental};
+
+  \draw[seta] (s1) -- (s2);
+  \draw[seta] (s2.east) -| (s3.south);
+  \draw[seta] (s3) -- (s4);
+  \draw[seta] (s4) -- (s5);
+  \draw[seta] (s5.south) |- (s6.west);
+  \draw[seta] (s6) -- (s7);
+  \draw[seta] (s7) -- (s8);
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+Os modelos de gestão da \autoref{subsec:modelos-gestao} também se aplicam a
+esses sistemas.
+
+\pendencia{O Quadro 31 do MOP atribui ao Sanepar Rural a meta total do
+Componente~3 (59.780 pessoas), que inclui os sistemas do IAT. A parcela da
+Sanepar é de cerca de 43.500 pessoas. Citar o manual do programa com título,
+versão e data.}
+
+% =====================================================================
+%  1.8 ESGOTAMENTO
+% =====================================================================
+\FloatBarrier
+\section{Implementação dos sistemas de esgotamento sanitário}
+\label{sec:esgotamento}
+
+O esgotamento será feito com soluções individuais em cada domicílio, adequadas
+à baixa densidade do meio rural. São duas frentes: 4.067 domicílios nas
+comunidades atendidas com água, entre 2028 e 2033, e 2.300 domicílios em
+mananciais, na área do IDR-Paraná, entre 2029 e 2033 \cite{custo2026}. As
+frentes diferem na forma como os domicílios são identificados e contratados,
+mas, a partir do projeto de cada propriedade, seguem o mesmo procedimento
+(\autoref{fig:esgotamento-geral}).
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Implementação do esgotamento sanitário, do começo ao fim}
+  \label{fig:esgotamento-geral}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=0.4cm,
+    passo/.style={etapa=5.2cm, minimum height=0.95cm},
+    comum/.style={etapa=11.6cm, minimum height=0.9cm}]
+
+  % --- Frente comunidades ---------------------------------------------
+  \node[font=\footnotesize\bfseries, text=azulpsh, align=center] (h1) at (0,0) {Frente comunidades\\ (4.067 domicílios)};
+  \node[passo, below=0.25cm of h1] (a1) {Comunidades atendidas pelo abastecimento de água (\autoref{sec:abastecimento})};
+  \node[passo, below=of a1] (a2) {Diagnóstico domiciliar do trabalho técnico-social: disposição atual do esgoto};
+  \node[passo, below=of a2] (a4) {TR, licitação e contratação (soluções descentralizadas e obras civis)};
+
+  % --- Frente mananciais (IDR-Paraná) --------------------------------
+  \node[font=\footnotesize\bfseries, text=azulpsh, align=center] (h2) at (6.4,0) {Frente mananciais -- IDR-Paraná\\ (2.300 domicílios)};
+  \node[passo] (b1) at (h2 |- a1) {Propriedades rurais em mananciais prioritários do PSH-PR};
+  \node[passo] (b2) at (h2 |- a2) {Planos Integrados de Propriedade (PIP) elaborados pelo IDR-Paraná};
+  \node[passo] (b4) at (h2 |- a4) {TR, licitação e contratação (soluções descentralizadas e obras civis)};
+
+  % --- Procedimento comum -------------------------------------------
+  \coordinate (m) at ($(a4.south)!0.5!(b4.south)$);
+  \node[comum, below=0.8cm of m] (c1) {Projeto sanitário individual de cada propriedade};
+  \node[comum, below=of c1] (c2) {Instalação do sistema e verificação de funcionamento (\autoref{fig:esgotamento-instalacao})};
+  \node[comum, below=of c2] (c3) {Capacitação dos proprietários para uso e manutenção};
+  \node[comum, below=of c3] (c4) {Medição, comprovação, verificação independente e pagamento (\autoref{fig:esgotamento-medicao})};
+  \node[marco=11.6cm, below=of c4] (c5) {Finalização e monitoramento};
+
+  \foreach \x/\y in {a1/a2,a2/a4,b1/b2,b2/b4,c1/c2,c2/c3,c3/c4,c4/c5}
+    \draw[seta] (\x) -- (\y);
+  \draw[seta] (a4.south) -- (a4.south |- c1.north);
+  \draw[seta] (b4.south) -- (b4.south |- c1.north);
+
+  \node[rotulo, anchor=west] at ($(a1.south)!0.5!(a2.north)+(0.1,0)$) {70\% dos domicílios};
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+\pendencia{O MOP não indica a tecnologia de tratamento nem as normas técnicas
+de projeto. Citar as normas aplicáveis, como a ABNT NBR 7229 e a ABNT NBR
+13969.}
+
+% ---------------------------------------------------------------------
+\FloatBarrier
+\subsection{Instalação e verificação técnica}
+\label{subsec:esgotamento-instalacao}
+
+A empresa contratada elabora um projeto para cada residência, considerando o
+terreno, o número de moradores e a solução de tratamento adequada, e executa
+as obras civis de instalação. Durante a instalação, o proprietário é orientado
+sobre o funcionamento, o uso e a manutenção preventiva do sistema
+\cite{mop2026}.
+
+Concluída a instalação, uma verificação técnica atesta o funcionamento e a
+garantia do sistema (\autoref{fig:esgotamento-instalacao}). Se o sistema
+atender aos requisitos, é validado e segue para a medição. Se não atender, a
+empresa faz as correções e o sistema é verificado de novo.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Projeto, instalação e verificação técnica dos sistemas individuais}
+  \label{fig:esgotamento-instalacao}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=0.45cm]
+  \node[etapa=4.6cm] (proj) {Projeto individual da propriedade\\
+    \scriptsize terreno, número de moradores e solução de tratamento};
+  \node[etapa=4.6cm, below=of proj] (inst) {Instalação do sistema\\ \scriptsize obras civis e dispositivo domiciliar};
+  \node[etapa=4.6cm, below=of inst] (atest) {Atestar funcionalidade e garantia};
+  \node[decisao, below=0.55cm of atest] (dec) {Atende aos\\requisitos?};
+  \node[correcao=3.0cm, left=1.0cm of dec] (corr) {Correções técnicas};
+  \node[marco=4.6cm, below=0.6cm of dec] (reg) {Sistema validado e registrado};
+
+  % capacitação ocorre em paralelo à instalação
+  \node[etapa=4.2cm, fill=verdeclaro, right=1.4cm of inst] (cap) {Capacitação do proprietário\\
+    \scriptsize funcionamento, uso adequado e manutenção preventiva};
+
+  \draw[seta] (proj) -- (inst);
+  \draw[seta] (inst) -- (atest);
+  \draw[seta] (atest) -- (dec);
+  \draw[seta] (dec) -- node[rotulo, above] {Não} (corr);
+  \draw[seta] (corr) |- (atest.west);
+  \draw[seta] (dec) -- node[rotulo, right] {Sim} (reg);
+  \draw[setatracejada, <->] (inst) -- node[rotulo, above] {concomitante} (cap);
+  \draw[seta] (cap.south) |- (reg.east);
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+% ---------------------------------------------------------------------
+\FloatBarrier
+\subsection{Medição, comprovação e pagamento}
+\label{subsec:esgotamento-medicao}
+
+Como os sistemas são instalados propriedade por propriedade, o pagamento
+depende de uma cadeia de comprovação que envolve a empresa, o proprietário e o
+IAT (\autoref{fig:esgotamento-medicao}). A empresa registra em relatórios de
+medição as intervenções em cada propriedade e reúne as evidências. O
+proprietário assina o registro que confirma a execução das melhorias.
+
+Com esse material, o IAT faz a auditoria documental e as visitas de verificação
+\textit{in loco}. A empresa consolida o relatório de medição final, e o IAT
+avalia por amostragem a qualidade das unidades. Só então são feitas a
+ordenação das despesas e o pagamento. O relatório técnico aprovado e o
+comprovante de pagamento são a evidência de conclusão de cada lote.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Medição, comprovação, verificação e pagamento, por responsável}
+  \label{fig:esgotamento-medicao}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[passo/.style={etapa=4.3cm, minimum height=0.85cm}]
+  % raias (colunas)
+  \def\alt{12.3cm}
+  \node[raia=4.9cm, minimum height=\alt] at (0,0)     {};
+  \node[raia=4.9cm, minimum height=\alt] at (5.2,0)   {};
+  \node[raia=4.9cm, minimum height=\alt] at (10.4,0)  {};
+  \node[font=\scriptsize\bfseries, text=azulpsh] at (2.45,-0.35)  {Empresa contratada};
+  \node[font=\scriptsize\bfseries, text=azulpsh] at (7.65,-0.35)  {Proprietário (beneficiário)};
+  \node[font=\scriptsize\bfseries, text=azulpsh] at (12.85,-0.35) {IAT (fiscalização e validação)};
+
+  \node[passo] (m1) at (2.45,-1.25)   {Relatórios de medição do projeto e da implantação};
+  \node[passo] (m2) at (2.45,-2.55)   {Comprovação da implementação: documentos e evidências};
+  \node[passo] (m3) at (7.65,-3.85)   {Assinatura confirmando a execução das melhorias};
+  \node[passo] (m4) at (12.85,-5.15)  {Auditoria documental};
+  \node[passo] (m5) at (12.85,-6.45)  {Verificação \textit{in loco} das intervenções};
+  \node[passo] (m6) at (2.45,-7.75)   {Relatório de medição final (consolidação)};
+  \node[passo] (m7) at (12.85,-9.05)  {Amostragem \textit{in loco} da qualidade das unidades};
+  \node[passo] (m8) at (12.85,-10.35) {Ordenação das despesas e pagamento};
+  \node[marco=4.3cm, minimum height=0.85cm] (m9) at (7.65,-11.55) {Finalização};
+
+  \draw[seta] (m1) -- (m2);
+  \draw[seta] (m2) |- (m3);
+  \draw[seta] (m3) -| (m4);
+  \draw[seta] (m4) -- (m5);
+  \draw[seta] (m5) -| (m6);
+  \draw[seta] (m6) |- (m7);
+  \draw[seta] (m7) -- (m8);
+  \draw[seta] (m8) |- (m9);
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+\pendencia{Definir o tamanho da amostra da verificação \textit{in loco} e quem
+executa cada verificação.}
+
+% ---------------------------------------------------------------------
+\FloatBarrier
+\subsection{Frente dos mananciais (IDR-Paraná)}
+\label{subsec:esgotamento-idr}
+
+A frente dos mananciais segue o mesmo procedimento de instalação, verificação,
+medição e pagamento. As diferenças estão na origem da demanda, no território e
+na validação (\autoref{qua:diferencas-esgotamento}). Os domicílios são
+indicados pelos PIP elaborados pelo IDR-Paraná, e não pelo trabalho
+técnico-social; o território é o dos mananciais de abastecimento público; e a
+validação é compartilhada entre o IAT e o IDR-Paraná.
+
+\begin{quadro}[!htbp]
+\caption{Diferenças entre as frentes de esgotamento sanitário}
+\label{qua:diferencas-esgotamento}
+\small
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|P{3.2cm}|L|L|}
+\hline
+\cab{Aspecto} & \cab{Frente comunidades (3.2.2.4)} & \cab{Frente mananciais -- IDR-Paraná (3.2.2.5)} \\ \hline
+Origem da demanda & Diagnóstico do trabalho técnico-social &
+  Planos Integrados de Propriedade (PIP) do IDR-Paraná \\ \hline
+Território & Comunidades atendidas com abastecimento de água &
+  Mananciais prioritários do PSH-PR \\ \hline
+Meta & 4.067 domicílios & 2.300 domicílios \\ \hline
+Prazo & 2028 a 2033 & 2029 a 2033 \\ \hline
+Dependências & Prefeituras & -- \\ \hline
+Validação & IAT & IAT e IDR-Paraná \\ \hline
+\end{tabularx}
+\fonte{Adaptado de \citeonline{mop2026} e \citeonline{custo2026}.}
+\end{quadro}
+
+% =====================================================================
+%  1.9 CONEXÕES
+% =====================================================================
+\FloatBarrier
+\section{Conexão com outros subcomponentes do MOP}
+\label{sec:conexoes}
+
+O Subcomponente 3.2.b depende de produtos de outras partes do projeto e
+contribui para elas (\autoref{fig:conexoes}). A política e o plano estadual de
+saneamento rural (3.2.a) fornecem as diretrizes, os modelos de gestão e os
+critérios de priorização. Os PIP do Subcomponente 2.3, elaborados pelo
+IDR-Paraná, indicam os domicílios da frente dos mananciais. O Subcomponente
+1.1 fornece os instrumentos de gestão de recursos hídricos, como a outorga dos
+poços e o SIGARH, onde ficam os dados de monitoramento.
+
+Em troca, a instalação de sistemas de esgoto nas propriedades reduz o esgoto
+sem tratamento nas bacias de mananciais de que trata o Subcomponente 3.1. Os
+resultados alimentam os indicadores do Componente~3, e a UGP (Componente 4)
+apoia as aquisições, os desembolsos, o monitoramento e o reporte ao Banco
+Mundial.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Conexões do Subcomponente 3.2.b com outras partes do MOP}
+  \label{fig:conexoes}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[
+    caixa/.style={draw=#1, fill=#1!8, rounded corners=3pt, align=left,
+                  text width=4.1cm, inner sep=5pt, font=\scriptsize,
+                  minimum height=1.55cm},
+    entra/.style={-{Stealth[length=2.4mm]}, line width=1.1pt, draw=#1},
+    sai/.style={{Stealth[length=2.4mm]}-, line width=1.1pt, draw=#1}
+  ]
+  \node[marco=3.6cm, minimum height=2.2cm, font=\footnotesize\bfseries] (c) at (0,0)
+    {Subcomponente 3.2.b\\[2pt]\normalfont\scriptsize abastecimento e esgotamento no meio rural};
+
+  % entradas (à esquerda)
+  \node[caixa=azulpsh] (a) at (-5.6,2.6) {\textbf{3.2.a -- Política e Plano Estadual de
+    Saneamento Rural} (SEPL/SECID)\\[2pt]\textit{fornece diretrizes, modelos de gestão e
+    critérios de priorização}};
+  \node[caixa=green!45!black] (b) at (-5.6,0) {\textbf{2.3 -- Agricultura sustentável em
+    bacias de mananciais} (SEAB/IDR-Paraná)\\[2pt]\textit{os PIP indicam os domicílios da
+    frente mananciais}};
+  \node[caixa=teal!80!black] (d) at (-5.6,-2.6) {\textbf{1.1 -- Instrumentos de gestão e
+    monitoramento} (IAT)\\[2pt]\textit{outorga do uso da água dos poços e registro de
+    dados no SIGARH}};
+
+  % saídas e apoio (à direita)
+  \node[caixa=cyan!60!black] (e) at (5.6,2.6) {\textbf{3.1 -- Gestão de riscos em
+    mananciais} (Sanepar)\\[2pt]\textit{recebe menos esgoto sem tratamento nas bacias de
+    mananciais}};
+  \node[caixa=orange!85!black] (f) at (5.6,0) {\textbf{Indicadores do Componente 3}\\[2pt]
+    \textit{recebe pessoas atendidas com água e esgoto e associações com modelo de gestão}};
+  \node[caixa=gray] (g) at (5.6,-2.6) {\textbf{Componente 4 -- Gestão do projeto}
+    (UGP/SEPL)\\[2pt]\textit{apoia aquisições, desembolsos, monitoramento e reporte ao
+    Banco Mundial}};
+
+  \draw[entra=azulpsh] (a.east) to[out=0, in=150] (c.west);
+  \draw[entra=green!45!black] (b.east) -- (c.west);
+  \draw[entra=teal!80!black] (d.east) to[out=0, in=210] (c.west);
+  \draw[entra=cyan!60!black] (c.east) to[out=30, in=180] (e.west);
+  \draw[entra=orange!85!black] (c.east) -- (f.west);
+  \draw[entra=gray, <->] (c.east) to[out=330, in=180] (g.west);
+
+  \node[font=\scriptsize\bfseries, text=azulpsh] at (-5.6,4.0) {O que o 3.2.b recebe};
+  \node[font=\scriptsize\bfseries, text=azulpsh] at (5.6,4.0) {O que o 3.2.b entrega ou troca};
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+% =====================================================================
+%  1.10 GESTÃO AMBIENTAL E SOCIAL
+% =====================================================================
+\FloatBarrier
+\section{Gestão ambiental e social}
+\label{sec:salvaguardas}
+
+As medidas ambientais e sociais acompanham todas as fases da ação
+(\autoref{fig:socioambiental}). No planejamento, o cuidado principal é não
+excluir grupos vulneráveis ou comunidades tradicionais, com consultas,
+métodos participativos e busca ativa, e verificar a titularidade das áreas de
+poço e reservatório. No projeto, os estudos ambientais e sociais, a outorga e
+as licenças antecedem a obra. Nas obras, há protocolos de saúde e segurança do
+trabalho, sinalização de valas, gestão de resíduos, ruído e poeira e testes de
+estanqueidade. Na operação, a capacitação, o modelo de gestão e o manejo do
+lodo garantem que o sistema funcione sem gerar novos impactos
+\cite[Quadros 25 e 26]{mop2026}.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Medidas ambientais e sociais ao longo da ação}
+  \label{fig:socioambiental}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=0.08cm,
+    medida/.style={draw=azulpsh!60, fill=white, rounded corners=2pt, align=left,
+                   text width=3.35cm, inner sep=4pt, font=\scriptsize,
+                   minimum height=4.3cm, anchor=north}]
+  \node[fase=3.3cm] (f1) {Planejamento e\\ seleção};
+  \node[fase=3.3cm, right=of f1] (f2) {Projeto e\\ licenciamento};
+  \node[fase=3.3cm, right=of f2] (f3) {Obras e\\ instalação};
+  \node[fase=3.3cm, fill=verdeclaro, right=of f3] (f4) {Operação\\ e entrega};
+
+  \node[medida, below=0.3cm of f1.south] {%
+    \textbullet\ consultas e métodos participativos na seleção\\
+    \textbullet\ busca ativa de famílias em áreas remotas\\
+    \textbullet\ inclusão de grupos vulneráveis e comunidades tradicionais\\
+    \textbullet\ verificação da titularidade das áreas, com anuências e servidões};
+  \node[medida, below=0.3cm of f2.south] {%
+    \textbullet\ estudos ambientais e sociais\\
+    \textbullet\ outorga do uso da água e licenças\\
+    \textbullet\ normas técnicas de perfuração\\
+    \textbullet\ dimensionamento da solução de esgoto para cada domicílio};
+  \node[medida, below=0.3cm of f3.south] {%
+    \textbullet\ saúde e segurança do trabalho, com EPI\\
+    \textbullet\ sinalização e proteção de valas\\
+    \textbullet\ gestão de resíduos, ruído e poeira\\
+    \textbullet\ testes de estanqueidade após a instalação};
+  \node[medida, below=0.3cm of f4.south] {%
+    \textbullet\ capacitação em uso e manutenção\\
+    \textbullet\ modelo de gestão e tarifa social\\
+    \textbullet\ manejo adequado do lodo\\
+    \textbullet\ suporte técnico e avaliação semestral};
+
+  \node[transversal=14.3cm, below=4.85cm of $(f2.south)!0.5!(f3.south)$, anchor=north] {%
+    \textbf{Em todas as fases:} reuniões comunitárias em linguagem simples; canal de
+    queixas e reclamações divulgado nas comunidades, com tempo de resposta monitorado a
+    cada semestre.};
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline[Quadros 25 e 26]{mop2026}.}
+\end{figure}
+
+O \autoref{qua:socioambiental} organiza essas medidas por tema e indica a
+evidência que comprova cada uma. Todas as fases contam com reuniões
+comunitárias em linguagem simples e com um canal de queixas e reclamações,
+cujo tempo de resposta é monitorado a cada semestre.
+
+\begin{quadro}[!htbp]
+\caption{Como a ação trata os riscos ambientais e sociais}
+\label{qua:socioambiental}
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|P{3.3cm}|L|P{4.2cm}|}
+\hline
+\cab{Tema} & \cab{Como a ação atende} & \cab{Evidência} \\ \hline
+Avaliação e controle dos impactos &
+  Estudos ambientais e sociais; outorga e licenças antes das obras; normas
+  técnicas de perfuração & Outorgas e licenças emitidas; relatórios de
+  conformidade semestrais \\ \hline
+Condições de trabalho &
+  Protocolos de saúde e segurança; EPI obrigatório; treinamento das equipes
+  das empreiteiras & Relatórios de supervisão e de fiscalização \\ \hline
+Prevenção da poluição e uso da água &
+  Soluções de esgoto dimensionadas por domicílio; testes de estanqueidade;
+  manejo do lodo; gestão de resíduos, ruído e poeira nas obras; hidrômetros &
+  Laudos e testes de estanqueidade; relatório técnico aprovado \\ \hline
+Saúde e segurança da comunidade &
+  Sinalização e proteção de valas; análise da água antes da operação;
+  capacitação em uso e manutenção & Análise físico-química; listas de
+  presença e certificados \\ \hline
+Terra e uso do solo &
+  Verificação prévia da titularidade das áreas de poço e reservatório;
+  anuências e termos de servidão & Documentação fundiária; anuências
+  assinadas \\ \hline
+Grupos vulneráveis e comunidades tradicionais &
+  Busca ativa em áreas remotas; consultas e métodos participativos; critérios
+  de enquadramento sociais & Cadastro das famílias; relatório do trabalho
+  técnico-social \\ \hline
+Participação e queixas &
+  Reuniões comunitárias em linguagem simples; canal de queixas divulgado nas
+  comunidades & Registro das queixas e dos tempos de resposta, a cada
+  semestre \\ \hline
+\end{tabularx}
+\fonte{Elaborado pelo IAT (2026) com base em \citeonline[Quadros 25 e 26]{mop2026}.}
+\end{quadro}
+
+% =====================================================================
+%  1.11 CONTROLE DE QUALIDADE
+% =====================================================================
+\FloatBarrier
+\section{Controle de qualidade}
+\label{sec:monitoramento}
+
+Cada produto da ação percorre a mesma cadeia de comprovação
+(\autoref{fig:evidencias}). A execução é registrada em relatórios de medição,
+supervisão e fiscalização, listas de presença e cadastros. O registro gera uma
+evidência, como um laudo, um teste, um termo assinado ou um certificado. A
+evidência é verificada por auditoria documental e visitas \textit{in loco} e
+validada pela instituição responsável pelo produto. Só então o resultado entra
+no SIGARH e no GeoPR e é reportado à UGP e ao Banco Mundial.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Cadeia de comprovação e sustentabilidade dos resultados}
+  \label{fig:evidencias}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=0.32cm,
+    passo/.style={etapa=2.05cm, minimum height=1.0cm, font=\scriptsize\bfseries},
+    exemplo/.style={produto=2.05cm, minimum height=2.75cm, anchor=north, align=left}]
+  \node[passo] (p1) {Execução};
+  \node[passo, right=of p1] (p2) {Registro};
+  \node[passo, right=of p2] (p3) {Evidência};
+  \node[passo, right=of p3] (p4) {Verificação};
+  \node[passo, right=of p4] (p5) {Validação};
+  \node[marco=2.05cm, minimum height=1.0cm, font=\scriptsize\bfseries, right=of p5] (p6) {Sistema e reporte};
+  \foreach \a/\b in {p1/p2,p2/p3,p3/p4,p4/p5,p5/p6} \draw[seta] (\a) -- (\b);
+
+  \node[exemplo, below=0.25cm of p1.south] {obra, instalação, serviço ou capacitação};
+  \node[exemplo, below=0.25cm of p2.south] {relatórios de medição, supervisão e fiscalização; listas de presença; cadastro};
+  \node[exemplo, below=0.25cm of p3.south] {laudos, testes, \textit{as built}, termos assinados, certificados};
+  \node[exemplo, below=0.25cm of p4.south] {auditoria documental; verificação e amostragem \textit{in loco}};
+  \node[exemplo, below=0.25cm of p5.south] {IAT, IDR-Paraná, SECID ou Sanepar, conforme o produto};
+  \node[exemplo, below=0.25cm of p6.south] {SIGARH e GeoPR; UGP; Banco Mundial};
+
+  % sustentabilidade após a entrega
+  \node[fase=3.0cm, fill=verdeclaro, below=3.75cm of p2.south, anchor=north] (s1) {Entidade gestora\\ operando};
+  \node[fase=3.0cm, fill=verdeclaro, right=0.1cm of s1] (s2) {Tarifa instituída e\\ associação ativa};
+  \node[fase=3.0cm, fill=verdeclaro, right=0.1cm of s2] (s3) {Suporte técnico e\\ avaliação semestral};
+  \node[font=\scriptsize\bfseries, text=green!40!black, anchor=south west] at ($(s1.north west)+(0,0.08)$)
+    {Sustentabilidade do resultado após a entrega};
+  \draw[seta] (s3.south) -- ++(0,-0.35) -| node[rotulo, pos=0.25, below] {ajustes} (s1.south);
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+A comprovação não termina na entrega. A sustentabilidade do resultado depende
+de a entidade gestora estar operando, de a tarifa estar instituída e a
+associação ativa, e do suporte técnico e da avaliação semestral do IAT, que
+permitem corrigir problemas antes que comprometam o serviço. O
+\autoref{qua:comprovacao} detalha, para cada produto, o registro, a evidência,
+quem verifica e como o resultado se sustenta.
+
+\begin{landscape}
+\begin{quadro}[p]
+\caption{Matriz de comprovação por produto}
+\label{qua:comprovacao}
+\scriptsize
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\linewidth}{|P{3.2cm}|L|L|P{3.6cm}|L|}
+\hline
+\cab{Produto} & \cab{Registro da execução} & \cab{Evidência de comprovação} &
+\cab{Verificação e validação} & \cab{Sustentabilidade do resultado} \\ \hline
+Modelo de gestão implantado & Contratos de pré-adesão; registro das associações &
+  Tarifa instituída; associação regularizada & SECID (validação); IAT &
+  Entidade gestora operando com tarifa e manuais de desempenho \\ \hline
+Trabalho técnico-social & Cadastro domiciliar; listas de presença &
+  Relatório final; termos de adesão; baixa no Termo de Cooperação & IAT e IDR-Paraná &
+  Famílias comprometidas com o uso e a manutenção \\ \hline
+Poço perfurado & Estudo hidrogeológico; teste de vazão; análise físico-química &
+  Atesto de recebimento; laudos de vistoria; outorga & IAT (fiscalização) &
+  Outorga vigente; vazão e qualidade conhecidas \\ \hline
+Sistema coletivo de água & Relatórios de supervisão e de fiscalização; \textit{as built} &
+  Termo de Recebimento Definitivo (TRD) & IAT; UGP e Banco Mundial no encerramento &
+  Operadores capacitados; suporte técnico; avaliação semestral \\ \hline
+Sistema individual de esgoto & Relatórios de medição; projeto da propriedade &
+  Relatório técnico aprovado; assinatura do proprietário; teste de estanqueidade;
+  comprovante de pagamento & IAT (comunidades); IAT e IDR-Paraná (mananciais);
+  auditoria e amostragem \textit{in loco} & Proprietário capacitado em uso e
+  manutenção preventiva \\ \hline
+Sistema do Sanepar Rural & Relatórios da Sanepar & Relatório técnico aprovado &
+  Sanepar & Associação de moradores; monitoramento pós-obra da Sanepar \\ \hline
+Capacitação & Listas de presença & Certificados & IAT &
+  Pessoas capacitadas na comunidade \\ \hline
+\end{tabularx}
+\fonte{Elaborado pelo IAT (2026) com base em \citeonline[Quadros 28, 29 e 31]{mop2026}.}
+\end{quadro}
+\end{landscape}
+
+As informações seguem o fluxo da \autoref{fig:monitoramento}. O IAT consolida
+relatórios semestrais de conformidade técnica e ambiental, com dados no SIGARH
+e no GeoPR. O IAT e a Sanepar reportam os indicadores de resultado a cada ano. A
+UGP consolida e valida as informações e as envia ao Banco Mundial.
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Fluxo de monitoramento, validação e reporte}
+  \label{fig:monitoramento}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{tikzpicture}[node distance=0.4cm,
+    fonte/.style={externo=3.6cm, minimum height=0.9cm},
+    passo/.style={etapa=3.8cm, minimum height=1.1cm}]
+
+  % fontes de informação
+  \node[fonte] (f1) at (0,0)     {Supervisão e fiscalização das obras};
+  \node[fonte] (f2) at (0,-1.3)  {Mecanismo de Queixas e Reclamações};
+  \node[fonte] (f3) at (0,-2.6)  {Entidades gestoras e associações};
+  \node[fonte] (f4) at (0,-3.9)  {Programa Sanepar Rural};
+
+  % consolidação pelos executores
+  \node[passo] (p1) at (4.8,-0.45) {IAT: relatórios semestrais de conformidade técnica e ambiental};
+  \node[passo] (p2) at (4.8,-3.45) {IAT e Sanepar: reporte anual dos indicadores de resultado};
+
+  % sistemas
+  \node[produto=2.6cm, minimum height=0.8cm] (s) at (4.8,-1.95) {SIGARH e GeoPR};
+
+  % UGP e Banco Mundial
+  \node[passo] (u) at (9.4,-1.95) {UGP: consolidação e validação à luz do MGAS};
+  \node[marco=3.2cm, minimum height=1.1cm] (bm) at (13.3,-1.95) {Banco Mundial};
+
+  \draw[seta] (f1.east) -- ++(0.45,0) |- (p1.west);
+  \draw[seta] (f2.east) -- ++(0.45,0) |- (p1.west);
+  \draw[seta] (f3.east) -- ++(0.45,0) |- (p2.west);
+  \draw[seta] (f4.east) -- ++(0.45,0) |- (p2.west);
+  \draw[seta] (p1) -- (s);
+  \draw[seta] (p1.east) -- ++(0.35,0) |- (u.west);
+  \draw[seta] (p2.east) -- ++(0.35,0) |- (u.west);
+  \draw[seta] (u) -- (bm);
+
+  \node[rotulo, below=0.1cm of bm, text width=3.2cm, align=center]
+    {relatórios de progresso; validação do encerramento (TRD)};
+\end{tikzpicture}
+  \end{adjustbox}
+  \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
+\end{figure}
+
+Os indicadores da ação estão no \autoref{qua:indicadores}. As metas anuais de
+cada produto estão na \autoref{tab:metas-anuais} (\autoref{sec:cronograma}).
+
+\begin{quadro}[!htbp]
+\caption{Indicadores do Subcomponente 3.2.b}
+\label{qua:indicadores}
+\footnotesize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{|L|L|Q{1.6cm}|P{2.2cm}|Q{1.4cm}|}
+\hline
+\cab{Indicador} & \cab{Fórmula de cálculo} & \cab{Horizonte} &
+\cab{Unidade} & \cab{Meta final} \\ \hline
+Poços tubulares com sistemas de abastecimento implantados &
+Quantidade de projetos executados & 2028 a 2033 & Projetos (nº) & 83 \\ \hline
+Domicílios atendidos com abastecimento de água &
+Soma dos domicílios das comunidades contempladas & 2028 a 2033 & Domicílios & 5.810 \\ \hline
+Domicílios atendidos com esgotamento -- comunidades &
+70\% dos domicílios atendidos com água & 2028 a 2033 & Domicílios & 4.067 \\ \hline
+Domicílios atendidos com esgotamento -- área do IDR-Paraná &
+Domicílios rurais (Censo 2022) nos mananciais & 2029 a 2033 & Domicílios & 2.300 \\ \hline
+Sistemas implantados pelo Programa Sanepar Rural &
+Quantidade de sistemas implantados & 2027 a 2031 & Sistemas (nº) & 222 \\ \hline
+População rural atendida com água e esgoto &
+Soma dos habitantes beneficiados & 2028 a 2033 & Pessoas (nº) & 22.708 \\ \hline
+\end{tabularx}
+\fonte{Adaptado de \citeonline[Quadro 27]{mop2026} e \citeonline{custo2026}.}
+\end{quadro}
+
+\pendencia{As metas progressivas do Componente~3 (Quadro 23 do MOP) precisam
+ser atualizadas a partir da planilha de custos: hoje preveem esgotamento em
+2027 e terminam em 2032. O MOP também calcula os domicílios com água como
+``soma das comunidades'' e remete a um ``Quadro XX''.}
+
+% =====================================================================
+%  1.12 MATRIZ DE CUSTOS
+% =====================================================================
+\FloatBarrier
+\section{Matriz de custos da ação}
+\label{sec:custos}
+
+O Subcomponente 3.2.b custa R\$ 250,1 milhões: R\$ 183,0 milhões do BIRD,
+executados pelo IAT, e R\$ 67,1 milhões de contrapartida da Sanepar
+\cite{custo2026}. Os sistemas coletivos de abastecimento são o maior item, com
+R\$ 107,9 milhões (R\$ 1,3 milhão por sistema), seguidos do Programa Sanepar
+Rural e do esgotamento, que custa R\$ 8 mil por domicílio nas duas frentes. O
+investimento cresce até 2030 e 2031, quando passa de R\$ 56 milhões por ano, e
+cai em 2032 e 2033, com a conclusão das obras.
+
+O \autoref{qua:custos} mostra o custo unitário, a quantidade, o total e a
+distribuição anual de cada item.
+
+\begin{landscape}
+\begin{quadro}[p]
+\caption{Matriz de custos do Subcomponente 3.2.b}
+\label{qua:custos}
+\scriptsize
+\renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{3pt}
+\begin{tabularx}{\linewidth}{|L|Q{1.5cm}|Q{1.85cm}|P{1.7cm}|r|r|r|r|r|r|r|r|r|r|}
+\hline
+\cab{Item} & \cab{Executor} & \cab{Fonte} & \cab{Unidade} &
+\multicolumn{1}{c|}{\cab{Custo unit. (R\$)}} & \multicolumn{1}{c|}{\cab{Qtd.}} &
+\multicolumn{1}{c|}{\cab{Total}} &
+\multicolumn{1}{c|}{\cab{2027}} & \multicolumn{1}{c|}{\cab{2028}} &
+\multicolumn{1}{c|}{\cab{2029}} & \multicolumn{1}{c|}{\cab{2030}} &
+\multicolumn{1}{c|}{\cab{2031}} & \multicolumn{1}{c|}{\cab{2032}} &
+\multicolumn{1}{c|}{\cab{2033}} \\ \hline
+Sistemas coletivos de abastecimento de água & IAT & BIRD & Sistema &
+  1.300.000,00 & 83 & 107,90 & -- & 6,50 & 13,00 & 26,00 & 26,00 & 23,40 & 13,00 \\ \hline
+Esgotamento -- comunidades & IAT & BIRD & Domicílio &
+  8.000,00 & 4.067 & 32,54 & -- & 1,96 & 3,82 & 6,85 & 7,65 & 7,65 & 4,62 \\ \hline
+Esgotamento -- área do IDR-Paraná & IAT & BIRD & Domicílio &
+  8.000,00 & 2.300 & 18,40 & -- & -- & 3,68 & 3,68 & 3,68 & 3,68 & 3,68 \\ \hline
+Implantação do modelo de gestão & IAT & BIRD & Unidade &
+  2.300.000,00 & 3 & 6,90 & -- & 2,30 & 2,30 & 2,30 & -- & -- & -- \\ \hline
+Trabalho técnico-social & IAT & BIRD & Profissional-mês &
+  179.835,30 & 36 & 6,47 & 1,08 & 2,16 & 2,16 & 1,08 & -- & -- & -- \\ \hline
+Supervisão e gerenciamento de obras & IAT & BIRD & Profissional-mês &
+  299.722,20 & 36 & 10,79 & -- & -- & 1,80 & 3,60 & 3,60 & 1,80 & -- \\ \hline
+\multicolumn{6}{|r|}{\textbf{Subtotal BIRD}} & \textbf{183,00} &
+  \textbf{1,08} & \textbf{12,92} & \textbf{26,75} & \textbf{43,50} & \textbf{40,92} &
+  \textbf{36,53} & \textbf{21,30} \\ \hline
+Programa Sanepar Rural & Sanepar & Contrapartida & Sistema &
+  302.464,42 & 222 & 67,15 & 13,61 & 12,40 & 12,70 & 13,01 & 15,43 & -- & -- \\ \hline
+\multicolumn{6}{|r|}{\textbf{Total do Subcomponente 3.2.b}} & \textbf{250,15} &
+  \textbf{14,69} & \textbf{25,32} & \textbf{39,46} & \textbf{56,51} & \textbf{56,35} &
+  \textbf{36,53} & \textbf{21,30} \\ \hline
+\end{tabularx}
+\fonte{Adaptado da planilha de custos do PSH-PR, abas ``Componente3'' e ``Consolidado R\$'' \cite{custo2026}.}
+\nota{Totais e valores anuais em R\$ milhões. Câmbio do PAD: R\$ 5,46 por dólar
+(BIRD: US\$ 33,5 milhões; Sanepar: US\$ 12,3 milhões). Não há custos em 2025 e
+2026. A política e o plano estadual de saneamento rural (3.2.a, R\$ 10,6
+milhões) não fazem parte desta ação.}
+\end{quadro}
+\end{landscape}
+
+% =====================================================================
+%  1.13 CRONOGRAMA
+% =====================================================================
+\FloatBarrier
+\section{Cronograma}
+\label{sec:cronograma}
+
+O programa tem sete anos de execução, de 2027 a 2033, e o cronograma segue a
+distribuição anual da planilha de custos (\autoref{fig:cronograma}). O trabalho
+técnico-social começa em 2027 e vai até 2030. O Programa Sanepar Rural entrega
+seus sistemas de 2027 a 2031. Os sistemas de água do IAT e o esgotamento nas
+comunidades vão de 2028 a 2033, e o esgotamento nos mananciais, de 2029 a 2033.
+A supervisão das obras ocorre entre 2029 e 2032 \cite{custo2026}.
+
+\pendencia{Atualizar no restante do MOP as referências a ``seis anos'' e aos
+``Anos 0 a 6'' para o prazo de sete anos (2027 a 2033).}
+
+\begin{figure}[!htbp]
+  \centering
+  \caption{Cronograma de execução do Subcomponente 3.2.b}
+  \label{fig:cronograma}
+  \begin{adjustbox}{max width=\linewidth}
+\begin{ganttchart}[
+    hgrid,
+    vgrid={*1{draw=gray!40, dotted}},
+    x unit=1.05cm,
+    y unit title=0.55cm,
+    y unit chart=0.62cm,
+    title/.append style={fill=azulclaro, draw=azulpsh},
+    title label font=\scriptsize\bfseries,
+    bar/.append style={fill=azulpsh!75, draw=azulpsh},
+    bar height=0.55,
+    bar label font=\scriptsize,
+    bar label node/.append style={align=right, text width=7.2cm},
+    group/.append style={fill=azulpsh, draw=azulpsh},
+    group label font=\scriptsize\bfseries,
+    group label node/.append style={align=right, text width=7.2cm},
+    group left shift=0, group right shift=0, group peaks width=0.1, group peaks height=0.15
+  ]{1}{7}
+  \gantttitle{Programa (7 anos)}{7} \\
+  \gantttitle{2027}{1} \gantttitle{2028}{1} \gantttitle{2029}{1} \gantttitle{2030}{1}
+  \gantttitle{2031}{1} \gantttitle{2032}{1} \gantttitle{2033}{1} \\
+
+  \ganttgroup{I. Estruturação institucional e social}{1}{4} \\
+  \ganttbar{Trabalho técnico-social (36 profissionais-mês)}{1}{4} \\
+  \ganttbar{Modelo de gestão (3 unidades)}{2}{4} \\
+
+  \ganttgroup{II. Implantação física}{1}{7} \\
+  \ganttbar{Água -- IAT (83 sistemas)}{2}{7} \\
+  \ganttbar{Água -- Sanepar Rural (222 sistemas)}{1}{5} \\
+  \ganttbar{Esgoto -- comunidades (4.067 domicílios)}{2}{7} \\
+  \ganttbar{Esgoto -- mananciais (2.300 domicílios)}{3}{7} \\
+
+  \ganttgroup{III. Supervisão}{3}{6} \\
+  \ganttbar{Supervisão das obras (36 profissionais-mês)}{3}{6}
+\end{ganttchart}
+  \end{adjustbox}
+  \fonte{Adaptado de \citeonline{custo2026}.}
+\end{figure}
+
+A \autoref{tab:metas-anuais} traz as metas físicas de cada ano e os valores
+acumulados, que servem de referência para o acompanhamento anual dos
+resultados.
+
+\begin{table}[!htbp]
+\centering
+\caption{Metas físicas anuais do Subcomponente 3.2.b}
+\label{tab:metas-anuais}
+\footnotesize
+\renewcommand{\arraystretch}{1.2}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+\textbf{Produto (unidade)} & \textbf{2027} & \textbf{2028} & \textbf{2029} &
+\textbf{2030} & \textbf{2031} & \textbf{2032} & \textbf{2033} & \textbf{Total} \\
+\midrule
+Sistemas coletivos -- IAT (sistemas) & -- & 5 & 10 & 20 & 20 & 18 & 10 & 83 \\
+\quad acumulado & -- & 5 & 15 & 35 & 55 & 73 & 83 & \\
+Sistemas coletivos -- Sanepar Rural (sistemas) & 45 & 41 & 42 & 43 & 51 & -- & -- & 222 \\
+\quad acumulado & 45 & 86 & 128 & 171 & 222 & 222 & 222 & \\
+Esgotamento -- comunidades (domicílios) & -- & 245 & 477 & 856 & 956 & 956 & 577 & 4.067 \\
+\quad acumulado & -- & 245 & 722 & 1.578 & 2.534 & 3.490 & 4.067 & \\
+Esgotamento -- área do IDR-Paraná (domicílios) & -- & -- & 460 & 460 & 460 & 460 & 460 & 2.300 \\
+\quad acumulado & -- & -- & 460 & 920 & 1.380 & 1.840 & 2.300 & \\
+Implantação do modelo de gestão (unidades) & -- & 1 & 1 & 1 & -- & -- & -- & 3 \\
+Trabalho técnico-social (profissionais-mês) & 6 & 12 & 12 & 6 & -- & -- & -- & 36 \\
+Supervisão das obras (profissionais-mês) & -- & -- & 6 & 12 & 12 & 6 & -- & 36 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\fonte{Adaptado da planilha de custos do PSH-PR, aba ``Consolidado R\$'' \cite{custo2026}.}
+\end{table}
+
+
+\FloatBarrier
+
+% =====================================================================
+%  ELEMENTOS PÓS-TEXTUAIS
+% =====================================================================
 \postextual
-
 \bibliography{referencias}
 
 \begin{apendicesenv}
 \partapendices
-\input{apendices/pendencias}
-\input{apendices/quadros-etapas}
-\end{apendicesenv}
 
-\begin{anexosenv}
-\partanexos
-\input{anexos/cronograma-poa}
-\end{anexosenv}
+\chapter{Pendências identificadas na reestruturação do MOP}
+\label{ap:pendencias}
+
+As inconsistências e lacunas abaixo foram encontradas durante a
+reestruturação do item B.3.2.2 do MOP. Cada item leva ao ponto do texto em que
+foi registrado. Para gerar a versão final sem as caixas de pendência, troque
+\verb|\mostrarpendenciastrue| por \verb|\mostrarpendenciasfalse| no início
+deste arquivo.
+
+\ifmostrarpendencias
+  \listapendencias
+\else
+  Não há pendências exibidas nesta versão.
+\fi
+
+\chapter{Quadros de etapas, produtos e evidências}
+\label{ap:quadros}
+
+Este apêndice reúne os quadros detalhados do MOP que orientam a execução e a
+verificação das atividades. O \autoref{qua:etapas-3221} detalha a implantação
+dos modelos de gestão (\autoref{subsec:modelos-gestao}), e o
+\autoref{qua:etapas-3223}, a implantação dos sistemas coletivos de
+abastecimento de água (\autoref{sec:abastecimento}). Os quadros reproduzem o
+MOP de 17/03/2026, que conta os prazos em ``Anos 0 a 6''. Com o prazo de sete
+anos, esses anos correspondem ao período de 2027 a 2033.
+
+\begin{landscape}
+\begin{quadro}[p]
+\caption{Etapas de implementação dos modelos de gestão}
+\label{qua:etapas-3221}
+\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{|P{2.6cm}|L|P{2.1cm}|Q{1.3cm}|P{2.5cm}|P{2cm}|P{2.6cm}|Q{1.4cm}|P{1.7cm}|}
+\hline
+\cab{Etapa} & \cab{Descrição técnica} & \cab{Responsável} & \cab{Prazo} &
+\cab{Produto esperado} & \cab{Unidade} & \cab{Evidência} & \cab{Periodic.} &
+\cab{Validação} \\ \hline
+1. Estudos preliminares &
+1.1 Seleção de instrumentos de gestão; 1.2 Definição de parceiros, critérios e
+indicadores; 1.3 Meios de comunicação dos modelos; 1.4 Contato inicial com o
+município; 1.5 Contato inicial com a comunidade; 1.6 Formalização de pré-adesão &
+IAT / IDR / Prefeitura & Ano 0 a 1 & Contratos de pré-adesão &
+Número de associados & Contratos assinados & Lote & IAT \\ \hline
+2. Implantação &
+2.1 Elaboração de documentos (estatuto, manuais, cartilhas etc.);
+2.2 Enquadramento jurídico da proposta; 2.3 Adesão familiar;
+2.4 Regularização da associação &
+IAT / Prefeitura & Ano 1 a 2 & Associações regularizadas &
+Número de associações & Registro das associações & Lote & IAT \\ \hline
+3. Gestão &
+3.1 Manuais de desempenho operacional; 3.2 Investimento para ação em EC;
+3.3 Estrutura para monitoramento; 3.4 Treinamento &
+IAT / Prefeitura / Associação & Ano 3 a 5 & Manuais, estrutura e treinamento &
+Pessoas capacitadas & Lista de presença e certificados & Lote & IAT \\ \hline
+4. Supervisão técnica &
+4.1 Acompanhamento da implantação &
+IAT / Prefeitura / Associação & Ano 2 a 6 & Supervisão e gerenciamento de obras &
+Relatório de supervisão & Laudos de vistoria e testes de estanqueidade &
+Contínua & IAT \\ \hline
+5. Monitoramento e avaliação &
+5.1 Avaliação de desempenho do processo de implementação da gestão nas
+comunidades &
+IAT & Ano 2 a 6 & Relatórios de conformidade técnica e ambiental &
+Relatório & Dados no SIGARH / GeoPR & Semestral & UGP / MGAS \\ \hline
+6. Relatórios e encerramento &
+6.1 Consolidação de resultados, relatórios finais e prestação de contas &
+IAT & Ano 5 e 6 & Relatório final de gerenciamento e obras concluídas &
+Documento final & Termo de Recebimento Definitivo (TRD) & Única &
+UGP / Banco Mundial \\ \hline
+\end{tabularx}
+\fonte{Adaptado de \citeonline[Quadro 28]{mop2026}.}
+\end{quadro}
+\end{landscape}
+
+\begin{landscape}
+\begin{quadro}[p]
+\caption{Etapas de implantação dos sistemas coletivos de abastecimento de água}
+\label{qua:etapas-3223}
+\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\linewidth}{|P{2.6cm}|L|P{2.1cm}|Q{1.3cm}|P{2.8cm}|P{2cm}|P{2.4cm}|Q{1.4cm}|P{1.7cm}|}
+\hline
+\cab{Etapa} & \cab{Descrição técnica} & \cab{Responsável} & \cab{Prazo} &
+\cab{Produto esperado} & \cab{Unidade} & \cab{Evidência} & \cab{Periodic.} &
+\cab{Validação} \\ \hline
+1. Perfuração de poço &
+1.1 Estudo hidrogeológico com locação, projeto construtivo do poço e anuência
+prévia; 1.2 Obra de perfuração; 1.3 Teste de vazão; 1.4 Análise
+físico-química; 1.5 Outorga; 1.6 Gerenciamento e fiscalização de obras &
+IAT / Prefeituras & Ano 0 a 1 &
+83 locações e projetos, anuências, testes de vazão, análises físico-químicas e
+outorgas & Poços perfurados e outorgados &
+Atesto de recebimento e laudos de vistoria & Lote & IAT \\ \hline
+2. Instalação do sistema de abastecimento &
+2.1 Aquisição de projeto básico e executivo (casa química, reservatório,
+eletromecânica e distribuição); 2.2 Aprovação dos projetos; 2.3 Obras de
+instalação; 2.4 Projeto \textit{as built}; 2.5 Pré-operação, testes e
+capacitação dos operadores locais; 2.6 Gerenciamento e fiscalização das obras &
+IAT / Prefeituras & Ano 0 a 1 &
+83 projetos aprovados, sistemas de armazenamento e distribuição; XXX
+hidrômetros instalados & Hidrômetros instalados &
+Atesto de recebimento e laudos de vistoria & Lote & IAT \\ \hline
+3. Capacitação dos beneficiários &
+3.1 Aquisição de treinamentos sobre operação e manutenção dos sistemas &
+IAT / Prefeituras & Ano 4 a 6 & Treinamentos na comunidade ou município &
+Pessoas capacitadas & Lista de presença e certificados & Contínua & IAT \\ \hline
+4. Supervisão técnica &
+4.1 Acompanhamento das instalações e suporte técnico pós-implantação &
+IAT / Fiscalização de obras & Ano 2 a 6 & Supervisão e gerenciamento de obras &
+Relatório de supervisão & Laudos de vistoria e testes de estanqueidade &
+Contínua & IAT \\ \hline
+5. Monitoramento e avaliação &
+5.1 Avaliação de desempenho dos sistemas, indicadores de impacto e ajustes &
+IAT & Ano 2 a 6 & Relatórios de conformidade técnica e ambiental &
+Relatório & Dados no SIGARH / GeoPR & Semestral & UGP / MGAS \\ \hline
+6. Relatórios e encerramento &
+6.1 Consolidação de resultados, relatórios finais e prestação de contas &
+IAT & Ano 5 e 6 & Relatório final de gerenciamento e obras concluídas &
+Documento final & Termo de Recebimento Definitivo (TRD) & Única &
+UGP / Banco Mundial \\ \hline
+\end{tabularx}
+\fonte{Adaptado de \citeonline[Quadro 29]{mop2026}.}
+\end{quadro}
+\end{landscape}
+
+\end{apendicesenv}
 
 \end{document}

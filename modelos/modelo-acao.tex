@@ -7,14 +7,18 @@
 %   2. Substitua tudo o que estiver entre << >>.
 %
 %  Regras:
-%   - Texto curto: um parágrafo de 4 a 6 linhas por tópico, que apresenta
-%     a figura ou o quadro. O conteúdo fica nos fluxogramas e quadros.
-%   - Fluxogramas com \fluxograma{arquivo} (pasta figuras/). Tipos:
-%       sequência .......... figuras/fluxograma-captacao-projeto.tex
-%       raias .............. figuras/fluxograma-obras.tex
-%       linha do tempo ..... figuras/fluxograma-modelo-gestao.tex
-%       zigue-zague ........ figuras/fluxograma-abastecimento.tex
-%       mapa mental ........ figuras/mapa-mental.tex
+%   - Cada figura ou quadro vem acompanhado de texto que o explica:
+%     nenhuma figura fica solta.
+%   - Fluxogramas: copie o tikzpicture de uma figura do main.tex e adapte.
+%     Tipos disponíveis (legenda no main.tex):
+%       sequência .......... "Captação subterrânea, projeto e licenciamento"
+%       raias .............. "Execução, supervisão e fiscalização das obras"
+%       linha do tempo ..... "Etapas de implantação do modelo de gestão"
+%       zigue-zague ........ "Implementação do abastecimento de água"
+%       mapa mental ........ "Mapa mental do Subcomponente 3.2.b"
+%     Envolva cada um em \begin{adjustbox}{max width=\linewidth}...\end{adjustbox}.
+%   - Coloque \FloatBarrier antes de cada \section e \subsection, para que
+%     as figuras fiquem dentro do item que as cita.
 %   - Prazos, metas e custos: planilha de custos do PSH-PR.
 %   - Tópico 10: descrever as medidas por tema, sem citar as NAS.
 %   - Inconsistências: \pendencia{...}.
@@ -23,7 +27,7 @@
 
 \section{Mapa mental da ação}
 <<Problema, objetivo, executor e prazo em um parágrafo.>>
-% figura: mapa mental (copiar figuras/mapa-mental.tex)
+% figura: mapa mental (copiar do main.tex)
 
 \section{Critérios de seleção}
 <<Quem ou onde a ação atende e por quê.>>
