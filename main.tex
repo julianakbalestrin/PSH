@@ -78,7 +78,6 @@
 \usepackage{array}
 \usepackage{tabularx}
 \usepackage{booktabs}
-\usepackage{pdflscape}
 \usepackage{enumitem}
 \setlist{nosep, leftmargin=*, itemsep=2pt}
 \usepackage{placeins}   % \FloatBarrier: figuras não saem do item em que são citadas
@@ -506,6 +505,14 @@ municípios consorciados ao Consórcio Intermunicipal de Saneamento do Paraná
 (CISPAR). A terceira camada mostra as áreas prioritárias do PSH-PR: as grandes
 bacias e os municípios da Região do Caiuá.
 
+\begin{figure}[!htbp]
+  \centering
+  \caption{Áreas prioritárias, associações de municípios, CISPAR e concentração de domicílios rurais}
+  \label{fig:mapa}
+  \includegraphics[width=\linewidth]{figuras/mapa-saneamento-rural.pdf}
+  \fonte{Elaborado pelo IAT e pelo IDR-Paraná (2025). Hidrografia: IAT (2020) e GeoPR (2025); limites político-administrativos: GeoPR (2025).}
+\end{figure}
+
 A leitura do mapa se liga diretamente aos critérios de seleção
 (\autoref{sec:criterios}). O critério de adensamento, de 70 ou mais domicílios
 ocupados, é atendido com folga pelos 298 locais das classes a partir de 96
@@ -526,15 +533,6 @@ selecionadas. Para atender ao Acordo de Empréstimo, inserir a versão com as
 comunidades de cada frente ou descrever como a lista será aprovada com o Banco
 Mundial.}
 
-\begin{landscape}
-\begin{figure}[p]
-  \centering
-  \caption{Áreas prioritárias, associações de municípios, CISPAR e concentração de domicílios rurais}
-  \label{fig:mapa}
-  \includegraphics[width=\linewidth, height=0.85\textheight, keepaspectratio]{figuras/mapa-saneamento-rural.pdf}
-  \fonte{Elaborado pelo IAT e pelo IDR-Paraná (2025). Hidrografia: IAT (2020) e GeoPR (2025); limites político-administrativos: GeoPR (2025).}
-\end{figure}
-\end{landscape}
 
 % =====================================================================
 %  1.4 RESPONSABILIDADES
@@ -557,16 +555,16 @@ O \autoref{qua:roteiro} apresenta o roteiro de cada ação, na ordem em que
 acontecem. Para cada uma, indica as entradas de que depende, quem a executa,
 quais órgãos apoiam ou validam e o que ela entrega para a ação seguinte.
 
-\begin{landscape}
-\begin{quadro}[p]
+\begin{quadro}[!htbp]
 \caption{Roteiro por ação: entradas, responsáveis e órgãos envolvidos}
 \label{qua:roteiro}
 \scriptsize
 \renewcommand{\arraystretch}{1.25}
-\begin{tabularx}{\linewidth}{|P{3.6cm}|L|P{3.2cm}|P{3.9cm}|L|}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|P{2.7cm}|L|P{2.2cm}|L|L|}
 \hline
-\cab{Ação} & \cab{Entradas} & \cab{Responsável pela execução} &
-\cab{Órgão de apoio ou validação} & \cab{Saída} \\ \hline
+\cab{Ação} & \cab{Entradas} & \cab{Executor} &
+\cab{Apoio ou validação} & \cab{Saída} \\ \hline
 Seleção dos municípios e comunidades & Critérios de seleção; Censo 2022; IPDM &
   IAT (equipe interna) & IDR-Paraná & Mapa dos municípios \\ \hline
 Adesão e Termo de Cooperação & Mapa dos municípios; minuta do termo &
@@ -599,7 +597,6 @@ Monitoramento e reporte & Relatórios; dados do SIGARH e GeoPR &
 \end{tabularx}
 \fonte{Elaborado pelo IAT (2026) com base em \citeonline{mop2026}.}
 \end{quadro}
-\end{landscape}
 
 O \autoref{qua:matriz-responsabilidades} resume os mesmos papéis em uma matriz:
 para cada ação, mostra quem executa (E), quem apoia (A) e quem valida ou
@@ -1713,16 +1710,16 @@ permitem corrigir problemas antes que comprometam o serviço. O
 \autoref{qua:comprovacao} detalha, para cada produto, o registro, a evidência,
 quem verifica e como o resultado se sustenta.
 
-\begin{landscape}
-\begin{quadro}[p]
+\begin{quadro}[!htbp]
 \caption{Matriz de comprovação por produto}
 \label{qua:comprovacao}
 \scriptsize
 \renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\linewidth}{|P{3.2cm}|L|L|P{3.6cm}|L|}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|P{2.3cm}|L|L|L|L|}
 \hline
-\cab{Produto} & \cab{Registro da execução} & \cab{Evidência de comprovação} &
-\cab{Verificação e validação} & \cab{Sustentabilidade do resultado} \\ \hline
+\cab{Produto} & \cab{Registro} & \cab{Evidência} &
+\cab{Verificação e validação} & \cab{Sustentabilidade} \\ \hline
 Modelo de gestão implantado & Contratos de pré-adesão; registro das associações &
   Tarifa instituída; associação regularizada & SECID (validação); IAT &
   Entidade gestora operando com tarifa e manuais de desempenho \\ \hline
@@ -1747,7 +1744,6 @@ Capacitação & Listas de presença & Certificados & IAT &
 \end{tabularx}
 \fonte{Elaborado pelo IAT (2026) com base em \citeonline[Quadros 28, 29 e 31]{mop2026}.}
 \end{quadro}
-\end{landscape}
 
 As informações seguem o fluxo da \autoref{fig:monitoramento}. O IAT consolida
 relatórios semestrais de conformidade técnica e ambiental, com dados no SIGARH
@@ -1844,53 +1840,75 @@ Rural e do esgotamento, que custa R\$ 8 mil por domicílio nas duas frentes. O
 investimento cresce até 2030 e 2031, quando passa de R\$ 56 milhões por ano, e
 cai em 2032 e 2033, com a conclusão das obras.
 
-O \autoref{qua:custos} mostra o custo unitário, a quantidade, o total e a
-distribuição anual de cada item.
+A \autoref{tab:custos} mostra o custo unitário, a quantidade e o total de
+cada item, e a \autoref{tab:custos-anuais}, a distribuição desses valores por
+ano.
 
-\begin{landscape}
-\begin{quadro}[p]
-\caption{Matriz de custos do Subcomponente 3.2.b}
-\label{qua:custos}
-\scriptsize
-\renewcommand{\arraystretch}{1.3}
-\setlength{\tabcolsep}{3pt}
-\begin{tabularx}{\linewidth}{|L|Q{1.5cm}|Q{1.85cm}|P{1.7cm}|r|r|r|r|r|r|r|r|r|r|}
-\hline
-\cab{Item} & \cab{Executor} & \cab{Fonte} & \cab{Unidade} &
-\multicolumn{1}{c|}{\cab{Custo unit. (R\$)}} & \multicolumn{1}{c|}{\cab{Qtd.}} &
-\multicolumn{1}{c|}{\cab{Total}} &
-\multicolumn{1}{c|}{\cab{2027}} & \multicolumn{1}{c|}{\cab{2028}} &
-\multicolumn{1}{c|}{\cab{2029}} & \multicolumn{1}{c|}{\cab{2030}} &
-\multicolumn{1}{c|}{\cab{2031}} & \multicolumn{1}{c|}{\cab{2032}} &
-\multicolumn{1}{c|}{\cab{2033}} \\ \hline
-Sistemas coletivos de abastecimento de água & IAT & BIRD & Sistema &
-  1.300.000,00 & 83 & 107,90 & -- & 6,50 & 13,00 & 26,00 & 26,00 & 23,40 & 13,00 \\ \hline
-Esgotamento -- comunidades & IAT & BIRD & Domicílio &
-  8.000,00 & 4.067 & 32,54 & -- & 1,96 & 3,82 & 6,85 & 7,65 & 7,65 & 4,62 \\ \hline
-Esgotamento -- área do IDR-Paraná & IAT & BIRD & Domicílio &
-  8.000,00 & 2.300 & 18,40 & -- & -- & 3,68 & 3,68 & 3,68 & 3,68 & 3,68 \\ \hline
-Implantação do modelo de gestão & IAT & BIRD & Unidade &
-  2.300.000,00 & 3 & 6,90 & -- & 2,30 & 2,30 & 2,30 & -- & -- & -- \\ \hline
-Trabalho técnico-social & IAT & BIRD & Profissional-mês &
-  179.835,30 & 36 & 6,47 & 1,08 & 2,16 & 2,16 & 1,08 & -- & -- & -- \\ \hline
-Supervisão e gerenciamento de obras & IAT & BIRD & Profissional-mês &
-  299.722,20 & 36 & 10,79 & -- & -- & 1,80 & 3,60 & 3,60 & 1,80 & -- \\ \hline
-\multicolumn{6}{|r|}{\textbf{Subtotal BIRD}} & \textbf{183,00} &
-  \textbf{1,08} & \textbf{12,92} & \textbf{26,75} & \textbf{43,50} & \textbf{40,92} &
-  \textbf{36,53} & \textbf{21,30} \\ \hline
-Programa Sanepar Rural & Sanepar & Contrapartida & Sistema &
-  302.464,42 & 222 & 67,15 & 13,61 & 12,40 & 12,70 & 13,01 & 15,43 & -- & -- \\ \hline
-\multicolumn{6}{|r|}{\textbf{Total do Subcomponente 3.2.b}} & \textbf{250,15} &
-  \textbf{14,69} & \textbf{25,32} & \textbf{39,46} & \textbf{56,51} & \textbf{56,35} &
-  \textbf{36,53} & \textbf{21,30} \\ \hline
-\end{tabularx}
-\fonte{Adaptado da planilha de custos do PSH-PR, abas ``Componente3'' e ``Consolidado R\$'' \cite{custo2026}.}
-\nota{Totais e valores anuais em R\$ milhões. Câmbio do PAD: R\$ 5,46 por dólar
-(BIRD: US\$ 33,5 milhões; Sanepar: US\$ 12,3 milhões). Não há custos em 2025 e
-2026. A política e o plano estadual de saneamento rural (3.2.a, R\$ 10,6
-milhões) não fazem parte desta ação.}
-\end{quadro}
-\end{landscape}
+\begin{table}[!htbp]
+\centering
+\caption{Composição dos custos do Subcomponente 3.2.b}
+\label{tab:custos}
+\footnotesize
+\renewcommand{\arraystretch}{1.2}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{llllrrr}
+\toprule
+\textbf{Item} & \textbf{Executor} & \textbf{Fonte} & \textbf{Unidade} &
+\textbf{Custo unit. (R\$)} & \textbf{Qtd.} & \textbf{Total (R\$ mi)} \\
+\midrule
+Sistemas coletivos de água & IAT & BIRD & Sistema & 1.300.000,00 & 83 & 107,90 \\
+Esgotamento -- comunidades & IAT & BIRD & Domicílio & 8.000,00 & 4.067 & 32,54 \\
+Esgotamento -- mananciais (IDR) & IAT & BIRD & Domicílio & 8.000,00 & 2.300 & 18,40 \\
+Modelo de gestão & IAT & BIRD & Unidade & 2.300.000,00 & 3 & 6,90 \\
+Trabalho técnico-social & IAT & BIRD & Prof.-mês & 179.835,30 & 36 & 6,47 \\
+Supervisão das obras & IAT & BIRD & Prof.-mês & 299.722,20 & 36 & 10,79 \\
+\midrule
+\multicolumn{6}{l}{\textbf{Subtotal BIRD}} & \textbf{183,00} \\
+\midrule
+Programa Sanepar Rural & Sanepar & Contrapartida & Sistema & 302.464,42 & 222 & 67,15 \\
+\midrule
+\multicolumn{6}{l}{\textbf{Total do Subcomponente 3.2.b}} & \textbf{250,15} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\fonte{Adaptado da planilha de custos do PSH-PR, aba ``Componente3'' \cite{custo2026}.}
+\nota{Câmbio do PAD: R\$ 5,46 por dólar (BIRD: US\$ 33,5 milhões; Sanepar:
+US\$ 12,3 milhões). A política e o plano estadual de saneamento rural (3.2.a,
+R\$ 10,6 milhões) não fazem parte desta ação.}
+\end{table}
+
+\begin{table}[!htbp]
+\centering
+\caption{Distribuição anual dos custos do Subcomponente 3.2.b (R\$ milhões)}
+\label{tab:custos-anuais}
+\footnotesize
+\renewcommand{\arraystretch}{1.2}
+\begin{adjustbox}{max width=\linewidth}
+\begin{tabular}{lrrrrrrrr}
+\toprule
+\textbf{Item} & \textbf{2027} & \textbf{2028} & \textbf{2029} & \textbf{2030} &
+\textbf{2031} & \textbf{2032} & \textbf{2033} & \textbf{Total} \\
+\midrule
+Sistemas coletivos de água & -- & 6,50 & 13,00 & 26,00 & 26,00 & 23,40 & 13,00 & 107,90 \\
+Esgotamento -- comunidades & -- & 1,96 & 3,82 & 6,85 & 7,65 & 7,65 & 4,62 & 32,54 \\
+Esgotamento -- mananciais (IDR) & -- & -- & 3,68 & 3,68 & 3,68 & 3,68 & 3,68 & 18,40 \\
+Modelo de gestão & -- & 2,30 & 2,30 & 2,30 & -- & -- & -- & 6,90 \\
+Trabalho técnico-social & 1,08 & 2,16 & 2,16 & 1,08 & -- & -- & -- & 6,47 \\
+Supervisão das obras & -- & -- & 1,80 & 3,60 & 3,60 & 1,80 & -- & 10,79 \\
+\midrule
+\textbf{Subtotal BIRD} & \textbf{1,08} & \textbf{12,92} & \textbf{26,75} & \textbf{43,50} &
+  \textbf{40,92} & \textbf{36,53} & \textbf{21,30} & \textbf{183,00} \\
+\midrule
+Programa Sanepar Rural & 13,61 & 12,40 & 12,70 & 13,01 & 15,43 & -- & -- & 67,15 \\
+\midrule
+\textbf{Total} & \textbf{14,69} & \textbf{25,32} & \textbf{39,46} & \textbf{56,51} &
+  \textbf{56,35} & \textbf{36,53} & \textbf{21,30} & \textbf{250,15} \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\fonte{Adaptado da planilha de custos do PSH-PR, aba ``Consolidado R\$'' \cite{custo2026}.}
+\nota{Não há custos em 2025 e 2026.}
+\end{table}
 
 % =====================================================================
 %  1.13 CRONOGRAMA
@@ -2015,111 +2033,100 @@ deste arquivo.
 \label{ap:quadros}
 
 Este apêndice reúne os quadros detalhados do MOP que orientam a execução e a
-verificação das atividades. O \autoref{qua:etapas-3221} detalha a implantação
-dos modelos de gestão (\autoref{subsec:modelos-gestao}), e o
-\autoref{qua:etapas-3223}, a implantação dos sistemas coletivos de
-abastecimento de água (\autoref{sec:abastecimento}). Os quadros reproduzem o
+verificação das atividades. Os Quadros~\ref{qua:etapas-3221} e \ref{qua:etapas-3221b} detalham a
+implantação dos modelos de gestão (\autoref{subsec:modelos-gestao}), e os
+Quadros~\ref{qua:etapas-3223} e \ref{qua:etapas-3223b}, a implantação dos
+sistemas coletivos de abastecimento de água (\autoref{sec:abastecimento}).
+Cada quadro do MOP foi dividido em duas partes para caber em página retrato. Os quadros reproduzem o
 MOP de 17/03/2026, que conta os prazos em ``Anos 0 a 6''. Com o prazo de sete
 anos, esses anos correspondem ao período de 2027 a 2033.
 
-\begin{landscape}
-\begin{quadro}[p]
-\caption{Etapas de implementação dos modelos de gestão}
+\begin{quadro}[!htbp]
+\caption{Implementação dos modelos de gestão: etapas, responsáveis e prazos}
 \label{qua:etapas-3221}
 \scriptsize
 \renewcommand{\arraystretch}{1.25}
-\begin{tabularx}{\linewidth}{|P{2.6cm}|L|P{2.1cm}|Q{1.3cm}|P{2.5cm}|P{2cm}|P{2.6cm}|Q{1.4cm}|P{1.7cm}|}
+\begin{tabularx}{\textwidth}{|P{2.6cm}|L|P{2.6cm}|Q{1.3cm}|}
 \hline
-\cab{Etapa} & \cab{Descrição técnica} & \cab{Responsável} & \cab{Prazo} &
-\cab{Produto esperado} & \cab{Unidade} & \cab{Evidência} & \cab{Periodic.} &
-\cab{Validação} \\ \hline
-1. Estudos preliminares &
-1.1 Seleção de instrumentos de gestão; 1.2 Definição de parceiros, critérios e
+\cab{Etapa} & \cab{Descrição técnica} & \cab{Responsável} & \cab{Prazo} \\ \hline
+1. Estudos preliminares & 1.1 Seleção de instrumentos de gestão; 1.2 Definição de parceiros, critérios e
 indicadores; 1.3 Meios de comunicação dos modelos; 1.4 Contato inicial com o
-município; 1.5 Contato inicial com a comunidade; 1.6 Formalização de pré-adesão &
-IAT / IDR / Prefeitura & Ano 0 a 1 & Contratos de pré-adesão &
-Número de associados & Contratos assinados & Lote & IAT \\ \hline
-2. Implantação &
-2.1 Elaboração de documentos (estatuto, manuais, cartilhas etc.);
+município; 1.5 Contato inicial com a comunidade; 1.6 Formalização de pré-adesão & IAT / IDR / Prefeitura & Ano 0 a 1 \\ \hline
+2. Implantação & 2.1 Elaboração de documentos (estatuto, manuais, cartilhas etc.);
 2.2 Enquadramento jurídico da proposta; 2.3 Adesão familiar;
-2.4 Regularização da associação &
-IAT / Prefeitura & Ano 1 a 2 & Associações regularizadas &
-Número de associações & Registro das associações & Lote & IAT \\ \hline
-3. Gestão &
-3.1 Manuais de desempenho operacional; 3.2 Investimento para ação em EC;
-3.3 Estrutura para monitoramento; 3.4 Treinamento &
-IAT / Prefeitura / Associação & Ano 3 a 5 & Manuais, estrutura e treinamento &
-Pessoas capacitadas & Lista de presença e certificados & Lote & IAT \\ \hline
-4. Supervisão técnica &
-4.1 Acompanhamento da implantação &
-IAT / Prefeitura / Associação & Ano 2 a 6 & Supervisão e gerenciamento de obras &
-Relatório de supervisão & Laudos de vistoria e testes de estanqueidade &
-Contínua & IAT \\ \hline
-5. Monitoramento e avaliação &
-5.1 Avaliação de desempenho do processo de implementação da gestão nas
-comunidades &
-IAT & Ano 2 a 6 & Relatórios de conformidade técnica e ambiental &
-Relatório & Dados no SIGARH / GeoPR & Semestral & UGP / MGAS \\ \hline
-6. Relatórios e encerramento &
-6.1 Consolidação de resultados, relatórios finais e prestação de contas &
-IAT & Ano 5 e 6 & Relatório final de gerenciamento e obras concluídas &
-Documento final & Termo de Recebimento Definitivo (TRD) & Única &
-UGP / Banco Mundial \\ \hline
+2.4 Regularização da associação & IAT / Prefeitura & Ano 1 a 2 \\ \hline
+3. Gestão & 3.1 Manuais de desempenho operacional; 3.2 Investimento para ação em EC;
+3.3 Estrutura para monitoramento; 3.4 Treinamento & IAT / Prefeitura / Associação & Ano 3 a 5 \\ \hline
+4. Supervisão técnica & 4.1 Acompanhamento da implantação & IAT / Prefeitura / Associação & Ano 2 a 6 \\ \hline
+5. Monitoramento e avaliação & 5.1 Avaliação de desempenho do processo de implementação da gestão nas
+comunidades & IAT & Ano 2 a 6 \\ \hline
+6. Relatórios e encerramento & 6.1 Consolidação de resultados, relatórios finais e prestação de contas & IAT & Ano 5 e 6 \\ \hline
 \end{tabularx}
 \fonte{Adaptado de \citeonline[Quadro 28]{mop2026}.}
 \end{quadro}
-\end{landscape}
 
-\begin{landscape}
-\begin{quadro}[p]
-\caption{Etapas de implantação dos sistemas coletivos de abastecimento de água}
+\begin{quadro}[!htbp]
+\caption{Implementação dos modelos de gestão: produtos, evidências e validação}
+\label{qua:etapas-3221b}
+\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|P{2.4cm}|L|P{2.0cm}|L|Q{1.3cm}|P{1.7cm}|}
+\hline
+\cab{Etapa} & \cab{Produto esperado} & \cab{Unidade} & \cab{Evidência} & \cab{Periodic.} & \cab{Validação} \\ \hline
+1. Estudos preliminares & Contratos de pré-adesão & Número de associados & Contratos assinados & Lote & IAT \\ \hline
+2. Implantação & Associações regularizadas & Número de associações & Registro das associações & Lote & IAT \\ \hline
+3. Gestão & Manuais, estrutura e treinamento & Pessoas capacitadas & Lista de presença e certificados & Lote & IAT \\ \hline
+4. Supervisão técnica & Supervisão e gerenciamento de obras & Relatório de supervisão & Laudos de vistoria e testes de estanqueidade & Contínua & IAT \\ \hline
+5. Monitoramento e avaliação & Relatórios de conformidade técnica e ambiental & Relatório & Dados no SIGARH / GeoPR & Semestral & UGP / MGAS \\ \hline
+6. Relatórios e encerramento & Relatório final de gerenciamento e obras concluídas & Documento final & Termo de Recebimento Definitivo (TRD) & Única & UGP / Banco Mundial \\ \hline
+\end{tabularx}
+\fonte{Adaptado de \citeonline[Quadro 28]{mop2026}.}
+\end{quadro}
+
+\begin{quadro}[!htbp]
+\caption{Implantação dos sistemas coletivos de abastecimento de água: etapas, responsáveis e prazos}
 \label{qua:etapas-3223}
 \scriptsize
 \renewcommand{\arraystretch}{1.25}
-\begin{tabularx}{\linewidth}{|P{2.6cm}|L|P{2.1cm}|Q{1.3cm}|P{2.8cm}|P{2cm}|P{2.4cm}|Q{1.4cm}|P{1.7cm}|}
+\begin{tabularx}{\textwidth}{|P{2.6cm}|L|P{2.6cm}|Q{1.3cm}|}
 \hline
-\cab{Etapa} & \cab{Descrição técnica} & \cab{Responsável} & \cab{Prazo} &
-\cab{Produto esperado} & \cab{Unidade} & \cab{Evidência} & \cab{Periodic.} &
-\cab{Validação} \\ \hline
-1. Perfuração de poço &
-1.1 Estudo hidrogeológico com locação, projeto construtivo do poço e anuência
+\cab{Etapa} & \cab{Descrição técnica} & \cab{Responsável} & \cab{Prazo} \\ \hline
+1. Perfuração de poço & 1.1 Estudo hidrogeológico com locação, projeto construtivo do poço e anuência
 prévia; 1.2 Obra de perfuração; 1.3 Teste de vazão; 1.4 Análise
-físico-química; 1.5 Outorga; 1.6 Gerenciamento e fiscalização de obras &
-IAT / Prefeituras & Ano 0 a 1 &
-83 locações e projetos, anuências, testes de vazão, análises físico-químicas e
-outorgas & Poços perfurados e outorgados &
-Atesto de recebimento e laudos de vistoria & Lote & IAT \\ \hline
-2. Instalação do sistema de abastecimento &
-2.1 Aquisição de projeto básico e executivo (casa química, reservatório,
+físico-química; 1.5 Outorga; 1.6 Gerenciamento e fiscalização de obras & IAT / Prefeituras & Ano 0 a 1 \\ \hline
+2. Instalação do sistema de abastecimento & 2.1 Aquisição de projeto básico e executivo (casa química, reservatório,
 eletromecânica e distribuição); 2.2 Aprovação dos projetos; 2.3 Obras de
 instalação; 2.4 Projeto \textit{as built}; 2.5 Pré-operação, testes e
-capacitação dos operadores locais; 2.6 Gerenciamento e fiscalização das obras &
-IAT / Prefeituras & Ano 0 a 1 &
-83 projetos aprovados, sistemas de armazenamento e distribuição; XXX
-hidrômetros instalados & Hidrômetros instalados &
-Atesto de recebimento e laudos de vistoria & Lote & IAT \\ \hline
-3. Capacitação dos beneficiários &
-3.1 Aquisição de treinamentos sobre operação e manutenção dos sistemas &
-IAT / Prefeituras & Ano 4 a 6 & Treinamentos na comunidade ou município &
-Pessoas capacitadas & Lista de presença e certificados & Contínua & IAT \\ \hline
-4. Supervisão técnica &
-4.1 Acompanhamento das instalações e suporte técnico pós-implantação &
-IAT / Fiscalização de obras & Ano 2 a 6 & Supervisão e gerenciamento de obras &
-Relatório de supervisão & Laudos de vistoria e testes de estanqueidade &
-Contínua & IAT \\ \hline
-5. Monitoramento e avaliação &
-5.1 Avaliação de desempenho dos sistemas, indicadores de impacto e ajustes &
-IAT & Ano 2 a 6 & Relatórios de conformidade técnica e ambiental &
-Relatório & Dados no SIGARH / GeoPR & Semestral & UGP / MGAS \\ \hline
-6. Relatórios e encerramento &
-6.1 Consolidação de resultados, relatórios finais e prestação de contas &
-IAT & Ano 5 e 6 & Relatório final de gerenciamento e obras concluídas &
-Documento final & Termo de Recebimento Definitivo (TRD) & Única &
-UGP / Banco Mundial \\ \hline
+capacitação dos operadores locais; 2.6 Gerenciamento e fiscalização das obras & IAT / Prefeituras & Ano 0 a 1 \\ \hline
+3. Capacitação dos beneficiários & 3.1 Aquisição de treinamentos sobre operação e manutenção dos sistemas & IAT / Prefeituras & Ano 4 a 6 \\ \hline
+4. Supervisão técnica & 4.1 Acompanhamento das instalações e suporte técnico pós-implantação & IAT / Fiscalização de obras & Ano 2 a 6 \\ \hline
+5. Monitoramento e avaliação & 5.1 Avaliação de desempenho dos sistemas, indicadores de impacto e ajustes & IAT & Ano 2 a 6 \\ \hline
+6. Relatórios e encerramento & 6.1 Consolidação de resultados, relatórios finais e prestação de contas & IAT & Ano 5 e 6 \\ \hline
 \end{tabularx}
 \fonte{Adaptado de \citeonline[Quadro 29]{mop2026}.}
 \end{quadro}
-\end{landscape}
+
+\begin{quadro}[!htbp]
+\caption{Implantação dos sistemas coletivos de abastecimento de água: produtos, evidências e validação}
+\label{qua:etapas-3223b}
+\scriptsize
+\renewcommand{\arraystretch}{1.25}
+\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\textwidth}{|P{2.4cm}|L|P{2.0cm}|L|Q{1.3cm}|P{1.7cm}|}
+\hline
+\cab{Etapa} & \cab{Produto esperado} & \cab{Unidade} & \cab{Evidência} & \cab{Periodic.} & \cab{Validação} \\ \hline
+1. Perfuração de poço & 83 locações e projetos, anuências, testes de vazão, análises físico-químicas e
+outorgas & Poços perfurados e outorgados & Atesto de recebimento e laudos de vistoria & Lote & IAT \\ \hline
+2. Instalação do sistema de abastecimento & 83 projetos aprovados, sistemas de armazenamento e distribuição; XXX
+hidrômetros instalados & Hidrômetros instalados & Atesto de recebimento e laudos de vistoria & Lote & IAT \\ \hline
+3. Capacitação dos beneficiários & Treinamentos na comunidade ou município & Pessoas capacitadas & Lista de presença e certificados & Contínua & IAT \\ \hline
+4. Supervisão técnica & Supervisão e gerenciamento de obras & Relatório de supervisão & Laudos de vistoria e testes de estanqueidade & Contínua & IAT \\ \hline
+5. Monitoramento e avaliação & Relatórios de conformidade técnica e ambiental & Relatório & Dados no SIGARH / GeoPR & Semestral & UGP / MGAS \\ \hline
+6. Relatórios e encerramento & Relatório final de gerenciamento e obras concluídas & Documento final & Termo de Recebimento Definitivo (TRD) & Única & UGP / Banco Mundial \\ \hline
+\end{tabularx}
+\fonte{Adaptado de \citeonline[Quadro 29]{mop2026}.}
+\end{quadro}
 
 \end{apendicesenv}
 
