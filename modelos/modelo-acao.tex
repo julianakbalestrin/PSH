@@ -1,0 +1,68 @@
+% =====================================================================
+%  MODELO EM BRANCO -- uma ação do MOP nos 13 tópicos padrão
+%
+%  Como usar:
+%   1. Copie para capitulos/<acao>/capitulo.tex (ou divida em um arquivo
+%      por tópico, como em capitulos/subcomponente-3-2-b/).
+%   2. Substitua tudo o que estiver entre << >>.
+%
+%  Regras:
+%   - Texto curto: um parágrafo de 4 a 6 linhas por tópico, que apresenta
+%     a figura ou o quadro. O conteúdo fica nos fluxogramas e quadros.
+%   - Fluxogramas com \fluxograma{arquivo} (pasta figuras/). Tipos:
+%       sequência .......... figuras/fluxograma-captacao-projeto.tex
+%       raias .............. figuras/fluxograma-obras.tex
+%       linha do tempo ..... figuras/fluxograma-modelo-gestao.tex
+%       zigue-zague ........ figuras/fluxograma-abastecimento.tex
+%       mapa mental ........ figuras/mapa-mental.tex
+%   - Prazos, metas e custos: planilha de custos do PSH-PR.
+%   - Tópico 10: descrever as medidas por tema, sem citar as NAS.
+%   - Inconsistências: \pendencia{...}.
+% =====================================================================
+\chapter{<<Nome da ação>>}
+
+\section{Mapa mental da ação}
+<<Problema, objetivo, executor e prazo em um parágrafo.>>
+% figura: mapa mental (copiar figuras/mapa-mental.tex)
+
+\section{Critérios de seleção}
+<<Quem ou onde a ação atende e por quê.>>
+% figura: fluxograma de aplicação dos critérios
+
+\section{Mapa das áreas de intervenção}
+<<Onde a ação acontece; como o mapa é atualizado.>>
+% figura: \includegraphics{figuras/<<mapa>>.pdf}  (ver mapa/gerar_mapa.py)
+
+\section{Responsabilidades das instituições}
+<<Papel de cada instituição em um parágrafo.>>
+% quadro: roteiro por ação (Ação | Entradas | Responsável | Órgão | Saída)
+% quadro: matriz E/A/V
+
+\section{Visão geral da implementação}
+<<Blocos da implementação, premissas, financiamento.>>
+% figuras: visão geral; ciclo de contratação
+
+\section{<<Etapa estruturante, ex.: Modelo de gestão>>}
+\subsection{<<Subetapa, ex.: Trabalho técnico-social>>}
+
+\section{Implementação de <<produto 1>>}
+% uma subseção curta por fase, cada uma com seu fluxograma
+
+\section{Implementação de <<produto 2>>}
+
+\section{Conexão com outros subcomponentes do MOP}
+% figura: o que a ação recebe e o que entrega
+
+\section{Gestão ambiental e social}
+% figura: medidas por fase; quadro: Tema | Como a ação atende | Evidência
+
+\section{Controle de qualidade}
+% figura: cadeia de comprovação; quadro: matriz de comprovação por produto;
+% quadro de indicadores; fluxo de monitoramento
+
+\section{Matriz de custos da ação}
+% quadro: item, executor, fonte, unidade, custo unitário, quantidade,
+% total e valores por ano
+
+\section{Cronograma}
+% figura: Gantt anual; tabela de metas físicas anuais; remissão ao POA

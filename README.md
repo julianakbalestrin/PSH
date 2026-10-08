@@ -16,24 +16,36 @@ latexmk -pdf main.tex
 Pacotes necessários (TeX Live): `abntex2`, `tabularx`, `pdflscape`, `enumitem`,
 `tikz`, `pgfgantt`, `adjustbox`, `todonotes`. No Overleaf, compila direto.
 
-## Estrutura do capítulo
+## Estrutura do capítulo (13 tópicos)
 
-1. Contextualização e objetivos
-2. Área de abrangência e critérios de seleção
-3. Arranjo institucional e visão geral da implementação
-4. **Implementação do abastecimento de água, do começo ao fim**: adesão,
-   modelo de gestão, trabalho técnico-social, captação e projeto, obras,
-   entrega e Programa Sanepar Rural
-5. **Implementação do esgotamento sanitário, do começo ao fim**:
-   identificação dos domicílios, contratação, instalação e verificação,
-   medição e pagamento e frente do IDR-Paraná
-6. Salvaguardas ambientais e sociais
-7. Monitoramento, avaliação e indicadores
-8. Cronograma de execução
+1. Mapa mental
+2. Critérios de seleção
+3. Mapa das áreas de intervenção
+4. Responsabilidades das instituições (roteiro por ação e matriz E/A/V)
+5. Visão geral da implementação
+6. Modelo de gestão e trabalho técnico-social
+7. Implementação do abastecimento de água
+8. Implementação do esgotamento sanitário
+9. Conexão com outros subcomponentes do MOP
+10. Gestão ambiental e social (sem citar as NAS)
+11. Controle de qualidade (registro, evidências, sustentabilidade)
+12. Matriz de custos
+13. Cronograma (anual, com metas físicas)
 
-Apêndice A: pendências encontradas no MOP. Apêndice B: quadros detalhados
-de etapas (Quadros 28 e 29 do MOP). **Anexo A: cronograma mensal de 2026 e
-2027**, tirado do POA 2026–2027 (aba "Componente 3", linhas 15 a 29).
+Apêndice A: pendências. Apêndice B: quadros de etapas do MOP. Anexo A:
+cronograma mensal de 2026 e 2027 (POA).
+
+## Mapa
+
+O mapa (`figuras/mapa-3-2-b.pdf`) é gerado por `mapa/gerar_mapa.py` a partir
+da malha municipal do IBGE (`mapa/pr_municipios.geojson`) e da planilha
+`mapa/municipios_selecionados.csv` (código IBGE, município, frente). Para
+atualizar, preencha o CSV e rode:
+
+```bash
+pip install matplotlib
+python3 mapa/gerar_mapa.py
+```
 
 ## Organização dos arquivos
 
@@ -42,9 +54,10 @@ main.tex                          documento principal (classe abnTeX2)
 config/preambulo.tex              pacotes, cores e ambiente "quadro" (ABNT)
 config/comandos.tex               \pendencia, \fluxograma, \atividade, estilos TikZ
 capitulos/apresentacao.tex        explicação do modelo e correspondência com o MOP
-capitulos/subcomponente-3-2-b/    o capítulo, um arquivo por seção (01 a 08)
+capitulos/subcomponente-3-2-b/    o capítulo, um arquivo por tópico (01 a 13)
 figuras/                          fluxogramas e cronogramas em TikZ
-modelos/modelo-secao.tex          esqueleto em branco de uma seção de implementação
+modelos/modelo-acao.tex           esqueleto em branco dos 13 tópicos
+mapa/                             malha municipal, seleção (CSV) e script do mapa
 apendices/                        pendências e quadros de etapas
 anexos/cronograma-poa.tex         cronograma 2026–2027 (POA)
 referencias.bib                   referências (ABNT)

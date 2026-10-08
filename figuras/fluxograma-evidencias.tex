@@ -1,0 +1,27 @@
+% Cadeia de comprovação: da execução ao reporte, e sustentabilidade após a entrega
+\begin{tikzpicture}[node distance=0.32cm,
+    passo/.style={etapa=2.05cm, minimum height=1.0cm, font=\scriptsize\bfseries},
+    exemplo/.style={produto=2.05cm, minimum height=2.75cm, anchor=north, align=left}]
+  \node[passo] (p1) {Execução};
+  \node[passo, right=of p1] (p2) {Registro};
+  \node[passo, right=of p2] (p3) {Evidência};
+  \node[passo, right=of p3] (p4) {Verificação};
+  \node[passo, right=of p4] (p5) {Validação};
+  \node[marco=2.05cm, minimum height=1.0cm, font=\scriptsize\bfseries, right=of p5] (p6) {Sistema e reporte};
+  \foreach \a/\b in {p1/p2,p2/p3,p3/p4,p4/p5,p5/p6} \draw[seta] (\a) -- (\b);
+
+  \node[exemplo, below=0.25cm of p1.south] {obra, instalação, serviço ou capacitação};
+  \node[exemplo, below=0.25cm of p2.south] {relatórios de medição, supervisão e fiscalização; listas de presença; cadastro};
+  \node[exemplo, below=0.25cm of p3.south] {laudos, testes, \textit{as built}, termos assinados, certificados};
+  \node[exemplo, below=0.25cm of p4.south] {auditoria documental; verificação e amostragem \textit{in loco}};
+  \node[exemplo, below=0.25cm of p5.south] {IAT, IDR-Paraná, SECID ou Sanepar, conforme o produto};
+  \node[exemplo, below=0.25cm of p6.south] {SIGARH e GeoPR; UGP; Banco Mundial};
+
+  % sustentabilidade após a entrega
+  \node[fase=3.0cm, fill=verdeclaro, below=3.75cm of p2.south, anchor=north] (s1) {Entidade gestora\\ operando};
+  \node[fase=3.0cm, fill=verdeclaro, right=0.1cm of s1] (s2) {Tarifa instituída e\\ associação ativa};
+  \node[fase=3.0cm, fill=verdeclaro, right=0.1cm of s2] (s3) {Suporte técnico e\\ avaliação semestral};
+  \node[font=\scriptsize\bfseries, text=green!40!black, anchor=south west] at ($(s1.north west)+(0,0.08)$)
+    {Sustentabilidade do resultado após a entrega};
+  \draw[seta] (s3.south) -- ++(0,-0.35) -| node[rotulo, pos=0.25, below] {ajustes} (s1.south);
+\end{tikzpicture}

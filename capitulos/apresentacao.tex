@@ -4,61 +4,38 @@
 \chapter*[Apresentação do modelo]{Apresentação do modelo}
 \addcontentsline{toc}{chapter}{Apresentação do modelo}
 
-Este documento propõe uma nova forma de apresentar as ações do Instituto
-Água e Terra (IAT) no Manual Operativo do Projeto (MOP) do PSH-PR. O piloto é
-o Subcomponente 3.2.b, \textit{Implantação e reabilitação de sistemas
-coletivos de abastecimento de água e esgotamento sanitário no meio rural}
-(item B.3.2.2 do MOP de 17 de março de 2026). O conteúdo técnico do MOP foi
-preservado. O que muda é a forma de apresentá-lo, que passa a ser a de um
-capítulo de metodologia de dissertação: um texto corrido que explica, na
-ordem em que as coisas acontecem, como a ação será implementada, apoiado por
-fluxogramas.
-
-Em vez de descrever cada atividade isoladamente, o capítulo acompanha o
-percurso completo de cada tipo de sistema. Depois da contextualização, dos
-critérios de seleção e do arranjo institucional, a Seção~\ref{sec:abastecimento}
-descreve o abastecimento de água do começo ao fim: a adesão do município, o
-modelo de gestão, o trabalho técnico-social, o poço, o projeto, a obra e a
-entrega à entidade gestora. Em seguida, a Seção~\ref{sec:esgotamento} faz o
-mesmo para o esgotamento sanitário, da identificação dos domicílios ao
-pagamento e à finalização. As salvaguardas, o monitoramento e o cronograma
-fecham o capítulo. As datas de 2026 e 2027 vêm do Plano Operativo Anual
-(POA), e o cronograma mensal desses dois anos está no Anexo~\ref{an:cronograma}.
-
-Cada etapa relevante é acompanhada de um fluxograma, e há três tipos de
-figura. As sequências mostram a ordem das etapas. As raias mostram quem faz
-o quê, quando várias instituições participam. As linhas do tempo mostram as
-fases com seus prazos e produtos. Os quadros longos do MOP, com as etapas,
-os produtos, as evidências e os responsáveis pela validação, foram mantidos
-no Apêndice~\ref{ap:quadros} para consulta, sem interromper a leitura. As
-inconsistências encontradas durante a reestruturação aparecem no texto em
-caixas de pendência e estão listadas no Apêndice~\ref{ap:pendencias}.
-
-O \autoref{qua:correspondencia} indica onde o conteúdo do MOP foi
-reposicionado. A mesma estrutura pode ser replicada nas demais ações do IAT
-no Componente~1 a partir do arquivo \texttt{modelos/modelo-secao.tex}.
+Este documento propõe uma nova forma de apresentar as ações do Instituto Água
+e Terra (IAT) no Manual Operativo do Projeto (MOP) do PSH-PR, tendo como
+piloto o Subcomponente 3.2.b (item B.3.2.2 do MOP de 17/03/2026). Cada ação é
+apresentada em 13 tópicos fixos, com texto curto e apoiado em fluxogramas,
+quadros e mapa. Os prazos, metas e custos seguem a planilha de custos do
+PSH-PR. A mesma estrutura pode ser usada nas demais ações do IAT.
 
 \begin{quadro}[htbp]
-\caption{Correspondência entre o MOP (versão de 17/03/2026) e a estrutura proposta}
+\caption{Estrutura padrão e correspondência com o MOP vigente}
 \label{qua:correspondencia}
-\small
+\footnotesize
 \renewcommand{\arraystretch}{1.2}
-\begin{tabularx}{\textwidth}{|L|L|}
+\begin{tabularx}{\textwidth}{|P{5.4cm}|L|}
 \hline
-\cab{MOP -- item B.3.2.2} & \cab{Estrutura proposta} \\ \hline
-Texto introdutório, objetivos e frentes de trabalho & \ref{sec:contexto} Contextualização e objetivos \\ \hline
-Área de abrangência e critérios de seleção & \ref{sec:area} Área de abrangência e critérios de seleção \\ \hline
-Executor, forma de execução, prazo e custo & \ref{sec:arranjo} Arranjo institucional e visão geral \\ \hline
-B.3.2.2.1 Modelos de gestão & \ref{subsec:adesao} e \ref{subsec:modelos-gestao} (abastecimento) \\ \hline
-B.3.2.2.2 Trabalho técnico-social & \ref{subsec:tts} (abastecimento) e \ref{subsec:esgotamento-demanda} (esgotamento) \\ \hline
-B.3.2.2.3 Sistemas coletivos de abastecimento & \ref{subsec:captacao} a \ref{subsec:entrega} \\ \hline
-B.3.2.2.6 Programa Sanepar Rural & \ref{subsec:sanepar-rural} \\ \hline
-B.3.2.2.4 e B.3.2.2.5 Esgotamento descentralizado & \ref{sec:esgotamento} Implementação do esgotamento sanitário \\ \hline
-Quadro 26 -- Aspectos socioambientais & \ref{sec:salvaguardas} Salvaguardas ambientais e sociais \\ \hline
-Quadro 27 -- Indicadores & \ref{sec:monitoramento} Monitoramento, avaliação e indicadores \\ \hline
-Quadros 28 e 29 -- Etapas das atividades & Apêndice~\ref{ap:quadros} \\ \hline
-Quadros 30 e 31 -- Atividades e produtos & Quadros-síntese nas Seções \ref{sec:abastecimento} e \ref{sec:esgotamento} \\ \hline
-POA 2026--2027 (Componente 3) & Anexo~\ref{an:cronograma} \\ \hline
+\cab{Tópico} & \cab{Origem do conteúdo} \\ \hline
+\ref{sec:mapa-mental} Mapa mental & Objetivos e metas do item B.3.2.2; planilha de custos \\ \hline
+\ref{sec:criterios} Critérios de seleção & Área de abrangência e critérios de seleção \\ \hline
+\ref{sec:mapa} Mapa & Novo; exigência do Acordo de Empréstimo \\ \hline
+\ref{sec:responsabilidades} Responsabilidades das instituições & Executor, coexecutores e Quadro 30 \\ \hline
+\ref{sec:arranjo} Visão geral da implementação & Forma de execução, custo e prazo; POA \\ \hline
+\ref{subsec:modelos-gestao} Modelo de gestão e trabalho técnico-social & B.3.2.2.1, B.3.2.2.2 e Quadro 28 \\ \hline
+\ref{sec:abastecimento} Abastecimento de água & B.3.2.2.3, B.3.2.2.6 e Quadro 29 \\ \hline
+\ref{sec:esgotamento} Esgotamento sanitário & B.3.2.2.4 e B.3.2.2.5 \\ \hline
+\ref{sec:conexoes} Conexão com outros subcomponentes & Novo \\ \hline
+\ref{sec:salvaguardas} Gestão ambiental e social & Quadros 25 e 26 \\ \hline
+\ref{sec:monitoramento} Controle de qualidade & Quadros 27, 28, 29 e 31 \\ \hline
+\ref{sec:custos} Matriz de custos & Planilha de custos \\ \hline
+\ref{sec:cronograma} Cronograma & Planilha de custos e POA 2026--2027 (Anexo~\ref{an:cronograma}) \\ \hline
 \end{tabularx}
 \fonte{Elaborado pelo IAT (2026).}
 \end{quadro}
+
+As inconsistências encontradas aparecem no texto em caixas de pendência e
+estão listadas no Apêndice~\ref{ap:pendencias}. Os quadros detalhados de
+etapas do MOP estão no Apêndice~\ref{ap:quadros}.
