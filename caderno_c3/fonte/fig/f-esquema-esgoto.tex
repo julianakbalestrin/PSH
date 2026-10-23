@@ -1,0 +1,53 @@
+\documentclass[11pt,border=4pt]{standalone}
+\input{estilo}
+\begin{document}
+
+\begin{tikzpicture}[x=1cm,y=1cm,
+   num/.style={circle, fill=cNavy, text=white, font=\scriptsize\bfseries, inner sep=1.2pt, minimum size=0.42cm}]
+  \fill[cAmberBg] (0,0) rectangle (15.6,-2.9);
+  \draw[cGreen, line width=1.4pt] (0,0) -- (15.6,0);
+  % casa
+  \fill[white] (0.3,0) rectangle (2.1,1.3);
+  \draw[cNavy, line width=0.7pt] (0.3,0) rectangle (2.1,1.3);
+  \fill[cTeal] (0.1,1.3) -- (1.2,2.0) -- (2.3,1.3) -- cycle;
+  \fill[cBlueBg] (0.95,0) rectangle (1.45,0.75);
+  \node[num] at (1.2,2.45) {1};
+  % tubulação
+  \draw[cGrayText, line width=2pt] (1.6,-0.45) -- (2.95,-0.45);
+  % caixa de inspeção
+  \fill[white] (2.95,-0.15) rectangle (3.55,-0.85);
+  \draw[cNavy, line width=0.7pt] (2.95,0) -- (2.95,-0.85) -- (3.55,-0.85) -- (3.55,0);
+  \node[num] at (3.25,0.5) {2};
+  \draw[cGrayText, line width=2pt] (3.55,-0.45) -- (4.3,-0.45);
+  % tanque séptico com duas câmaras
+  \fill[white] (4.3,-0.1) rectangle (7.3,-2.0);
+  \fill[cAmber!35] (4.32,-1.6) rectangle (7.28,-1.98);
+  \fill[cBlue!15] (4.32,-0.6) rectangle (7.28,-1.6);
+  \draw[cNavy, line width=0.8pt] (4.3,0) -- (4.3,-2.0) -- (7.3,-2.0) -- (7.3,0);
+  \draw[cNavy, line width=0.7pt] (5.9,-0.1) -- (5.9,-1.5);
+  \node[font=\tiny, text=cAmber] at (5.8,-1.79) {lodo};
+  \node[num] at (5.8,0.5) {3};
+  \draw[cGrayText, line width=2pt] (7.3,-0.5) -- (8.05,-0.5);
+  % filtro anaeróbio
+  \fill[white] (8.05,-0.1) rectangle (10.05,-2.0);
+  \fill[pattern=crosshatch dots, pattern color=cGrayText] (8.07,-0.8) rectangle (10.03,-1.75);
+  \draw[cNavy, line width=0.8pt] (8.05,0) -- (8.05,-2.0) -- (10.05,-2.0) -- (10.05,0);
+  \node[num] at (9.05,0.5) {4};
+  \draw[cGrayText, line width=2pt] (10.05,-0.55) -- (11.0,-0.55);
+  % disposição final no solo
+  \draw[cNavy, line width=0.6pt] (11.0,-0.3) -- (11.0,-1.0) -- (15.1,-1.0) -- (15.1,-0.3);
+  \draw[cGrayText, line width=2pt, dash pattern=on 4pt off 2pt] (11.0,-0.55) -- (15.0,-0.55);
+  \foreach \x in {11.5,12.3,13.1,13.9,14.7}
+    \draw[-{Stealth[length=1.6mm]}, cBlue, decorate, decoration={snake, amplitude=0.6pt, segment length=4pt}] (\x,-1.05) -- (\x,-1.9);
+  \node[num] at (13.05,0.5) {5};
+  % legenda
+  \node[anchor=north west, align=left, font=\scriptsize, text width=15.4cm, inner sep=0pt] at (0.1,-3.15) {
+    \textbf{1} Domicílio \qquad \textbf{2} Caixa de inspeção \qquad
+    \textbf{3} Tanque séptico, com remoção periódica do lodo\\[2pt]
+    \textbf{4} Filtro anaeróbio \qquad
+    \textbf{5} Disposição final no solo (vala de infiltração ou sumidouro)};
+  \node[transversal=14.8cm, anchor=north, font=\scriptsize] at (7.8,-4.25) {Exemplo ilustrativo. A solução de cada domicílio é definida no projeto individual,
+    conforme a ABNT NBR 17076:2024, as condições do terreno e o número de moradores.};
+\end{tikzpicture}
+
+\end{document}

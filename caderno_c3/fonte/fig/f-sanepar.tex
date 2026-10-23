@@ -1,0 +1,30 @@
+\documentclass[11pt,border=4pt]{standalone}
+\input{estilo}
+\begin{document}
+
+\begin{tikzpicture}[passo/.style={etapa=2.25cm, minimum height=1.05cm, font=\scriptsize},
+    passos/.style={draw=cBlue, fill=cBlueBg, rounded corners=2pt, align=center, inner sep=3.5pt,
+      minimum height=1.05cm, text width=2.25cm, font=\scriptsize, line width=0.6pt}]
+  \foreach \i/\t in {0/Sanepar, 1/Município, 2/Comunidade} {
+    \node[raia=15.35cm, minimum height=1.9cm] at (0,{-\i*1.95}) {};
+    \node[tituloraia] at (0.9,{-\i*1.95-0.95}) {\t};
+  }
+  \draw[cGrayLine] (1.8,0) -- (1.8,-5.8);
+  \node[passos] (s1) at (3.25,-0.95)  {Levantamento e estudo técnico de engenharia};
+  \node[passos] (s3) at (5.95,-0.95)  {Projeto de engenharia do sistema};
+  \node[passos] (s4) at (8.65,-0.95)  {Fornecimento de materiais hidráulicos};
+  \node[passos] (s8) at (14.05,-0.95) {Monitoramento e suporte pós-obra};
+  \node[passo] (s2) at (3.25,-2.9)    {Termo de Compromisso e Responsabilidade};
+  \node[passo] (s5) at (8.65,-2.9)    {Execução das obras, com apoio técnico da Sanepar};
+  \node[passo] (s6) at (11.35,-4.85)  {Formação da associação de moradores};
+  \node[passo] (s7) at (14.05,-4.85)  {Treinamento e educação ambiental};
+  \draw[seta] (s1) -- (s2);
+  \draw[seta] (s2.east) -| (s3.south);
+  \draw[seta] (s3) -- (s4);
+  \draw[seta] (s4) -- (s5);
+  \draw[seta] (s5.south) |- (s6.west);
+  \draw[seta] (s6) -- (s7);
+  \draw[seta] (s7) -- (s8);
+\end{tikzpicture}
+
+\end{document}

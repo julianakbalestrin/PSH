@@ -1,0 +1,19 @@
+\documentclass[11pt,border=4pt]{standalone}
+\input{estilo}
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \fill[cTeal!10] (-7.7,0.0) -- (7.7,0.0) -- (6.9750000000000005,-1.05) -- (-6.9750000000000005,-1.05) -- cycle;
+  \node[text width=12.68cm, align=center, font=\footnotesize, text=cText] at (0,-0.525) {Microbacias prioritárias do PSH-PR};
+  \fill[cTeal!22] (-6.9750000000000005,-1.1400000000000001) -- (6.9750000000000005,-1.1400000000000001) -- (6.250000000000001,-2.1900000000000004) -- (-6.250000000000001,-2.1900000000000004) -- cycle;
+  \node[text width=11.23cm, align=center, font=\footnotesize, text=cText] at (0,-1.665) {Mananciais de abastecimento público selecionados por critério quali-quantitativo};
+  \fill[cTeal!38] (-6.25,-2.2800000000000002) -- (6.25,-2.2800000000000002) -- (5.525,-3.33) -- (-5.525,-3.33) -- cycle;
+  \node[text width=9.78cm, align=center, font=\footnotesize, text=cText] at (0,-2.805) {Domicílios rurais permanentes ocupados (Censo 2022 e CNEFE)};
+  \fill[cTeal!62] (-5.525,-3.4200000000000004) -- (5.525,-3.4200000000000004) -- (4.800000000000001,-4.470000000000001) -- (-4.800000000000001,-4.470000000000001) -- cycle;
+  \node[text width=8.33cm, align=center, font=\footnotesize, text=white] at (0,-3.9450000000000003) {Domicílios sem destinação adequada do esgoto};
+  \fill[cTeal!88] (-4.800000000000001,-4.5600000000000005) -- (4.800000000000001,-4.5600000000000005) -- (4.075000000000001,-5.61) -- (-4.075000000000001,-5.61) -- cycle;
+  \node[text width=6.88cm, align=center, font=\footnotesize, text=white] at (0,-5.085000000000001) {Propriedade com diagnóstico e adesão ao PSH-PR e ao IDR-Paraná};
+  \draw[seta] (0,-5.610000000000001) -- (0,-6.050000000000001);
+  \node[marco=7.2cm, minimum height=1.05cm, anchor=north] at (0,-6.050000000000001) {2.236 domicílios em nove mananciais\\ \normalfont\scriptsize 2.300 adotados para o dimensionamento};
+  \node[font=\scriptsize\itshape, text=cGrayText, anchor=north, text width=12cm, align=center] at (0,-7.350000000000001) {O arredondamento absorve as incertezas das bases, as variações cadastrais e as demandas futuras.};
+\end{tikzpicture}
+\end{document}

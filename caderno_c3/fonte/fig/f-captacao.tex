@@ -1,0 +1,39 @@
+\documentclass[11pt,border=4pt]{standalone}
+\input{estilo}
+\begin{document}
+
+\begin{tikzpicture}[node distance=0.32cm,
+    passo/.style={etapa=5.35cm, minimum height=0.82cm, font=\scriptsize}]
+  \node[cab=5.35cm, fill=cTeal] (h1) at (0,0) {Captação subterrânea (Etapas 1 e 2)};
+  \node[passo, below=0.3cm of h1] (c1) {Estudos preliminares: viabilidade, titularidade e situação fundiária das áreas};
+  \node[passo, below=of c1] (c2) {Estudos geológicos e hidrogeológicos; locação e projeto construtivo do poço};
+  \node[passo, below=of c2] (c3) {Anuência prévia de perfuração};
+  \node[passo, below=of c3] (c4) {Perfuração do poço};
+  \node[passo, below=of c4] (c5) {Teste de vazão e análises físico-químicas e bacteriológicas};
+  \node[decisao, text width=1.9cm, below=0.4cm of c5] (d1) {Vazão e qualidade suficientes?};
+  \node[correcao=2.4cm, left=0.55cm of d1] (k1) {Nova locação ou substituição da comunidade};
+  \node[passo, below=0.4cm of d1] (c6) {Estudos ambientais e sociais e outorga de direito de uso da água};
+
+  \node[cab=5.35cm, fill=cNavy] (h2) at (7.6,0) {Projeto e licenciamento (Etapa 3)};
+  \node[passo] (p1) at (h2 |- c1) {Anteprojeto da solução de tratamento e de reservação};
+  \node[passo] (p2) at (h2 |- c2) {Contratação integrada (projetos executivos e obras)};
+  \node[passo] (p3) at (h2 |- c3) {Projeto básico: casa química, reservatório, eletromecânica e rede};
+  \node[passo] (p4) at (h2 |- c4) {Projeto executivo};
+  \node[passo] (p5) at (h2 |- c5) {Aprovação dos projetos pelo IAT};
+  \node[passo] (p6) at (h2 |- c6) {Estudos ambientais e sociais e obtenção das licenças};
+
+  \coordinate (meio) at ($(c6.south)!0.5!(p6.south)$);
+  \node[marco=12.6cm, below=0.6cm of meio] (obra) {Execução das obras (Etapa 4), somente com outorga e licenças obtidas};
+
+  \foreach \a/\b in {c1/c2,c2/c3,c3/c4,c4/c5,c5/d1,p1/p2,p2/p3,p3/p4,p4/p5,p5/p6}
+    \draw[seta] (\a) -- (\b);
+  \draw[seta] (d1) -- node[rotulo, right] {Sim} (c6);
+  \draw[seta] (d1) -- node[rotulo, above] {Não} (k1);
+  \draw[seta] (k1.north) |- (c2.west);
+  \draw[seta] (c5.east) -- ++(0.55,0) |- (p1.west);
+  \node[rotate=90, font=\tiny\itshape, text=cGrayText, anchor=south] at ($(c5.east)+(0.53,1.75)$) {vazão e qualidade orientam o projeto};
+  \draw[seta] (c6.south) -- (c6.south |- obra.north);
+  \draw[seta] (p6.south) -- (p6.south |- obra.north);
+\end{tikzpicture}
+
+\end{document}

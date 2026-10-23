@@ -1,0 +1,29 @@
+\documentclass[11pt,border=4pt]{standalone}
+\input{estilo}
+\begin{document}
+
+\begin{tikzpicture}[passo/.style={etapa=2.25cm, minimum height=1.05cm, font=\scriptsize}]
+  \foreach \i/\t in {0/IAT, 1/Município, 2/Comunidade} {
+    \node[raia=15.35cm, minimum height=1.9cm] at (0,{-\i*1.95}) {};
+    \node[tituloraia] at (0.9,{-\i*1.95-0.95}) {\t};
+  }
+  \draw[cGrayLine] (1.8,0) -- (1.8,-5.8);
+  \node[passo] (p1) at (3.25,-0.95)  {Definição dos critérios de seleção};
+  \node[passo] (p2) at (5.95,-0.95)  {Seleção das áreas e das comunidades};
+  \node[passo] (p3) at (8.65,-0.95)  {Sensibilização das prefeituras};
+  \node[passo] (p6) at (14.05,-0.95) {Contato inicial com a comunidade};
+  \node[passo] (p4) at (8.65,-2.9)   {Adesão formal ao Programa};
+  \node[passo] (p5) at (11.35,-2.9)  {Termo de Cooperação com o IAT};
+  \node[passo] (p7) at (14.05,-4.85) {Pré-adesão da comunidade};
+  \draw[seta] (p1) -- (p2);
+  \draw[seta] (p2) -- (p3);
+  \draw[seta] (p3) -- (p4);
+  \draw[seta] (p4) -- (p5);
+  \draw[seta] (p5.north) |- (p6.west);
+  \draw[seta] (p6) -- (p7);
+  \node[rotulo, fill=none, below=2pt of p2] {lista preliminar};
+  \node[rotulo, fill=none, below=2pt of p5] {termo assinado};
+  \node[rotulo, fill=none, left=2pt of p7, align=right] {contratos de\\ pré-adesão};
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,23 @@
+\documentclass[11pt,border=4pt]{standalone}
+\input{estilo}
+\begin{document}
+
+\begin{tikzpicture}[
+   passo/.style={etapa=3.3cm, minimum height=1.0cm, font=\scriptsize},
+   circ/.style={-{Stealth[length=2.2mm]}, line width=1pt, draw=cTeal}]
+  \node[marco=3.0cm, minimum height=1.5cm, font=\footnotesize\bfseries] (c) at (0,0) {Obras de água e de esgoto\\
+    {\normalfont\scriptsize Ações 3.2.2.3, 3.2.2.5 e 3.2.2.6}};
+  \foreach \i/\t in {
+     1/{\textbf{Plano de supervisão} aprovado pelo IAT},
+     2/{\textbf{Visitas de campo} e controle de qualidade},
+     3/{\textbf{Registro de não conformidades}, inclusive ambientais e sociais},
+     4/{\textbf{Correção} pelo executor e nova verificação},
+     5/{\textbf{Verificação das medições} executadas},
+     6/{\textbf{Relatório mensal} ao IAT e à UGP}} {
+    \node[passo] (n\i) at ({90-(\i-1)*60}:3.55cm) {\t};
+  }
+  \foreach \a/\b in {1/2,2/3,3/4,4/5,5/6,6/1}
+    \draw[circ] (n\a) to[bend left=18] (n\b);
+\end{tikzpicture}
+
+\end{document}

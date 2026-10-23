@@ -1,0 +1,27 @@
+\documentclass[11pt,border=4pt]{standalone}
+\input{estilo}
+\begin{document}
+
+\begin{tikzpicture}[passo/.style={etapa=2.15cm, minimum height=1.05cm, font=\scriptsize}]
+  \foreach \i/\t in {0/Executor da obra, 1/Supervisora (Ação 3.2.2.7), 2/Fiscalização do IAT} {
+    \node[raia=15.35cm, minimum height=1.9cm] at (0,{-\i*1.95}) {};
+    \node[tituloraia] at (0.9,{-\i*1.95-0.95}) {\t};
+  }
+  \draw[cGrayLine] (1.8,0) -- (1.8,-5.8);
+  \node[passo] (o1) at (3.2,-4.85)  {Ordem de serviço e designação do fiscal};
+  \node[passo] (o2) at (5.75,-0.95) {Execução da obra conforme o projeto};
+  \node[passo] (o3) at (5.75,-2.9)  {Acompanhamento e relatório mensal};
+  \node[passo] (o4) at (8.4,-4.85)  {Verificação e relatório de fiscalização};
+  \node[decisao, text width=1.35cm] (d) at (11.2,-4.85) {Conforme projeto e normas?};
+  \node[correcao=2.15cm] (o5) at (11.2,-0.95) {Correção das não conformidades};
+  \node[marco=2.15cm, minimum height=1.05cm, font=\scriptsize\bfseries] (o7) at (14.3,-4.85) {Atesto de recebimento, laudos e \textit{as built}};
+  \draw[seta] (o1) |- (o2);
+  \draw[seta] (o2) -- (o3);
+  \draw[seta] (o3.south) |- (o4.west);
+  \draw[seta] (o4) -- (d);
+  \draw[seta] (d) -- node[rotulo, right] {Não} (o5);
+  \draw[seta] (o5.west) -| (o4.north);
+  \draw[seta] (d) -- node[rotulo, above] {Sim} (o7);
+\end{tikzpicture}
+
+\end{document}

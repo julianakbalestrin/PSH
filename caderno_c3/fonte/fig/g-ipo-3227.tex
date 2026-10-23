@@ -1,0 +1,58 @@
+\documentclass[11pt,border=4pt]{standalone}
+\input{estilo}
+\begin{document}
+
+\begin{tikzpicture}
+
+  \tikzset{
+    item/.style={draw=#1, fill=white, rounded corners=1.5pt, align=left, text width=3.0cm,
+      inner sep=3pt, font=\scriptsize, minimum height=0.75cm},
+    passo/.style={etapa=4.15cm, minimum height=0.92cm, align=left},
+    chip/.style={produto=2.5cm, minimum height=0.72cm}
+  }
+  \node[cab=3.1cm, fill=cBlue, anchor=north west] (hE) at (0,0) {Entradas};
+  \node[cab=7.25cm, fill=cNavy, anchor=north west] (hP) at (3.85,0) {Etapas e produtos de cada etapa};
+  \node[cab=3.1cm, fill=cTeal, anchor=north west] (hS) at (12.2,0) {Saídas};
+
+  \node[passo, anchor=north west] (e1) at (3.95,-0.85) {\textbf{Etapa 1}\\ Contratação da supervisora};
+  \node[chip, anchor=west] (p1) at ($(e1.east)+(0.32,0)$) {Contrato assinado};
+  \draw[setaleve, densely dotted] (e1.east) -- (p1.west);
+  \node[passo, below=0.3cm of e1] (e2) {\textbf{Etapa 2}\\ Mobilização e plano de supervisão};
+  \node[chip, anchor=west] (p2) at ($(e2.east)+(0.32,0)$) {Plano de supervisão aprovado};
+  \draw[setaleve, densely dotted] (e2.east) -- (p2.west);
+  \draw[seta] (e1.south) -- (e2.north);
+  \node[passo, below=0.3cm of e2] (e3) {\textbf{Etapa 3}\\ Acompanhamento das obras};
+  \node[chip, anchor=west] (p3) at ($(e3.east)+(0.32,0)$) {Registros de campo e de não conformidades};
+  \draw[setaleve, densely dotted] (e3.east) -- (p3.west);
+  \draw[seta] (e2.south) -- (e3.north);
+  \node[passo, below=0.3cm of e3] (e4) {\textbf{Etapa 4}\\ Medições e relatórios};
+  \node[chip, anchor=west] (p4) at ($(e4.east)+(0.32,0)$) {Relatórios mensais aprovados};
+  \draw[setaleve, densely dotted] (e4.east) -- (p4.west);
+  \draw[seta] (e3.south) -- (e4.north);
+  \node[passo, below=0.3cm of e4] (e5) {\textbf{Etapa 5}\\ Recebimento das obras e encerramento};
+  \node[chip, anchor=west] (p5) at ($(e5.east)+(0.32,0)$) {Relatório final de supervisão};
+  \draw[setaleve, densely dotted] (e5.east) -- (p5.west);
+  \draw[seta] (e4.south) -- (e5.north);
+  \coordinate (fundo) at ($(e5.south)+(0,-0.3)$);
+  \node[item=cBlue!70, anchor=north west] (i1) at (0.075,-0.85) {Contratos e cronogramas das obras (Ações 3.2.2.3, 3.2.2.5 e 3.2.2.6)};
+  \node[item=cBlue!70, below=0.22cm of i1] (i2) {Projetos aprovados e licenças};
+  \node[item=cBlue!70, below=0.22cm of i2] (i3) {Termo de Referência da supervisão};
+  \node[item=cBlue!70, below=0.22cm of i3] (i4) {Requisitos ambientais e sociais das obras};
+  \node[item=cTeal!80, anchor=north west] (o1) at (12.275,-0.85) {Relatórios mensais de supervisão};
+  \node[item=cTeal!80, below=0.22cm of o1] (o2) {Medições verificadas};
+  \node[item=cTeal!80, below=0.22cm of o2] (o3) {Não conformidades registradas e tratadas};
+  \node[item=cTeal!80, below=0.22cm of o3] (o4) {Apoio ao recebimento das obras};
+
+  \begin{scope}[on background layer]
+    \fill[cBlueBg] (hE.south west) rectangle (hE.east |- fundo);
+    \fill[cGrayBg] (hP.south west) rectangle (hP.east |- fundo);
+    \fill[cTealBg] (hS.south west) rectangle (hS.east |- fundo);
+  \end{scope}
+  \coordinate (meio) at ($(hP.south)!0.5!(hP.south |- fundo)$);
+  \draw[-{Triangle[length=2.6mm,width=4.2mm]}, line width=2.2pt, draw=cBlue!70]
+    (hE.east |- meio) ++(0.06,0) -- ++(0.44,0);
+  \draw[-{Triangle[length=2.6mm,width=4.2mm]}, line width=2.2pt, draw=cTeal]
+    (hP.east |- meio) ++(0.06,0) -- ++(0.44,0);
+\end{tikzpicture}
+
+\end{document}

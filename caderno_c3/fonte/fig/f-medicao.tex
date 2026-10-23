@@ -1,0 +1,32 @@
+\documentclass[11pt,border=4pt]{standalone}
+\input{estilo}
+\begin{document}
+
+\begin{tikzpicture}[passo/.style={etapa=4.25cm, minimum height=0.82cm, font=\scriptsize}]
+  \def\alt{12.0cm}
+  \node[raia=4.95cm, minimum height=\alt] at (0,0)     {};
+  \node[raia=4.95cm, minimum height=\alt] at (5.25,0)  {};
+  \node[raia=4.95cm, minimum height=\alt] at (10.5,0)  {};
+  \node[font=\scriptsize\bfseries, text=cNavy] at (2.475,-0.35)  {Empresa contratada};
+  \node[font=\scriptsize\bfseries, text=cNavy] at (7.725,-0.35)  {Proprietário (beneficiário)};
+  \node[font=\scriptsize\bfseries, text=cNavy] at (12.975,-0.35) {IAT (fiscalização e validação)};
+  \node[passo] (m1) at (2.475,-1.2)   {Relatório de medição do projeto e da instalação};
+  \node[passo] (m2) at (2.475,-2.45)  {Comprovação: documentos e evidências da intervenção};
+  \node[passo] (m3) at (7.725,-3.7)   {Assinatura que confirma a execução das melhorias};
+  \node[passo] (m4) at (12.975,-4.95) {Auditoria documental};
+  \node[passo] (m5) at (12.975,-6.2)  {Verificação \textit{in loco} das intervenções};
+  \node[passo] (m6) at (2.475,-7.45)  {Relatório de medição final do lote};
+  \node[passo] (m7) at (12.975,-8.7)  {Amostragem \textit{in loco} da qualidade das unidades};
+  \node[passo] (m8) at (12.975,-9.95) {Ordenação das despesas e pagamento};
+  \node[marco=4.25cm, minimum height=0.82cm] (m9) at (7.725,-11.25) {Finalização do lote};
+  \draw[seta] (m1) -- (m2);
+  \draw[seta] (m2) |- (m3);
+  \draw[seta] (m3) -| (m4);
+  \draw[seta] (m4) -- (m5);
+  \draw[seta] (m5) -| (m6);
+  \draw[seta] (m6) |- (m7);
+  \draw[seta] (m7) -- (m8);
+  \draw[seta] (m8) |- (m9);
+\end{tikzpicture}
+
+\end{document}
