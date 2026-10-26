@@ -1,530 +1,457 @@
-"""Fluxogramas e esquemas desenhados à mão (TikZ) para a Atividade 3.2.2."""
+"""Fluxogramas detalhados, diagramas e esquemas da Atividade 3.2.2, no padrão do Guia de
+Identidade Visual do MOP: processos com mais de um ator em raias, com os 8 símbolos;
+diagramas com caixas brancas e destaque em Azul-escuro; esquemas em traço simples na cor
+do Caderno C3 (Azul-petróleo).
+"""
 import os
+
+from raias import Raias, col
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 FIG = os.path.join(AQUI, "fig")
-CAB = "\\documentclass[11pt,border=4pt]{standalone}\n\\input{estilo}\n\\begin{document}\n"
+CAB = "\\documentclass[border=2pt]{standalone}\n\\input{estilo}\n\\begin{document}\n"
 FIM = "\n\\end{document}\n"
+
+ALTO, BAIXO, CIMA = 2.5, -0.42, 0.8
 
 F = {}
 
+
+def atv(w=1.9):
+    return f"atividade={w - 0.18:.2f}cm"
+
+
 # ------------------------------------------------------------------ articulação das ações
 F["f-articulacao"] = r"""
-\begin{tikzpicture}[
-  acao/.style={etapa=4.75cm, minimum height=1.45cm},
-  acao1/.style={etapa=4.4cm, minimum height=1.45cm},
-  sane/.style={draw=cBlue, fill=cBlueBg, rounded corners=2pt, align=center, inner sep=3.5pt,
-    minimum height=1.45cm, text width=4.75cm, line width=0.6pt},
-  ext/.style={externo=4.75cm, minimum height=1.05cm},
-  ext1/.style={externo=4.4cm, minimum height=1.05cm},
-  lig/.style={font=\tiny\itshape, text=cGrayText, fill=white, inner sep=1pt, align=center}
-]
-  \node[cab=4.4cm] (h1) at (2.45,0) {Preparação};
-  \node[cab=5.7cm] (h2) at (9.1,0) {Implantação};
-  \node[cab=2.9cm, fill=cTeal] (h3) at (13.925,0) {Resultado};
+\begin{tikzpicture}[x=1cm, y=1cm,
+  acao/.style={destaque=#1, minimum height=1.35cm, font=\fonte{8}{9.6}\mdseries},
+  acao/.default=3.79cm,
+  outra/.style={caixa=#1, align=center, minimum height=1.0cm},
+  outra/.default=3.79cm,
+  res/.style={documento=#1, minimum height=1.15cm},
+  res/.default=3.75cm,
+  lig/.style={rotulo, font=\fonte{7}{8}, align=center}]
+  % títulos das colunas
+  \node[titulocol=4.0cm] at (2.35,0) {Preparação};
+  \node[titulocol=4.8cm] at (8.0,0) {Implantação};
+  \node[titulocol=3.9cm] at (13.62,0) {Resultados};
+  \draw[cinza20, line width=0.6pt] (0.35,-0.32) -- (4.35,-0.32);
+  \draw[cinza20, line width=0.6pt] (5.6,-0.32) -- (10.4,-0.32);
+  \draw[cinza20, line width=0.6pt] (11.65,-0.32) -- (15.6,-0.32);
 
-  \node[ext1] (x1) at (2.45,-1.2) {\textbf{Atividade 3.2.1}\\ {\scriptsize política e plano estadual de saneamento rural}};
-  \node[ext] (x3) at (8.625,-1.2) {\textbf{Subcomponente 1.1}\\ {\scriptsize outorga, SIGARH e águas subterrâneas}};
+  \node[outra] (x1) at (2.35,-1.25) {\textbf{Atividade 3.2.1}\\ política e plano estadual de saneamento rural};
+  \node[outra] (x3) at (7.6,-1.25) {\textbf{Subcomponente 1.1}\\ outorga, SIGARH e águas subterrâneas};
 
-  \node[acao1] (a1) at (2.45,-3.05) {\textbf{3.2.2.1 Modelos de gestão}\\
-    {\scriptsize pactuação, associações e tarifa\\ 3 unidades regionais, R\$ 6,90 mi}};
-  \node[acao1] (a2) at (2.45,-5.15) {\textbf{3.2.2.2 Trabalho técnico-social}\\
-    {\scriptsize mobilização, cadastro e adesão\\ 36 profissionais-mês, R\$ 6,47 mi}};
-  \node[ext1] (x2) at (2.45,-7.25) {\textbf{Subcomponente 2.3}\\ {\scriptsize Planos Integrados de Propriedade (IDR-Paraná)}};
+  \node[acao] (a1) at (2.35,-3.3) {\textbf{3.2.2.1 Modelos de gestão}\\ associações, tarifa e 3 unidades regionais\\ R\$ 6,90 mi};
+  \node[acao] (a2) at (2.35,-5.6) {\textbf{3.2.2.2 Trabalho técnico-social}\\ mobilização, cadastro e adesão\\ R\$ 6,47 mi};
+  \node[outra] (x2) at (2.35,-7.9) {\textbf{Subcomponente 2.3}\\ Planos Integrados de Propriedade (IDR-Paraná)};
 
-  \node[acao] (b1) at (8.625,-3.05) {\textbf{3.2.2.3 Sistemas de água}\\
-    {\scriptsize 83 sistemas, 5.810 domicílios\\ R\$ 107,90 mi}};
-  \node[acao] (b2) at (8.625,-5.15) {\textbf{3.2.2.5 Esgoto nas comunidades}\\
-    {\scriptsize 4.067 domicílios\\ R\$ 32,54 mi}};
-  \node[acao] (b3) at (8.625,-7.25) {\textbf{3.2.2.6 Esgoto em mananciais}\\
-    {\scriptsize 2.300 domicílios (área do IDR-Paraná)\\ R\$ 18,40 mi}};
-  \node[sane] (b4) at (8.625,-9.35) {\textbf{3.2.2.4 Programa Sanepar Rural}\\
-    {\scriptsize 222 sistemas\\ R\$ 67,15 mi de contrapartida}};
+  \node[acao] (b1) at (7.6,-3.3) {\textbf{3.2.2.3 Sistemas de água}\\ 83 sistemas, 5.810 domicílios\\ R\$ 107,90 mi};
+  \node[acao] (b2) at (7.6,-5.6) {\textbf{3.2.2.5 Esgoto nas comunidades}\\ 4.067 domicílios\\ R\$ 32,54 mi};
+  \node[acao] (b3) at (7.6,-7.9) {\textbf{3.2.2.6 Esgoto em mananciais}\\ 2.300 domicílios (área do IDR-Paraná)\\ R\$ 18,40 mi};
+  \node[acao] (b4) at (7.6,-10.2) {\textbf{3.2.2.4 Programa Sanepar Rural}\\ 222 sistemas\\ R\$ 67,15 mi de contrapartida};
 
-  \node[draw=cNavy, fill=cNavy!7, dashed, rounded corners=2pt, line width=0.6pt,
-        fit={(11.3,-2.3) (12.02,-8.0)}, inner sep=0pt] (band) {};
-  \node[rotate=90, font=\scriptsize, text=cNavy, align=center] at (band.center)
+  % supervisão das obras: faixa ao lado das ações com obras
+  \fill[azulEscuro] (9.8,-2.55) rectangle (10.4,-8.65);
+  \node[rotate=90, text=white, font=\fonte{8}{9.4}, align=center] at (10.1,-5.6)
     {\textbf{3.2.2.7 Supervisão das obras}\\ R\$ 10,79 mi};
 
-  \node[marcoteal=2.9cm, minimum height=1.2cm] (c1) at (13.925,-3.05) {Sistemas entregues às entidades gestoras};
-  \node[etapa=2.9cm, minimum height=1.2cm] (c2) at (13.925,-5.15) {Operação com tarifa e apoio das unidades regionais};
-  \node[draw=cTeal, fill=white, rounded corners=2pt, align=center, text width=2.9cm,
-        inner sep=3.5pt, minimum height=1.3cm] (c3) at (13.925,-7.6)
-        {\textbf{Indicadores do Componente 3}\\ {\scriptsize pessoas com água gerida de forma segura, pessoas com esgotamento sanitário e associações com modelo de gestão}};
+  \node[res] (c1) at (13.62,-3.3) {\textbf{Sistemas entregues às entidades gestoras}};
+  \node[res] (c2) at (13.62,-5.6) {Operação com tarifa e apoio das unidades regionais};
+  \node[res, minimum height=1.6cm] (c3) at (13.62,-8.1) {\textbf{Indicadores do Componente 3}\\ água gerida de forma segura, esgotamento sanitário e associações com modelo de gestão};
 
-  \draw[seta] (x1) -- (a1) node[lig, midway] {diretrizes};
-  \draw[seta] (x3) -- (b1) node[lig, midway] {outorga};
-  \draw[seta] (a1) -- (a2) node[lig, midway] {municípios aderidos};
-  \draw[seta] (a1) -- (b1) node[lig, midway, above=2pt] {entidade\\ gestora};
-  \draw[seta] (a2.north east) -- (b1.south west) node[lig, pos=0.5] {diagnóstico};
-  \draw[seta] (a2) -- (b2) node[lig, midway, below=2pt] {domicílios\\ sem esgoto};
-  \draw[seta] (b1) -- (b2) node[lig, midway] {mesmas comunidades};
-  \draw[seta] (x2) -- (b3) node[lig, midway, above=2pt] {domicílios\\ indicados};
-  \draw[seta] (band.east |- c1) -- (c1.west);
-  \draw[seta] (c1) -- (c2);
-  \draw[seta] (c2) -- (c3);
-  \draw[seta] (b4.east) -- (12.18,-9.35) |- (c3.west);
-  \draw[setatracejada] (a1.west) -- ++(-0.2,0) |- (b4.west)
-    node[lig, pos=0.78, above=2pt] {modelo de gestão para as associações do Sanepar Rural};
+  \draw[conector] (x1) -- node[lig, right=2pt] {diretrizes} (a1);
+  \draw[conector] (x3) -- node[lig, right=2pt] {outorga} (b1);
+  \draw[conector] (a1) -- node[lig, right=2pt] {municípios\\ aderidos} (a2);
+  \draw[conector] (a1) -- node[lig, above=2pt] {entidade\\ gestora} (b1);
+  \draw[conector] ($(a2.east)+(0,0.3)$) -- ++(0.42,0) |- ($(b1.west)+(0,-0.42)$);
+  \node[lig, rotate=90] at (4.71,-4.75) {diagnóstico};
+  \draw[conector] ($(a2.east)+(0,-0.25)$) -- node[lig, below=2pt] {domicílios\\ sem esgoto} ($(b2.west)+(0,-0.25)$);
+  \draw[conector] (b1) -- node[lig, right=2pt] {mesmas\\ comunidades} (b2);
+  \draw[conector] (x2) -- node[lig, above=2pt] {domicílios\\ indicados} (b3);
+  \draw[conector] (a1.west) -- (0.12,0 |- a1.west) |- (b4.west);
+  \node[lig, anchor=south] at (2.85,-10.15) {modelo de gestão para as associações\\ do Programa Sanepar Rural};
+  \draw[conector] (10.4,0 |- c1.west) -- (c1.west);
+  \draw[conector] (c1) -- (c2);
+  \draw[conector] (c2) -- (c3);
+  \draw[conector] (b4.east) -| (c3.south);
 
-  \begin{scope}[shift={(0.1,-10.65)}]
-    \fill[cTealBg, draw=cTeal] (0,0) rectangle (0.35,0.25);
-    \node[anchor=west, font=\scriptsize] at (0.45,0.125) {Ações do IAT (empréstimo BIRD)};
-    \fill[cBlueBg, draw=cBlue] (5.2,0) rectangle (5.55,0.25);
-    \node[anchor=west, font=\scriptsize] at (5.65,0.125) {Ação da Sanepar (contrapartida)};
-    \fill[cGrayBg, draw=cGrayLine] (10.4,0) rectangle (10.75,0.25);
-    \node[anchor=west, font=\scriptsize] at (10.85,0.125) {Outras partes do Programa};
+  % legenda
+  \begin{scope}[shift={(0.2,-11.55)}]
+    \fill[azulEscuro] (0,0) rectangle (0.45,0.3);
+    \node[anchor=west] at (0.55,0.15) {Ações da Atividade 3.2.2};
+    \draw[cinza60, line width=0.7pt, fill=white] (4.6,0) rectangle (5.05,0.3);
+    \node[anchor=west] at (5.15,0.15) {Outras partes do Programa};
+    \node[documento=0.25cm, minimum height=0.38cm, inner ysep=1pt] at (9.75,0.15) {};
+    \node[anchor=west] at (10.1,0.15) {Resultados};
   \end{scope}
 \end{tikzpicture}
 """
 
-# ------------------------------------------------------------------ alternativas de modelo de gestão
-F["f-alternativas"] = r"""
-\begin{tikzpicture}[node distance=0.28cm,
-    cel/.style={draw=cTeal!70, fill=white, align=center, font=\scriptsize,
-                text width=3.95cm, minimum height=1.2cm, inner sep=3pt, rounded corners=1pt},
-    rot/.style={font=\scriptsize\bfseries, text=cNavy, align=right, text width=1.85cm, anchor=east}]
-  \node[marco=3.95cm, minimum height=1.0cm] (a0) at (0,0) {Associação de moradores};
-  \node[marco=3.95cm, minimum height=1.0cm, right=0.32cm of a0] (b0) {Central de associações};
-  \node[marco=3.95cm, minimum height=1.0cm, right=0.32cm of b0] (c0) {Consórcio público};
 
-  \node[cel, below=of a0] (a1) {Moradores organizados operam o sistema da localidade, com apoio da prefeitura};
-  \node[cel, below=of b0] (b1) {Associações filiadas a uma central que presta apoio técnico, administrativo e financeiro};
-  \node[cel, below=of c0] (c1) {Municípios consorciados prestam o serviço de forma associada};
-
-  \node[cel, below=of a1] (a2) {MROSC\\ (Lei nº 13.019/2014)};
-  \node[cel, below=of b1] (b2) {MROSC; Decreto nº 11.599/2023;\\ Portaria nº 2.777/2025};
-  \node[cel, below=of c1] (c2) {Lei dos Consórcios Públicos\\ (Lei nº 11.107/2005)};
-
-  \node[cel, below=of a2] (a3) {Acordo de Cooperação, após lei municipal que autoriza a cessão dos ativos};
-  \node[cel, below=of b2] (b3) {Acordo de Cooperação com o poder público, após lei municipal autorizativa};
-  \node[cel, below=of c2] (c3) {Alteração do contrato de consórcio; contratos de programa e de rateio; cessão de uso dos ativos};
-
-  \node[cel, fill=cGrayBg, below=of a3] (a4) {Associações de moradores que já operam sistemas no Paraná};
-  \node[cel, fill=cGrayBg, below=of b3] (b4) {SISAR (CE): 1,13 milhão de pessoas em 1.466 localidades; Centrais (BA)};
-  \node[cel, fill=cGrayBg, below=of c3] (c4) {CISPAR: 112 municípios consorciados no Paraná};
-
-  \node[rot] at ($(a1.west)+(-0.12,0)$) {Como funciona};
-  \node[rot] at ($(a2.west)+(-0.12,0)$) {Amparo legal};
-  \node[rot] at ($(a3.west)+(-0.12,0)$) {Instrumento};
-  \node[rot] at ($(a4.west)+(-0.12,0)$) {Referência};
-
-  \node[transversal=12.3cm, below=0.55cm of b4, font=\scriptsize] (r) {Em todas as alternativas: definição com a prefeitura
-    e a comunidade, abordagem participativa, tarifa com tarifa social e capacitação dos operadores};
-  \foreach \n in {a4, b4, c4} \draw[seta] (\n) -- (\n |- r.north);
-\end{tikzpicture}
-"""
-
-# ------------------------------------------------------------------ seleção e adesão, por responsável
-F["f-adesao"] = r"""
-\begin{tikzpicture}[passo/.style={etapa=2.25cm, minimum height=1.05cm, font=\scriptsize}]
-  \foreach \i/\t in {0/IAT, 1/Município, 2/Comunidade} {
-    \node[raia=15.35cm, minimum height=1.9cm] at (0,{-\i*1.95}) {};
-    \node[tituloraia] at (0.9,{-\i*1.95-0.95}) {\t};
-  }
-  \draw[cGrayLine] (1.8,0) -- (1.8,-5.8);
-  \node[passo] (p1) at (3.25,-0.95)  {Definição dos critérios de seleção};
-  \node[passo] (p2) at (5.95,-0.95)  {Seleção das áreas e das comunidades};
-  \node[passo] (p3) at (8.65,-0.95)  {Sensibilização das prefeituras};
-  \node[passo] (p6) at (14.05,-0.95) {Contato inicial com a comunidade};
-  \node[passo] (p4) at (8.65,-2.9)   {Adesão formal ao Programa};
-  \node[passo] (p5) at (11.35,-2.9)  {Termo de Cooperação com o IAT};
-  \node[passo] (p7) at (14.05,-4.85) {Pré-adesão da comunidade};
-  \draw[seta] (p1) -- (p2);
-  \draw[seta] (p2) -- (p3);
-  \draw[seta] (p3) -- (p4);
-  \draw[seta] (p4) -- (p5);
-  \draw[seta] (p5.north) |- (p6.west);
-  \draw[seta] (p6) -- (p7);
-  \node[rotulo, fill=none, below=2pt of p2] {lista preliminar};
-  \node[rotulo, fill=none, below=2pt of p5] {termo assinado};
-  \node[rotulo, fill=none, left=2pt of p7, align=right] {contratos de\\ pré-adesão};
-\end{tikzpicture}
-"""
-
-# ------------------------------------------------------------------ trabalho técnico-social
-F["f-tts"] = r"""
-\begin{tikzpicture}[node distance=0.36cm,
-    passo/.style={etapa=5.9cm, minimum height=0.9cm},
-    liga/.style={draw=cTeal!60, densely dotted, line width=0.7pt}]
-  \node[passo] (t1) {\textbf{Contratação da empresa}\\ {\scriptsize Termo de Referência, edital e licitação}};
-  \node[passo, below=of t1] (t2) {\textbf{Mobilização e sensibilização}\\ {\scriptsize municípios, comunidades, associações e proprietários}};
-  \node[passo, below=of t2] (t3) {\textbf{Busca ativa e cadastro domiciliar}\\ {\scriptsize visita a todos os domicílios, inclusive em áreas remotas}};
-  \node[passo, below=of t3] (t4) {\textbf{Diagnóstico coletivo e domiciliar}\\ {\scriptsize formas atuais de abastecimento e de esgotamento}};
-  \node[passo, below=of t4] (t5) {\textbf{Enquadramento das famílias}\\ {\scriptsize critérios sociais, territoriais e técnicos}};
-  \node[passo, below=of t5] (t6) {\textbf{Termos de adesão}\\ {\scriptsize compromisso com o uso e a manutenção}};
-  \node[passo, below=of t6] (t7) {\textbf{Educação sanitária e ambiental}\\ {\scriptsize lideranças capacitadas e acompanhamento das obras}};
-  \node[marco=5.9cm, below=of t7] (t8) {Relatório final e baixa no Termo de Cooperação};
-  \foreach \a/\b in {t1/t2,t2/t3,t3/t4,t4/t5,t5/t6,t6/t7,t7/t8}
-    \draw[seta] (\a) -- (\b);
-
-  \node[produto=3.1cm, right=0.75cm of t1] (q1) {Contrato assinado};
-  \node[produto=3.1cm, right=0.75cm of t2] (q2) {Atas e listas de presença};
-  \node[produto=3.1cm, right=0.75cm of t3] (q3) {Cadastro domiciliar georreferenciado};
-  \node[produto=3.1cm, right=0.75cm of t4] (q4) {Diagnóstico por comunidade e por domicílio};
-  \node[produto=3.1cm, right=0.75cm of t5] (q5) {Famílias a serem atendidas};
-  \node[produto=3.1cm, right=0.75cm of t6] (q6) {Termos de adesão assinados};
-  \node[produto=3.1cm, right=0.75cm of t7] (q7) {Listas de presença e certificados};
-  \node[produto=3.1cm, right=0.75cm of t8] (q8) {Relatório aprovado pelo IAT e pelo IDR-Paraná};
-  \foreach \a/\b in {t1/q1,t2/q2,t3/q3,t4/q4,t5/q5,t6/q6,t7/q7,t8/q8}
-    \draw[liga] (\a) -- (\b);
-
-  \node[externo=3.05cm, left=0.75cm of t4, font=\scriptsize] (u1) {Captação e projeto do sistema de água (Ação 3.2.2.3)};
-  \node[externo=3.05cm, left=0.75cm of t5, font=\scriptsize] (u2) {Esgotamento nas comunidades (Ação 3.2.2.5)};
-  \node[externo=3.05cm, left=0.75cm of t6, font=\scriptsize] (u3) {Associações e modelo de gestão (Ação 3.2.2.1)};
-  \draw[setatracejada] (t4) -- (u1);
-  \draw[setatracejada] (t5) -- (u2);
-  \draw[setatracejada] (t6) -- (u3);
-  \node[font=\scriptsize\bfseries, text=cTeal, above=0.08cm of q1] {Produtos};
-  \node[font=\scriptsize\bfseries, text=cGrayText, above=0.08cm of u1] {Quem usa o resultado};
-\end{tikzpicture}
-"""
+# ------------------------------------------------------------------ adesão dos municípios e das comunidades
+def f_adesao():
+    R = Raias([("IAT", "IAT", ALTO), ("MUN", "Municípios", 1.9), ("COM", "Comunidades", 1.5)])
+    R.no("ini", "inicio", "IAT", col(1), "Início", dy=CIMA)
+    R.ativ("c1", "IAT", 1, "Selecionar as comunidades", dy=BAIXO)
+    R.ativ("c2", "IAT", 2, "Sensibilizar as prefeituras", dy=BAIXO)
+    R.ativ("m1", "MUN", 2, "Aderir e assinar o Termo de Cooperação")
+    R.no("d", "decisao=1.3cm", "MUN", col(3) - 0.15, "Cede bens públicos?")
+    R.ativ("m2", "MUN", col(4) + 0.3, "Aprovar a lei autorizativa")
+    R.ativ("c4", "IAT", col(4) + 0.3, "Contatar a comunidade", dy=BAIXO)
+    R.ativ("k1", "COM", 5, "Assinar o contrato de pré-adesão")
+    R.no("fim", "inicio", "COM", col(6), "Fim")
+    R.seta("(ini) -- (c1)")
+    R.seta("(c1) -- (c2)")
+    R.seta("(c2) -- (m1)")
+    R.seta("(m1) -- (d)")
+    R.seta("(d) -- (m2)")
+    R.rot("($(d.east)!0.5!(m2.west)+(0,0.04)$)", "sim", "south")
+    R.seta("(d.north) |- (c4.west)")
+    R.rot("($(d.north)+(0.06,0.05)$)", "não")
+    R.seta("(m2) -- (c4)")
+    R.seta("(c4.east) -| (k1.north)")
+    R.seta("(k1) -- (fim)")
+    return R
 
 
+# ------------------------------------------------------------------ captação, projeto e licenciamento
+def f_captacao():
+    R = Raias([("DIS", "IAT (DISAR)", ALTO), ("LIC", "IAT (licenças e outorga)", 1.5),
+               ("LAB", "Laboratório", 1.45), ("EMP", "Empresa contratada", 1.45)])
+    R.no("ini", "inicio", "DIS", col(1), "Início", dy=CIMA)
+    R.ativ("a1", "DIS", 1, "Estudar as áreas e locar o poço", 1, dy=BAIXO)
+    R.ativ("b1", "LIC", 2, "Emitir a anuência de perfuração")
+    R.ativ("a3", "DIS", 3, "Perfurar o poço", 2, dy=BAIXO)
+    R.ativ("t1", "LAB", 3, "Testar a vazão e a qualidade da água")
+    R.no("d", "decisao=1.2cm", "DIS", col(4), "Poço viável?", dy=BAIXO)
+    R.ativ("b2", "LIC", 5, "Emitir a outorga de uso da água")
+    R.ativ("e1", "EMP", 5, "Elaborar os projetos e os estudos", 3)
+    R.ativ("b3", "LIC", 6, "Emitir as licenças")
+    R.ativ("a4", "DIS", 6, "Aprovar os projetos", dy=BAIXO)
+    R.no("fim", "inicio", "DIS", col(6), "Fim", dy=CIMA)
+    R.seta("(ini) -- (a1)")
+    R.seta("(a1.east) -| (b1.north)")
+    R.seta("(b1.east) -- ++(0.17,0) |- (a3.west)")
+    R.seta("(a3) -- (t1)")
+    R.seta("(t1.east) -| (d.south)")
+    yl = R.topo("DIS", 0.78)
+    R.seta(f"(d.north) |- ({col(1) + 0.72},{yl}) -- ($(a1.north)+(0.72,0)$)")
+    R.rot(f"({col(3)},{yl + 0.02})", "não: nova locação", "south")
+    R.seta("(d.east) -| (b2.north)")
+    R.rot("($(d.east)+(0.05,0.02)$)", "sim")
+    R.seta("(b2) -- (e1)")
+    R.seta("(e1.east) -| (b3.south)")
+    R.seta("(b3) -- (a4)")
+    R.seta("(a4) -- (fim)")
+    return R
+
+
+# ------------------------------------------------------------------ execução, supervisão e fiscalização das obras
+def f_obras():
+    R = Raias([("IAT", "IAT (fiscalização)", ALTO), ("EMP", "Empresa executora", 1.6),
+               ("SUP", "Supervisora", 1.45)])
+    R.no("ini", "inicio", "IAT", col(1), "Início", dy=CIMA)
+    R.ativ("o1", "IAT", 1, "Emitir a ordem de serviço", dy=BAIXO)
+    R.ativ("o2", "EMP", 2, "Executar a obra", 4)
+    R.ativ("o3", "SUP", 3, "Supervisionar e relatar")
+    R.ativ("o4", "IAT", 4, "Verificar a conformidade", dy=BAIXO)
+    R.no("d", "decisao=1.45cm", "IAT", col(5), "Conforme?", dy=BAIXO)
+    R.ativ("x1", "EMP", 5, "Corrigir as não conformidades", w=2.12)
+    R.no("doc", "documento=1.62cm", "IAT", col(6) + 0.12, r"Atesto, laudos e \textit{as built}", dy=BAIXO)
+    R.no("fim", "inicio", "IAT", col(6) + 0.12, "Fim", dy=CIMA)
+    R.seta("(ini) -- (o1)")
+    R.seta("(o1.east) -| (o2.north)")
+    R.seta("(o2.east) -| (o3.north)")
+    R.seta("(o3.east) -| (o4.south)")
+    R.seta("(o4) -- (d)")
+    R.seta("(d) -- (x1)")
+    R.rot("($(d.south)+(0.06,-0.04)$)", "não", "north west")
+    R.seta("(x1.west) -| ($(o4.south)+(0.55,0)$)")
+    R.seta("(d) -- (doc)")
+    R.rot("($(d.east)!0.5!(doc.west)+(0,0.04)$)", "sim", "south")
+    R.seta("(doc) -- (fim)")
+    return R
+
+
+# ------------------------------------------------------------------ transferência, operação e encerramento
+def f_entrega():
+    R = Raias([("EMP", "Empresa executora", ALTO), ("IAT", "IAT", ALTO), ("GES", "Entidade gestora", 1.5)])
+    R.no("ini", "inicio", "EMP", col(1), "Início", dy=CIMA)
+    R.ativ("e1", "EMP", 1, "Pré-operar e testar o sistema", dy=BAIXO)
+    R.ativ("e2", "EMP", 2, "Capacitar os operadores locais", dy=BAIXO)
+    R.ativ("i1", "IAT", 3, "Fazer a reunião de entrega", dy=BAIXO)
+    R.ativ("g1", "GES", 3, "Assinar o termo de aceite")
+    R.ativ("i2", "IAT", 4, "Emitir o TRD", dy=BAIXO)
+    R.ativ("g2", "GES", 5, "Operar e informar os dados")
+    R.no("s1", "sistema=1.5cm", "IAT", col(6), "SIGARH e GeoPR", dy=BAIXO)
+    R.no("fim", "inicio", "IAT", col(6), "Fim", dy=CIMA)
+    R.seta("(ini) -- (e1)")
+    R.seta("(e1) -- (e2)")
+    R.seta("(e2.east) -| (i1.north)")
+    R.seta("(i1) -- (g1)")
+    R.seta("(g1.east) -| (i2.south)")
+    R.seta("(i2.east) -| (g2.north)")
+    R.seta("(g2.east) -| (s1.south)")
+    R.rot("($(g2.east)!0.5!(g2.east -| s1.south)+(0,0.04)$)", r"dados\\ semestrais", "south")
+    R.seta("(s1) -- (fim)")
+    return R
+
+
+# ------------------------------------------------------------------ projeto, instalação e verificação técnica
+def f_instalacao():
+    R = Raias([("EMP", "Empresa contratada", ALTO), ("IAT", "IAT", ALTO), ("SUP", "Supervisora", 1.5)])
+    R.no("ini", "inicio", "EMP", col(1), "Início", dy=CIMA)
+    R.ativ("e1", "EMP", 1, "Elaborar o projeto individual", 3, dy=BAIXO)
+    R.ativ("i1", "IAT", 2, "Aprovar o projeto", dy=BAIXO)
+    R.ativ("e2", "EMP", 3, "Instalar a solução e orientar o proprietário", 4, dy=BAIXO)
+    R.ativ("s1", "SUP", 3, "Acompanhar a instalação")
+    R.ativ("i2", "IAT", 4, "Verificar o sistema", dy=BAIXO)
+    R.no("d", "decisao=1.45cm", "IAT", col(5), "Aprovado?", dy=BAIXO)
+    R.ativ("x1", "EMP", 5, "Corrigir as falhas", dy=BAIXO)
+    R.no("doc", "documento=1.62cm", "IAT", col(6) + 0.12, "Sistema validado e registrado", dy=BAIXO)
+    R.no("fim", "inicio", "IAT", col(6) + 0.12, "Fim", dy=CIMA)
+    R.seta("(ini) -- (e1)")
+    R.seta("(e1.south) |- (i1.west)")
+    R.seta("(i1.north) |- (e2.west)")
+    R.seta("(e2) -- (s1)")
+    R.seta("(s1.east) -| (i2.south)")
+    R.seta("(i2) -- (d)")
+    R.seta("(d) -- (x1)")
+    R.rot("($(d.north)+(0.06,0.04)$)", "não")
+    R.seta("(x1.west) -| (i2.north)")
+    R.seta("(d) -- (doc)")
+    R.rot("($(d.east)!0.5!(doc.west)+(0,0.04)$)", "sim", "south")
+    R.seta("(doc) -- (fim)")
+    return R
+
+
+# ------------------------------------------------------------------ medição, comprovação e pagamento
+def f_medicao():
+    R = Raias([("EMP", "Empresa contratada", ALTO), ("PRO", "Proprietário", 1.5), ("IAT", "IAT", ALTO)])
+    R.no("ini", "inicio", "EMP", col(1), "Início", dy=CIMA)
+    R.ativ("m1", "EMP", 1, "Medir e reunir as evidências", dy=BAIXO)
+    R.ativ("p1", "PRO", 2, "Assinar a confirmação da execução")
+    R.ativ("a1", "IAT", 3, "Auditar os documentos", dy=-BAIXO)
+    R.no("a2", atv(), "IAT", col(4), r"Verificar \textit{in loco}", dy=-BAIXO)
+    R.ativ("m3", "EMP", 5, "Consolidar a medição final do lote", dy=BAIXO)
+    R.ativ("a3", "IAT", 6, "Amostrar e pagar", dy=-BAIXO)
+    R.no("fim", "inicio", "IAT", col(6), "Fim", dy=-CIMA)
+    R.seta("(ini) -- (m1)")
+    R.seta("(m1.east) -| (p1.north)")
+    R.seta("(p1.east) -| (a1.north)")
+    R.seta("(a1) -- (a2)")
+    R.seta("(a2.east) -| (m3.south)")
+    R.seta("(m3.east) -| (a3.north)")
+    R.seta("(a3) -- (fim)")
+    return R
+
+
+# ------------------------------------------------------------------ ciclo mensal de supervisão
+def f_ciclo_supervisao():
+    R = Raias([("SUP", "Supervisora", ALTO), ("EXE", "Executor da obra", 1.6),
+               ("IAT", "IAT (fiscalização)", 1.9), ("UGP", "UGP", 1.5)])
+    R.no("ini", "inicio", "SUP", col(1), "Início", dy=CIMA)
+    R.ativ("s1", "SUP", 1, "Visitar as obras e controlar a qualidade", dy=BAIXO)
+    R.no("d1", "decisao=1.45cm", "SUP", col(2), "Conforme?", dy=BAIXO)
+    R.ativ("x1", "EXE", 2, "Corrigir a não conformidade")
+    R.ativ("s2", "SUP", col(3) + 0.18, "Verificar as medições", dy=BAIXO)
+    R.ativ("s3", "SUP", col(4) + 0.12, "Emitir o relatório mensal", dy=BAIXO)
+    R.ativ("i1", "IAT", col(4) + 0.12, "Aprovar o relatório")
+    R.ativ("u1", "UGP", col(4) + 0.12, "Consolidar o progresso físico")
+    R.no("d2", "decisao=1.45cm", "IAT", col(5), "Obra concluída?")
+    R.no("fim", "inicio", "IAT", col(6), "Fim")
+    R.seta("(ini) -- (s1)")
+    R.seta("(s1) -- (d1)")
+    R.seta("(d1) -- (x1)")
+    R.rot("($(d1.south)+(0.06,-0.04)$)", "não", "north west")
+    R.seta("(x1.west) -| (s1.south)")
+    R.seta("(d1) -- (s2)")
+    R.rot("($(d1.east)!0.5!(s2.west)+(0,0.04)$)", "sim", "south")
+    R.seta("(s2) -- (s3)")
+    R.seta("(s3) -- (i1)")
+    R.seta("(i1) -- (u1)")
+    R.seta("(u1.east) -| (d2.south)")
+    R.seta(f"(d2.north) |- ({col(1) + 0.72},{R.topo('SUP', 0.28)}) -- ($(s1.north)+(0.72,0)$)")
+    R.rot(f"({col(5) + 0.06},{R.topo('SUP', 0.28) + 0.02})", "não: próximo mês")
+    R.seta("(d2) -- (fim)")
+    R.rot("($(d2.east)!0.5!(fim.west)+(0,0.04)$)", "sim", "south")
+    return R
+
+
+for nome, fun in [("f-adesao", f_adesao), ("f-captacao", f_captacao), ("f-obras", f_obras),
+                  ("f-entrega", f_entrega), ("f-instalacao", f_instalacao), ("f-medicao", f_medicao),
+                  ("f-ciclo-supervisao", f_ciclo_supervisao)]:
+    F[nome] = fun().tikz()
+
+
+# ------------------------------------------------------------------ funis de seleção
 def funil(camadas, resultado, nota):
-    """Funil de critérios: camadas = [(texto, cor, cor_texto)], de cima para baixo."""
+    """Funil de critérios numerados; o resultado é um documento (produto)."""
     L = [r"\begin{tikzpicture}[x=1cm,y=1cm]"]
-    h, gap = 1.05, 0.09
-    w0, dw = 15.4, 1.45
+    h, gap = 0.95, 0.1
+    w0, dw = 15.2, 1.3
     y = 0.0
-    for i, (txt, cor, ct) in enumerate(camadas):
-        wt = w0 - i * (dw + 0.0)
+    for i, txt in enumerate(camadas):
+        wt = w0 - i * dw
         wb = wt - dw
-        L.append(rf"  \fill[{cor}] ({-wt/2},{y}) -- ({wt/2},{y}) -- ({wb/2},{y-h}) -- ({-wb/2},{y-h}) -- cycle;")
-        L.append(rf"  \node[text width={(wt+wb)/2-2.0:.2f}cm, align=center, font=\footnotesize, text={ct}] at (0,{y-h/2}) {{{txt}}};")
+        L.append(rf"  \filldraw[fill=cinza5, draw=cinza60, line width=0.7pt] ({-wt/2},{y}) -- ({wt/2},{y}) -- ({wb/2},{y-h}) -- ({-wb/2},{y-h}) -- cycle;")
+        L.append(rf"  \node[text width={(wt + wb) / 2 - 2.4:.2f}cm, align=center, font=\fonte{{8.5}}{{10}}] at (0,{y-h/2}) {{{txt}}};")
+        L.append(rf"  \node[numero] at ({-(wt + wb) / 4 + 0.55:.2f},{y-h/2}) {{{i + 1}}};")
         y -= h + gap
-    wb = w0 - len(camadas) * dw
-    L.append(rf"  \draw[seta] (0,{y+gap}) -- (0,{y-0.35});")
-    L.append(rf"  \node[marco=7.2cm, minimum height=1.05cm, anchor=north] at (0,{y-0.35}) {{{resultado}}};")
+    L.append(rf"  \draw[conector] (0,{y+gap}) -- (0,{y-0.4});")
+    L.append(rf"  \node[documento=6.8cm, minimum height=1.15cm, anchor=north, font=\fonte{{9}}{{11}}] at (0,{y-0.4}) {{{resultado}}};")
     if nota:
-        L.append(rf"  \node[font=\scriptsize\itshape, text=cGrayText, anchor=north, text width=12cm, align=center] at (0,{y-1.65}) {{{nota}}};")
+        L.append(rf"  \node[text=cinza80, anchor=north, text width=12cm, align=center] at (0,{y-1.75}) {{{nota}}};")
     L.append(r"\end{tikzpicture}")
     return "\n".join(L)
 
 
 F["f-selecao-comunidades"] = funil(
-    [("Comunidades rurais de todo o Paraná, nas Microrregiões de Água e Esgoto", "cTeal!10", "cText"),
-     (r"Comunidade ou conjunto de comunidades com 70 ou mais domicílios ocupados", "cTeal!22", "cText"),
-     (r"Município com IPDM de 0,4 a menos de 0,8 (médio baixo ou médio desempenho)", "cTeal!38", "cText"),
-     (r"Pedido do município ao IAT ou associação com sistema a complementar", "cTeal!62", "white"),
-     (r"Sem impedimento à perfuração: aquífero, geologia, qualidade da água e restrições legais", "cTeal!88", "white")],
-    r"Seleção preliminar: 83 comunidades\\ \normalfont\scriptsize 5.810 domicílios, cerca de 16,3 mil pessoas",
-    r"A lista final é confirmada pelo trabalho técnico-social (Ação 3.2.2.2) e pela viabilidade do poço (Etapa 2).")
+    ["Comunidades rurais de todo o Paraná, nas Microrregiões de Água e Esgoto",
+     "Comunidade ou conjunto de comunidades com 70 ou mais domicílios ocupados",
+     "Município com IPDM de 0,4 a menos de 0,8 (médio baixo ou médio desempenho)",
+     "Pedido do município ao IAT ou associação com sistema a complementar",
+     "Sem impedimento à perfuração: aquífero, geologia, qualidade da água e restrições legais"],
+    r"\textbf{Seleção preliminar: 83 comunidades}\\ \fonte{8}{9.4}5.810 domicílios, cerca de 16,3 mil pessoas",
+    r"A lista final é confirmada pelo trabalho técnico-social (Ação 3.2.2.2) e pela viabilidade do poço (Etapa 2 da Ação 3.2.2.3).")
 
 F["f-selecao-mananciais"] = funil(
-    [("Microbacias prioritárias do PSH-PR", "cTeal!10", "cText"),
-     (r"Mananciais de abastecimento público selecionados por critério quali-quantitativo", "cTeal!22", "cText"),
-     (r"Domicílios rurais permanentes ocupados (Censo 2022 e CNEFE)", "cTeal!38", "cText"),
-     (r"Domicílios sem destinação adequada do esgoto", "cTeal!62", "white"),
-     (r"Propriedade com diagnóstico e adesão ao PSH-PR e ao IDR-Paraná", "cTeal!88", "white")],
-    r"2.236 domicílios em nove mananciais\\ \normalfont\scriptsize 2.300 adotados para o dimensionamento",
+    ["Microbacias prioritárias do PSH-PR",
+     "Mananciais de abastecimento público selecionados por critério quali-quantitativo",
+     "Domicílios rurais permanentes ocupados (Censo 2022 e CNEFE)",
+     "Domicílios sem destinação adequada do esgoto",
+     "Propriedade com diagnóstico e adesão ao PSH-PR e às ações do IDR-Paraná"],
+    r"\textbf{2.236 domicílios em nove mananciais}\\ \fonte{8}{9.4}2.300 adotados para o dimensionamento",
     r"O arredondamento absorve as incertezas das bases, as variações cadastrais e as demandas futuras.")
+
 
 # ------------------------------------------------------------------ esquema do sistema coletivo de água
 F["f-esquema-saa"] = r"""
 \begin{tikzpicture}[x=1cm,y=1cm,
-   num/.style={circle, fill=cNavy, text=white, font=\scriptsize\bfseries, inner sep=1.2pt, minimum size=0.42cm}]
+   num/.style={circle, fill=petroleo, text=white, font=\fonte{8}{9}\bfseries, inner sep=0pt,
+     minimum size=0.44cm},
+   traco/.style={draw=petroleo, line width=0.8pt},
+   cano/.style={draw=petroleo, line width=2pt},
+   nota/.style={font=\fonte{7.5}{8.8}, text=cinza80}]
   % solo e aquífero
-  \fill[cAmberBg] (0,0) rectangle (15.6,-3.5);
-  \fill[cBlueBg] (0,-2.35) rectangle (15.6,-3.5);
-  \fill[pattern=dots, pattern color=cBlue!45] (0,-2.35) rectangle (15.6,-3.5);
-  \node[font=\scriptsize\itshape, text=cBlue, anchor=west] at (2.3,-2.95) {aquífero (água subterrânea)};
-  \node[font=\scriptsize\itshape, text=cAmber, anchor=west] at (2.3,-1.3) {solo e rocha};
-  \draw[cGreen, line width=1.4pt] (0,0) -- (15.6,0);
+  \fill[cinza5] (0,0) rectangle (15.6,-3.5);
+  \fill[petroleo12] (0,-2.35) rectangle (15.6,-3.5);
+  \fill[pattern=dots, pattern color=petroleo!60] (0,-2.35) rectangle (15.6,-3.5);
+  \draw[cinza60, line width=0.5pt] (0,-2.35) -- (15.6,-2.35);
+  \node[nota, anchor=west, fill=petroleo12, inner sep=1.5pt] at (2.3,-2.95) {aquífero (água subterrânea)};
+  \node[nota, anchor=west] at (2.3,-1.3) {solo e rocha};
+  \draw[cinza60, line width=1.2pt] (0,0) -- (15.6,0);
   % poço
   \fill[white] (1.25,0.3) rectangle (1.75,-3.1);
-  \draw[cNavy, line width=0.7pt] (1.25,0.3) -- (1.25,-3.1) -- (1.75,-3.1) -- (1.75,0.3);
-  \draw[cNavy, line width=0.6pt, dash pattern=on 2pt off 1.5pt] (1.25,-2.45) -- (1.25,-3.05);
-  \draw[cNavy, line width=0.6pt, dash pattern=on 2pt off 1.5pt] (1.75,-2.45) -- (1.75,-3.05);
-  \fill[cBlue!35] (1.27,-1.9) rectangle (1.73,-3.08);
-  \fill[cNavy] (1.36,-2.9) rectangle (1.64,-2.45);
-  \draw[cNavy, line width=1pt] (1.5,-2.45) -- (1.5,0.3);
-  \fill[cNavy] (1.1,0.3) rectangle (1.9,0.55);
+  \draw[traco] (1.25,0.3) -- (1.25,-3.1) -- (1.75,-3.1) -- (1.75,0.3);
+  \draw[traco, dash pattern=on 2pt off 1.5pt] (1.25,-2.45) -- (1.25,-3.05);
+  \draw[traco, dash pattern=on 2pt off 1.5pt] (1.75,-2.45) -- (1.75,-3.05);
+  \fill[petroleo12] (1.27,-1.9) rectangle (1.73,-3.08);
+  \filldraw[traco, fill=white] (1.36,-2.9) rectangle (1.64,-2.45);
+  \draw[traco] (1.5,-2.45) -- (1.5,0.3);
+  \filldraw[traco, fill=white] (1.1,0.3) rectangle (1.9,0.55);
   \node[num] at (0.65,0.85) {1};
   % adutora até a casa química
-  \draw[cBlue, line width=2.2pt] (1.9,0.42) -- (3.7,0.42);
+  \draw[cano] (1.9,0.42) -- (3.7,0.42);
   % casa química
-  \fill[white] (3.7,0) rectangle (5.6,1.35);
-  \draw[cNavy, line width=0.7pt] (3.7,0) rectangle (5.6,1.35);
-  \fill[cNavy] (3.55,1.35) -- (4.65,1.95) -- (5.75,1.35) -- cycle;
-  \node[font=\tiny, align=center] at (4.65,0.68) {cloração\\ e controle};
+  \filldraw[traco, fill=white] (3.7,0) rectangle (5.6,1.35);
+  \filldraw[traco, fill=white] (3.55,1.35) -- (4.65,1.95) -- (5.75,1.35) -- cycle;
+  \node[nota, align=center] at (4.65,0.68) {cloração\\ e controle};
   \node[num] at (4.65,2.35) {2};
   % ligação ao reservatório
-  \draw[cBlue, line width=2.2pt] (5.6,0.42) -- (7.05,0.42) -- (7.05,2.75) -- (7.4,2.75);
+  \draw[cano] (5.6,0.42) -- (7.05,0.42) -- (7.05,2.75) -- (7.4,2.75);
   % reservatório elevado
-  \draw[cNavy, line width=0.9pt] (7.6,0) -- (7.75,2.2);
-  \draw[cNavy, line width=0.9pt] (9.0,0) -- (8.85,2.2);
-  \draw[cNavy, line width=0.5pt] (7.68,1.1) -- (8.92,1.1);
-  \fill[cBlueBg] (7.4,2.2) rectangle (9.2,3.05);
-  \draw[cNavy, line width=0.8pt] (7.4,2.2) rectangle (9.2,3.6);
-  \draw[cBlue, line width=0.5pt] (7.4,3.05) -- (9.2,3.05);
+  \draw[traco] (7.6,0) -- (7.75,2.2);
+  \draw[traco] (9.0,0) -- (8.85,2.2);
+  \draw[traco, line width=0.5pt] (7.68,1.1) -- (8.92,1.1);
+  \fill[petroleo12] (7.4,2.2) rectangle (9.2,3.05);
+  \draw[traco] (7.4,2.2) rectangle (9.2,3.6);
+  \draw[traco, line width=0.5pt] (7.4,3.05) -- (9.2,3.05);
   \node[num] at (8.3,4.0) {3};
   % rede de distribuição
-  \draw[cBlue, line width=1.8pt] (8.3,2.2) -- (8.3,-0.4) -- (14.9,-0.4);
-  \node[num] at (9.6,-0.85) {4};
-  % casas com hidrômetro
+  \draw[cano, line width=1.6pt] (8.3,2.2) -- (8.3,-0.4) -- (14.9,-0.4);
+  \node[num] at (8.75,-0.8) {4};
+  % domicílios com hidrômetro
   \foreach \x in {10.9, 12.65, 14.4} {
-    \draw[cBlue, line width=1.1pt] (\x-0.75,-0.4) -- (\x-0.75,0.15) -- (\x-0.45,0.15);
-    \node[circle, draw=cNavy, fill=white, line width=0.6pt, inner sep=1.4pt] at (\x-0.75,0.15) {};
-    \fill[white] (\x-0.45,0) rectangle (\x+0.45,0.8);
-    \draw[cNavy, line width=0.7pt] (\x-0.45,0) rectangle (\x+0.45,0.8);
-    \fill[cTeal] (\x-0.6,0.8) -- (\x,1.25) -- (\x+0.6,0.8) -- cycle;
-    \fill[cBlueBg] (\x-0.15,0) rectangle (\x+0.15,0.45);
+    \draw[traco, line width=1.1pt] (\x-0.75,-0.4) -- (\x-0.75,0.15) -- (\x-0.45,0.15);
+    \node[circle, draw=petroleo, fill=white, line width=0.7pt, inner sep=1.4pt] at (\x-0.75,0.15) {};
+    \filldraw[traco, fill=white] (\x-0.45,0) rectangle (\x+0.45,0.8);
+    \filldraw[traco, fill=white] (\x-0.6,0.8) -- (\x,1.25) -- (\x+0.6,0.8) -- cycle;
+    \draw[traco, line width=0.6pt] (\x-0.15,0) rectangle (\x+0.15,0.45);
   }
   \node[num] at (10.15,0.75) {5};
   \node[num] at (15.25,0.55) {6};
   % legenda
-  \begin{scope}[shift={(10.0,4.3)}]
-    \node[anchor=north west, align=left, font=\scriptsize, text width=5.5cm, inner sep=0pt] at (0,0) {
-      \textbf{1} Poço tubular profundo com bomba submersa\\[1pt]
-      \textbf{2} Casa química: cloração da água\\[1pt]
-      \textbf{3} Reservatório\\[1pt]
-      \textbf{4} Rede de distribuição\\[1pt]
-      \textbf{5} Ligação domiciliar com hidrômetro\\[1pt]
-      \textbf{6} Domicílio atendido};
+  \begin{scope}[shift={(9.55,4.35)}]
+    \foreach \n/\t [count=\k from 0] in {1/Poço tubular profundo com bomba submersa,
+        2/{Casa química: cloração da água}, 3/Reservatório, 4/Rede de distribuição,
+        5/Ligação domiciliar com hidrômetro, 6/Domicílio atendido} {
+      \node[num, minimum size=0.36cm, font=\fonte{7}{8}\bfseries] at (0.18,{-0.2-\k*0.42}) {\n};
+      \node[anchor=west, font=\fonte{8}{9.4}] at (0.42,{-0.2-\k*0.42}) {\t};
+    }
   \end{scope}
   % anotações
-  \node[font=\tiny\itshape, text=cGrayText, align=left, anchor=west] at (1.95,-0.55) {outorga de uso e análises\\ físico-químicas e bacteriológicas};
-  \node[font=\tiny\itshape, text=cGrayText, align=center] at (12.65,-0.85) {operação e manutenção pela entidade gestora};
-\end{tikzpicture}
-"""
-
-# ------------------------------------------------------------------ captação, projeto e licenciamento
-F["f-captacao"] = r"""
-\begin{tikzpicture}[node distance=0.32cm,
-    passo/.style={etapa=5.35cm, minimum height=0.82cm, font=\scriptsize}]
-  \node[cab=5.35cm, fill=cTeal] (h1) at (0,0) {Captação subterrânea (Etapas 1 e 2)};
-  \node[passo, below=0.3cm of h1] (c1) {Estudos preliminares: viabilidade, titularidade e situação fundiária das áreas};
-  \node[passo, below=of c1] (c2) {Estudos geológicos e hidrogeológicos; locação e projeto construtivo do poço};
-  \node[passo, below=of c2] (c3) {Anuência prévia de perfuração};
-  \node[passo, below=of c3] (c4) {Perfuração do poço};
-  \node[passo, below=of c4] (c5) {Teste de vazão e análises físico-químicas e bacteriológicas};
-  \node[decisao, text width=1.9cm, below=0.4cm of c5] (d1) {Vazão e qualidade suficientes?};
-  \node[correcao=2.4cm, left=0.55cm of d1] (k1) {Nova locação ou substituição da comunidade};
-  \node[passo, below=0.4cm of d1] (c6) {Estudos ambientais e sociais e outorga de direito de uso da água};
-
-  \node[cab=5.35cm, fill=cNavy] (h2) at (7.6,0) {Projeto e licenciamento (Etapa 3)};
-  \node[passo] (p1) at (h2 |- c1) {Anteprojeto da solução de tratamento e de reservação};
-  \node[passo] (p2) at (h2 |- c2) {Contratação integrada (projetos executivos e obras)};
-  \node[passo] (p3) at (h2 |- c3) {Projeto básico: casa química, reservatório, eletromecânica e rede};
-  \node[passo] (p4) at (h2 |- c4) {Projeto executivo};
-  \node[passo] (p5) at (h2 |- c5) {Aprovação dos projetos pelo IAT};
-  \node[passo] (p6) at (h2 |- c6) {Estudos ambientais e sociais e obtenção das licenças};
-
-  \coordinate (meio) at ($(c6.south)!0.5!(p6.south)$);
-  \node[marco=12.6cm, below=0.6cm of meio] (obra) {Execução das obras (Etapa 4), somente com outorga e licenças obtidas};
-
-  \foreach \a/\b in {c1/c2,c2/c3,c3/c4,c4/c5,c5/d1,p1/p2,p2/p3,p3/p4,p4/p5,p5/p6}
-    \draw[seta] (\a) -- (\b);
-  \draw[seta] (d1) -- node[rotulo, right] {Sim} (c6);
-  \draw[seta] (d1) -- node[rotulo, above] {Não} (k1);
-  \draw[seta] (k1.north) |- (c2.west);
-  \draw[seta] (c5.east) -- ++(0.55,0) |- (p1.west);
-  \node[rotate=90, font=\tiny\itshape, text=cGrayText, anchor=south] at ($(c5.east)+(0.53,1.75)$) {vazão e qualidade orientam o projeto};
-  \draw[seta] (c6.south) -- (c6.south |- obra.north);
-  \draw[seta] (p6.south) -- (p6.south |- obra.north);
-\end{tikzpicture}
-"""
-
-# ------------------------------------------------------------------ execução das obras, por responsável
-F["f-obras"] = r"""
-\begin{tikzpicture}[passo/.style={etapa=2.15cm, minimum height=1.05cm, font=\scriptsize}]
-  \foreach \i/\t in {0/Executor da obra, 1/Supervisora (Ação 3.2.2.7), 2/Fiscalização do IAT} {
-    \node[raia=15.35cm, minimum height=1.9cm] at (0,{-\i*1.95}) {};
-    \node[tituloraia] at (0.9,{-\i*1.95-0.95}) {\t};
-  }
-  \draw[cGrayLine] (1.8,0) -- (1.8,-5.8);
-  \node[passo] (o1) at (3.2,-4.85)  {Ordem de serviço e designação do fiscal};
-  \node[passo] (o2) at (5.75,-0.95) {Execução da obra conforme o projeto};
-  \node[passo] (o3) at (5.75,-2.9)  {Acompanhamento e relatório mensal};
-  \node[passo] (o4) at (8.4,-4.85)  {Verificação e relatório de fiscalização};
-  \node[decisao, text width=1.35cm] (d) at (11.2,-4.85) {Conforme projeto e normas?};
-  \node[correcao=2.15cm] (o5) at (11.2,-0.95) {Correção das não conformidades};
-  \node[marco=2.15cm, minimum height=1.05cm, font=\scriptsize\bfseries] (o7) at (14.3,-4.85) {Atesto de recebimento, laudos e \textit{as built}};
-  \draw[seta] (o1) |- (o2);
-  \draw[seta] (o2) -- (o3);
-  \draw[seta] (o3.south) |- (o4.west);
-  \draw[seta] (o4) -- (d);
-  \draw[seta] (d) -- node[rotulo, right] {Não} (o5);
-  \draw[seta] (o5.west) -| (o4.north);
-  \draw[seta] (d) -- node[rotulo, above] {Sim} (o7);
-\end{tikzpicture}
-"""
-
-# ------------------------------------------------------------------ pré-operação, entrega e operação
-F["f-entrega"] = r"""
-\begin{tikzpicture}[node distance=0.1cm,
-    ida/.style={fase=2.95cm, font=\scriptsize\bfseries},
-    volta/.style={fase=2.95cm, signal to=west, signal from=east, fill=cBlueBg, draw=cBlue, font=\scriptsize\bfseries}]
-  \node[ida] (e1) {Pré-operação\\ e testes};
-  \node[ida, right=of e1] (e2) {Capacitação dos\\ operadores locais};
-  \node[ida, right=of e2] (e3) {Reunião técnica\\ de entrega};
-  \node[ida, right=of e3] (e4) {Aceite da\\ entidade gestora};
-  \node[volta, below=1.2cm of e4] (e5) {Operação pela\\ entidade gestora};
-  \node[volta, left=of e5] (e6) {Suporte técnico\\ pós-implantação};
-  \node[volta, left=of e6] (e7) {Avaliação semestral\\ de desempenho};
-  \node[volta, fill=cNavy, draw=cNavy, text=white, left=of e7] (e8) {TRD e encerramento\\ do Termo de Cooperação};
-  \draw[seta] (e4.south) -- (e5.north);
-  \node[produto=2.9cm, above=0.25cm of e1] {laudos e testes de funcionamento};
-  \node[produto=2.9cm, above=0.25cm of e2] {listas de presença e certificados};
-  \node[produto=2.9cm, above=0.25cm of e4] {termo de aceite assinado};
-  \node[produto=2.9cm, below=0.25cm of e7] {relatórios no SIGARH e no GeoPR};
-  \node[produto=2.9cm, below=0.25cm of e8] {relatório final e prestação de contas};
-  \node[font=\scriptsize\bfseries, text=cTeal, anchor=south west] at ($(e3.north west)+(0,0.3)$) {Transferência do sistema};
-  \node[font=\scriptsize\bfseries, text=cBlue, anchor=north west] at ($(e5.south west)+(0,-0.3)$) {Operação e encerramento};
-\end{tikzpicture}
-"""
-
-# ------------------------------------------------------------------ Programa Sanepar Rural, por responsável
-F["f-sanepar"] = r"""
-\begin{tikzpicture}[passo/.style={etapa=2.25cm, minimum height=1.05cm, font=\scriptsize},
-    passos/.style={draw=cBlue, fill=cBlueBg, rounded corners=2pt, align=center, inner sep=3.5pt,
-      minimum height=1.05cm, text width=2.25cm, font=\scriptsize, line width=0.6pt}]
-  \foreach \i/\t in {0/Sanepar, 1/Município, 2/Comunidade} {
-    \node[raia=15.35cm, minimum height=1.9cm] at (0,{-\i*1.95}) {};
-    \node[tituloraia] at (0.9,{-\i*1.95-0.95}) {\t};
-  }
-  \draw[cGrayLine] (1.8,0) -- (1.8,-5.8);
-  \node[passos] (s1) at (3.25,-0.95)  {Levantamento e estudo técnico de engenharia};
-  \node[passos] (s3) at (5.95,-0.95)  {Projeto de engenharia do sistema};
-  \node[passos] (s4) at (8.65,-0.95)  {Fornecimento de materiais hidráulicos};
-  \node[passos] (s8) at (14.05,-0.95) {Monitoramento e suporte pós-obra};
-  \node[passo] (s2) at (3.25,-2.9)    {Termo de Compromisso e Responsabilidade};
-  \node[passo] (s5) at (8.65,-2.9)    {Execução das obras, com apoio técnico da Sanepar};
-  \node[passo] (s6) at (11.35,-4.85)  {Formação da associação de moradores};
-  \node[passo] (s7) at (14.05,-4.85)  {Treinamento e educação ambiental};
-  \draw[seta] (s1) -- (s2);
-  \draw[seta] (s2.east) -| (s3.south);
-  \draw[seta] (s3) -- (s4);
-  \draw[seta] (s4) -- (s5);
-  \draw[seta] (s5.south) |- (s6.west);
-  \draw[seta] (s6) -- (s7);
-  \draw[seta] (s7) -- (s8);
+  \node[nota, align=left, anchor=west] at (1.95,-0.6) {outorga de uso e análises\\ físico-químicas e bacteriológicas};
+  \node[nota, align=center] at (12.55,-1.05) {operação e manutenção pela entidade gestora};
 \end{tikzpicture}
 """
 
 # ------------------------------------------------------------------ esquema da solução individual de esgoto
 F["f-esquema-esgoto"] = r"""
 \begin{tikzpicture}[x=1cm,y=1cm,
-   num/.style={circle, fill=cNavy, text=white, font=\scriptsize\bfseries, inner sep=1.2pt, minimum size=0.42cm}]
-  \fill[cAmberBg] (0,0) rectangle (15.6,-2.9);
-  \draw[cGreen, line width=1.4pt] (0,0) -- (15.6,0);
-  % casa
-  \fill[white] (0.3,0) rectangle (2.1,1.3);
-  \draw[cNavy, line width=0.7pt] (0.3,0) rectangle (2.1,1.3);
-  \fill[cTeal] (0.1,1.3) -- (1.2,2.0) -- (2.3,1.3) -- cycle;
-  \fill[cBlueBg] (0.95,0) rectangle (1.45,0.75);
+   num/.style={circle, fill=petroleo, text=white, font=\fonte{8}{9}\bfseries, inner sep=0pt,
+     minimum size=0.44cm},
+   traco/.style={draw=petroleo, line width=0.8pt},
+   cano/.style={draw=cinza60, line width=2pt},
+   nota/.style={font=\fonte{7.5}{8.8}, text=cinza80}]
+  \fill[cinza5] (0,0) rectangle (15.6,-2.9);
+  \draw[cinza60, line width=1.2pt] (0,0) -- (15.6,0);
+  % domicílio
+  \filldraw[traco, fill=white] (0.3,0) rectangle (2.1,1.3);
+  \filldraw[traco, fill=white] (0.1,1.3) -- (1.2,2.0) -- (2.3,1.3) -- cycle;
+  \draw[traco, line width=0.6pt] (0.95,0) rectangle (1.45,0.75);
   \node[num] at (1.2,2.45) {1};
   % tubulação
-  \draw[cGrayText, line width=2pt] (1.6,-0.45) -- (2.95,-0.45);
+  \draw[cano] (1.6,-0.45) -- (2.95,-0.45);
   % caixa de inspeção
   \fill[white] (2.95,-0.15) rectangle (3.55,-0.85);
-  \draw[cNavy, line width=0.7pt] (2.95,0) -- (2.95,-0.85) -- (3.55,-0.85) -- (3.55,0);
+  \draw[traco] (2.95,0) -- (2.95,-0.85) -- (3.55,-0.85) -- (3.55,0);
   \node[num] at (3.25,0.5) {2};
-  \draw[cGrayText, line width=2pt] (3.55,-0.45) -- (4.3,-0.45);
+  \draw[cano] (3.55,-0.45) -- (4.3,-0.45);
   % tanque séptico com duas câmaras
   \fill[white] (4.3,-0.1) rectangle (7.3,-2.0);
-  \fill[cAmber!35] (4.32,-1.6) rectangle (7.28,-1.98);
-  \fill[cBlue!15] (4.32,-0.6) rectangle (7.28,-1.6);
-  \draw[cNavy, line width=0.8pt] (4.3,0) -- (4.3,-2.0) -- (7.3,-2.0) -- (7.3,0);
-  \draw[cNavy, line width=0.7pt] (5.9,-0.1) -- (5.9,-1.5);
-  \node[font=\tiny, text=cAmber] at (5.8,-1.79) {lodo};
+  \fill[petroleo12] (4.32,-0.6) rectangle (7.28,-1.6);
+  \fill[pattern=north east lines, pattern color=petroleo!70] (4.32,-1.6) rectangle (7.28,-1.98);
+  \draw[traco] (4.3,0) -- (4.3,-2.0) -- (7.3,-2.0) -- (7.3,0);
+  \draw[traco, line width=0.7pt] (5.9,-0.1) -- (5.9,-1.5);
+  \node[nota, fill=white, inner sep=1pt] at (6.6,-1.79) {lodo};
   \node[num] at (5.8,0.5) {3};
-  \draw[cGrayText, line width=2pt] (7.3,-0.5) -- (8.05,-0.5);
+  \draw[cano] (7.3,-0.5) -- (8.05,-0.5);
   % filtro anaeróbio
   \fill[white] (8.05,-0.1) rectangle (10.05,-2.0);
-  \fill[pattern=crosshatch dots, pattern color=cGrayText] (8.07,-0.8) rectangle (10.03,-1.75);
-  \draw[cNavy, line width=0.8pt] (8.05,0) -- (8.05,-2.0) -- (10.05,-2.0) -- (10.05,0);
+  \fill[pattern=crosshatch dots, pattern color=petroleo] (8.07,-0.8) rectangle (10.03,-1.75);
+  \draw[traco] (8.05,0) -- (8.05,-2.0) -- (10.05,-2.0) -- (10.05,0);
   \node[num] at (9.05,0.5) {4};
-  \draw[cGrayText, line width=2pt] (10.05,-0.55) -- (11.0,-0.55);
+  \draw[cano] (10.05,-0.55) -- (11.0,-0.55);
   % disposição final no solo
-  \draw[cNavy, line width=0.6pt] (11.0,-0.3) -- (11.0,-1.0) -- (15.1,-1.0) -- (15.1,-0.3);
-  \draw[cGrayText, line width=2pt, dash pattern=on 4pt off 2pt] (11.0,-0.55) -- (15.0,-0.55);
+  \draw[traco, line width=0.6pt] (11.0,-0.3) -- (11.0,-1.0) -- (15.1,-1.0) -- (15.1,-0.3);
+  \draw[cano, dash pattern=on 4pt off 2pt] (11.0,-0.55) -- (15.0,-0.55);
   \foreach \x in {11.5,12.3,13.1,13.9,14.7}
-    \draw[-{Stealth[length=1.6mm]}, cBlue, decorate, decoration={snake, amplitude=0.6pt, segment length=4pt}] (\x,-1.05) -- (\x,-1.9);
+    \draw[-{Latex[length=1.6mm]}, draw=petroleo, line width=0.7pt] (\x,-1.05) -- (\x,-1.85);
   \node[num] at (13.05,0.5) {5};
   % legenda
-  \node[anchor=north west, align=left, font=\scriptsize, text width=15.4cm, inner sep=0pt] at (0.1,-3.15) {
-    \textbf{1} Domicílio \qquad \textbf{2} Caixa de inspeção \qquad
-    \textbf{3} Tanque séptico, com remoção periódica do lodo\\[2pt]
-    \textbf{4} Filtro anaeróbio \qquad
-    \textbf{5} Disposição final no solo (vala de infiltração ou sumidouro)};
-  \node[transversal=14.8cm, anchor=north, font=\scriptsize] at (7.8,-4.25) {Exemplo ilustrativo. A solução de cada domicílio é definida no projeto individual,
-    conforme a ABNT NBR 17076:2024, as condições do terreno e o número de moradores.};
-\end{tikzpicture}
-"""
-
-# ------------------------------------------------------------------ instalação e verificação técnica
-F["f-instalacao"] = r"""
-\begin{tikzpicture}[node distance=0.42cm]
-  \node[etapa=4.6cm] (proj) {\textbf{Projeto individual do domicílio}\\
-    {\scriptsize terreno, número de moradores e solução de tratamento}};
-  \node[etapa=4.6cm, below=of proj] (inst) {\textbf{Instalação da solução}\\ {\scriptsize obras civis e dispositivos}};
-  \node[etapa=4.6cm, below=of inst] (atest) {\textbf{Verificação técnica}\\ {\scriptsize funcionamento, estanqueidade e garantia}};
-  \node[decisao, text width=1.7cm, below=0.5cm of atest] (dec) {Atende aos requisitos?};
-  \node[correcao=3.0cm, left=1.0cm of dec] (corr) {Correções técnicas pela empresa};
-  \node[marco=4.6cm, below=0.55cm of dec] (reg) {Sistema validado e registrado};
-  \node[etapa=4.2cm, fill=cGreenBg, draw=cGreen, right=2.1cm of inst] (cap) {\textbf{Orientação do proprietário}\\
-    {\scriptsize funcionamento, uso adequado, manutenção preventiva e lodo}};
-  \draw[seta] (proj) -- (inst);
-  \draw[seta] (inst) -- (atest);
-  \draw[seta] (atest) -- (dec);
-  \draw[seta] (dec) -- node[rotulo, above] {Não} (corr);
-  \draw[seta] (corr) |- (atest.west);
-  \draw[seta] (dec) -- node[rotulo, right] {Sim} (reg);
-  \draw[setatracejada, <->] (inst) -- node[rotulo, above=1pt, font=\tiny\itshape] {ao mesmo tempo} (cap);
-  \draw[seta] (cap.south) |- (reg.east);
-\end{tikzpicture}
-"""
-
-# ------------------------------------------------------------------ medição, comprovação e pagamento
-F["f-medicao"] = r"""
-\begin{tikzpicture}[passo/.style={etapa=4.25cm, minimum height=0.82cm, font=\scriptsize}]
-  \def\alt{12.0cm}
-  \node[raia=4.95cm, minimum height=\alt] at (0,0)     {};
-  \node[raia=4.95cm, minimum height=\alt] at (5.25,0)  {};
-  \node[raia=4.95cm, minimum height=\alt] at (10.5,0)  {};
-  \node[font=\scriptsize\bfseries, text=cNavy] at (2.475,-0.35)  {Empresa contratada};
-  \node[font=\scriptsize\bfseries, text=cNavy] at (7.725,-0.35)  {Proprietário (beneficiário)};
-  \node[font=\scriptsize\bfseries, text=cNavy] at (12.975,-0.35) {IAT (fiscalização e validação)};
-  \node[passo] (m1) at (2.475,-1.2)   {Relatório de medição do projeto e da instalação};
-  \node[passo] (m2) at (2.475,-2.45)  {Comprovação: documentos e evidências da intervenção};
-  \node[passo] (m3) at (7.725,-3.7)   {Assinatura que confirma a execução das melhorias};
-  \node[passo] (m4) at (12.975,-4.95) {Auditoria documental};
-  \node[passo] (m5) at (12.975,-6.2)  {Verificação \textit{in loco} das intervenções};
-  \node[passo] (m6) at (2.475,-7.45)  {Relatório de medição final do lote};
-  \node[passo] (m7) at (12.975,-8.7)  {Amostragem \textit{in loco} da qualidade das unidades};
-  \node[passo] (m8) at (12.975,-9.95) {Ordenação das despesas e pagamento};
-  \node[marco=4.25cm, minimum height=0.82cm] (m9) at (7.725,-11.25) {Finalização do lote};
-  \draw[seta] (m1) -- (m2);
-  \draw[seta] (m2) |- (m3);
-  \draw[seta] (m3) -| (m4);
-  \draw[seta] (m4) -- (m5);
-  \draw[seta] (m5) -| (m6);
-  \draw[seta] (m6) |- (m7);
-  \draw[seta] (m7) -- (m8);
-  \draw[seta] (m8) |- (m9);
-\end{tikzpicture}
-"""
-
-# ------------------------------------------------------------------ ciclo mensal de supervisão
-F["f-ciclo-supervisao"] = r"""
-\begin{tikzpicture}[
-   passo/.style={etapa=3.3cm, minimum height=1.0cm, font=\scriptsize},
-   circ/.style={-{Stealth[length=2.2mm]}, line width=1pt, draw=cTeal}]
-  \node[marco=3.0cm, minimum height=1.5cm, font=\footnotesize\bfseries] (c) at (0,0) {Obras de água e de esgoto\\
-    {\normalfont\scriptsize Ações 3.2.2.3, 3.2.2.5 e 3.2.2.6}};
-  \foreach \i/\t in {
-     1/{\textbf{Plano de supervisão} aprovado pelo IAT},
-     2/{\textbf{Visitas de campo} e controle de qualidade},
-     3/{\textbf{Registro de não conformidades}, inclusive ambientais e sociais},
-     4/{\textbf{Correção} pelo executor e nova verificação},
-     5/{\textbf{Verificação das medições} executadas},
-     6/{\textbf{Relatório mensal} ao IAT e à UGP}} {
-    \node[passo] (n\i) at ({90-(\i-1)*60}:3.55cm) {\t};
-  }
-  \foreach \a/\b in {1/2,2/3,3/4,4/5,5/6,6/1}
-    \draw[circ] (n\a) to[bend left=18] (n\b);
+  \begin{scope}[shift={(0.1,-3.35)}]
+    \foreach \n/\t/\x/\y in {1/Domicílio/0/0, 2/Caixa de inspeção/3.2/0,
+        3/{Tanque séptico, com remoção periódica do lodo}/7.4/0, 4/Filtro anaeróbio/0/-0.5,
+        5/{Disposição final no solo (vala de infiltração ou sumidouro)}/3.2/-0.5} {
+      \node[num, minimum size=0.36cm, font=\fonte{7}{8}\bfseries] at (\x+0.18,\y) {\n};
+      \node[anchor=west, font=\fonte{8}{9.4}] at (\x+0.42,\y) {\t};
+    }
+  \end{scope}
+  \node[text=cinza80, anchor=north, text width=15cm, align=center] at (7.8,-4.25)
+    {Exemplo ilustrativo. A solução de cada domicílio é definida no projeto individual, conforme a
+     ABNT NBR 17076:2024, as condições do terreno e o número de moradores.};
 \end{tikzpicture}
 """
 

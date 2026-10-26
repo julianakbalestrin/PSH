@@ -1,26 +1,34 @@
-\documentclass[11pt,border=4pt]{standalone}
+\documentclass[border=2pt]{standalone}
 \input{estilo}
 \begin{document}
-
-\begin{tikzpicture}[node distance=0.1cm,
-    ida/.style={fase=2.95cm, font=\scriptsize\bfseries},
-    volta/.style={fase=2.95cm, signal to=west, signal from=east, fill=cBlueBg, draw=cBlue, font=\scriptsize\bfseries}]
-  \node[ida] (e1) {Pré-operação\\ e testes};
-  \node[ida, right=of e1] (e2) {Capacitação dos\\ operadores locais};
-  \node[ida, right=of e2] (e3) {Reunião técnica\\ de entrega};
-  \node[ida, right=of e3] (e4) {Aceite da\\ entidade gestora};
-  \node[volta, below=1.2cm of e4] (e5) {Operação pela\\ entidade gestora};
-  \node[volta, left=of e5] (e6) {Suporte técnico\\ pós-implantação};
-  \node[volta, left=of e6] (e7) {Avaliação semestral\\ de desempenho};
-  \node[volta, fill=cNavy, draw=cNavy, text=white, left=of e7] (e8) {TRD e encerramento\\ do Termo de Cooperação};
-  \draw[seta] (e4.south) -- (e5.north);
-  \node[produto=2.9cm, above=0.25cm of e1] {laudos e testes de funcionamento};
-  \node[produto=2.9cm, above=0.25cm of e2] {listas de presença e certificados};
-  \node[produto=2.9cm, above=0.25cm of e4] {termo de aceite assinado};
-  \node[produto=2.9cm, below=0.25cm of e7] {relatórios no SIGARH e no GeoPR};
-  \node[produto=2.9cm, below=0.25cm of e8] {relatório final e prestação de contas};
-  \node[font=\scriptsize\bfseries, text=cTeal, anchor=south west] at ($(e3.north west)+(0,0.3)$) {Transferência do sistema};
-  \node[font=\scriptsize\bfseries, text=cBlue, anchor=north west] at ($(e5.south west)+(0,-0.3)$) {Operação e encerramento};
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-2.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-1.250) {Empresa executora};
+  \fill[cinza10] (0,-2.5) rectangle (2.35,-5.0);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-3.750) {IAT};
+  \fill[cinza10] (0,-5.0) rectangle (2.35,-6.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-5.750) {Entidade gestora};
+  \draw[cinza20, line width=0.6pt] (0,-2.5) -- (15.8,-2.5);
+  \draw[cinza20, line width=0.6pt] (0,-5.0) -- (15.8,-5.0);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-6.5);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-6.5);
+  \node[inicio] (ini) at (3.45,-0.45) {Início};
+  \node[atividade=1.72cm] (e1) at (3.45,-1.67) {Pré-operar e testar o sistema};
+  \node[atividade=1.72cm] (e2) at (5.7,-1.67) {Capacitar os operadores locais};
+  \node[atividade=1.72cm] (i1) at (7.95,-4.17) {Fazer a reunião de entrega};
+  \node[atividade=1.72cm] (g1) at (7.95,-5.75) {Assinar o termo de aceite};
+  \node[atividade=1.72cm] (i2) at (10.2,-4.17) {Emitir o TRD};
+  \node[atividade=1.72cm] (g2) at (12.45,-5.75) {Operar e informar os dados};
+  \node[sistema=1.5cm] (s1) at (14.7,-4.17) {SIGARH e GeoPR};
+  \node[inicio] (fim) at (14.7,-2.95) {Fim};
+  \draw[conector] (ini) -- (e1);
+  \draw[conector] (e1) -- (e2);
+  \draw[conector] (e2.east) -| (i1.north);
+  \draw[conector] (i1) -- (g1);
+  \draw[conector] (g1.east) -| (i2.south);
+  \draw[conector] (i2.east) -| (g2.north);
+  \draw[conector] (g2.east) -| (s1.south);
+  \node[rotulo, anchor=south, align=center] at ($(g2.east)!0.5!(g2.east -| s1.south)+(0,0.04)$) {dados\\ semestrais};
+  \draw[conector] (s1) -- (fim);
 \end{tikzpicture}
-
 \end{document}

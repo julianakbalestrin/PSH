@@ -1,5 +1,5 @@
 from mop import ACAO, ITEM, ETAPA, P, PL, BUL, FIG, COM
-from comum import matriz, metas, indicadores, aceite, nas, fig_ipo, fig_crono, fig_interf
+from comum import matriz, metas, indicadores, aceite, nas, fig_raias, fig_crono, fig_interf
 
 COD = "3.2.2.3"
 
@@ -19,8 +19,8 @@ ELEMENTOS = [
     P("Por isso, a ação capta água subterrânea por poço tubular profundo. A água do aquífero é filtrada naturalmente "
       "ao percolar o solo, sofre menos com a variação do clima e, na maioria dos casos, precisa apenas de cloração "
       "simples. A captação também custa menos, fica pronta em menos tempo e tem menor impacto ambiental do que uma "
-      "fonte superficial, que exige barragem, adutora e estação de tratamento (IAT, 2026a). A {fig:esquema-saa} mostra "
-      "os componentes de um sistema típico."),
+      "fonte superficial, que exige barragem, adutora e estação de tratamento (IAT, 2026a)."),
+    P("A {fig:esquema-saa} mostra os componentes de um sistema típico."),
     FIG("esquema-saa", "f-esquema-saa", "Componentes de um sistema coletivo de abastecimento de água rural",
         "Fonte: IAT (2026). Esquema ilustrativo, sem escala.",
         alt="Esquema em corte com poço tubular profundo, casa química, reservatório elevado, rede de distribuição e "
@@ -48,15 +48,16 @@ ELEMENTOS = [
     ITEM("2. Área de atuação"),
     P("A ação abrange todo o Estado, nas Microrregiões de Água e Esgoto, mas atende apenas as comunidades que passam "
       "pelos critérios de seleção ({fig:selecao-comunidades}). O primeiro critério é o adensamento: comunidade ou "
-      "conjunto de comunidades com 70 ou mais domicílios ocupados, número que torna viável o modelo de gestão. O segundo "
-      "é o desempenho do município no Índice Ipardes de Desempenho Municipal (IPDM), que varia de 0 a 1 e classifica os "
-      "municípios em quatro estratos: baixo (de 0 a menos de 0,4), médio baixo (de 0,4 a menos de 0,6), médio (de 0,6 a "
-      "menos de 0,8) e alto (de 0,8 a 1,0). A ação trabalha apenas com municípios de médio baixo e de médio "
-      "desempenho. Também contam os pedidos que os municípios já encaminharam ao IAT para perfuração de poços e a "
-      "existência de associações de moradores que operam sistemas e precisam de complementação ou melhorias. Por fim, "
-      "a comunidade só segue para a implantação se nada impedir a perfuração: aquífero sem água suficiente, solo ou "
-      "rochas que impossibilitem a obra, falhas geológicas que possam contaminar a água ou interromper o fluxo, "
-      "contaminantes que comprometam a potabilidade ou restrições legais e ambientais (IAT, 2026a)."),
+      "conjunto de comunidades com 70 ou mais domicílios ocupados, número que torna viável o modelo de gestão."),
+    P("O segundo é o desempenho do município no Índice Ipardes de Desempenho Municipal (IPDM), que varia de 0 a 1 e "
+      "classifica os municípios em quatro estratos: baixo (de 0 a menos de 0,4), médio baixo (de 0,4 a menos de 0,6), "
+      "médio (de 0,6 a menos de 0,8) e alto (de 0,8 a 1,0). A ação trabalha apenas com municípios de médio baixo e de "
+      "médio desempenho."),
+    P("Também contam os pedidos que os municípios já encaminharam ao IAT para perfuração de poços e a existência de "
+      "associações de moradores que operam sistemas e precisam de complementação ou melhorias. Por fim, a comunidade "
+      "só segue para a implantação se nada impedir a perfuração: aquífero sem água suficiente, solo ou rochas que "
+      "impossibilitem a obra, falhas geológicas que possam contaminar a água ou interromper o fluxo, contaminantes que "
+      "comprometam a potabilidade ou restrições legais e ambientais (IAT, 2026a)."),
     FIG("selecao-comunidades", "f-selecao-comunidades", "Critérios de seleção das comunidades atendidas com água",
         "Fonte: IAT (2026), com base em IAT (2026a).",
         alt="Funil com os cinco critérios de seleção das comunidades, que resulta na seleção preliminar de 83 "
@@ -73,8 +74,9 @@ ELEMENTOS = [
     ITEM("3. Arranjo institucional e partes interessadas"),
     P("A ação é coordenada pelo IAT, por meio da DISAR, que planeja, contrata, fiscaliza e recebe os sistemas. Dentro do "
       "próprio IAT, a Diretoria de Licenciamento e Outorga emite a outorga de direito de uso da água e as licenças "
-      "ambientais. As prefeituras apoiam a regularização das áreas e a articulação local, e a entidade gestora definida "
-      "na Ação 3.2.2.1 recebe e opera cada sistema. A UGP acompanha a execução e consolida o reporte ao Banco Mundial."),
+      "ambientais. As prefeituras apoiam a regularização das áreas e a articulação local, a entidade gestora definida "
+      "na Ação 3.2.2.1 recebe e opera cada sistema, e a UGP acompanha a execução e consolida o reporte ao Banco "
+      "Mundial."),
     BUL("**Coexecutor:** IDR-Paraná, na implementação local junto às comunidades;",
         "**Intervenientes:** prefeituras; entidades gestoras; empresas contratadas para projetos e obras; laboratórios "
         "contratados para as análises de potabilidade; empresa supervisora (Ação 3.2.2.7);",
@@ -86,12 +88,11 @@ ELEMENTOS = [
       "saúde, e os moradores das áreas próximas, que deixam de depender de fontes contaminadas."),
 
     ITEM("4. Processo de execução operacional"),
-    P("A implantação de cada sistema segue seis etapas ({fig:ipo-3223}). Duas premissas valem para todas: as "
-      "comunidades atendidas são confirmadas pelo trabalho técnico-social, e o modelo de gestão é pactuado antes das "
-      "obras. As entradas são o diagnóstico da comunidade, a entidade gestora pactuada, o Termo de Cooperação com o "
-      "município e os dados hidrogeológicos do Subcomponente 1.1. As saídas são os sistemas em operação, com poço "
-      "outorgado, obras licenciadas e Termo de Recebimento Definitivo (TRD)."),
-    fig_ipo(COD),
+    P("A implantação de cada sistema segue seis etapas, cada uma na raia de quem a executa ({fig:raias-3223}). Duas "
+      "premissas valem para todas: as comunidades atendidas são confirmadas pelo trabalho técnico-social, e o modelo de "
+      "gestão é pactuado antes das obras. A saída de cada sistema é o Termo de Recebimento Definitivo (TRD), emitido "
+      "pelo IAT depois do aceite da entidade gestora."),
+    fig_raias(COD),
 
     ETAPA("4.1 Etapa 1: Estudos preliminares e regularização das áreas"),
     PL("Atividades:", "estudos de viabilidade técnica, social e ambiental; levantamento de campo geológico e "
@@ -100,8 +101,8 @@ ELEMENTOS = [
        "anteprojeto e investigação social. A {fig:captacao} mostra a sequência das Etapas 1 a 3."),
     FIG("captacao", "f-captacao", "Captação subterrânea, projeto e licenciamento (Etapas 1 a 3)",
         "Fonte: IAT (2026), com base em IAT (2026b).",
-        alt="Fluxograma em duas colunas com as atividades de captação subterrânea e de projeto e licenciamento, com a "
-            "decisão sobre a vazão e a qualidade da água."),
+        alt="Fluxograma em raias para a DISAR, a área de licenças e outorga do IAT, o laboratório e a empresa "
+            "contratada, com a decisão sobre a viabilidade do poço."),
     PL("Entradas:", "diagnóstico da comunidade (Ação 3.2.2.2); entidade gestora pactuada (Ação 3.2.2.1); Termo de "
        "Cooperação."),
     PL("Responsáveis:", "IAT (executa e aprova); prefeituras (executam a regularização das áreas públicas); "
@@ -135,14 +136,14 @@ ELEMENTOS = [
         "e verificar a compatibilidade com o Regulamento de Aquisições do Banco Mundial."),
 
     ETAPA("4.4 Etapa 4: Execução das obras"),
-    PL("Atividades:", "a obra é acompanhada em três níveis ({fig:obras}). O executor constrói conforme o projeto e "
-       "instala um hidrômetro em cada ligação domiciliar. A supervisora (Ação 3.2.2.7) acompanha a execução e registra o "
-       "andamento em relatórios mensais. A fiscalização do IAT verifica a conformidade com o projeto e as normas. "
+    PL("Atividades:", "a obra é acompanhada em três níveis ({fig:obras}): o executor constrói conforme o projeto e "
+       "instala um hidrômetro em cada ligação domiciliar; a supervisora (Ação 3.2.2.7) acompanha a execução e registra o "
+       "andamento em relatórios mensais; e a fiscalização do IAT verifica a conformidade com o projeto e as normas. "
        "Havendo não conformidade, o executor corrige e a obra é verificada de novo. Estando tudo conforme, o IAT emite o "
        "atesto de recebimento, com os laudos de vistoria e o projeto *as built*."),
     FIG("obras", "f-obras", "Execução, supervisão e fiscalização das obras, por responsável",
         "Fonte: IAT (2026), com base em IAT (2026b).",
-        alt="Fluxograma em raias para o executor da obra, a supervisora e a fiscalização do IAT, com a decisão de "
+        alt="Fluxograma em raias para a fiscalização do IAT, a empresa executora e a supervisora, com a decisão de "
             "conformidade e a correção das não conformidades."),
     PL("Entradas:", "projetos aprovados; outorga e licenças; ordem de serviço."),
     PL("Responsáveis:", "empresa contratada (executa); supervisora (acompanha); IAT (fiscaliza e aprova); prefeituras "
@@ -157,7 +158,8 @@ ELEMENTOS = [
        "gestora; emissão do TRD ({fig:entrega})."),
     FIG("entrega", "f-entrega", "Transferência, operação e encerramento dos sistemas de abastecimento",
         "Fonte: IAT (2026), com base em IAT (2026b).",
-        alt="Sequência de etapas da pré-operação ao Termo de Recebimento Definitivo, com as evidências de cada uma."),
+        alt="Fluxograma em raias para a empresa executora, o IAT e a entidade gestora, da pré-operação ao registro dos "
+            "dados de operação no SIGARH e no GeoPR."),
     PL("Entradas:", "sistema implantado; entidade gestora constituída (Ação 3.2.2.1)."),
     PL("Responsáveis:", "empresa contratada (pré-operação e capacitação); entidade gestora (aceita o sistema); IAT "
        "(aprova e emite o TRD)."),
@@ -174,9 +176,10 @@ ELEMENTOS = [
     ETAPA("4.7 Modalidade de execução"),
     P("O item de custo é o de sistemas coletivos de abastecimento de água: 83 sistemas a R$ 1,3 milhão, total de "
       "R$ 107,90 milhões, financiados pelo empréstimo do BIRD. Os projetos executivos e as obras são contratados por "
-      "licitação, em contratação integrada, conforme o Caderno de Aquisições; os ensaios laboratoriais de potabilidade "
-      "também são licitados. Os estudos preliminares, a regularização das áreas e a outorga são de execução direta do "
-      "IAT. A perfuração pode ser feita diretamente pelas equipes do IAT ou incluída na contratação das obras."),
+      "licitação, em contratação integrada, conforme o Caderno AQ; os ensaios laboratoriais de potabilidade também são "
+      "licitados."),
+    P("Os estudos preliminares, a regularização das áreas e a outorga são de execução direta do IAT. A perfuração pode "
+      "ser feita diretamente pelas equipes do IAT ou incluída na contratação das obras."),
     COM("A nota técnica estima R$ 1,4 milhão por sistema; a planilha de custos (R$ 1,3 milhão) prevalece."),
 
     ITEM("5. Matriz de responsabilidades"),
@@ -234,8 +237,8 @@ ELEMENTOS = [
     P("A ação tem obras de pequeno porte, dispersas pelo Estado. Os principais riscos são a contaminação do aquífero, os "
       "impactos temporários das obras (ruído, poeira, resíduos e erosão local), acidentes de trabalho, conflitos pela "
       "posse das áreas e pelo uso da água e a exclusão de famílias vulneráveis. O {qua:nas-3223} indica as NAS "
-      "aplicáveis e as medidas; a NAS 9 não se aplica ao Programa. As medidas detalhadas estão no Caderno Ambiental e "
-      "Social do MOP."),
+      "aplicáveis e as medidas."),
+    P("A NAS 9 não se aplica ao Programa, e as medidas detalhadas estão no Caderno AS."),
     nas(COD, [
         ["NAS 1 – Avaliação e gestão de riscos", "Obras de captação, reservação e distribuição em cada comunidade",
          "Triagem socioambiental de cada sistema; licenciamento; plano ambiental e social da obra (MGAS)"],
@@ -276,10 +279,12 @@ ELEMENTOS = [
     ITEM("10. Documentos complementares"),
     BUL("Termo de Referência e edital da contratação integrada de projetos e obras (a elaborar);",
         "Plano de Operação e Manutenção dos sistemas (a elaborar);",
-        "Portaria GM/MS nº 888/2021 (padrão de potabilidade da água para consumo humano);",
-        "ABNT NBR 12212 e NBR 12244 (projeto e construção de poço tubular) e normas ABNT de concepção, reservação e "
-        "distribuição de sistemas de abastecimento de água;",
-        "Normas de outorga de direito de uso de recursos hídricos e de licenciamento ambiental do IAT;",
-        "Caderno de Aquisições e Caderno Ambiental e Social do MOP;",
+        "Portaria GM/MS nº 888/2021, que altera o Anexo XX da Portaria de Consolidação GM/MS nº 5/2017 (padrão de "
+        "potabilidade da água para consumo humano);",
+        "ABNT NBR 12212:2017 e NBR 12244:2006 (projeto e construção de poço tubular) e demais normas ABNT de projeto de "
+        "sistemas de abastecimento de água;",
+        "Lei nº 9.433/1997 e Lei Estadual nº 12.726/1999 (outorga de direito de uso de recursos hídricos) e normas de "
+        "licenciamento ambiental do IAT;",
+        "Caderno AQ e Caderno AS;",
         "Notas técnicas de origem (IAT, 2026a; IAT, 2026b)."),
 ]

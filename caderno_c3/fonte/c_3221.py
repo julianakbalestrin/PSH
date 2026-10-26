@@ -1,5 +1,5 @@
-from mop import ACAO, ITEM, ETAPA, P, PL, BUL, FIG, COM
-from comum import matriz, metas, indicadores, aceite, nas, fig_ipo, fig_crono, fig_interf
+from mop import ACAO, ITEM, ETAPA, P, PL, BUL, FIG, COM, TAB
+from comum import matriz, metas, indicadores, aceite, nas, fig_raias, fig_crono, fig_interf
 
 COD = "3.2.2.1"
 
@@ -9,18 +9,19 @@ ELEMENTOS = [
     # ------------------------------------------------------------ 1
     ITEM("1. Contextualização"),
     P("A ação implanta os modelos de gestão que vão operar e manter os sistemas de água e de esgoto da Atividade "
-      "3.2.2 depois das obras. Seus objetivos são definir, com as prefeituras e as comunidades, o arranjo de gestão "
-      "de cada sistema; constituir ou regularizar as associações de saneamento rural que assumirão a operação; "
-      "instituir a tarifa que sustenta o serviço; e estruturar três unidades regionais de apoio técnico às "
-      "associações (IAT, 2026a; IAT, 2026b)."),
-    P("O problema a enfrentar é a falta de quem cuide dos sistemas. No Paraná ainda não há uma política de "
-      "saneamento rural que estabeleça um modelo de gestão. As ações existentes são descentralizadas e concentradas no "
-      "abastecimento de água: são executadas pela Sanepar, por serviços municipais, por iniciativas conjuntas do "
-      "Estado e dos municípios e, em alguns casos, pelas próprias comunidades. A autogestão comunitária, comum no meio "
-      "rural, costuma falhar por falta de capacidade técnica, financeira e institucional e de apoio do poder público, "
-      "o que compromete a regularidade e a qualidade do serviço. A dispersão das comunidades e a limitação de pessoal "
-      "e de recursos dos municípios agravam o quadro (BRASIL, 2019; IAT, 2026a)."),
-    P("A ação responde pela sustentabilidade do que a atividade constrói. Sem uma entidade preparada para operar o "
+      "3.2.2 depois das obras. Seus objetivos são definir com as prefeituras e as comunidades o arranjo de gestão de "
+      "cada sistema, constituir ou regularizar as associações de saneamento rural e instituir a tarifa que sustenta o "
+      "serviço. A ação também estrutura três unidades regionais de apoio técnico às associações (IAT, 2026a; "
+      "IAT, 2026b)."),
+    P("O problema a enfrentar é a falta de quem cuide dos sistemas: o Paraná ainda não tem uma política de "
+      "saneamento rural que estabeleça um modelo de gestão. As ações existentes são descentralizadas e concentradas "
+      "no abastecimento de água, executadas pela Sanepar, por serviços municipais, por iniciativas conjuntas do Estado "
+      "e dos municípios e, em alguns casos, pelas próprias comunidades (IAT, 2026a)."),
+    P("A autogestão comunitária, comum no meio rural, costuma falhar por falta de capacidade técnica, financeira e "
+      "institucional e de apoio do poder público, o que compromete a regularidade e a qualidade do serviço. A "
+      "dispersão das comunidades e a limitação de pessoal e de recursos dos municípios agravam o quadro "
+      "(BRASIL, 2019; IAT, 2026a)."),
+    P("A ação responde pela sustentabilidade do que a atividade constrói: sem uma entidade preparada para operar o "
       "sistema, cobrar a tarifa e fazer a manutenção, o investimento em poços, redes e soluções de esgoto se perde em "
       "poucos anos. Por isso, o modelo de gestão é pactuado antes das obras e acompanha os sistemas até a entrega. O "
       "resultado é medido pelo indicador do Componente 3 de associações de saneamento rural com modelo de gestão "
@@ -37,18 +38,18 @@ ELEMENTOS = [
 
     # ------------------------------------------------------------ 2
     ITEM("2. Área de atuação"),
-    P("A ação atua nas comunidades que recebem os sistemas coletivos de água do IAT, escolhidas pelos critérios "
-      "descritos na Ação 3.2.2.3: comunidades ou conjuntos de comunidades com 70 ou mais domicílios ocupados, em "
-      "municípios de médio baixo ou médio desempenho no IPDM, com prioridade para pedidos já encaminhados ao IAT e "
-      "para associações que já operam sistemas. O número mínimo de domicílios é o que torna a gestão viável. A seleção "
-      "preliminar indicou 83 comunidades, com 5.810 domicílios (IAT, 2026a). Os modelos de gestão também se aplicam às "
-      "associações formadas pelo Programa Sanepar Rural (Ação 3.2.2.4)."),
-    P("A {fig:mapa} é o mapa inicial das áreas em que a ação pode atuar. Ele mostra 2.571 locais em que os domicílios "
-      "rurais estão a menos de 350 m uns dos outros, agrupados em nove classes conforme o número de domicílios, os "
-      "limites das associações de municípios e os 112 municípios consorciados ao CISPAR. A presença do consórcio "
-      "indica onde o arranjo intermunicipal tem base institucional, e as maiores concentrações de domicílios, na "
-      "Região Metropolitana de Curitiba e no Centro-Sul e no Sudeste do Estado, indicam onde cabem as unidades "
-      "regionais de apoio. A localização das três unidades será definida depois da seleção final das comunidades."),
+    P("A ação atua nas comunidades que recebem os sistemas coletivos de água do IAT, escolhidas pelos critérios da "
+      "Ação 3.2.2.3: 70 ou mais domicílios ocupados, municípios de médio baixo ou médio desempenho no IPDM e "
+      "prioridade para pedidos já encaminhados ao IAT e para associações que já operam sistemas. A seleção preliminar "
+      "indicou 83 comunidades, com 5.810 domicílios; o número mínimo de domicílios é o que torna a gestão viável "
+      "(IAT, 2026a). Os modelos de gestão também se aplicam às associações formadas pelo Programa Sanepar Rural "
+      "(Ação 3.2.2.4)."),
+    P("A {fig:mapa} é o mapa inicial das áreas em que a ação pode atuar: 2.571 locais com domicílios rurais a menos "
+      "de 350 m uns dos outros, em nove classes conforme o número de domicílios, os limites das associações de "
+      "municípios e os 112 municípios consorciados ao CISPAR. A presença do consórcio indica onde o arranjo "
+      "intermunicipal tem base institucional, e as maiores concentrações de domicílios, na Região Metropolitana de "
+      "Curitiba e no Centro-Sul e no Sudeste do Estado, indicam onde cabem as unidades regionais de apoio. A "
+      "localização das três unidades será definida depois da seleção final das comunidades."),
     FIG("mapa", "f-mapa",
         "Áreas prioritárias, associações de municípios, CISPAR e concentração de domicílios rurais",
         "Fonte: IAT e IDR-Paraná (2025). Hidrografia: IAT (2020) e GeoPR (2025); limites político-administrativos: GeoPR (2025).",
@@ -57,13 +58,16 @@ ELEMENTOS = [
     COM("O Acordo de Empréstimo, item (j)(vii), pede a identificação das áreas rurais da Parte 3.2. O mapa mostra o "
         "potencial, não as 83 comunidades selecionadas. Incluir a lista ou o mapa das comunidades e a localização das "
         "três unidades regionais."),
+    COM("Os logos das instituições foram retirados do mapa, porque figuras e mapas não levam logos (Guia de "
+        "Identidade Visual, seção 2.6). Na versão final, refazer o mapa na base cartográfica oficial (IAT/ITCG), com "
+        "as áreas do Programa na cor do Caderno C3 e 40% de transparência (seção 5.4)."),
 
     # ------------------------------------------------------------ 3
     ITEM("3. Arranjo institucional e partes interessadas"),
     P("A ação é coordenada pelo IAT, por meio da Diretoria de Saneamento Ambiental e Recursos Hídricos (DISAR), que "
-      "responde pela escolha do modelo, pela pactuação com os municípios, pelas contratações e pelo acompanhamento das "
-      "entidades gestoras. A Secretaria de Estado das Cidades (SECID) valida a implantação do modelo e a instituição da "
-      "tarifa. A UGP acompanha a execução e consolida o reporte ao Banco Mundial."),
+      "escolhe o modelo, pactua com os municípios, contrata e acompanha as entidades gestoras. A Secretaria de Estado "
+      "das Cidades (SECID) valida o modelo e a tarifa. A UGP acompanha a execução e consolida o reporte ao Banco "
+      "Mundial."),
     COM("Indicar a gerência do IAT responsável pela ação (instituição › diretoria › gerência)."),
     P("As partes interessadas são:"),
     BUL("**Coexecutores:** o IDR-Paraná, na mobilização social e na articulação local, e a Sanepar, nas associações "
@@ -81,63 +85,84 @@ ELEMENTOS = [
 
     # ------------------------------------------------------------ 4
     ITEM("4. Processo de execução operacional"),
-    P("A ação se organiza em seis etapas, da escolha do modelo ao encerramento do Termo de Cooperação "
-      "({fig:ipo-3221}). As entradas são a lista preliminar de comunidades, o arcabouço legal dos arranjos de gestão, "
-      "as diretrizes da política estadual (Atividade 3.2.1) e o cadastro e as adesões das famílias (Ação 3.2.2.2). As "
-      "saídas são as associações regularizadas e em operação, com tarifa instituída, as três unidades regionais em "
-      "funcionamento e o aceite formal dos sistemas pelas entidades gestoras. Duas regras orientam a sequência: o "
-      "modelo é pactuado antes das obras, e nenhum sistema é entregue sem uma entidade preparada para operá-lo."),
-    fig_ipo(COD),
+    P("A ação tem seis etapas, da escolha do modelo ao encerramento do Termo de Cooperação ({fig:raias-3221}). Cada "
+      "etapa aparece na raia de quem a executa, com as entradas no topo e as saídas na base da figura. Duas regras "
+      "orientam a sequência: o modelo é pactuado antes das obras, e nenhum sistema é entregue sem uma entidade "
+      "preparada para operá-lo."),
+    fig_raias(COD),
 
     ETAPA("4.1 Etapa 1: Estudos preliminares e escolha do modelo"),
     PL("Atividades:", "o IAT seleciona os instrumentos de gestão, define os parceiros, os critérios e os indicadores, "
-       "faz o enquadramento jurídico da proposta e define os meios de comunicação do modelo. Três alternativas estão em "
-       "análise ({fig:alternativas}). Na primeira, a associação de moradores opera o sistema da sua localidade; como "
-       "organização da sociedade civil, ela se sujeita ao Marco Regulatório das Organizações da Sociedade Civil (MROSC), "
-       "e o uso da infraestrutura pública é formalizado por Acordo de Cooperação, assinado depois que o município aprova "
-       "a lei autorizativa (BRASIL, 2014). Na segunda, as associações se filiam a uma central que lhes presta apoio "
-       "técnico, administrativo e financeiro. É o modelo do Sistema Integrado de Saneamento Rural (SISAR) do Ceará, que "
-       "em agosto de 2025 atendia mais de 1,13 milhão de pessoas, cerca de 56% da população rural do estado, em 174 "
-       "municípios e 1.466 localidades (CEARÁ, 2025), e das Centrais de Associações Comunitárias da Bahia, que fizeram "
-       "16.888 novas ligações de água e recuperaram outras 5.297 em 49 municípios (BAHIA, 2022). Na terceira, os "
-       "municípios prestam o serviço de forma associada, por meio de um consórcio público (BRASIL, 2005)."),
-    FIG("alternativas", "f-alternativas", "Alternativas de modelo de gestão e seu amparo legal",
-        "Fonte: IAT (2026), com base em IAT (2026a).",
-        alt="Quadro esquemático que compara a associação de moradores, a central de associações e o consórcio público "
-            "quanto ao funcionamento, ao amparo legal, ao instrumento e às referências."),
-    P("O consórcio é a alternativa preliminar apontada para o Paraná. Muitos municípios já integram consórcios, como "
-      "os 112 consorciados ao CISPAR, e o objeto do consórcio existente pode ser ampliado para a água e o esgoto rurais "
-      "por alteração contratual aprovada em assembleia e ratificada por lei de cada ente. O contrato de programa "
-      "formaliza a prestação e as regras de tarifa; o contrato de rateio define a contribuição anual de cada município; "
-      "e os poços, as redes e os reservatórios podem ser cedidos ao consórcio, voltando ao município ao final do "
-      "contrato. O arranjo dá escala, compartilha a estrutura técnica e administrativa e mantém a gestão de um mandato "
-      "para outro. Segundo a nota técnica do Componente 3, o Decreto nº 11.599/2023 e a Portaria nº 2.777/2025 dão "
-      "respaldo aos arranjos associativos no novo marco do saneamento (IAT, 2026a)."),
+       "faz o enquadramento jurídico da proposta e define como comunicar o modelo. Três alternativas estão em análise "
+       "({qua:alternativas})."),
+    P("Na primeira, a associação de moradores opera o sistema da sua localidade. Como organização da sociedade civil, "
+      "ela se sujeita ao Marco Regulatório das Organizações da Sociedade Civil (MROSC), e o uso da infraestrutura "
+      "pública é formalizado por Acordo de Cooperação, depois que o município aprova a lei autorizativa (BRASIL, 2014)."),
+    P("Na segunda, as associações se filiam a uma central que lhes presta apoio técnico, administrativo e financeiro. "
+      "É o modelo do Sistema Integrado de Saneamento Rural (SISAR) do Ceará, que em agosto de 2025 atendia mais de "
+      "1,13 milhão de pessoas, cerca de 56% da população rural do estado, em 174 municípios e 1.466 localidades "
+      "(CEARÁ, 2025). As Centrais de Associações Comunitárias da Bahia seguem o mesmo arranjo e fizeram 16.888 novas "
+      "ligações de água e recuperaram outras 5.297 em 49 municípios (BAHIA, 2022)."),
+    TAB("alternativas", "Quadro", "Alternativas de modelo de gestão e seu amparo legal",
+        ["Aspecto", "Associação de moradores", "Central de associações", "Consórcio público"],
+        [["**Como funciona**", "Moradores organizados operam o sistema da localidade, com apoio da prefeitura",
+          "Associações filiadas a uma central, que presta apoio técnico, administrativo e financeiro",
+          "Municípios consorciados prestam o serviço de forma associada"],
+         ["**Amparo legal**", "MROSC (Lei nº 13.019/2014)",
+          "MROSC; a nota técnica cita também o Decreto nº 11.599/2023 e a Portaria Funasa nº 2.777/2025",
+          "Lei dos Consórcios Públicos (Lei nº 11.107/2005) e Lei nº 11.445/2007"],
+         ["**Instrumento**", "Acordo de Cooperação, depois da lei municipal que autoriza a cessão dos ativos",
+          "Acordo de Cooperação com o poder público, depois da lei municipal autorizativa",
+          "Alteração do contrato de consórcio; contrato de rateio; cessão de uso dos ativos"],
+         ["**Referência**", "Associações de moradores que já operam sistemas no Paraná",
+          "SISAR (CE): 1,13 milhão de pessoas em 1.466 localidades; Centrais de Associações (BA)",
+          "CISPAR: 112 municípios consorciados no Paraná"]],
+        [1700, 2457, 2457, 2457], "llll",
+        "Fonte: IAT (2026), com base em IAT (2026a), CEARÁ (2025) e BAHIA (2022).",
+        nota="Nota: em todas as alternativas, o modelo é definido com a prefeitura e a comunidade, com abordagem "
+             "participativa, tarifa com tarifa social e capacitação dos operadores."),
+    P("Na terceira, os municípios prestam o serviço de forma associada, por meio de um consórcio público "
+      "(BRASIL, 2005). É a alternativa preliminar apontada para o Paraná, porque muitos municípios já integram "
+      "consórcios, como os 112 consorciados ao CISPAR. O objeto do consórcio existente pode ser ampliado para a água "
+      "e o esgoto rurais por alteração contratual aprovada em assembleia e ratificada por lei de cada ente."),
+    P("O contrato de rateio define a contribuição anual de cada município, e os poços, as redes e os reservatórios "
+      "podem ser cedidos ao consórcio, voltando ao município ao final do contrato. O arranjo dá escala, compartilha a "
+      "estrutura técnica e administrativa e mantém a gestão de um mandato para outro. A nota técnica do Componente 3 "
+      "cita ainda o Decreto nº 11.599/2023 e a Portaria Funasa nº 2.777/2025 como respaldo aos arranjos associativos "
+      "no marco legal do saneamento atualizado pela Lei nº 14.026/2020 (IAT, 2026a)."),
+    COM("Conferir o amparo citado pela nota técnica. O Decreto nº 11.599/2023 trata da prestação regionalizada e do "
+        "apoio técnico e financeiro da União; a Portaria Funasa nº 2.777/2025 aparece no portal da Funasa como seleção "
+        "de propostas de abastecimento de água, esgotamento sanitário e melhorias sanitárias domiciliares em áreas "
+        "rurais, e não como diretriz de modelo de gestão. Ver a planilha de referências normativas."),
+    COM("A nota técnica prevê contrato de programa no arranjo consorciado. A Lei nº 14.026/2020 alterou a Lei nº "
+        "11.445/2007 e restringiu esse instrumento na prestação de serviços de saneamento; confirmar com a assessoria "
+        "jurídica o instrumento adequado para a prestação pelo consórcio."),
     PL("Entradas:", "diretrizes da política estadual (Atividade 3.2.1), quando disponíveis; experiências de referência; "
        "legislação aplicável."),
-    PL("Responsáveis:", "IAT (executa), com consulta ao IDR-Paraná e às prefeituras; a SECID valida o modelo."),
+    PL("Responsáveis:", "IAT (executa), com consulta ao IDR-Paraná e às prefeituras; SECID (valida o modelo)."),
     PL("Produto:", "modelo de gestão definido, com enquadramento jurídico."),
     COM("O modelo de gestão ainda está em definição. Registrar aqui a alternativa escolhida e o parecer jurídico assim "
         "que forem aprovados."),
 
     ETAPA("4.2 Etapa 2: Pactuação com municípios e comunidades"),
     PL("Atividades:", "a pactuação começa pelo município e chega à comunidade ({fig:adesao}). O IAT define os "
-       "critérios, seleciona as áreas e sensibiliza as prefeituras. O município formaliza a adesão e assina com o IAT o "
-       "Termo de Cooperação, que registra as obrigações de cada parte até a entrega dos sistemas. Quando o arranjo "
-       "envolve a cessão de bens públicos, o município aprova a lei autorizativa. Em seguida, o IAT procura a "
-       "comunidade, que manifesta o interesse por meio de contratos de pré-adesão."),
+       "critérios, seleciona as comunidades e sensibiliza as prefeituras, e o município formaliza a adesão e assina "
+       "com o IAT o Termo de Cooperação, que registra as obrigações de cada parte até a entrega dos sistemas. Quando o "
+       "arranjo envolve a cessão de bens públicos, o município aprova a lei autorizativa; em seguida, o IAT procura a "
+       "comunidade, que manifesta o interesse por contratos de pré-adesão."),
     FIG("adesao", "f-adesao", "Seleção e adesão dos municípios e das comunidades, por responsável",
         "Fonte: IAT (2026), com base em IAT (2026b).",
-        alt="Fluxograma em raias para o IAT, o município e a comunidade, da definição dos critérios à pré-adesão da comunidade."),
+        alt="Fluxograma em raias para o IAT, os municípios e as comunidades, da seleção das comunidades à pré-adesão, "
+            "com a decisão sobre a lei autorizativa."),
     PL("Entradas:", "modelo de gestão definido (Etapa 1); lista preliminar de comunidades; minuta do Termo de Cooperação."),
-    PL("Responsáveis:", "IAT e prefeituras (executam); IDR-Paraná e comunidades (consultados); o IAT aprova os termos."),
+    PL("Responsáveis:", "IAT e prefeituras (executam); IDR-Paraná e comunidades (consultados); IAT (aprova os termos)."),
     PL("Produto:", "Termos de Cooperação assinados e contratos de pré-adesão."),
 
     ETAPA("4.3 Etapa 3: Constituição das entidades gestoras"),
     PL("Atividades:", "com a adesão da comunidade, o IAT apoia a constituição ou a regularização da associação de "
        "saneamento rural: prepara o estatuto, os manuais e as cartilhas, colhe a adesão de cada família e acompanha o "
        "registro da associação. A tarifa é definida em assembleia, com tarifa social para as famílias de baixa renda, e "
-       "validada pela SECID. Esta etapa usa o cadastro e os termos de adesão do trabalho técnico-social (Ação 3.2.2.2) e "
+       "validada pela SECID. A etapa usa o cadastro e os termos de adesão do trabalho técnico-social (Ação 3.2.2.2) e "
        "termina antes do início da obra de cada sistema."),
     PL("Entradas:", "contratos de pré-adesão; cadastro e termos de adesão das famílias (Ação 3.2.2.2)."),
     PL("Responsáveis:", "IAT e associações (executam); prefeituras (consultadas); SECID (valida a tarifa)."),
@@ -147,10 +172,10 @@ ELEMENTOS = [
     PL("Atividades:", "cada uma das três unidades previstas na planilha de custos é uma estrutura regional de apoio às "
        "associações, com equipe técnica, sede e veículo, geração de energia fotovoltaica e custeio de operação e "
        "manutenção (IAT, 2026a). As unidades preparam os manuais de desempenho operacional, montam a estrutura de "
-       "monitoramento e treinam os dirigentes e os operadores das associações. Uma unidade é implantada por ano, de 2028 "
-       "a 2030, à medida que os primeiros sistemas ficam prontos."),
+       "monitoramento e treinam os dirigentes e os operadores das associações. Uma unidade é implantada por ano, de "
+       "2028 a 2030, à medida que os primeiros sistemas ficam prontos."),
     PL("Entradas:", "modelo e localização das unidades definidos; associações constituídas."),
-    PL("Responsáveis:", "IAT (executa e fiscaliza) e empresas contratadas (executam); associações (informadas)."),
+    PL("Responsáveis:", "IAT (executa e aprova) e empresas contratadas (executam); associações (informadas)."),
     PL("Produto:", "unidade regional em funcionamento e pessoas capacitadas."),
     COM("A nota técnica do Componente 3 estima as três unidades em R$ 6,63 milhões, e a planilha de custos, em "
         "R$ 6,90 milhões; prevalece a planilha. Confirmar a composição de cada unidade e quem custeia a sua operação "
@@ -158,11 +183,11 @@ ELEMENTOS = [
 
     ETAPA("4.5 Etapa 5: Entrega dos sistemas e acompanhamento"),
     PL("Atividades:", "concluída a obra, a entrega é formalizada em reunião técnica com a comunidade e a entidade "
-       "gestora, que confirma o recebimento por termo de aceite. A partir daí, a entidade opera e mantém o sistema com o "
-       "suporte da unidade regional, e o IAT avalia o desempenho a cada semestre, com os dados registrados no SIGARH e "
-       "no GeoPR. As entregas seguem o ritmo da Ação 3.2.2.3."),
+       "gestora, que confirma o recebimento por termo de aceite. A partir daí, a entidade opera e mantém o sistema com "
+       "o suporte da unidade regional, e o IAT avalia o desempenho a cada semestre, com os dados registrados no SIGARH "
+       "e no GeoPR. As entregas seguem o ritmo da Ação 3.2.2.3."),
     PL("Entradas:", "sistemas concluídos (Ações 3.2.2.3 e 3.2.2.5); associação regularizada."),
-    PL("Responsáveis:", "IAT e entidade gestora (executam); a entidade gestora aceita o sistema; prefeituras (consultadas)."),
+    PL("Responsáveis:", "IAT e entidade gestora (executam); entidade gestora (aceita o sistema); prefeituras (consultadas)."),
     PL("Produto:", "termos de aceite assinados e relatórios semestrais de desempenho."),
 
     ETAPA("4.6 Etapa 6: Encerramento"),
@@ -175,11 +200,13 @@ ELEMENTOS = [
     ETAPA("4.7 Modalidade de execução"),
     P("O item de custo é a implantação do modelo de gestão: três unidades de R$ 2,3 milhões, total de R$ 6,90 milhões, "
       "financiados pelo empréstimo do BIRD. Na planilha, o produto aparece como “Sistema coletivo de abastecimento de "
-      "água e individual de tratamento de efluentes”. As Etapas 1, 2, 3, 5 e 6 são de execução direta pela equipe do "
-      "IAT, com Termo de Cooperação com cada município. A Etapa 4 é executada por licitação, conforme o Caderno de "
-      "Aquisições: serviços de consultoria para a equipe técnica das unidades, aquisição de bens (veículos e sistemas "
-      "fotovoltaicos) e serviços de adequação das sedes."),
+      "água e individual de tratamento de efluentes”."),
+    P("As Etapas 1, 2, 3, 5 e 6 são de execução direta pela equipe do IAT, com Termo de Cooperação com cada "
+      "município. A Etapa 4 é executada por licitação, conforme o Caderno AQ: serviços de consultoria para a equipe "
+      "técnica das unidades, aquisição de bens (veículos e sistemas fotovoltaicos) e serviços de adequação das sedes."),
     COM("Confirmar no Plano de Aquisições a divisão dos processos da Etapa 4 (consultoria, bens e serviços)."),
+    COM("Completar as remissões aos cadernos transversais com a seção (por exemplo, “Caderno AQ, seção 4”), como pede "
+        "o Guia de Identidade Visual (seção 2.5), quando a numeração desses cadernos estiver definida."),
 
     # ------------------------------------------------------------ 5
     ITEM("5. Matriz de responsabilidades"),
@@ -240,9 +267,9 @@ ELEMENTOS = [
     ITEM("7. Gestão de riscos e impactos ambientais e sociais"),
     P("A ação é institucional e social; a adequação das sedes das unidades regionais é de pequeno porte. Os riscos "
       "estão na exclusão de famílias vulneráveis ou de comunidades tradicionais, em conflitos pelo uso da água e na "
-      "sustentabilidade financeira das associações. O {qua:nas-3221} indica as NAS aplicáveis e as medidas. As NAS 3, "
-      "5, 6 e 8 não se aplicam de forma específica, e a NAS 9 não se aplica ao Programa. Os instrumentos estão no "
-      "Caderno Ambiental e Social do MOP."),
+      "sustentabilidade financeira das associações. O {qua:nas-3221} indica as NAS aplicáveis e as medidas."),
+    P("As NAS 3, 5, 6 e 8 não se aplicam de forma específica, e a NAS 9 não se aplica ao Programa. Os instrumentos "
+      "estão no Caderno AS."),
     nas(COD, [
         ["NAS 1 – Avaliação e gestão de riscos", "Riscos sociais do modelo: exclusão de famílias, conflitos pelo uso "
          "da água e inadimplência", "Triagem socioambiental das comunidades; tarifa social; avaliação semestral de "
@@ -260,10 +287,9 @@ ELEMENTOS = [
     # ------------------------------------------------------------ 8
     ITEM("8. Cronograma"),
     P("As etapas acompanham a implantação dos sistemas ({fig:crono-3221}). A escolha do modelo ocorre em 2027; a "
-      "pactuação com municípios e comunidades, de 2027 a 2030; e a constituição das entidades gestoras, de 2028 a "
-      "2032, sempre antes da obra de cada sistema. As unidades regionais são implantadas uma por ano, de 2028 a 2030. "
-      "As entregas seguem o ritmo da Ação 3.2.2.3: 5 sistemas em 2028, 10 em 2029, 20 em 2030 e em 2031, 18 em 2032 e "
-      "10 em 2033, quando a ação é encerrada."),
+      "pactuação, de 2027 a 2030; a constituição das entidades gestoras, de 2028 a 2032, sempre antes da obra de cada "
+      "sistema; e as unidades regionais, uma por ano, de 2028 a 2030. As entregas seguem o ritmo da Ação 3.2.2.3: 5 "
+      "sistemas em 2028, 10 em 2029, 20 em 2030 e em 2031, 18 em 2032 e 10 em 2033, quando a ação é encerrada."),
     fig_crono(COD),
 
     # ------------------------------------------------------------ 9
@@ -279,9 +305,9 @@ ELEMENTOS = [
     BUL("Termo de Cooperação entre o IAT e cada município (minuta a elaborar);",
         "Modelos de estatuto, manuais de desempenho operacional e cartilhas das associações (a elaborar);",
         "Termo de Referência da equipe técnica das unidades regionais (a elaborar);",
-        "Lei nº 13.019/2014 (MROSC), Lei nº 11.107/2005 (consórcios públicos), Decreto nº 11.599/2023 e Portaria "
-        "nº 2.777/2025;",
+        "Lei nº 13.019/2014 (MROSC), Lei nº 11.107/2005 (consórcios públicos), Lei nº 11.445/2007, com a redação da "
+        "Lei nº 14.026/2020 (marco legal do saneamento), e Decreto nº 11.599/2023;",
         "Programa Nacional de Saneamento Rural (BRASIL, 2019);",
-        "Caderno Ambiental e Social do MOP (MGAS, PEPI e Mecanismo de Queixas e Reclamações) e Caderno de Aquisições;",
+        "Caderno AS (MGAS, PEPI e Mecanismo de Queixas e Reclamações) e Caderno AQ;",
         "Notas técnicas de origem (IAT, 2026a; IAT, 2026b)."),
 ]

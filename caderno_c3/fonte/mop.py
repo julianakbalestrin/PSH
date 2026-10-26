@@ -14,7 +14,8 @@ from xml.sax.saxutils import escape
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
 PNG = os.path.join(AQUI, "png")
-TAMANHOS = json.load(open(os.path.join(PNG, "tamanhos.json")))
+_ARQ_TAM = os.path.join(PNG, "tamanhos.json")   # gerado por gerafig.py compilar
+TAMANHOS = json.load(open(_ARQ_TAM)) if os.path.exists(_ARQ_TAM) else {}
 
 LARG_TEXTO = 9071          # largura útil em twips (16,0 cm)
 EMU_CM = 360000
@@ -65,6 +66,21 @@ def run(texto, b=False, i=False, extra_rpr=""):
     return f'<w:r>{rpr}<w:t xml:space="preserve">{x(texto)}</w:t></w:r>'
 
 
+# Letras da matriz RACI com cor fixa (Guia de Identidade Visual, seção 5.3):
+# R Azul, A Azul-escuro (texto branco); C Verde 20%, I cinza 10% (texto preto).
+CORES_RACI = {"R": ("0A73BA", "FFFFFF"), "A": ("0B3A5A", "FFFFFF"),
+              "C": ("CCEADB", "000000"), "I": ("E6E6E6", "000000")}
+
+
+def selo_raci(letra):
+    fundo, cor = CORES_RACI[letra]
+    # a borda da mesma cor dá a folga em volta da letra (selo)
+    return (f'<w:r><w:rPr><w:b/><w:bCs/><w:color w:val="{cor}"/>'
+            f'<w:bdr w:val="single" w:sz="16" w:space="0" w:color="{fundo}"/>'
+            f'<w:shd w:val="clear" w:color="auto" w:fill="{fundo}"/></w:rPr>'
+            f'<w:t xml:space="preserve">{letra}</w:t></w:r>')
+
+
 class Montador:
     def __init__(self, autor_coment="IAT – pendências da Atividade 3.2.2"):
         self.bm_id = 7000
@@ -80,8 +96,8 @@ class Montador:
 
     # -------------------------------------------------------------- texto com marcação
     def runs(self, texto, base_b=False, base_i=False):
-        """Converte marcação em runs; referências viram campos REF."""
-        partes = re.split(r"(\*\*|\*|\{(?:fig|qua|tab):[\w\-]+\})", texto)
+        """Converte marcação em runs; referências viram campos REF e [[R]] vira o selo RACI."""
+        partes = re.split(r"(\*\*|\*|\{(?:fig|qua|tab):[\w\-]+\}|\[\[[RACI]\]\])", texto)
         b, i = base_b, base_i
         out = []
         for p in partes:
@@ -92,6 +108,8 @@ class Montador:
             elif p.startswith("{") and p.endswith("}") and ":" in p:
                 chave = p[1:-1].split(":", 1)[1]
                 out.append(self.campo_ref(chave, b, i))
+            elif p.startswith("[[") and p.endswith("]]"):
+                out.append(selo_raci(p[2]))
             else:
                 out.append(run(p, b, i))
         return "".join(out)

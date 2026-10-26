@@ -1,5 +1,5 @@
 from mop import ACAO, ITEM, ETAPA, P, PL, BUL, FIG, COM
-from comum import matriz, metas, indicadores, aceite, nas, fig_ipo, fig_crono, fig_interf
+from comum import matriz, metas, indicadores, aceite, nas, fig_raias, fig_crono, fig_interf
 
 COD = "3.2.2.2"
 
@@ -51,14 +51,11 @@ ELEMENTOS = [
       "saneamento rural, útil a outras políticas públicas."),
 
     ITEM("4. Processo de execução operacional"),
-    P("O trabalho começa com a contratação da empresa e termina com o relatório final, que dá baixa na etapa "
-      "correspondente do Termo de Cooperação ({fig:ipo-3222}). A sequência detalhada, com os produtos de cada etapa e "
-      "as ações que usam os resultados, está na {fig:tts}."),
-    fig_ipo(COD),
-    FIG("tts", "f-tts", "Sequência, produtos e usos do trabalho técnico-social",
-        "Fonte: IAT (2026), com base em IAT (2026b).",
-        alt="Fluxograma vertical com as etapas do trabalho técnico-social, os produtos de cada etapa e as ações que "
-            "usam o diagnóstico."),
+    P("O trabalho tem sete etapas, da contratação da empresa ao relatório final, que dá baixa na etapa "
+      "correspondente do Termo de Cooperação ({fig:raias-3222}). A empresa contratada executa o trabalho de campo, e "
+      "as famílias assinam o termo de adesão na Etapa 5. Os produtos de cada etapa, na base da figura, alimentam as "
+      "Ações 3.2.2.1, 3.2.2.3 e 3.2.2.5."),
+    fig_raias(COD),
 
     ETAPA("4.1 Etapa 1: Contratação da empresa"),
     PL("Atividades:", "elaboração do Termo de Referência, com escopo, produtos, prazos e perfil da equipe; edital; "
@@ -109,19 +106,21 @@ ELEMENTOS = [
     ETAPA("4.7 Etapa 7: Relatório final"),
     PL("Atividades:", "consolidação dos resultados; relatório final; baixa da etapa no Termo de Cooperação."),
     PL("Entradas:", "produtos das Etapas 2 a 6."),
-    PL("Responsáveis:", "empresa contratada (executa); IAT e IDR-Paraná (validam; a aprovação final é do IAT)."),
+    PL("Responsáveis:", "empresa contratada (executa); IDR-Paraná (consultado na validação); IAT (aprova)."),
+    COM("A nota técnica prevê que o IAT e o IDR-Paraná validem o relatório final. Na matriz, o IDR-Paraná aparece como C "
+        "(consultado antes da aprovação), porque o Guia de Identidade Visual admite um único A por etapa; confirmar."),
     PL("Produto:", "relatório final aprovado."),
 
     ETAPA("4.8 Modalidade de execução"),
     P("O item de custo é o trabalho técnico e social: 36 profissionais-mês a R$ 179.835,30, total de R$ 6,47 milhões, "
-      "financiados pelo empréstimo do BIRD. A execução é por licitação de serviços, conforme o Caderno de Aquisições. "
+      "financiados pelo empréstimo do BIRD. A execução é por licitação de serviços, conforme o Caderno AQ. "
       "O número de lotes será definido no Plano de Aquisições."),
 
     ITEM("5. Matriz de responsabilidades"),
     P("O {qua:raci-3222} indica o papel de cada parte em cada etapa."),
     matriz(COD, [
         ("IAT", ["R, A", "A", "A", "A", "A", "A", "A"], "A"),
-        ("IDR-Paraná", ["–", "C", "C", "C", "C", "C", "R"], "C"),
+        ("IDR-Paraná", ["–", "C", "C", "C", "C", "C", "C"], "C"),
         ("Empresa contratada", ["–", "R", "R", "R", "R", "R", "R"], "R"),
         ("Prefeituras", ["I", "C", "I", "I", "I", "C", "I"], "I"),
         ("Famílias e associações", ["–", "C", "C", "C", "R", "C", "I"], "I"),
@@ -142,8 +141,8 @@ ELEMENTOS = [
         ["Lideranças e moradores capacitados", "pessoas", "0", "a definir no plano de trabalho", "Semestral; listas de presença"],
     ]),
     COM("Definir as metas de famílias aderidas e de pessoas capacitadas no plano de trabalho da empresa contratada."),
-    P("Os critérios de aceite e as evidências estão no {qua:aceite-3222}. O relatório final, validado pelo IAT e pelo "
-      "IDR-Paraná, é a evidência de conclusão de cada lote e dá baixa no Termo de Cooperação."),
+    P("Os critérios de aceite e as evidências estão no {qua:aceite-3222}. O relatório final, aprovado pelo IAT depois "
+      "da consulta ao IDR-Paraná, é a evidência de conclusão de cada lote e dá baixa no Termo de Cooperação."),
     aceite(COD, [
         ["Plano de trabalho", "Metodologia, cronograma e equipe compatíveis com o Termo de Referência",
          "Plano aprovado", "IAT"],
@@ -155,7 +154,7 @@ ELEMENTOS = [
         ["Capacitação", "Conteúdo do plano de educação sanitária e ambiental cumprido",
          "Listas de presença e certificados", "IAT"],
         ["Relatório final", "Consolida os produtos e é aprovado", "Relatório final; baixa no Termo de Cooperação",
-         "IAT e IDR-Paraná"],
+         "IAT, com consulta ao IDR-Paraná"],
     ]),
 
     ITEM("7. Gestão de riscos e impactos ambientais e sociais"),
@@ -192,9 +191,8 @@ ELEMENTOS = [
     ITEM("10. Documentos complementares"),
     BUL("Termo de Referência do trabalho técnico-social (a elaborar);",
         "Termo de Cooperação entre o IAT e cada município;",
-        "Plano de Engajamento das Partes Interessadas (PEPI) e Mecanismo de Queixas e Reclamações, no Caderno Ambiental "
-        "e Social do MOP;",
+        "Plano de Engajamento das Partes Interessadas (PEPI) e Mecanismo de Queixas e Reclamações, no Caderno AS;",
         "Lei nº 13.709/2018 (Lei Geral de Proteção de Dados Pessoais);",
         "Programa Nacional de Saneamento Rural (BRASIL, 2019);",
-        "Caderno de Aquisições do MOP."),
+        "Caderno AQ."),
 ]

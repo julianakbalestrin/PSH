@@ -19,23 +19,44 @@ TRAB = os.path.join(AQUI, "trabalho")
 
 # ------------------------------------------------------------------ conteúdo
 REFERENCIAS = [
+    "ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS (ABNT). **NBR 12244**: poço tubular: construção de poço tubular para "
+    "captação de água subterrânea. Rio de Janeiro: ABNT, 2006.",
+    "ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS (ABNT). **NBR 12212**: projeto de poço tubular para captação de água "
+    "subterrânea: procedimento. Rio de Janeiro: ABNT, 2017.",
     "ASSOCIAÇÃO BRASILEIRA DE NORMAS TÉCNICAS (ABNT). **NBR 17076**: projeto de sistema de tratamento de esgoto de "
     "menor porte: requisitos. Rio de Janeiro: ABNT, 2024.",
     "BAHIA. Governo do Estado. **Centrais de abastecimento de associações são referência de política pública de "
     "saneamento rural**. Salvador, 2022. Disponível em: https://www.ba.gov.br/comunicacao/2022/05/noticias/"
     "centrais-de-abastecimento-de-associacoes-sao-referencia-de-politica-publica-de-saneamento-rural.",
+    "BANCO MUNDIAL. **Quadro Ambiental e Social**. Washington, DC: Banco Mundial, 2017.",
+    "BRASIL. **Lei nº 9.433, de 8 de janeiro de 1997**. Institui a Política Nacional de Recursos Hídricos, cria o "
+    "Sistema Nacional de Gerenciamento de Recursos Hídricos, regulamenta o inciso XIX do art. 21 da Constituição "
+    "Federal, e altera o art. 1º da Lei nº 8.001, de 13 de março de 1990, que modificou a Lei nº 7.990, de 28 de "
+    "dezembro de 1989. Brasília, DF: Presidência da República, 1997.",
     "BRASIL. **Lei nº 11.107, de 6 de abril de 2005**. Dispõe sobre normas gerais de contratação de consórcios "
     "públicos e dá outras providências. Brasília, DF: Presidência da República, 2005.",
+    "BRASIL. **Lei nº 11.445, de 5 de janeiro de 2007**. Estabelece as diretrizes nacionais para o saneamento básico "
+    "[...]. Brasília, DF: Presidência da República, 2007.",
     "BRASIL. **Lei nº 13.019, de 31 de julho de 2014**. Estabelece o regime jurídico das parcerias entre a "
     "administração pública e as organizações da sociedade civil. Brasília, DF: Presidência da República, 2014.",
     "BRASIL. **Lei nº 13.709, de 14 de agosto de 2018**. Lei Geral de Proteção de Dados Pessoais (LGPD). Brasília, "
     "DF: Presidência da República, 2018.",
     "BRASIL. Ministério da Saúde. Fundação Nacional de Saúde. **Programa Nacional de Saneamento Rural**. Brasília, "
     "DF: Funasa, 2019.",
+    "BRASIL. **Lei nº 14.026, de 15 de julho de 2020**. Atualiza o marco legal do saneamento básico e altera a Lei nº "
+    "9.984, de 17 de julho de 2000, [...]. Brasília, DF: Presidência da República, 2020.",
     "BRASIL. Ministério da Saúde. **Portaria GM/MS nº 888, de 4 de maio de 2021**. Altera o Anexo XX da Portaria de "
     "Consolidação GM/MS nº 5, de 28 de setembro de 2017, para dispor sobre os procedimentos de controle e de "
     "vigilância da qualidade da água para consumo humano e seu padrão de potabilidade. Brasília, DF: Ministério da "
     "Saúde, 2021.",
+    "BRASIL. **Decreto nº 11.599, de 12 de julho de 2023**. Dispõe sobre a prestação regionalizada dos serviços "
+    "públicos de saneamento básico, o apoio técnico e financeiro de que trata o art. 13 da Lei nº 14.026, de 15 de "
+    "julho de 2020, a alocação de recursos públicos federais e os financiamentos com recursos da União ou com "
+    "recursos geridos ou operados por órgãos ou entidades da União de que trata o art. 50 da Lei nº 11.445, de 5 de "
+    "janeiro de 2007. Brasília, DF: Presidência da República, 2023.",
+    "BRASIL. Ministério da Saúde. Fundação Nacional de Saúde. **Portaria nº 2.777, de 30 de julho de 2025**. "
+    "Brasília, DF: Funasa, 2025. Disponível em: https://bvs.saude.gov.br/bvs/saudelegis/funasa/2025/"
+    "prt2777_05_08_2025.html.",
     "CEARÁ. Governo do Estado. **Modelo cearense de saneamento rural sustentável alcança mais de 1,1 milhão de pessoas "
     "no campo**. Fortaleza, 16 out. 2025. Disponível em: https://www.ceara.gov.br/2025/10/16/"
     "modelo-cearense-de-saneamento-rural-sustentavel-alcanca-mais-de-11-milhao-de-pessoas-no-campo/.",
@@ -48,6 +69,8 @@ REFERENCIAS = [
     "formato A3.",
     "INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE). **Censo Demográfico 2022**: agregados por setores "
     "censitários. Rio de Janeiro: IBGE, 2024.",
+    "PARANÁ. **Lei nº 12.726, de 26 de novembro de 1999**. Institui a Política Estadual de Recursos Hídricos e adota "
+    "outras providências. Curitiba: Assembleia Legislativa do Estado do Paraná, 1999.",
     "PARANÁ. Secretaria de Estado do Planejamento. **Planilha de custos do PSH-PR**: PSH_CUSTO_Consolidada, versão "
     "v2408. Curitiba: SEPL, 2026. Documento interno.",
     "SANEPAR – COMPANHIA DE SANEAMENTO DO PARANÁ. **Manual do Programa Sanepar Rural**. Curitiba: Sanepar, [s.d.]. "
@@ -78,12 +101,15 @@ GLOSSARIO = [
 
 SIGLAS_NOVAS = {
     "ABNT": "Associação Brasileira de Normas Técnicas",
+    "AQ": "Caderno de Aquisições do MOP (código)",
+    "AS": "Caderno Ambiental e Social do MOP (código)",
     "CISPAR": "Consórcio Intermunicipal de Saneamento do Paraná",
     "CNEFE": "Cadastro Nacional de Endereços para Fins Estatísticos",
     "CNPJ": "Cadastro Nacional da Pessoa Jurídica",
     "DBO": "Demanda bioquímica de oxigênio",
     "DISAR": "Diretoria de Saneamento Ambiental e Recursos Hídricos (IAT)",
     "EPI": "Equipamento de proteção individual",
+    "Funasa": "Fundação Nacional de Saúde",
     "IAT": "Instituto Água e Terra",
     "IBGE": "Instituto Brasileiro de Geografia e Estatística",
     "IDR-Paraná": "Instituto de Desenvolvimento Rural do Paraná – Iapar-Emater",

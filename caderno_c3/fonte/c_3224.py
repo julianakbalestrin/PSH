@@ -1,5 +1,5 @@
 from mop import ACAO, ITEM, ETAPA, P, PL, BUL, FIG, COM
-from comum import matriz, metas, indicadores, aceite, nas, fig_ipo, fig_crono, fig_interf
+from comum import matriz, metas, indicadores, aceite, nas, fig_raias, fig_crono, fig_interf
 
 COD = "3.2.2.4"
 
@@ -37,8 +37,8 @@ ELEMENTOS = [
 
     ITEM("3. Arranjo institucional e partes interessadas"),
     P("A Sanepar é a executora da ação, com a sua estrutura técnica e os recursos de contrapartida. Os municípios "
-      "assinam o Termo de Compromisso e Responsabilidade e executam as obras. As comunidades formam as associações de "
-      "moradores e recebem o treinamento. O IAT acompanha a interface com o modelo de gestão (Ação 3.2.2.1) e com a "
+      "assinam o Termo de Compromisso e Responsabilidade e executam as obras, e as comunidades formam as associações "
+      "de moradores e recebem o treinamento. O IAT acompanha a interface com o modelo de gestão (Ação 3.2.2.1) e com a "
       "outorga de uso da água, e a UGP consolida a comprovação da contrapartida e o reporte ao Banco Mundial."),
     COM("Indicar a diretoria e a gerência da Sanepar responsáveis pelo Programa Sanepar Rural."),
     BUL("**Executor:** Sanepar;",
@@ -49,14 +49,14 @@ ELEMENTOS = [
       "veiculação hídrica."),
 
     ITEM("4. Processo de execução operacional"),
-    P("As atividades seguem o manual do Programa Sanepar Rural ({fig:ipo-3224}). Em cada comunidade, a Sanepar faz o "
-      "levantamento técnico e o projeto, formaliza a parceria com o município e fornece os materiais; o município executa "
-      "a obra com o apoio técnico da companhia; e a comunidade forma a associação e recebe o treinamento. Após a obra, a "
-      "Sanepar acompanha a qualidade da água e dá suporte às associações ({fig:sanepar})."),
-    fig_ipo(COD),
-    FIG("sanepar", "f-sanepar", "Programa Sanepar Rural, por responsável",
+    P("As atividades seguem o manual do Programa Sanepar Rural, em seis etapas ({fig:raias-3224}). Em cada comunidade, "
+      "a Sanepar faz o levantamento técnico e o projeto, formaliza a parceria com o município e fornece os materiais; o "
+      "município executa a obra com o apoio técnico da companhia; e a comunidade forma a associação e recebe o "
+      "treinamento. Após a obra, a Sanepar acompanha a qualidade da água e dá suporte às associações."),
+    FIG("raias-3224", "g-raias-3224", "Fluxograma da Ação 3.2.2.4: entradas, etapas por responsável e saídas",
         "Fonte: IAT (2026), com base em IAT (2026b) e SANEPAR ([s.d.]).",
-        alt="Fluxograma em raias para a Sanepar, o município e a comunidade, do estudo técnico ao suporte pós-obra."),
+        alt="Fluxograma em raias para a Sanepar, os municípios e as associações, do estudo técnico ao suporte pós-obra, "
+            "com as entradas no topo e as saídas na base."),
 
     ETAPA("4.1 Etapa 1: Levantamento técnico e estudo de engenharia"),
     PL("Atividades:", "levantamento das condições da comunidade e estudo técnico de engenharia do sistema."),
@@ -103,9 +103,10 @@ ELEMENTOS = [
     P("O item de custo é o de sistemas coletivos de abastecimento de água, com recursos de contrapartida: 222 sistemas "
       "a R$ 302.464,42, em média, total de R$ 67,15 milhões, integralmente com recursos próprios da Sanepar. A execução "
       "é por convênio, formalizado em Termo de Compromisso e Responsabilidade entre a Sanepar e cada município, conforme "
-      "o manual do programa. As aquisições da Sanepar seguem o seu Regulamento de Licitações e Contratos, e as obras "
-      "contratadas pelos municípios, a legislação de licitações. A Sanepar comprova à UGP os valores aplicados e os "
-      "sistemas implantados, para registro da contrapartida."),
+      "o manual do programa."),
+    P("As aquisições da Sanepar seguem o seu Regulamento de Licitações e Contratos, e as obras contratadas pelos "
+      "municípios, a legislação de licitações. A Sanepar comprova à UGP os valores aplicados e os sistemas implantados, "
+      "para registro da contrapartida."),
     COM("Confirmar com a UGP e o Banco Mundial se as aquisições e as obras financiadas com contrapartida seguem as "
         "regras da Sanepar e dos municípios e quais requisitos do Programa se aplicam a elas."),
 
@@ -153,7 +154,7 @@ ELEMENTOS = [
     ITEM("7. Gestão de riscos e impactos ambientais e sociais"),
     P("Os riscos são semelhantes aos dos sistemas do IAT: impactos temporários das obras, segurança dos trabalhadores e "
       "da comunidade, uso das áreas das estruturas, qualidade da água e participação das comunidades. Por integrar o "
-      "Programa, a ação observa os instrumentos do Caderno Ambiental e Social do MOP ({qua:nas-3224})."),
+      "Programa, a ação observa os instrumentos do Caderno AS ({qua:nas-3224})."),
     nas(COD, [
         ["NAS 1 – Avaliação e gestão de riscos", "Obras em cada comunidade", "Triagem socioambiental; licenças quando "
          "exigidas; procedimentos ambientais da Sanepar"],
@@ -168,7 +169,7 @@ ELEMENTOS = [
         ["NAS 10 – Engajamento das partes interessadas", "Comunidades e associações", "Mobilização e organização "
          "comunitária; canal de queixas da Sanepar e Mecanismo de Queixas e Reclamações do Programa"],
     ], nota="Nota: as NAS 6, 7 e 8 são verificadas na triagem de cada sistema."),
-    COM("Confirmar com a UGP quais instrumentos do Caderno Ambiental e Social se aplicam às ações executadas com "
+    COM("Confirmar com a UGP quais instrumentos do Caderno AS se aplicam às ações executadas com "
         "recursos de contrapartida."),
 
     ITEM("8. Cronograma"),
@@ -189,5 +190,5 @@ ELEMENTOS = [
         "Modelo do Termo de Compromisso e Responsabilidade;",
         "Regulamento de Licitações e Contratos da Sanepar;",
         "Portaria GM/MS nº 888/2021 (padrão de potabilidade);",
-        "Caderno Ambiental e Social do MOP."),
+        "Caderno AS."),
 ]

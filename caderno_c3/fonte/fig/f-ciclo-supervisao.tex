@@ -1,23 +1,44 @@
-\documentclass[11pt,border=4pt]{standalone}
+\documentclass[border=2pt]{standalone}
 \input{estilo}
 \begin{document}
-
-\begin{tikzpicture}[
-   passo/.style={etapa=3.3cm, minimum height=1.0cm, font=\scriptsize},
-   circ/.style={-{Stealth[length=2.2mm]}, line width=1pt, draw=cTeal}]
-  \node[marco=3.0cm, minimum height=1.5cm, font=\footnotesize\bfseries] (c) at (0,0) {Obras de água e de esgoto\\
-    {\normalfont\scriptsize Ações 3.2.2.3, 3.2.2.5 e 3.2.2.6}};
-  \foreach \i/\t in {
-     1/{\textbf{Plano de supervisão} aprovado pelo IAT},
-     2/{\textbf{Visitas de campo} e controle de qualidade},
-     3/{\textbf{Registro de não conformidades}, inclusive ambientais e sociais},
-     4/{\textbf{Correção} pelo executor e nova verificação},
-     5/{\textbf{Verificação das medições} executadas},
-     6/{\textbf{Relatório mensal} ao IAT e à UGP}} {
-    \node[passo] (n\i) at ({90-(\i-1)*60}:3.55cm) {\t};
-  }
-  \foreach \a/\b in {1/2,2/3,3/4,4/5,5/6,6/1}
-    \draw[circ] (n\a) to[bend left=18] (n\b);
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-2.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-1.250) {Supervisora};
+  \fill[cinza10] (0,-2.5) rectangle (2.35,-4.1);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-3.300) {Executor da obra};
+  \fill[cinza10] (0,-4.1) rectangle (2.35,-6.0);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-5.050) {IAT (fiscalização)};
+  \fill[cinza10] (0,-6.0) rectangle (2.35,-7.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-6.750) {UGP};
+  \draw[cinza20, line width=0.6pt] (0,-2.5) -- (15.8,-2.5);
+  \draw[cinza20, line width=0.6pt] (0,-4.1) -- (15.8,-4.1);
+  \draw[cinza20, line width=0.6pt] (0,-6.0) -- (15.8,-6.0);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-7.5);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-7.5);
+  \node[inicio] (ini) at (3.45,-0.45) {Início};
+  \node[atividade=1.72cm] (s1) at (3.45,-1.67) {Visitar as obras e controlar a qualidade};
+  \node[decisao=1.45cm] (d1) at (5.7,-1.67) {Conforme?};
+  \node[atividade=1.72cm] (x1) at (5.7,-3.3) {Corrigir a não conformidade};
+  \node[atividade=1.72cm] (s2) at (8.13,-1.67) {Verificar as medições};
+  \node[atividade=1.72cm] (s3) at (10.319999999999999,-1.67) {Emitir o relatório mensal};
+  \node[atividade=1.72cm] (i1) at (10.319999999999999,-5.05) {Aprovar o relatório};
+  \node[atividade=1.72cm] (u1) at (10.319999999999999,-6.75) {Consolidar o progresso físico};
+  \node[decisao=1.45cm] (d2) at (12.45,-5.05) {Obra concluída?};
+  \node[inicio] (fim) at (14.7,-5.05) {Fim};
+  \draw[conector] (ini) -- (s1);
+  \draw[conector] (s1) -- (d1);
+  \draw[conector] (d1) -- (x1);
+  \node[rotulo, anchor=north west, align=center] at ($(d1.south)+(0.06,-0.04)$) {não};
+  \draw[conector] (x1.west) -| (s1.south);
+  \draw[conector] (d1) -- (s2);
+  \node[rotulo, anchor=south, align=center] at ($(d1.east)!0.5!(s2.west)+(0,0.04)$) {sim};
+  \draw[conector] (s2) -- (s3);
+  \draw[conector] (s3) -- (i1);
+  \draw[conector] (i1) -- (u1);
+  \draw[conector] (u1.east) -| (d2.south);
+  \draw[conector] (d2.north) |- (4.17,-0.28) -- ($(s1.north)+(0.72,0)$);
+  \node[rotulo, anchor=south west, align=center] at (12.51,-0.26) {não: próximo mês};
+  \draw[conector] (d2) -- (fim);
+  \node[rotulo, anchor=south, align=center] at ($(d2.east)!0.5!(fim.west)+(0,0.04)$) {sim};
 \end{tikzpicture}
-
 \end{document}

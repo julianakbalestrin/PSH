@@ -1,32 +1,31 @@
-\documentclass[11pt,border=4pt]{standalone}
+\documentclass[border=2pt]{standalone}
 \input{estilo}
 \begin{document}
-
-\begin{tikzpicture}[passo/.style={etapa=4.25cm, minimum height=0.82cm, font=\scriptsize}]
-  \def\alt{12.0cm}
-  \node[raia=4.95cm, minimum height=\alt] at (0,0)     {};
-  \node[raia=4.95cm, minimum height=\alt] at (5.25,0)  {};
-  \node[raia=4.95cm, minimum height=\alt] at (10.5,0)  {};
-  \node[font=\scriptsize\bfseries, text=cNavy] at (2.475,-0.35)  {Empresa contratada};
-  \node[font=\scriptsize\bfseries, text=cNavy] at (7.725,-0.35)  {Proprietário (beneficiário)};
-  \node[font=\scriptsize\bfseries, text=cNavy] at (12.975,-0.35) {IAT (fiscalização e validação)};
-  \node[passo] (m1) at (2.475,-1.2)   {Relatório de medição do projeto e da instalação};
-  \node[passo] (m2) at (2.475,-2.45)  {Comprovação: documentos e evidências da intervenção};
-  \node[passo] (m3) at (7.725,-3.7)   {Assinatura que confirma a execução das melhorias};
-  \node[passo] (m4) at (12.975,-4.95) {Auditoria documental};
-  \node[passo] (m5) at (12.975,-6.2)  {Verificação \textit{in loco} das intervenções};
-  \node[passo] (m6) at (2.475,-7.45)  {Relatório de medição final do lote};
-  \node[passo] (m7) at (12.975,-8.7)  {Amostragem \textit{in loco} da qualidade das unidades};
-  \node[passo] (m8) at (12.975,-9.95) {Ordenação das despesas e pagamento};
-  \node[marco=4.25cm, minimum height=0.82cm] (m9) at (7.725,-11.25) {Finalização do lote};
-  \draw[seta] (m1) -- (m2);
-  \draw[seta] (m2) |- (m3);
-  \draw[seta] (m3) -| (m4);
-  \draw[seta] (m4) -- (m5);
-  \draw[seta] (m5) -| (m6);
-  \draw[seta] (m6) |- (m7);
-  \draw[seta] (m7) -- (m8);
-  \draw[seta] (m8) |- (m9);
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-2.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-1.250) {Empresa contratada};
+  \fill[cinza10] (0,-2.5) rectangle (2.35,-4.0);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-3.250) {Proprietário};
+  \fill[cinza10] (0,-4.0) rectangle (2.35,-6.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-5.250) {IAT};
+  \draw[cinza20, line width=0.6pt] (0,-2.5) -- (15.8,-2.5);
+  \draw[cinza20, line width=0.6pt] (0,-4.0) -- (15.8,-4.0);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-6.5);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-6.5);
+  \node[inicio] (ini) at (3.45,-0.45) {Início};
+  \node[atividade=1.72cm] (m1) at (3.45,-1.67) {Medir e reunir as evidências};
+  \node[atividade=1.72cm] (p1) at (5.7,-3.25) {Assinar a confirmação da execução};
+  \node[atividade=1.72cm] (a1) at (7.95,-4.83) {Auditar os documentos};
+  \node[atividade=1.72cm] (a2) at (10.2,-4.83) {Verificar \textit{in loco}};
+  \node[atividade=1.72cm] (m3) at (12.45,-1.67) {Consolidar a medição final do lote};
+  \node[atividade=1.72cm] (a3) at (14.7,-4.83) {Amostrar e pagar};
+  \node[inicio] (fim) at (14.7,-6.05) {Fim};
+  \draw[conector] (ini) -- (m1);
+  \draw[conector] (m1.east) -| (p1.north);
+  \draw[conector] (p1.east) -| (a1.north);
+  \draw[conector] (a1) -- (a2);
+  \draw[conector] (a2.east) -| (m3.south);
+  \draw[conector] (m3.east) -| (a3.north);
+  \draw[conector] (a3) -- (fim);
 \end{tikzpicture}
-
 \end{document}

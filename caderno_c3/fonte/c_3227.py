@@ -1,5 +1,5 @@
 from mop import ACAO, ITEM, ETAPA, P, PL, BUL, FIG, COM
-from comum import matriz, metas, indicadores, aceite, nas, fig_ipo, fig_crono, fig_interf
+from comum import matriz, metas, indicadores, aceite, nas, fig_raias, fig_crono, fig_interf
 
 COD = "3.2.2.7"
 
@@ -40,13 +40,15 @@ ELEMENTOS = [
       "riscos de execução."),
 
     ITEM("4. Processo de execução operacional"),
-    P("A ação tem cinco etapas, da contratação ao relatório final ({fig:ipo-3227}). Durante as obras, a supervisão "
-      "funciona em ciclo mensal ({fig:ciclo-supervisao}): plano aprovado, visitas de campo, registro de não "
-      "conformidades, correção pelo executor, verificação das medições e relatório ao IAT e à UGP."),
-    fig_ipo(COD),
+    P("A ação tem cinco etapas, da contratação ao relatório final, cada uma na raia de quem a executa "
+      "({fig:raias-3227}). Durante as obras, a supervisão funciona em ciclo mensal ({fig:ciclo-supervisao}): visitas de "
+      "campo e controle de qualidade, correção das não conformidades pelo executor, verificação das medições, relatório "
+      "mensal aprovado pelo IAT e consolidação do progresso pela UGP."),
+    fig_raias(COD),
     FIG("ciclo-supervisao", "f-ciclo-supervisao", "Ciclo mensal de supervisão das obras",
         "Fonte: IAT (2026).",
-        alt="Diagrama circular com as seis atividades do ciclo mensal de supervisão em torno das obras de água e de esgoto."),
+        alt="Fluxograma em raias do ciclo mensal de supervisão, com a correção das não conformidades, a aprovação do "
+            "relatório pelo IAT, a consolidação pela UGP e a repetição a cada mês até a conclusão das obras."),
 
     ETAPA("4.1 Etapa 1: Contratação da supervisora"),
     PL("Atividades:", "Termo de Referência com escopo, equipe e produtos; seleção da consultoria pelo método definido "
@@ -87,7 +89,7 @@ ELEMENTOS = [
     ETAPA("4.6 Modalidade de execução"),
     P("O item de custo é a supervisão e o gerenciamento de obras: 36 profissionais-mês a R$ 299.722,20, total de "
       "R$ 10,79 milhões, financiados pelo empréstimo do BIRD. A execução é por licitação de serviços de consultoria, "
-      "conforme o Caderno de Aquisições."),
+      "conforme o Caderno AQ."),
     COM("A supervisão está prevista de 2029 a 2032, mas as obras de água vão de 2028 a 2033. Avaliar como serão "
         "supervisionadas as obras de 2028 e de 2033 e se a supervisão cobre também as instalações de esgoto."),
 
@@ -151,7 +153,8 @@ ELEMENTOS = [
 
     ITEM("10. Documentos complementares"),
     BUL("Termo de Referência da supervisão e do gerenciamento das obras (a elaborar);",
-        "Regulamento de Aquisições do Banco Mundial e Caderno de Aquisições do MOP;",
-        "Caderno Ambiental e Social do MOP;",
+        "Regulamento de Aquisições do Banco Mundial para mutuários de Financiamento de Projetos de Investimento e "
+        "Caderno AQ;",
+        "Caderno AS;",
         "Normas técnicas aplicáveis às obras (ABNT) e projetos aprovados de cada sistema."),
 ]

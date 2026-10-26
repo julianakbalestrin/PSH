@@ -1,5 +1,5 @@
 from mop import ACAO, ITEM, ETAPA, P, PL, BUL, FIG, COM, TAB
-from comum import matriz, metas, indicadores, aceite, nas, fig_ipo, fig_crono, fig_interf
+from comum import matriz, metas, indicadores, aceite, nas, fig_raias, fig_crono, fig_interf
 
 COD = "3.2.2.6"
 
@@ -34,7 +34,8 @@ ELEMENTOS = [
       "sanitário, com cerca de 6,4 mil pessoas."),
     PL("Inclui:", "a indicação dos domicílios pelo IDR-Paraná; a contratação das soluções e das obras; o projeto "
        "sanitário de cada propriedade; a instalação conforme a ABNT NBR 17076:2024; a verificação técnica; a orientação "
-       "do proprietário; e a medição, a comprovação e o pagamento, com validação conjunta do IAT e do IDR-Paraná."),
+       "do proprietário; e a medição, a comprovação e o pagamento, com a validação técnica feita pelo IAT com o "
+       "IDR-Paraná."),
     PL("Não inclui:", "a elaboração dos Planos Integrados de Propriedade (PIP), feita no Subcomponente 2.3, nem redes "
        "coletoras ou obras dentro das moradias."),
     PL("Valor previsto:", "R$ 18,40 milhões (empréstimo BIRD: R$ 18,40 milhões; contrapartida: R$ 0,00 milhões), "
@@ -67,23 +68,22 @@ ELEMENTOS = [
         "nove mananciais, com as microbacias e os municípios."),
 
     ITEM("3. Arranjo institucional e partes interessadas"),
-    P("O IAT, por meio da DISAR, contrata a empresa, fiscaliza a instalação e faz o pagamento. O IDR-Paraná indica os "
-      "domicílios a partir dos PIP, apoia a mobilização dos proprietários e valida os resultados junto com o IAT. A "
-      "empresa contratada elabora o projeto de cada propriedade e executa a instalação; o proprietário autoriza, "
-      "acompanha e confirma a execução. A supervisora da Ação 3.2.2.7 apoia a fiscalização, e a UGP acompanha a "
-      "execução."),
-    BUL("**Coexecutor:** IDR-Paraná, na indicação dos domicílios, na mobilização e na validação;",
-        "**Intervenientes:** empresa contratada; supervisora (Ação 3.2.2.7);",
+    P("O IAT, por meio da DISAR, contrata a empresa, fiscaliza a instalação e faz o pagamento, com o apoio da "
+      "supervisora da Ação 3.2.2.7. O IDR-Paraná indica os domicílios a partir dos PIP, apoia a mobilização dos "
+      "proprietários e participa da validação técnica dos resultados. A empresa contratada elabora o projeto de cada "
+      "propriedade e executa a instalação, e o proprietário autoriza, acompanha e confirma a execução."),
+    BUL("**Coexecutor:** IDR-Paraná, na indicação dos domicílios, na mobilização e na validação técnica;",
+        "**Intervenientes:** empresa contratada; supervisora (Ação 3.2.2.7); UGP, que acompanha a execução;",
         "**Público envolvido:** proprietários e moradores das propriedades rurais dos mananciais."),
     P("Os beneficiários diretos são os moradores dos 2.300 domicílios, cerca de 6,4 mil pessoas. Os beneficiários "
       "indiretos são as populações abastecidas pelos mananciais, que recebem água bruta de melhor qualidade."),
 
     ITEM("4. Processo de execução operacional"),
     P("A ação segue o mesmo procedimento de instalação, verificação, medição e pagamento da Ação 3.2.2.5 "
-      "({fig:instalacao} e {fig:medicao}). As diferenças estão na origem da demanda, no território e na validação "
-      "({qua:diferencas}): os domicílios são indicados pelos PIP do IDR-Paraná, e não pelo trabalho técnico-social; o "
-      "território é o dos mananciais de abastecimento público; e a validação é compartilhada entre o IAT e o "
-      "IDR-Paraná ({fig:ipo-3226})."),
+      "({fig:instalacao} e {fig:medicao}), com as etapas por responsável mostradas na {fig:raias-3226}. As diferenças "
+      "estão na origem da demanda, no território e na validação ({qua:diferencas}): os domicílios são indicados pelos "
+      "PIP do IDR-Paraná, e não pelo trabalho técnico-social; o território é o dos mananciais de abastecimento público; "
+      "e a validação técnica de cada lote é feita com o IDR-Paraná."),
     TAB("diferencas", "Quadro", "Diferenças entre as ações de esgotamento sanitário",
         ["Aspecto", "Ação 3.2.2.5 – comunidades", "Ação 3.2.2.6 – mananciais"],
         [["Origem da demanda", "Diagnóstico do trabalho técnico-social (Ação 3.2.2.2)",
@@ -93,9 +93,9 @@ ELEMENTOS = [
           "Censo 2022 e CNEFE: 2.236 domicílios, arredondados para 2.300"],
          ["Meta", "4.067 domicílios", "2.300 domicílios"],
          ["Prazo", "2028 a 2033", "2029 a 2033"],
-         ["Validação", "IAT", "IAT e IDR-Paraná"]],
+         ["Validação", "IAT", "IAT, com o IDR-Paraná"]],
         [2200, 3435, 3436], "lll", "Fonte: IAT (2026), com base em IAT (2026a) e PARANÁ (2026)."),
-    fig_ipo(COD),
+    fig_raias(COD),
 
     ETAPA("4.1 Etapa 1: Indicação dos domicílios pelo IDR-Paraná"),
     PL("Atividades:", "o IDR-Paraná indica, a partir dos PIP e do diagnóstico das microbacias, os domicílios sem "
@@ -137,10 +137,14 @@ ELEMENTOS = [
     ETAPA("4.6 Etapa 6: Medição, comprovação e pagamento"),
     PL("Atividades:", "relatórios de medição e evidências; assinatura do proprietário; auditoria documental e "
        "verificação *in loco*; relatório de medição final; amostragem *in loco*; ordenação das despesas e pagamento, "
-       "conforme a {fig:medicao}. A validação técnica é feita em conjunto pelo IAT e pelo IDR-Paraná."),
+       "conforme a {fig:medicao}. O IAT aprova cada lote depois da validação técnica feita com o IDR-Paraná."),
     PL("Entradas:", "sistemas validados; assinaturas dos proprietários."),
-    PL("Responsáveis:", "empresa contratada (executa); IDR-Paraná (valida em conjunto); IAT (aprova e paga)."),
-    PL("Produto:", "relatório técnico aprovado pelo IAT e pelo IDR-Paraná e comprovante de pagamento, por lote."),
+    PL("Responsáveis:", "empresa contratada (executa); IDR-Paraná (consultado na validação); IAT (aprova e paga)."),
+    PL("Produto:", "relatório técnico aprovado pelo IAT, com a validação do IDR-Paraná, e comprovante de pagamento, por "
+       "lote."),
+    COM("A nota técnica prevê validação conjunta do IAT e do IDR-Paraná. Na matriz, o IDR-Paraná aparece como C "
+        "(consultado antes da aprovação), porque o Guia de Identidade Visual admite um único A por etapa. Confirmar o "
+        "papel com o IDR-Paraná e registrá-lo no protocolo de validação."),
 
     ETAPA("4.7 Etapa 7: Finalização"),
     PL("Atividades:", "encerramento de cada lote e do contrato; registro das propriedades atendidas, para a assistência "
@@ -152,14 +156,14 @@ ELEMENTOS = [
     ETAPA("4.8 Modalidade de execução"),
     P("O item de custo é o sistema individual de tratamento de efluentes: 2.300 domicílios a R$ 8.000,00, total de "
       "R$ 18,40 milhões, financiados pelo empréstimo do BIRD. A execução é por licitação de obras, com o projeto e a "
-      "instalação no mesmo contrato, conforme o Caderno de Aquisições. O agrupamento com a Ação 3.2.2.5 em um mesmo "
+      "instalação no mesmo contrato, conforme o Caderno AQ. O agrupamento com a Ação 3.2.2.5 em um mesmo "
       "processo, em lotes distintos, será definido no Plano de Aquisições."),
 
     ITEM("5. Matriz de responsabilidades"),
     P("O {qua:raci-3226} indica o papel de cada parte em cada etapa."),
     matriz(COD, [
         ("IAT", ["A", "R, A", "A", "A", "A", "A", "R"], "A"),
-        ("IDR-Paraná", ["R", "C", "C", "I", "C", "R", "I"], "R"),
+        ("IDR-Paraná", ["R", "C", "C", "I", "C", "C", "I"], "C"),
         ("Empresa contratada", ["–", "–", "R", "R", "R", "R", "I"], "R"),
         ("Supervisora (Ação 3.2.2.7)", ["–", "–", "–", "R", "–", "C", "–"], "–"),
         ("Proprietários", ["C", "–", "C", "I", "R", "R", "I"], "I"),
@@ -177,17 +181,17 @@ ELEMENTOS = [
          "pessoas", "0", "6.440", "Anual; IAT, com desagregação por sexo e jovens"],
         ["Mananciais com instalações concluídas", "mananciais", "0", "9", "Anual; IAT"],
     ]),
-    P("Os critérios de aceite são os mesmos da Ação 3.2.2.5, com validação conjunta do IAT e do IDR-Paraná "
+    P("Os critérios de aceite são os mesmos da Ação 3.2.2.5, com a validação técnica feita com o IDR-Paraná "
       "({qua:aceite-3226})."),
     aceite(COD, [
         ["Lista de domicílios", "Domicílios dos mananciais sem destinação adequada, com adesão do proprietário",
          "Lista do IDR-Paraná com os PIP de origem", "IAT"],
         ["Projeto sanitário", "Solução adequada à propriedade, conforme a ABNT NBR 17076:2024", "Projeto aprovado", "IAT"],
         ["Sistema instalado", "Execução conforme o projeto; teste de estanqueidade aprovado",
-         "Relatório de medição; laudo de verificação; registro fotográfico", "IAT e IDR-Paraná"],
+         "Relatório de medição; laudo de verificação; registro fotográfico", "IAT, com o IDR-Paraná"],
         ["Execução confirmada", "Proprietário confirma as melhorias", "Assinatura do proprietário", "IAT"],
         ["Lote aprovado", "Auditoria documental, verificação *in loco* e amostragem aprovadas",
-         "Relatório técnico aprovado; comprovante de pagamento", "IAT e IDR-Paraná"],
+         "Relatório técnico aprovado; comprovante de pagamento", "IAT, com o IDR-Paraná"],
     ]),
 
     ITEM("7. Gestão de riscos e impactos ambientais e sociais"),
@@ -222,7 +226,7 @@ ELEMENTOS = [
     ITEM("10. Documentos complementares"),
     BUL("ABNT NBR 17076:2024 (ABNT, 2024);",
         "Planos Integrados de Propriedade do IDR-Paraná (Subcomponente 2.3);",
-        "Protocolo de validação conjunta IAT–IDR-Paraná (a elaborar);",
+        "Protocolo de validação técnica IAT–IDR-Paraná (a elaborar);",
         "Termo de Referência e edital das soluções e das obras (a elaborar);",
-        "Caderno de Aquisições e Caderno Ambiental e Social do MOP."),
+        "Caderno AQ e Caderno AS."),
 ]

@@ -1,29 +1,36 @@
-\documentclass[11pt,border=4pt]{standalone}
+\documentclass[border=2pt]{standalone}
 \input{estilo}
 \begin{document}
-
-\begin{tikzpicture}[passo/.style={etapa=2.25cm, minimum height=1.05cm, font=\scriptsize}]
-  \foreach \i/\t in {0/IAT, 1/Município, 2/Comunidade} {
-    \node[raia=15.35cm, minimum height=1.9cm] at (0,{-\i*1.95}) {};
-    \node[tituloraia] at (0.9,{-\i*1.95-0.95}) {\t};
-  }
-  \draw[cGrayLine] (1.8,0) -- (1.8,-5.8);
-  \node[passo] (p1) at (3.25,-0.95)  {Definição dos critérios de seleção};
-  \node[passo] (p2) at (5.95,-0.95)  {Seleção das áreas e das comunidades};
-  \node[passo] (p3) at (8.65,-0.95)  {Sensibilização das prefeituras};
-  \node[passo] (p6) at (14.05,-0.95) {Contato inicial com a comunidade};
-  \node[passo] (p4) at (8.65,-2.9)   {Adesão formal ao Programa};
-  \node[passo] (p5) at (11.35,-2.9)  {Termo de Cooperação com o IAT};
-  \node[passo] (p7) at (14.05,-4.85) {Pré-adesão da comunidade};
-  \draw[seta] (p1) -- (p2);
-  \draw[seta] (p2) -- (p3);
-  \draw[seta] (p3) -- (p4);
-  \draw[seta] (p4) -- (p5);
-  \draw[seta] (p5.north) |- (p6.west);
-  \draw[seta] (p6) -- (p7);
-  \node[rotulo, fill=none, below=2pt of p2] {lista preliminar};
-  \node[rotulo, fill=none, below=2pt of p5] {termo assinado};
-  \node[rotulo, fill=none, left=2pt of p7, align=right] {contratos de\\ pré-adesão};
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-2.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-1.250) {IAT};
+  \fill[cinza10] (0,-2.5) rectangle (2.35,-4.4);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-3.450) {Municípios};
+  \fill[cinza10] (0,-4.4) rectangle (2.35,-5.9);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-5.150) {Comunidades};
+  \draw[cinza20, line width=0.6pt] (0,-2.5) -- (15.8,-2.5);
+  \draw[cinza20, line width=0.6pt] (0,-4.4) -- (15.8,-4.4);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-5.9);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-5.9);
+  \node[inicio] (ini) at (3.45,-0.45) {Início};
+  \node[atividade=1.72cm] (c1) at (3.45,-1.67) {Selecionar as comunidades};
+  \node[atividade=1.72cm] (c2) at (5.7,-1.67) {Sensibilizar as prefeituras};
+  \node[atividade=1.72cm] (m1) at (5.7,-3.45) {Aderir e assinar o Termo de Cooperação};
+  \node[decisao=1.3cm] (d) at (7.8,-3.45) {Cede bens públicos?};
+  \node[atividade=1.72cm] (m2) at (10.5,-3.45) {Aprovar a lei autorizativa};
+  \node[atividade=1.72cm] (c4) at (10.5,-1.67) {Contatar a comunidade};
+  \node[atividade=1.72cm] (k1) at (12.45,-5.15) {Assinar o contrato de pré-adesão};
+  \node[inicio] (fim) at (14.7,-5.15) {Fim};
+  \draw[conector] (ini) -- (c1);
+  \draw[conector] (c1) -- (c2);
+  \draw[conector] (c2) -- (m1);
+  \draw[conector] (m1) -- (d);
+  \draw[conector] (d) -- (m2);
+  \node[rotulo, anchor=south, align=center] at ($(d.east)!0.5!(m2.west)+(0,0.04)$) {sim};
+  \draw[conector] (d.north) |- (c4.west);
+  \node[rotulo, anchor=south west, align=center] at ($(d.north)+(0.06,0.05)$) {não};
+  \draw[conector] (m2) -- (c4);
+  \draw[conector] (c4.east) -| (k1.north);
+  \draw[conector] (k1) -- (fim);
 \end{tikzpicture}
-
 \end{document}

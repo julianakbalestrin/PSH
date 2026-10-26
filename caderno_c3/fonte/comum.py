@@ -14,21 +14,33 @@ def n(v):
     return f"{v:,}".replace(",", ".")
 
 
+def selos(papel):
+    """'R, A' -> '[[R]] [[A]]' (letras em selos coloridos); '–' fica como está."""
+    letras = [x.strip() for x in papel.split(",")]
+    if all(x in "RACI" and len(x) == 1 for x in letras):
+        return " ".join(f"[[{x}]]" for x in letras)
+    return papel
+
+
 def matriz(cod, partes, produto_final):
-    """partes: lista de (parte, [papéis por etapa], papel no produto final)."""
+    """partes: lista de (parte, [papéis por etapa], papel no produto final).
+    Confere a regra do Guia: exatamente um A por etapa."""
     ne = len(ACOES[cod]["etapas"])
+    for k in range(ne):
+        n_a = sum("A" in p[1][k] for p in partes)
+        assert n_a == 1, (cod, f"E{k + 1}", n_a)
     cab = ["Parte"] + [f"E{i}" for i in range(1, ne + 1)] + ["Produto final"]
     col = 800
     larg = [2300] + [col] * ne + [9071 - 2300 - col * ne]
-    linhas = [[p] + papeis + [prod] for p, papeis, prod in partes]
+    linhas = [[p] + [selos(x) for x in papeis] + [selos(prod)] for p, papeis, prod in partes]
     for ln in linhas:
         assert len(ln) == ne + 2, (cod, ln)
     return TAB(f"raci-{c(cod)}", "Quadro", f"Matriz de responsabilidades da Ação {cod}",
                cab, linhas, larg, "l" + "c" * (ne + 1),
                "Fonte: IAT (2026).",
-               nota=(f"Nota: E1 a E{ne} são as Etapas 1 a {ne} do item 4. R = executa; A = aprova ou valida o "
-                     "produto (um por etapa); C = é consultado antes; I = é informado depois. "
-                     f"Produto final: {produto_final}."),
+               nota=(f"Nota: E1 a E{ne} são as Etapas 1 a {ne} do item 4. [[R]] executa (pode haver mais de "
+                     "um); [[A]] aprova ou valida o produto (um por etapa); [[C]] é consultado antes; [[I]] é "
+                     f"informado depois. Produto final: {produto_final}."),
                margem=60)
 
 
@@ -64,14 +76,15 @@ def nas(cod, linhas, nota=None):
     larg = [1700, 3371, 4000]
     return TAB(f"nas-{c(cod)}", "Quadro", f"Aplicação das Normas Ambientais e Sociais à Ação {cod}",
                cab, linhas, larg, "lll",
-               "Fonte: IAT (2026), com base nos instrumentos do Caderno Ambiental e Social do MOP.",
+               "Fonte: IAT (2026), com base nos instrumentos do Caderno AS.",
                nota=nota)
 
 
-def fig_ipo(cod):
-    return FIG(f"ipo-{c(cod)}", f"g-ipo-{c(cod)}",
-               f"Entradas, etapas e saídas da Ação {cod}", "Fonte: IAT (2026).",
-               alt=f"Fluxograma com as entradas, as etapas, os produtos de cada etapa e as saídas da Ação {cod}.")
+def fig_raias(cod):
+    return FIG(f"raias-{c(cod)}", f"g-raias-{c(cod)}",
+               f"Fluxograma da Ação {cod}: entradas, etapas por responsável e saídas", "Fonte: IAT (2026).",
+               alt=(f"Fluxograma em raias da Ação {cod}, com uma raia por instituição, as etapas numeradas na "
+                    "raia de quem as executa, as entradas no topo e as saídas na base."))
 
 
 def fig_crono(cod, fonte=None):

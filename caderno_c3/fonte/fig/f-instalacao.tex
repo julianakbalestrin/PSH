@@ -1,25 +1,40 @@
-\documentclass[11pt,border=4pt]{standalone}
+\documentclass[border=2pt]{standalone}
 \input{estilo}
 \begin{document}
-
-\begin{tikzpicture}[node distance=0.42cm]
-  \node[etapa=4.6cm] (proj) {\textbf{Projeto individual do domicílio}\\
-    {\scriptsize terreno, número de moradores e solução de tratamento}};
-  \node[etapa=4.6cm, below=of proj] (inst) {\textbf{Instalação da solução}\\ {\scriptsize obras civis e dispositivos}};
-  \node[etapa=4.6cm, below=of inst] (atest) {\textbf{Verificação técnica}\\ {\scriptsize funcionamento, estanqueidade e garantia}};
-  \node[decisao, text width=1.7cm, below=0.5cm of atest] (dec) {Atende aos requisitos?};
-  \node[correcao=3.0cm, left=1.0cm of dec] (corr) {Correções técnicas pela empresa};
-  \node[marco=4.6cm, below=0.55cm of dec] (reg) {Sistema validado e registrado};
-  \node[etapa=4.2cm, fill=cGreenBg, draw=cGreen, right=2.1cm of inst] (cap) {\textbf{Orientação do proprietário}\\
-    {\scriptsize funcionamento, uso adequado, manutenção preventiva e lodo}};
-  \draw[seta] (proj) -- (inst);
-  \draw[seta] (inst) -- (atest);
-  \draw[seta] (atest) -- (dec);
-  \draw[seta] (dec) -- node[rotulo, above] {Não} (corr);
-  \draw[seta] (corr) |- (atest.west);
-  \draw[seta] (dec) -- node[rotulo, right] {Sim} (reg);
-  \draw[setatracejada, <->] (inst) -- node[rotulo, above=1pt, font=\tiny\itshape] {ao mesmo tempo} (cap);
-  \draw[seta] (cap.south) |- (reg.east);
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-2.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-1.250) {Empresa contratada};
+  \fill[cinza10] (0,-2.5) rectangle (2.35,-5.0);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-3.750) {IAT};
+  \fill[cinza10] (0,-5.0) rectangle (2.35,-6.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-5.750) {Supervisora};
+  \draw[cinza20, line width=0.6pt] (0,-2.5) -- (15.8,-2.5);
+  \draw[cinza20, line width=0.6pt] (0,-5.0) -- (15.8,-5.0);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-6.5);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-6.5);
+  \node[inicio] (ini) at (3.45,-0.45) {Início};
+  \node[atividade=1.72cm] (e1) at (3.45,-1.67) {Elaborar o projeto individual};
+  \etapa{e1}{3}
+  \node[atividade=1.72cm] (i1) at (5.7,-4.17) {Aprovar o projeto};
+  \node[atividade=1.72cm] (e2) at (7.95,-1.67) {Instalar a solução e orientar o proprietário};
+  \etapa{e2}{4}
+  \node[atividade=1.72cm] (s1) at (7.95,-5.75) {Acompanhar a instalação};
+  \node[atividade=1.72cm] (i2) at (10.2,-4.17) {Verificar o sistema};
+  \node[decisao=1.45cm] (d) at (12.45,-4.17) {Aprovado?};
+  \node[atividade=1.72cm] (x1) at (12.45,-1.67) {Corrigir as falhas};
+  \node[documento=1.62cm] (doc) at (14.819999999999999,-4.17) {Sistema validado e registrado};
+  \node[inicio] (fim) at (14.819999999999999,-2.95) {Fim};
+  \draw[conector] (ini) -- (e1);
+  \draw[conector] (e1.south) |- (i1.west);
+  \draw[conector] (i1.north) |- (e2.west);
+  \draw[conector] (e2) -- (s1);
+  \draw[conector] (s1.east) -| (i2.south);
+  \draw[conector] (i2) -- (d);
+  \draw[conector] (d) -- (x1);
+  \node[rotulo, anchor=south west, align=center] at ($(d.north)+(0.06,0.04)$) {não};
+  \draw[conector] (x1.west) -| (i2.north);
+  \draw[conector] (d) -- (doc);
+  \node[rotulo, anchor=south, align=center] at ($(d.east)!0.5!(doc.west)+(0,0.04)$) {sim};
+  \draw[conector] (doc) -- (fim);
 \end{tikzpicture}
-
 \end{document}

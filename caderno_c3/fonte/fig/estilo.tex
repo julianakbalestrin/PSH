@@ -1,70 +1,88 @@
-% Estilo comum dos fluxogramas do Caderno C3 (cores do modelo do MOP)
+% Estilo das figuras do Caderno C3, conforme o Guia de Identidade Visual do MOP
+% (seção 3: paleta; seção 5: símbolos dos fluxogramas, raias, diagramas).
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
-\usepackage{amssymb}
 \usepackage{tikz}
 \usetikzlibrary{positioning, arrows.meta, shapes.geometric, shapes.symbols, shapes.misc,
-  calc, fit, backgrounds, decorations.pathmorphing, patterns, shadows}
-% Paleta do modelo do caderno
-\definecolor{cTeal}{HTML}{00747A}
-\definecolor{cNavy}{HTML}{0B3A5A}
-\definecolor{cBlue}{HTML}{0A73BA}
-\definecolor{cBlueBg}{HTML}{EBF4F9}
-\definecolor{cTealBg}{HTML}{E3F1F2}
-\definecolor{cTealMid}{HTML}{9CCFD2}
-\definecolor{cGrayBg}{HTML}{F2F2F2}
-\definecolor{cGrayLine}{HTML}{BFBFBF}
-\definecolor{cGrayText}{HTML}{595959}
-\definecolor{cText}{HTML}{1A1A1A}
-\definecolor{cAmber}{HTML}{B7791F}
-\definecolor{cAmberBg}{HTML}{FDF3DC}
-\definecolor{cGreen}{HTML}{3D7D3A}
-\definecolor{cGreenBg}{HTML}{E8F2E4}
-\color{cText}
+  calc, fit, backgrounds, patterns}
+
+% ---------------------------------------------------------------- paleta do MOP
+% institucionais (Manual de Marca)
+\definecolor{azulEscuro}{HTML}{0B3A5A}   % Azul-escuro Paraná
+\definecolor{azul}{HTML}{0A73BA}         % Azul Paraná
+\definecolor{verde}{HTML}{029749}        % Verde Paraná
+% sinalização (uso restrito)
+\definecolor{amarelo}{HTML}{F7EA48}
+\definecolor{vermelho}{HTML}{DA291C}
+% neutros
+\definecolor{cinza80}{HTML}{333333}
+\definecolor{cinza60}{HTML}{666666}
+\definecolor{cinza20}{HTML}{CCCCCC}
+\definecolor{cinza10}{HTML}{E6E6E6}
+\definecolor{cinza5}{HTML}{F2F2F2}
+% tons claros (fundos de 10% a 30%)
+\definecolor{azul12}{HTML}{E2EEF7}
+\definecolor{verde12}{HTML}{E1F3E9}
+\definecolor{verde20}{HTML}{CCEADB}
+\definecolor{amarelo30}{HTML}{FDF9C8}
+\definecolor{vermelho15}{HTML}{F9DFDD}
+% cor do Caderno C3 (Azul-petróleo, derivada): ícones, esquemas e mapas
+\definecolor{petroleo}{HTML}{00747A}
+\definecolor{petroleo12}{HTML}{E0EEEF}
+
+\newcommand{\fonte}[2]{\fontsize{#1}{#2}\selectfont}
+\color{black}
+
 \tikzset{
-  every node/.style={font=\footnotesize, text=cText},
-  etapa/.style={draw=cTeal, fill=cTealBg, rounded corners=2pt, align=center,
-     inner sep=3.5pt, minimum height=0.85cm, text width=#1, line width=0.6pt},
-  etapa/.default={3.2cm},
-  marco/.style={draw=cNavy, fill=cNavy, rounded corners=2pt, align=center,
-     inner sep=3.5pt, minimum height=0.85cm, text width=#1,
-     font=\footnotesize\bfseries, text=white},
-  marco/.default={3.2cm},
-  marcoteal/.style={draw=cTeal, fill=cTeal, rounded corners=2pt, align=center,
-     inner sep=3.5pt, minimum height=0.85cm, text width=#1,
-     font=\footnotesize\bfseries, text=white},
-  marcoteal/.default={3.2cm},
-  externo/.style={draw=cGrayLine, fill=cGrayBg, rounded corners=2pt, align=center,
-     inner sep=3.5pt, minimum height=0.85cm, text width=#1},
-  externo/.default={3.2cm},
-  produto/.style={draw=cTeal!70, fill=white, rounded corners=1pt, align=center,
-     inner sep=2.5pt, minimum height=0.6cm, text width=#1, font=\scriptsize},
-  produto/.default={2.4cm},
-  decisao/.style={draw=cAmber, fill=cAmberBg, diamond, aspect=2, align=center,
-     inner sep=1pt, font=\scriptsize, line width=0.6pt},
-  correcao/.style={draw=cAmber, fill=cAmberBg, rounded corners=2pt, align=center,
-     inner sep=3pt, minimum height=0.8cm, text width=#1, font=\scriptsize},
-  correcao/.default={2.6cm},
-  transversal/.style={draw=cBlue, fill=cBlueBg, dashed, rounded corners=2pt, align=center,
-     inner sep=3.5pt, text width=#1, line width=0.6pt},
-  transversal/.default={6cm},
-  seta/.style={-{Stealth[length=2.2mm,width=1.8mm]}, line width=0.8pt, draw=cNavy},
-  setaleve/.style={-{Stealth[length=1.8mm,width=1.5mm]}, line width=0.6pt, draw=cGrayText},
-  setatracejada/.style={-{Stealth[length=2mm]}, line width=0.7pt, dashed, draw=cGrayText},
-  rotulo/.style={font=\scriptsize\itshape, text=cGrayText, fill=white, inner sep=1pt},
-  fase/.style={signal, signal to=east, signal from=west, draw=cTeal, fill=cTealBg,
-     align=center, font=\scriptsize\bfseries, minimum height=1.05cm, text width=#1,
-     inner sep=2pt},
-  fase/.default={1.9cm},
-  raia/.style={draw=cGrayLine, fill=cGrayBg, minimum width=#1, minimum height=0.9cm,
-     anchor=north west},
-  tituloraia/.style={font=\scriptsize\bfseries, text=cNavy, align=center, text width=1.75cm},
-  cab/.style={font=\scriptsize\bfseries, text=white, fill=cNavy, align=center,
-     inner sep=3pt, text width=#1, minimum height=0.6cm},
-  cab/.default={3cm},
-  bloco/.style={draw=cGrayLine, fill=cGrayBg, rounded corners=3pt},
+  every node/.style={font=\fonte{8}{9.4}, text=black},
+  % --- os 8 símbolos do Guia (seção 5.1)
+  inicio/.style={rounded rectangle, fill=azulEscuro, draw=azulEscuro, text=white,
+    font=\fonte{8.5}{10}\bfseries, minimum height=0.6cm, minimum width=1.05cm,
+    inner xsep=3pt, inner ysep=2pt},
+  atividade/.style={rectangle, rounded corners=3pt, draw=azul, line width=0.8pt, fill=azul12,
+    align=center, text width=#1, inner xsep=2.5pt, inner ysep=4.5pt, minimum height=1.05cm},
+  atividade/.default=1.45cm,
+  decisao/.style={diamond, aspect=1.45, draw=azulEscuro, line width=0.8pt, fill=amarelo30,
+    align=center, text width=#1, inner sep=0pt, font=\fonte{8}{9}},
+  decisao/.default=1.2cm,
+  documento/.style={tape, tape bend top=none, tape bend bottom=out and in,
+    tape bend height=1.6mm, draw=verde, line width=0.8pt, fill=verde12, align=center,
+    text width=#1, inner xsep=2.5pt, inner ysep=4.5pt, minimum height=0.95cm},
+  documento/.default=1.6cm,
+  banco/.style={rectangle, rounded corners=3pt, draw=azulEscuro, line width=0.8pt,
+    dash pattern=on 3pt off 2pt, fill=white, align=center, text width=#1, inner xsep=2.5pt,
+    inner ysep=4.5pt, minimum height=1.05cm},
+  banco/.default=1.45cm,
+  sistema/.style={cylinder, shape border rotate=90, aspect=0.2, draw=cinza60, line width=0.8pt,
+    fill=cinza10, align=center, text width=#1, inner sep=1.5pt, minimum height=1.05cm},
+  sistema/.default=1.25cm,
+  numero/.style={circle, fill=azul, draw=white, line width=0.6pt, text=white,
+    font=\fonte{7.5}{8}\bfseries, inner sep=0pt, minimum size=0.42cm},
+  conector/.style={-{Latex[length=2.2mm, width=1.8mm]}, draw=cinza60, line width=1pt,
+    rounded corners=0pt},
+  rotulo/.style={font=\fonte{8}{9}, text=cinza80, fill=white, inner sep=1pt},
+  % --- raias (seção 5.2)
+  raiarotulo/.style={font=\fonte{9}{10.5}\bfseries, text=black, align=center},
+  % --- organograma, interfaces e diagramas (seção 5.4)
+  caixa/.style={rectangle, draw=cinza60, line width=0.7pt, fill=white, align=left,
+    text width=#1, inner sep=3pt},
+  caixa/.default=4.6cm,
+  destaque/.style={rectangle, draw=azulEscuro, fill=azulEscuro, text=white, align=center,
+    text width=#1, inner sep=3pt, font=\fonte{9}{11}\bfseries},
+  destaque/.default=2.8cm,
+  titulocol/.style={font=\fonte{9}{11}\bfseries, text=cinza80, align=center, text width=#1,
+    inner sep=2pt},
+  titulocol/.default=4.6cm,
+  marco/.style={diamond, fill=azul, draw=white, line width=0.4pt, inner sep=0pt,
+    minimum size=0.3cm},
+  marcoprincipal/.style={diamond, fill=verde, draw=white, line width=0.4pt, inner sep=0pt,
+    minimum size=0.36cm},
 }
-% sem hifenização nas caixas dos fluxogramas
+
+% etapa numerada: círculo Azul no canto superior esquerdo do símbolo
+\newcommand{\etapa}[2]{\node[numero] at ($(#1.north west)+(-0.04,0.04)$) {#2};}
+
+% sem hifenização nas caixas
 \AtBeginDocument{\hyphenpenalty=10000 \exhyphenpenalty=10000 \sloppy}

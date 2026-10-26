@@ -1,0 +1,69 @@
+\documentclass[border=2pt]{standalone}
+\input{estilo}
+\begin{document}
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-1.5);
+  \fill[cinza5] (2.35,0.0) rectangle (15.8,-1.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-0.750) {Entradas};
+  \fill[cinza10] (0,-1.5) rectangle (2.35,-4.0);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-2.750) {IAT};
+  \fill[cinza10] (0,-4.0) rectangle (2.35,-5.45);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-4.725) {SECID};
+  \fill[cinza10] (0,-5.45) rectangle (2.35,-6.9);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-6.175) {Municípios};
+  \fill[cinza10] (0,-6.9) rectangle (2.35,-8.35);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-7.625) {Associações e comunidades};
+  \fill[cinza10] (0,-8.35) rectangle (2.35,-9.799999999999999);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-9.075) {Empresas contratadas};
+  \fill[cinza10] (0,-9.799999999999999) rectangle (2.35,-11.299999999999999);
+  \fill[cinza5] (2.35,-9.799999999999999) rectangle (15.8,-11.299999999999999);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-10.550) {Saídas};
+  \draw[cinza20, line width=0.6pt] (0,-1.5) -- (15.8,-1.5);
+  \draw[cinza20, line width=0.6pt] (0,-4.0) -- (15.8,-4.0);
+  \draw[cinza20, line width=0.6pt] (0,-5.45) -- (15.8,-5.45);
+  \draw[cinza20, line width=0.6pt] (0,-6.9) -- (15.8,-6.9);
+  \draw[cinza20, line width=0.6pt] (0,-8.35) -- (15.8,-8.35);
+  \draw[cinza20, line width=0.6pt] (0,-9.799999999999999) -- (15.8,-9.799999999999999);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-11.299999999999999);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-11.299999999999999);
+  \node[documento=2.84cm] (ent1) at (4.069,-0.8) {Diretrizes da política estadual (Atividade 3.2.1)};
+  \node[numero] at ($(ent1.north west)+(-0.04,0.04)$) {1};
+  \node[documento=2.84cm] (ent2) at (7.406,-0.8) {Arcabouço legal dos arranjos de gestão};
+  \node[numero] at ($(ent2.north west)+(-0.04,0.04)$) {1};
+  \node[documento=2.84cm] (ent3) at (10.744,-0.8) {Lista preliminar de comunidades (Ação 3.2.2.3)};
+  \node[numero] at ($(ent3.north west)+(-0.04,0.04)$) {2};
+  \node[documento=2.84cm] (ent4) at (14.081,-0.8) {Cadastro e adesões das famílias (Ação 3.2.2.2)};
+  \node[numero] at ($(ent4.north west)+(-0.04,0.04)$) {3};
+  \node[documento=2.84cm] (sai1) at (4.069,-10.6) {Associações com modelo de gestão e tarifa};
+  \node[numero] at ($(sai1.north west)+(-0.04,0.04)$) {3};
+  \node[documento=2.84cm] (sai2) at (7.406,-10.6) {Três unidades regionais em funcionamento};
+  \node[numero] at ($(sai2.north west)+(-0.04,0.04)$) {4};
+  \node[documento=2.84cm] (sai3) at (10.744,-10.6) {Sistemas recebidos pelas entidades gestoras};
+  \node[numero] at ($(sai3.north west)+(-0.04,0.04)$) {5};
+  \node[documento=2.84cm] (sai4) at (14.081,-10.6) {Relatório final e Termos de Cooperação encerrados};
+  \node[numero] at ($(sai4.north west)+(-0.04,0.04)$) {6};
+  \node[inicio] (ini) at (3.45,-1.95) {Início};
+  \node[atividade=1.72cm] (n1) at (3.45,-3.17) {Escolher o modelo de gestão};
+  \etapa{n1}{1}
+  \node[atividade=1.72cm] (v1) at (3.45,-4.725) {Validar o modelo};
+  \node[atividade=1.72cm] (n2) at (5.7,-6.175) {Assinar o Termo de Cooperação};
+  \etapa{n2}{2}
+  \node[atividade=1.72cm] (n3) at (7.95,-7.625) {Constituir a associação e a tarifa};
+  \etapa{n3}{3}
+  \node[atividade=1.72cm] (n4) at (10.2,-9.075) {Estruturar as unidades regionais};
+  \etapa{n4}{4}
+  \node[atividade=1.72cm] (n5) at (12.45,-7.625) {Aceitar e operar o sistema};
+  \etapa{n5}{5}
+  \node[atividade=1.72cm] (n6) at (14.7,-3.17) {Encerrar o Termo de Cooperação};
+  \etapa{n6}{6}
+  \node[inicio] (fim) at (14.7,-1.95) {Fim};
+  \draw[conector] (ini) -- (n1);
+  \draw[conector] (n1) -- (v1);
+  \draw[conector] (v1.east) -| (n2.north);
+  \draw[conector] (n2.east) -| (n3.north);
+  \draw[conector] (n3.east) -| (n4.north);
+  \draw[conector] (n4.east) -| (n5.south);
+  \draw[conector] (n5.east) -| (n6.south);
+  \draw[conector] (n6) -- (fim);
+\end{tikzpicture}
+\end{document}

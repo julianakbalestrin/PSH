@@ -1,0 +1,82 @@
+\documentclass[border=2pt]{standalone}
+\input{estilo}
+\begin{document}
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-1.5);
+  \fill[cinza5] (2.35,0.0) rectangle (15.8,-1.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-0.750) {Entradas};
+  \fill[cinza10] (0,-1.5) rectangle (2.35,-4.0);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-2.750) {IDR-Paraná};
+  \fill[cinza10] (0,-4.0) rectangle (2.35,-6.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-5.250) {IAT};
+  \fill[cinza10] (0,-6.5) rectangle (2.35,-7.95);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-7.225) {Banco Mundial};
+  \fill[cinza10] (0,-7.95) rectangle (2.35,-9.4);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-8.675) {Empresa contratada};
+  \fill[cinza10] (0,-9.4) rectangle (2.35,-10.85);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-10.125) {Supervisora};
+  \fill[cinza10] (0,-10.85) rectangle (2.35,-12.299999999999999);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-11.575) {Proprietários};
+  \fill[cinza10] (0,-12.299999999999999) rectangle (2.35,-13.799999999999999);
+  \fill[cinza5] (2.35,-12.299999999999999) rectangle (15.8,-13.799999999999999);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-13.050) {Saídas};
+  \draw[cinza20, line width=0.6pt] (0,-1.5) -- (15.8,-1.5);
+  \draw[cinza20, line width=0.6pt] (0,-4.0) -- (15.8,-4.0);
+  \draw[cinza20, line width=0.6pt] (0,-6.5) -- (15.8,-6.5);
+  \draw[cinza20, line width=0.6pt] (0,-7.95) -- (15.8,-7.95);
+  \draw[cinza20, line width=0.6pt] (0,-9.4) -- (15.8,-9.4);
+  \draw[cinza20, line width=0.6pt] (0,-10.85) -- (15.8,-10.85);
+  \draw[cinza20, line width=0.6pt] (0,-12.299999999999999) -- (15.8,-12.299999999999999);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-13.799999999999999);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-13.799999999999999);
+  \node[documento=2.84cm] (ent1) at (4.069,-0.8) {Planos Integrados de Propriedade (Subcomponente 2.3)};
+  \node[numero] at ($(ent1.north west)+(-0.04,0.04)$) {1};
+  \node[documento=2.84cm] (ent2) at (7.406,-0.8) {Diagnóstico das microbacias};
+  \node[numero] at ($(ent2.north west)+(-0.04,0.04)$) {1};
+  \node[documento=2.84cm] (ent3) at (10.744,-0.8) {Termo de Referência das soluções};
+  \node[numero] at ($(ent3.north west)+(-0.04,0.04)$) {2};
+  \node[documento=2.84cm] (ent4) at (14.081,-0.8) {ABNT NBR 17076:2024};
+  \node[numero] at ($(ent4.north west)+(-0.04,0.04)$) {3};
+  \node[numero] at ($(ent4.north west)+(0.40,0.04)$) {4};
+  \node[documento=2.84cm] (sai1) at (4.069,-13.1) {2.300 domicílios com solução de esgoto};
+  \node[numero] at ($(sai1.north west)+(-0.04,0.04)$) {4};
+  \node[documento=2.84cm] (sai2) at (7.406,-13.1) {Proprietários orientados};
+  \node[numero] at ($(sai2.north west)+(-0.04,0.04)$) {5};
+  \node[documento=2.84cm] (sai3) at (10.744,-13.1) {Relatórios aprovados com o IDR-Paraná};
+  \node[numero] at ($(sai3.north west)+(-0.04,0.04)$) {6};
+  \node[documento=2.84cm] (sai4) at (14.081,-13.1) {Lotes encerrados};
+  \node[numero] at ($(sai4.north west)+(-0.04,0.04)$) {7};
+  \node[inicio] (ini) at (3.45,-1.95) {Início};
+  \node[atividade=1.72cm] (n1) at (3.45,-3.17) {Indicar os domicílios};
+  \etapa{n1}{1}
+  \node[atividade=1.72cm] (a1) at (3.45,-5.67) {Aprovar a lista};
+  \node[atividade=1.72cm] (n2) at (5.7,-5.67) {Contratar as soluções e as obras};
+  \etapa{n2}{2}
+  \node[banco=1.72cm] (b2) at (5.7,-7.225) {Emitir a não objeção, se aplicável};
+  \node[atividade=1.72cm] (n3) at (5.7,-8.675) {Elaborar o projeto da propriedade};
+  \etapa{n3}{3}
+  \node[atividade=1.72cm] (n4) at (7.95,-8.675) {Instalar e verificar a solução};
+  \etapa{n4}{4}
+  \node[atividade=1.72cm] (s4) at (7.95,-10.125) {Acompanhar a instalação};
+  \node[atividade=1.72cm] (n5) at (10.2,-8.675) {Orientar o proprietário};
+  \etapa{n5}{5}
+  \node[atividade=1.72cm] (n6) at (12.45,-8.675) {Medir e comprovar a execução};
+  \etapa{n6}{6}
+  \node[atividade=1.72cm] (p6) at (12.45,-11.575) {Confirmar a execução};
+  \node[atividade=1.72cm] (n7) at (14.7,-5.67) {Encerrar o lote e o contrato};
+  \etapa{n7}{7}
+  \node[inicio] (fim) at (14.7,-4.45) {Fim};
+  \draw[conector] (ini) -- (n1);
+  \draw[conector] (n1) -- (a1);
+  \draw[conector] (a1) -- (n2);
+  \draw[conector] (n2) -- (b2);
+  \draw[conector] (b2) -- (n3);
+  \draw[conector] (n3) -- (n4);
+  \draw[conector] (n4) -- (s4);
+  \draw[conector] (s4.east) -| (n5.south);
+  \draw[conector] (n5) -- (n6);
+  \draw[conector] (n6) -- (p6);
+  \draw[conector] (p6.east) -| (n7.south);
+  \draw[conector] (n7) -- (fim);
+\end{tikzpicture}
+\end{document}

@@ -1,5 +1,5 @@
 from mop import ACAO, ITEM, ETAPA, P, PL, BUL, FIG, COM
-from comum import matriz, metas, indicadores, aceite, nas, fig_ipo, fig_crono, fig_interf
+from comum import matriz, metas, indicadores, aceite, nas, fig_raias, fig_crono, fig_interf
 
 COD = "3.2.2.5"
 
@@ -21,8 +21,8 @@ ELEMENTOS = [
       "tratamento local para vazões de até 12.000 L/dia e carga orgânica de até 3,80 kg DBO/dia (ABNT, 2024). A "
       "eficiência depende da simplicidade de construção e operação: mesmo uma boa tecnologia falha se for mal construída "
       "ou mal operada. Por isso, a escolha privilegia soluções simples, adequadas à realidade de cada domicílio "
-      "(TONETTI et al., 2018), e prevê o manejo e a destinação adequada do lodo. A {fig:esquema-esgoto} mostra um "
-      "exemplo de arranjo."),
+      "(TONETTI et al., 2018), e prevê o manejo e a destinação adequada do lodo."),
+    P("A {fig:esquema-esgoto} mostra um exemplo de arranjo."),
     FIG("esquema-esgoto", "f-esquema-esgoto", "Exemplo de solução individual de esgotamento sanitário",
         "Fonte: IAT (2026), com base em ABNT (2024) e Tonetti et al. (2018). Esquema ilustrativo, sem escala.",
         alt="Esquema em corte com domicílio, caixa de inspeção, tanque séptico, filtro anaeróbio e vala de infiltração."),
@@ -47,7 +47,7 @@ ELEMENTOS = [
 
     ITEM("3. Arranjo institucional e partes interessadas"),
     P("O IAT, por meio da DISAR, contrata a empresa, fiscaliza a instalação, valida as medições e faz o pagamento. A "
-      "empresa contratada elabora o projeto de cada domicílio e executa a instalação. O proprietário autoriza a "
+      "empresa contratada elabora o projeto de cada domicílio e executa a instalação, e o proprietário autoriza a "
       "intervenção, acompanha a obra e confirma a execução. A supervisora da Ação 3.2.2.7 apoia a fiscalização, e a UGP "
       "acompanha a execução."),
     BUL("**Intervenientes:** empresa contratada; supervisora (Ação 3.2.2.7); prefeituras, que apoiam a articulação "
@@ -58,11 +58,11 @@ ELEMENTOS = [
       "com a menor carga de esgoto no solo e na água."),
 
     ITEM("4. Processo de execução operacional"),
-    P("A partir do diagnóstico de cada domicílio, a ação segue sete etapas ({fig:ipo-3225}). As entradas são o "
-      "diagnóstico domiciliar e os termos de adesão, as comunidades com sistema de água, a ABNT NBR 17076:2024 e o Termo "
-      "de Referência das soluções. As saídas são os domicílios com solução instalada e aprovada, os proprietários "
-      "orientados e os relatórios técnicos aprovados e pagos."),
-    fig_ipo(COD),
+    P("A partir do diagnóstico de cada domicílio, a ação segue sete etapas, cada uma na raia de quem a executa "
+      "({fig:raias-3225}). O proprietário participa em dois momentos: autoriza a intervenção na Etapa 1 e confirma a "
+      "execução na Etapa 6. A evidência de conclusão de cada lote é o relatório técnico aprovado, com o comprovante de "
+      "pagamento."),
+    fig_raias(COD),
 
     ETAPA("4.1 Etapa 1: Identificação dos domicílios"),
     PL("Atividades:", "seleção, a partir do diagnóstico do trabalho técnico-social, dos domicílios sem esgotamento "
@@ -91,8 +91,8 @@ ELEMENTOS = [
        "e o sistema é verificado de novo ({fig:instalacao})."),
     FIG("instalacao", "f-instalacao", "Projeto, instalação e verificação técnica das soluções individuais",
         "Fonte: IAT (2026), com base em IAT (2026b).",
-        alt="Fluxograma do projeto à validação do sistema, com a decisão técnica, as correções e a orientação do "
-            "proprietário feita ao mesmo tempo que a instalação."),
+        alt="Fluxograma em raias para a empresa contratada, o IAT e a supervisora, do projeto individual à validação "
+            "do sistema, com a decisão técnica e as correções."),
     PL("Entradas:", "projeto aprovado; autorização do proprietário."),
     PL("Responsáveis:", "empresa contratada (executa); supervisora (acompanha); IAT (aprova)."),
     PL("Produto:", "sistema verificado e validado."),
@@ -112,8 +112,8 @@ ELEMENTOS = [
        "unidades antes da ordenação das despesas e do pagamento."),
     FIG("medicao", "f-medicao", "Medição, comprovação, verificação e pagamento, por responsável",
         "Fonte: IAT (2026), com base em IAT (2026b).",
-        alt="Fluxograma em três colunas para a empresa contratada, o proprietário e o IAT, do relatório de medição à "
-            "finalização do lote."),
+        alt="Fluxograma em raias para a empresa contratada, o proprietário e o IAT, da medição à amostragem e ao "
+            "pagamento do lote."),
     PL("Entradas:", "sistemas validados; assinaturas dos proprietários."),
     PL("Responsáveis:", "empresa contratada (executa); proprietário (confirma); IAT (verifica, aprova e paga)."),
     PL("Produto:", "relatório técnico aprovado e comprovante de pagamento, por lote."),
@@ -129,7 +129,7 @@ ELEMENTOS = [
     ETAPA("4.8 Modalidade de execução"),
     P("O item de custo é o sistema individual de tratamento de efluentes: 4.067 domicílios a R$ 8.000,00, total de "
       "R$ 32,54 milhões, financiados pelo empréstimo do BIRD. A execução é por licitação de obras, com o projeto e a "
-      "instalação no mesmo contrato, conforme o Caderno de Aquisições."),
+      "instalação no mesmo contrato, conforme o Caderno AQ."),
     COM("A nota técnica prevê a compra centralizada dos materiais pelo IAT, com as obras executadas por empresa "
         "contratada; o MOP de março atribuía toda a instalação à empresa. Definir quem adquire os materiais."),
 
@@ -209,5 +209,5 @@ ELEMENTOS = [
         "Modelo de autorização e de confirmação da execução pelo proprietário (a elaborar);",
         "Material de orientação do proprietário sobre uso, manutenção e lodo (a elaborar);",
         "Tonetti et al. (2018), referência para a escolha das soluções;",
-        "Caderno de Aquisições e Caderno Ambiental e Social do MOP."),
+        "Caderno AQ e Caderno AS."),
 ]
