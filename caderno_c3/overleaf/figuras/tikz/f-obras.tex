@@ -1,0 +1,37 @@
+\documentclass[border=2pt]{standalone}
+\input{estilo}
+\begin{document}
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-2.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-1.250) {IAT (fiscalização)};
+  \fill[cinza10] (0,-2.5) rectangle (2.35,-4.1);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-3.300) {Empresa executora};
+  \fill[cinza10] (0,-4.1) rectangle (2.35,-5.55);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-4.825) {Supervisora};
+  \draw[cinza20, line width=0.6pt] (0,-2.5) -- (15.8,-2.5);
+  \draw[cinza20, line width=0.6pt] (0,-4.1) -- (15.8,-4.1);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-5.55);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-5.55);
+  \node[inicio] (ini) at (3.45,-0.45) {Início};
+  \node[atividade=1.72cm] (o1) at (3.45,-1.67) {Emitir a ordem de serviço};
+  \node[atividade=1.72cm] (o2) at (5.7,-3.3) {Executar a obra};
+  \etapa{o2}{4}
+  \node[atividade=1.72cm] (o3) at (7.95,-4.825) {Supervisionar e relatar};
+  \node[atividade=1.72cm] (o4) at (10.2,-1.67) {Verificar a conformidade};
+  \node[decisao=1.45cm] (d) at (12.45,-1.67) {Conforme?};
+  \node[atividade=1.94cm] (x1) at (12.45,-3.3) {Corrigir as não conformidades};
+  \node[documento=1.62cm] (doc) at (14.819999999999999,-1.67) {Atesto, laudos e \textit{as built}};
+  \node[inicio] (fim) at (14.819999999999999,-0.45) {Fim};
+  \draw[conector] (ini) -- (o1);
+  \draw[conector] (o1.east) -| (o2.north);
+  \draw[conector] (o2.east) -| (o3.north);
+  \draw[conector] (o3.east) -| (o4.south);
+  \draw[conector] (o4) -- (d);
+  \draw[conector] (d) -- (x1);
+  \node[rotulo, anchor=north west, align=center] at ($(d.south)+(0.06,-0.04)$) {não};
+  \draw[conector] (x1.west) -| ($(o4.south)+(0.55,0)$);
+  \draw[conector] (d) -- (doc);
+  \node[rotulo, anchor=south, align=center] at ($(d.east)!0.5!(doc.west)+(0,0.04)$) {sim};
+  \draw[conector] (doc) -- (fim);
+\end{tikzpicture}
+\end{document}

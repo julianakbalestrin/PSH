@@ -1,0 +1,231 @@
+% =====================================================================
+%  MOP PSH-PR -- Caderno do Componente 3
+%  Atividade 3.2.2 -- Implantar e reabilitar sistemas coletivos de abastecimento
+%  de água no meio rural e as soluções de saneamento associadas
+%
+%  Versão LaTeX gerada a partir das mesmas fontes do caderno Word
+%  (caderno_c3/fonte/latex.py). Compilar com pdfLaTeX (padrão do Overleaf).
+%  Figuras: figuras/*.pdf (as fontes TikZ estão em figuras/tikz/).
+% =====================================================================
+\documentclass[12pt, oneside, a4paper, english, brazil]{abntex2}
+
+% Mostrar (true) ou ocultar (false) as caixas de pendência no PDF.
+\newif\ifmostrarpendencias
+\mostrarpendenciastrue
+
+% =====================================================================
+%  PACOTES
+% =====================================================================
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[scaled=0.92]{helvet}          % Arial (Guia de Identidade Visual, seção 2.1)
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{microtype}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{xurl}                          % quebra URLs longas nas referências
+\urlstyle{same}
+\setlist{itemsep=2pt, parsep=0pt, topsep=2pt, leftmargin=*}
+\setlength{\marginparwidth}{2cm}
+\ifmostrarpendencias
+  \usepackage[colorinlistoftodos, textsize=footnotesize, figwidth=\linewidth]{todonotes}
+\else
+  \usepackage[disable]{todonotes}
+\fi
+
+% =====================================================================
+%  CORES (Guia de Identidade Visual do MOP)
+% =====================================================================
+\definecolor{azulEscuro}{HTML}{0B3A5A}
+\definecolor{azul}{HTML}{0A73BA}
+\definecolor{verde}{HTML}{029749}
+\definecolor{cinza60}{HTML}{666666}
+\definecolor{cinza20}{HTML}{CCCCCC}
+\definecolor{cinza10}{HTML}{E6E6E6}
+\definecolor{cinza5}{HTML}{F2F2F2}
+\definecolor{verde20}{HTML}{CCEADB}
+\definecolor{amarelo30}{HTML}{FDF9C8}
+\definecolor{petroleo}{HTML}{00747A}      % cor do Caderno C3
+\definecolor{petroleo12}{HTML}{E0EEEF}
+
+% =====================================================================
+%  CONFIGURAÇÕES
+% =====================================================================
+\makeatletter
+\hypersetup{
+  pdftitle={MOP PSH-PR -- Atividade 3.2.2}, pdfauthor={Instituto Água e Terra},
+  colorlinks=true, linkcolor=azulEscuro, citecolor=azulEscuro,
+  filecolor=azulEscuro, urlcolor=azulEscuro, bookmarksdepth=4
+}
+\makeatother
+
+% Títulos: os números já fazem parte do texto (Ação 3.2.2.1, 1. Contextualização, 4.1 Etapa 1)
+\renewcommand{\ABNTEXchapterfont}{\bfseries\color{petroleo}}
+\renewcommand{\ABNTEXchapterfontsize}{\large}
+\renewcommand{\ABNTEXsectionfont}{\bfseries\color{petroleo}}
+\renewcommand{\ABNTEXsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsectionfont}{\bfseries\color{azulEscuro}}
+\renewcommand{\ABNTEXsubsectionfontsize}{\normalsize}
+\renewcommand{\ABNTEXsubsubsectionfont}{\bfseries\itshape}
+\renewcommand{\ABNTEXsubsubsectionfontsize}{\normalsize}
+\settocdepth{subsection}
+
+% Texto: Arial 12, espaçamento 1,5, justificado, parágrafos sem recuo (como no Word)
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+\setlength{\emergencystretch}{3em}
+
+% Legendas acima (Arial 10, negrito, à esquerda); fonte e nota abaixo (Arial 10, Cinza 60)
+\captionnamefont{\small\bfseries}
+\captiontitlefont{\small\bfseries}
+\AtBeginDocument{\captionstyle[\raggedright]{\raggedright}}   % depois da configuração do abnTeX2
+\newcommand{\fonteMOP}[1]{\par\vspace{2pt}{\SingleSpacing\raggedright\footnotesize\color{cinza60}#1\par}}
+\newcommand{\notaMOP}[1]{\par\vspace{1pt}{\SingleSpacing\raggedright\footnotesize\color{cinza60}#1\par}}
+
+% Quadros: conteúdo textual vai em "quadro"; dados, em "tabela"
+\newcommand{\quadroname}{Quadro}
+\newcommand{\listofquadrosname}{Lista de quadros}
+\newfloat[chapter]{quadro}{loq}{\quadroname}
+\newlistof{listofquadros}{loq}{\listofquadrosname}
+\newlistentry{quadro}{loq}{0}
+\counterwithout{quadro}{chapter}
+\renewcommand{\cftquadroname}{\quadroname\space}
+\renewcommand*{\cftquadroaftersnum}{\hfill--\hfill}
+\setfloatlocations{quadro}{htbp}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+% [H] = exatamente aqui. O pacote float precisa vir DEPOIS do \newfloat do quadro
+\usepackage{float}
+
+% =====================================================================
+%  COMANDOS
+% =====================================================================
+% \pendencia{texto}: caixa de pendência no texto; todas são listadas ao final
+\newcommand{\pendencia}[1]{%
+  \todo[inline, color=amarelo30, bordercolor=azulEscuro, caption={#1}]{\textbf{Pendência:} #1}}
+
+% Título da atividade (Título 2 do modelo Word): nova página, à esquerda, na cor do caderno
+\newcommand{\atividade}[1]{%
+  \clearpage\phantomsection\addcontentsline{toc}{chapter}{#1}%
+  \markboth{MOP PSH-PR -- Caderno do Componente 3}{MOP PSH-PR -- Caderno do Componente 3}%
+  {\raggedright\large\bfseries\color{petroleo}#1\par}\vspace{8pt}}
+
+% Título da ação: nova página, cor do caderno e fio de 1,5 pt abaixo (Guia, seção 6)
+\newcommand{\acao}[1]{%
+  \clearpage\phantomsection\addcontentsline{toc}{section}{#1}%
+  \section*{#1}\vspace{-0.9\baselineskip}%
+  {\color{petroleo}\hrule height 1.5pt}\vspace{0.6\baselineskip}}
+
+% Matriz RACI: letras em selos nas cores fixas do Guia (seção 5.3)
+\newcommand{\selo}[3]{{\setlength{\fboxsep}{1.4pt}\colorbox{#1}{\textcolor{#2}{\textbf{#3}}}}}
+\newcommand{\raciR}{\selo{azul}{white}{R}}
+\newcommand{\raciA}{\selo{azulEscuro}{white}{A}}
+\newcommand{\raciC}{\selo{verde20}{black}{C}}
+\newcommand{\raciI}{\selo{cinza10}{black}{I}}
+\newcommand{\raci}[1]{\csname raci#1\endcsname}
+
+% =====================================================================
+%  DADOS DO DOCUMENTO
+% =====================================================================
+\titulo{Manual Operativo do Programa de Segurança Hídrica do Paraná (PSH-PR)}
+\autor{Instituto Água e Terra -- IAT}
+\local{Curitiba}
+\data{2026}
+\instituicao{Governo do Estado do Paraná\par Instituto Água e Terra}
+\tipotrabalho{Manual Operativo}
+\preambulo{Caderno do Componente 3 -- Atividade 3.2.2: Implantar e reabilitar sistemas
+coletivos de abastecimento de água no meio rural e as soluções de saneamento associadas.}
+
+\begin{document}
+\selectlanguage{brazil}
+\frenchspacing
+
+% =====================================================================
+%  ELEMENTOS PRÉ-TEXTUAIS
+% =====================================================================
+\pretextual
+\imprimirfolhaderosto
+
+\pdfbookmark[0]{\listfigurename}{lof}
+\listoffigures*
+\cleardoublepage
+
+\pdfbookmark[0]{\listofquadrosname}{loq}
+\listofquadros*
+\cleardoublepage
+
+\pdfbookmark[0]{\listtablename}{lot}
+\listoftables*
+\cleardoublepage
+
+\begin{siglas}
+  \item[ABNT] Associação Brasileira de Normas Técnicas
+  \item[AQ] Caderno de Aquisições do MOP (código)
+  \item[AS] Caderno Ambiental e Social do MOP (código)
+  \item[BIRD] Banco Internacional para Reconstrução e Desenvolvimento
+  \item[CISPAR] Consórcio Intermunicipal de Saneamento do Paraná
+  \item[CNEFE] Cadastro Nacional de Endereços para Fins Estatísticos
+  \item[CNPJ] Cadastro Nacional da Pessoa Jurídica
+  \item[DBO] Demanda bioquímica de oxigênio
+  \item[DISAR] Diretoria de Saneamento Ambiental e Recursos Hídricos (IAT)
+  \item[EPI] Equipamento de proteção individual
+  \item[Funasa] Fundação Nacional de Saúde
+  \item[IAT] Instituto Água e Terra
+  \item[IBGE] Instituto Brasileiro de Geografia e Estatística
+  \item[IDR-Paraná] Instituto de Desenvolvimento Rural do Paraná – Iapar-Emater
+  \item[IPDM] Índice Ipardes de Desempenho Municipal
+  \item[LGPD] Lei Geral de Proteção de Dados Pessoais
+  \item[MGAS] Marco de Gestão Ambiental e Social
+  \item[MOP] Manual Operativo do Programa
+  \item[MQR] Mecanismo de Queixas e Reclamações
+  \item[MROSC] Marco Regulatório das Organizações da Sociedade Civil
+  \item[NAS] Normas Ambientais e Sociais do Banco Mundial
+  \item[PAD] Documento de Avaliação do Projeto (Project Appraisal Document)
+  \item[PEPI] Plano de Engajamento das Partes Interessadas
+  \item[PIP] Plano Integrado de Propriedade
+  \item[PSH-PR] Programa de Segurança Hídrica do Paraná
+  \item[SANEPAR] Companhia de Saneamento do Paraná
+  \item[SEAB] Secretaria de Estado da Agricultura e do Abastecimento
+  \item[SECID] Secretaria de Estado das Cidades
+  \item[SEPL] Secretaria de Estado do Planejamento
+  \item[SIGARH] Sistema de Gestão Ambiental e de Recursos Hídricos
+  \item[Sinisa] Sistema Nacional de Informações em Saneamento Básico
+  \item[SISAR] Sistema Integrado de Saneamento Rural
+  \item[TRD] Termo de Recebimento Definitivo
+  \item[UGP] Unidade de Gerenciamento do Programa
+\end{siglas}
+
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents*
+\cleardoublepage
+
+% =====================================================================
+%  ELEMENTOS TEXTUAIS
+% =====================================================================
+\textual
+
+\input{conteudo/atividade}
+\input{conteudo/acao-3-2-2-1}
+\input{conteudo/acao-3-2-2-2}
+\input{conteudo/acao-3-2-2-3}
+\input{conteudo/acao-3-2-2-4}
+\input{conteudo/acao-3-2-2-5}
+\input{conteudo/acao-3-2-2-6}
+\input{conteudo/acao-3-2-2-7}
+
+% =====================================================================
+%  ELEMENTOS PÓS-TEXTUAIS
+% =====================================================================
+\postextual
+\input{conteudo/referencias}
+\input{conteudo/glossario}
+
+\ifmostrarpendencias
+  \chapter*{Lista de pendências}
+  \addcontentsline{toc}{chapter}{Lista de pendências}
+  \makeatletter\@starttoc{tdo}\makeatother
+\fi
+
+\end{document}

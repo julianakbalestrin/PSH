@@ -300,7 +300,7 @@ class Montador:
     def xml(self):
         return "".join(self.saida).replace("@@CS@@", "").replace("@@CE@@", "")
 
-    def comentarios_xml(self, data="2026-10-23T00:00:00Z"):
+    def comentarios_xml(self, data="2026-10-27T00:00:00Z"):
         out = []
         for k, t in self.comentarios:
             pars = "".join(f'<w:p>{run(linha)}</w:p>' for linha in t.split("\n"))

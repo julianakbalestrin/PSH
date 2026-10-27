@@ -1,0 +1,24 @@
+\documentclass[border=2pt]{standalone}
+\input{estilo}
+\begin{document}
+\begin{tikzpicture}[x=1cm,y=1cm]
+  \filldraw[fill=cinza5, draw=cinza60, line width=0.7pt] (-7.6,0.0) -- (7.6,0.0) -- (6.949999999999999,-0.95) -- (-6.949999999999999,-0.95) -- cycle;
+  \node[text width=12.15cm, align=center, font=\fonte{8.5}{10}] at (0,-0.475) {Microbacias prioritárias do PSH-PR};
+  \node[numero] at (-6.72,-0.475) {1};
+  \filldraw[fill=cinza5, draw=cinza60, line width=0.7pt] (-6.949999999999999,-1.05) -- (6.949999999999999,-1.05) -- (6.299999999999999,-2.0) -- (-6.299999999999999,-2.0) -- cycle;
+  \node[text width=10.85cm, align=center, font=\fonte{8.5}{10}] at (0,-1.525) {Mananciais de abastecimento público selecionados por critério quali-quantitativo};
+  \node[numero] at (-6.07,-1.525) {2};
+  \filldraw[fill=cinza5, draw=cinza60, line width=0.7pt] (-6.3,-2.1) -- (6.3,-2.1) -- (5.6499999999999995,-3.05) -- (-5.6499999999999995,-3.05) -- cycle;
+  \node[text width=9.55cm, align=center, font=\fonte{8.5}{10}] at (0,-2.575) {Domicílios rurais permanentes ocupados (Censo 2022 e CNEFE)};
+  \node[numero] at (-5.42,-2.575) {3};
+  \filldraw[fill=cinza5, draw=cinza60, line width=0.7pt] (-5.6499999999999995,-3.1500000000000004) -- (5.6499999999999995,-3.1500000000000004) -- (4.999999999999999,-4.1000000000000005) -- (-4.999999999999999,-4.1000000000000005) -- cycle;
+  \node[text width=8.25cm, align=center, font=\fonte{8.5}{10}] at (0,-3.6250000000000004) {Domicílios sem destinação adequada do esgoto};
+  \node[numero] at (-4.77,-3.6250000000000004) {4};
+  \filldraw[fill=cinza5, draw=cinza60, line width=0.7pt] (-5.0,-4.2) -- (5.0,-4.2) -- (4.35,-5.15) -- (-4.35,-5.15) -- cycle;
+  \node[text width=6.95cm, align=center, font=\fonte{8.5}{10}] at (0,-4.675) {Propriedade com diagnóstico e adesão ao PSH-PR e às ações da SEAB};
+  \node[numero] at (-4.12,-4.675) {5};
+  \draw[conector] (0,-5.15) -- (0,-5.65);
+  \node[documento=6.8cm, minimum height=1.15cm, anchor=north, font=\fonte{9}{11}] at (0,-5.65) {\textbf{2.236 domicílios em nove mananciais}\\ \fonte{8}{9.4}2.300 adotados para o dimensionamento};
+  \node[text=cinza80, anchor=north, text width=12cm, align=center] at (0,-7.0) {O arredondamento absorve as incertezas das bases, as variações cadastrais e as demandas futuras.};
+\end{tikzpicture}
+\end{document}

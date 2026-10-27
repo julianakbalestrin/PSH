@@ -1,0 +1,72 @@
+\documentclass[border=2pt]{standalone}
+\input{estilo}
+\begin{document}
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-1.5);
+  \fill[cinza5] (2.35,0.0) rectangle (15.8,-1.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-0.750) {Entradas};
+  \fill[cinza10] (0,-1.5) rectangle (2.35,-4.0);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-2.750) {IAT};
+  \fill[cinza10] (0,-4.0) rectangle (2.35,-5.45);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-4.725) {Banco Mundial};
+  \fill[cinza10] (0,-5.45) rectangle (2.35,-6.9);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-6.175) {Empresa contratada};
+  \fill[cinza10] (0,-6.9) rectangle (2.35,-8.35);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-7.625) {Famílias e associações};
+  \fill[cinza10] (0,-8.35) rectangle (2.35,-9.85);
+  \fill[cinza5] (2.35,-8.35) rectangle (15.8,-9.85);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-9.100) {Saídas};
+  \draw[cinza20, line width=0.6pt] (0,-1.5) -- (15.8,-1.5);
+  \draw[cinza20, line width=0.6pt] (0,-4.0) -- (15.8,-4.0);
+  \draw[cinza20, line width=0.6pt] (0,-5.45) -- (15.8,-5.45);
+  \draw[cinza20, line width=0.6pt] (0,-6.9) -- (15.8,-6.9);
+  \draw[cinza20, line width=0.6pt] (0,-8.35) -- (15.8,-8.35);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-9.85);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-9.85);
+  \node[documento=2.84cm] (ent1) at (4.069,-0.8) {Termos de Cooperação com os municípios};
+  \node[numero] at ($(ent1.north west)+(-0.04,0.04)$) {1};
+  \node[documento=2.84cm] (ent2) at (7.406,-0.8) {Termo de Referência do trabalho técnico-social};
+  \node[numero] at ($(ent2.north west)+(-0.04,0.04)$) {1};
+  \node[documento=2.84cm] (ent3) at (10.744,-0.8) {Lista preliminar de comunidades};
+  \node[numero] at ($(ent3.north west)+(-0.04,0.04)$) {2};
+  \node[documento=2.84cm] (ent4) at (14.081,-0.8) {Bases do Censo 2022 e do CNEFE};
+  \node[numero] at ($(ent4.north west)+(-0.04,0.04)$) {3};
+  \node[documento=2.84cm] (sai1) at (4.069,-9.15) {Cadastro e diagnóstico das comunidades};
+  \node[numero] at ($(sai1.north west)+(-0.04,0.04)$) {3};
+  \node[numero] at ($(sai1.north west)+(0.40,0.04)$) {4};
+  \node[documento=2.84cm] (sai2) at (7.406,-9.15) {Famílias enquadradas e termos de adesão};
+  \node[numero] at ($(sai2.north west)+(-0.04,0.04)$) {5};
+  \node[documento=2.84cm] (sai3) at (10.744,-9.15) {Lideranças capacitadas};
+  \node[numero] at ($(sai3.north west)+(-0.04,0.04)$) {6};
+  \node[documento=2.84cm] (sai4) at (14.081,-9.15) {Relatório final e registro no Termo de Cooperação};
+  \node[numero] at ($(sai4.north west)+(-0.04,0.04)$) {7};
+  \node[inicio] (ini) at (3.45,-1.95) {Início};
+  \node[atividade=1.72cm] (n1) at (3.45,-3.17) {Contratar a empresa};
+  \etapa{n1}{1}
+  \node[banco=1.72cm] (b1) at (3.45,-4.725) {Emitir a não objeção, se aplicável};
+  \node[atividade=1.72cm] (n2) at (3.45,-6.175) {Mobilizar e sensibilizar};
+  \etapa{n2}{2}
+  \node[atividade=1.72cm] (n3) at (5.7,-6.175) {Realizar a busca ativa e o cadastro};
+  \etapa{n3}{3}
+  \node[atividade=1.72cm] (n4) at (7.95,-6.175) {Elaborar o diagnóstico};
+  \etapa{n4}{4}
+  \node[atividade=1.72cm] (n5) at (10.2,-6.175) {Enquadrar as famílias};
+  \etapa{n5}{5}
+  \node[atividade=1.72cm] (f5) at (10.2,-7.625) {Assinar o termo de adesão};
+  \node[atividade=1.72cm] (n6) at (12.45,-6.175) {Capacitar e acompanhar as obras};
+  \etapa{n6}{6}
+  \node[atividade=1.72cm] (n7) at (14.7,-6.175) {Elaborar o relatório final};
+  \etapa{n7}{7}
+  \node[inicio] (fim) at (14.7,-1.95) {Fim};
+  \draw[conector] (ini) -- (n1);
+  \draw[conector] (n1) -- (b1);
+  \draw[conector] (b1) -- (n2);
+  \draw[conector] (n2) -- (n3);
+  \draw[conector] (n3) -- (n4);
+  \draw[conector] (n4) -- (n5);
+  \draw[conector] (n5) -- (f5);
+  \draw[conector] (f5.east) -| (n6.south);
+  \draw[conector] (n6) -- (n7);
+  \draw[conector] (n7) -- (fim);
+\end{tikzpicture}
+\end{document}

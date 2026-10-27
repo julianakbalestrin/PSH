@@ -14,7 +14,6 @@ sys.path.insert(0, AQUI)
 from mop import Montador, run, x  # noqa: E402
 import c_atividade, c_3221, c_3222, c_3223, c_3224, c_3225, c_3226, c_3227  # noqa: E402
 
-MODELO, SAIDA = sys.argv[1], sys.argv[2]
 TRAB = os.path.join(AQUI, "trabalho")
 
 # ------------------------------------------------------------------ conteúdo
@@ -80,23 +79,25 @@ REFERENCIAS = [
 ]
 
 GLOSSARIO = [
-    ("Contratação integrada", "regime em que a mesma empresa elabora os projetos e executa as obras de cada sistema."),
-    ("Entidade gestora", "associação, central de associações ou consórcio público que opera e mantém o sistema depois "
-     "da entrega."),
-    ("Modelo de gestão", "arranjo institucional, jurídico e financeiro que define quem opera, mantém e cobra pelo "
-     "serviço de saneamento rural."),
-    ("Plano Integrado de Propriedade (PIP)", "plano elaborado pelo IDR-Paraná para cada propriedade rural aderente ao "
-     "PSH-PR, com as práticas e as intervenções recomendadas."),
-    ("Sistema coletivo de abastecimento de água", "conjunto de poço, tratamento, reservatório, rede e ligações "
-     "domiciliares que abastece uma comunidade."),
-    ("Solução individual de esgotamento sanitário", "sistema descentralizado que coleta, trata e dispõe o esgoto de um "
-     "domicílio no próprio lote."),
-    ("Termo de Recebimento Definitivo (TRD)", "documento que formaliza o recebimento final do sistema pelo IAT, depois "
-     "da pré-operação e do aceite da entidade gestora."),
-    ("Trabalho técnico-social", "conjunto de ações de mobilização, cadastro, diagnóstico, educação sanitária e "
+    ("Contratação integrada", "regime de execução em que a mesma empresa elabora os projetos e executa as obras de "
+     "cada sistema."),
+    ("Entidade gestora", "associação, central de associações ou consórcio público responsável pela operação e pela "
+     "manutenção do sistema após a entrega."),
+    ("Modelo de gestão", "arranjo institucional, jurídico e financeiro que define a entidade responsável pela "
+     "operação, pela manutenção e pela cobrança dos serviços de saneamento rural."),
+    ("Plano Integrado de Propriedade (PIP)", "plano elaborado pelo serviço de assistência técnica e extensão rural "
+     "contratado no Componente 2 para cada propriedade rural aderente ao PSH-PR, com as práticas e as intervenções "
+     "recomendadas."),
+    ("Sistema coletivo de abastecimento de água", "conjunto de captação, tratamento, reservação, rede de distribuição "
+     "e ligações domiciliares que abastece uma comunidade."),
+    ("Solução individual de esgotamento sanitário", "sistema descentralizado que coleta, trata e promove a disposição "
+     "final do esgoto de um domicílio no próprio lote."),
+    ("Termo de Recebimento Definitivo (TRD)", "documento que formaliza o recebimento final do sistema pelo IAT, após "
+     "a pré-operação e o aceite da entidade gestora."),
+    ("Trabalho técnico-social", "conjunto de atividades de mobilização, cadastro, diagnóstico, educação sanitária e "
      "ambiental e organização comunitária junto às famílias."),
-    ("Unidade regional de apoio", "estrutura do modelo de gestão, com equipe técnica, sede e veículo, que presta suporte "
-     "às associações de uma região."),
+    ("Unidade regional de apoio", "estrutura do modelo de gestão, com equipe técnica, sede e veículo, que presta "
+     "suporte técnico às associações de uma região."),
 ]
 
 SIGLAS_NOVAS = {
@@ -113,6 +114,7 @@ SIGLAS_NOVAS = {
     "IAT": "Instituto Água e Terra",
     "IBGE": "Instituto Brasileiro de Geografia e Estatística",
     "IDR-Paraná": "Instituto de Desenvolvimento Rural do Paraná – Iapar-Emater",
+    "SEAB": "Secretaria de Estado da Agricultura e do Abastecimento",
     "IPDM": "Índice Ipardes de Desempenho Municipal",
     "LGPD": "Lei Geral de Proteção de Dados Pessoais",
     "MGAS": "Marco de Gestão Ambiental e Social",
@@ -179,6 +181,19 @@ def main():
     trecho = doc[a:b]
     assert trecho.count("<w:pStyle w:val=\"TituloAcao\"/>") == 7, trecho.count("TituloAcao")
     doc = doc[:a] + novo + doc[b:]
+
+    # ---------------------------------------------- nome da Ação 3.2.2.6 no quadro do subcomponente
+    # Ajuste de nome (Orientações, seção 6) registrado com o controle de alterações do Word.
+    antigo = ('<w:r><w:t xml:space="preserve">Ação 3.2.2.6 – Esgotamento sanitário em propriedades de mananciais '
+              '(área do IDR-Paraná)</w:t></w:r>')
+    assert doc.count(antigo) == 1, doc.count(antigo)
+    rev = 'w:author="IAT – Atividade 3.2.2" w:date="2026-10-27T00:00:00Z"'
+    doc = doc.replace(antigo, '<w:r><w:t xml:space="preserve">Ação 3.2.2.6 – Esgotamento sanitário em propriedades '
+                      'de mananciais (área </w:t></w:r>'
+                      f'<w:del w:id="9101" {rev}><w:r><w:delText xml:space="preserve">do IDR-Paraná</w:delText>'
+                      '</w:r></w:del>'
+                      f'<w:ins w:id="9102" {rev}><w:r><w:t xml:space="preserve">da SEAB</w:t></w:r></w:ins>'
+                      '<w:r><w:t xml:space="preserve">)</w:t></w:r>')
 
     # ---------------------------------------------- referências
     j = doc.index(">Referências</w:t>")
@@ -306,4 +321,6 @@ def main():
           f"comentários {len(m.comentarios)}")
 
 
-main()
+if __name__ == "__main__":
+    MODELO, SAIDA = sys.argv[1], sys.argv[2]
+    main()

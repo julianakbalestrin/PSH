@@ -1,0 +1,12 @@
+Versão LaTeX da Atividade 3.2.2 (MOP PSH-PR, Caderno do Componente 3)
+
+Overleaf: New Project > Upload Project > escolha este .zip. O documento principal é main.tex
+e compila com pdfLaTeX (padrão). Para ocultar as caixas de pendência, troque
+\mostrarpendenciastrue por \mostrarpendenciasfalse no início de main.tex.
+
+conteudo/   apresentação da atividade, um arquivo por ação, referências e glossário
+figuras/    figuras em PDF (vetorial) e o mapa em JPG
+figuras/tikz/  fontes TikZ das figuras; cada arquivo compila sozinho (usa estilo.tex)
+
+O texto é o mesmo do caderno Word (MOP_PSH-PR_C3_Componente_3_v0.4_Atividade_3.2.2.docx).
+Os comentários do Word aparecem aqui como caixas de pendência.

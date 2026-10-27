@@ -1,0 +1,88 @@
+% Estilo das figuras do Caderno C3, conforme o Guia de Identidade Visual do MOP
+% (seção 3: paleta; seção 5: símbolos dos fluxogramas, raias, diagramas).
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{tikz}
+\usetikzlibrary{positioning, arrows.meta, shapes.geometric, shapes.symbols, shapes.misc,
+  calc, fit, backgrounds, patterns}
+
+% ---------------------------------------------------------------- paleta do MOP
+% institucionais (Manual de Marca)
+\definecolor{azulEscuro}{HTML}{0B3A5A}   % Azul-escuro Paraná
+\definecolor{azul}{HTML}{0A73BA}         % Azul Paraná
+\definecolor{verde}{HTML}{029749}        % Verde Paraná
+% sinalização (uso restrito)
+\definecolor{amarelo}{HTML}{F7EA48}
+\definecolor{vermelho}{HTML}{DA291C}
+% neutros
+\definecolor{cinza80}{HTML}{333333}
+\definecolor{cinza60}{HTML}{666666}
+\definecolor{cinza20}{HTML}{CCCCCC}
+\definecolor{cinza10}{HTML}{E6E6E6}
+\definecolor{cinza5}{HTML}{F2F2F2}
+% tons claros (fundos de 10% a 30%)
+\definecolor{azul12}{HTML}{E2EEF7}
+\definecolor{verde12}{HTML}{E1F3E9}
+\definecolor{verde20}{HTML}{CCEADB}
+\definecolor{amarelo30}{HTML}{FDF9C8}
+\definecolor{vermelho15}{HTML}{F9DFDD}
+% cor do Caderno C3 (Azul-petróleo, derivada): ícones, esquemas e mapas
+\definecolor{petroleo}{HTML}{00747A}
+\definecolor{petroleo12}{HTML}{E0EEEF}
+
+\newcommand{\fonte}[2]{\fontsize{#1}{#2}\selectfont}
+\color{black}
+
+\tikzset{
+  every node/.style={font=\fonte{8}{9.4}, text=black},
+  % --- os 8 símbolos do Guia (seção 5.1)
+  inicio/.style={rounded rectangle, fill=azulEscuro, draw=azulEscuro, text=white,
+    font=\fonte{8.5}{10}\bfseries, minimum height=0.6cm, minimum width=1.05cm,
+    inner xsep=3pt, inner ysep=2pt},
+  atividade/.style={rectangle, rounded corners=3pt, draw=azul, line width=0.8pt, fill=azul12,
+    align=center, text width=#1, inner xsep=2.5pt, inner ysep=4.5pt, minimum height=1.05cm},
+  atividade/.default=1.45cm,
+  decisao/.style={diamond, aspect=1.45, draw=azulEscuro, line width=0.8pt, fill=amarelo30,
+    align=center, text width=#1, inner sep=0pt, font=\fonte{8}{9}},
+  decisao/.default=1.2cm,
+  documento/.style={tape, tape bend top=none, tape bend bottom=out and in,
+    tape bend height=1.6mm, draw=verde, line width=0.8pt, fill=verde12, align=center,
+    text width=#1, inner xsep=2.5pt, inner ysep=4.5pt, minimum height=0.95cm},
+  documento/.default=1.6cm,
+  banco/.style={rectangle, rounded corners=3pt, draw=azulEscuro, line width=0.8pt,
+    dash pattern=on 3pt off 2pt, fill=white, align=center, text width=#1, inner xsep=2.5pt,
+    inner ysep=4.5pt, minimum height=1.05cm},
+  banco/.default=1.45cm,
+  sistema/.style={cylinder, shape border rotate=90, aspect=0.2, draw=cinza60, line width=0.8pt,
+    fill=cinza10, align=center, text width=#1, inner sep=1.5pt, minimum height=1.05cm},
+  sistema/.default=1.25cm,
+  numero/.style={circle, fill=azul, draw=white, line width=0.6pt, text=white,
+    font=\fonte{7.5}{8}\bfseries, inner sep=0pt, minimum size=0.42cm},
+  conector/.style={-{Latex[length=2.2mm, width=1.8mm]}, draw=cinza60, line width=1pt,
+    rounded corners=0pt},
+  rotulo/.style={font=\fonte{8}{9}, text=cinza80, fill=white, inner sep=1pt},
+  % --- raias (seção 5.2)
+  raiarotulo/.style={font=\fonte{9}{10.5}\bfseries, text=black, align=center},
+  % --- organograma, interfaces e diagramas (seção 5.4)
+  caixa/.style={rectangle, draw=cinza60, line width=0.7pt, fill=white, align=left,
+    text width=#1, inner sep=3pt},
+  caixa/.default=4.6cm,
+  destaque/.style={rectangle, draw=azulEscuro, fill=azulEscuro, text=white, align=center,
+    text width=#1, inner sep=3pt, font=\fonte{9}{11}\bfseries},
+  destaque/.default=2.8cm,
+  titulocol/.style={font=\fonte{9}{11}\bfseries, text=cinza80, align=center, text width=#1,
+    inner sep=2pt},
+  titulocol/.default=4.6cm,
+  marco/.style={diamond, fill=azul, draw=white, line width=0.4pt, inner sep=0pt,
+    minimum size=0.3cm},
+  marcoprincipal/.style={diamond, fill=verde, draw=white, line width=0.4pt, inner sep=0pt,
+    minimum size=0.36cm},
+}
+
+% etapa numerada: círculo Azul no canto superior esquerdo do símbolo
+\newcommand{\etapa}[2]{\node[numero] at ($(#1.north west)+(-0.04,0.04)$) {#2};}
+
+% sem hifenização nas caixas
+\AtBeginDocument{\hyphenpenalty=10000 \exhyphenpenalty=10000 \sloppy}

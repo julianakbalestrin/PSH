@@ -1,0 +1,34 @@
+\documentclass[border=2pt]{standalone}
+\input{estilo}
+\begin{document}
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-2.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-1.250) {Empresa executora};
+  \fill[cinza10] (0,-2.5) rectangle (2.35,-5.0);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-3.750) {IAT};
+  \fill[cinza10] (0,-5.0) rectangle (2.35,-6.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-5.750) {Entidade gestora};
+  \draw[cinza20, line width=0.6pt] (0,-2.5) -- (15.8,-2.5);
+  \draw[cinza20, line width=0.6pt] (0,-5.0) -- (15.8,-5.0);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-6.5);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-6.5);
+  \node[inicio] (ini) at (3.45,-0.45) {Início};
+  \node[atividade=1.72cm] (e1) at (3.45,-1.67) {Pré-operar e testar o sistema};
+  \node[atividade=1.72cm] (e2) at (5.7,-1.67) {Capacitar os operadores locais};
+  \node[atividade=1.72cm] (i1) at (7.95,-4.17) {Realizar a reunião de entrega};
+  \node[atividade=1.72cm] (g1) at (7.95,-5.75) {Assinar o termo de aceite};
+  \node[atividade=1.72cm] (i2) at (10.2,-4.17) {Emitir o TRD};
+  \node[atividade=1.72cm] (g2) at (11.95,-5.75) {Operar e informar os dados};
+  \node[sistema=1.5cm] (s1) at (14.7,-4.17) {SIGARH e GeoPR};
+  \node[inicio] (fim) at (14.7,-2.95) {Fim};
+  \draw[conector] (ini) -- (e1);
+  \draw[conector] (e1) -- (e2);
+  \draw[conector] (e2.east) -| (i1.north);
+  \draw[conector] (i1) -- (g1);
+  \draw[conector] (g1.east) -| (i2.south);
+  \draw[conector] (i2.east) -| (g2.north);
+  \draw[conector] (g2.east) -| (s1.south);
+  \node[rotulo, anchor=south, align=center] at ($(g2.east)!0.5!(g2.east -| s1.south)+(0,0.04)$) {dados\\ semestrais};
+  \draw[conector] (s1) -- (fim);
+\end{tikzpicture}
+\end{document}

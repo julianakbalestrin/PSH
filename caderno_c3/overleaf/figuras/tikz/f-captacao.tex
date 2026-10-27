@@ -1,0 +1,46 @@
+\documentclass[border=2pt]{standalone}
+\input{estilo}
+\begin{document}
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-2.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-1.250) {IAT (DISAR)};
+  \fill[cinza10] (0,-2.5) rectangle (2.35,-4.0);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-3.250) {IAT (licenças e outorga)};
+  \fill[cinza10] (0,-4.0) rectangle (2.35,-5.45);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-4.725) {Laboratório};
+  \fill[cinza10] (0,-5.45) rectangle (2.35,-6.9);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-6.175) {Empresa contratada};
+  \draw[cinza20, line width=0.6pt] (0,-2.5) -- (15.8,-2.5);
+  \draw[cinza20, line width=0.6pt] (0,-4.0) -- (15.8,-4.0);
+  \draw[cinza20, line width=0.6pt] (0,-5.45) -- (15.8,-5.45);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-6.9);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-6.9);
+  \node[inicio] (ini) at (3.45,-0.45) {Início};
+  \node[atividade=1.72cm] (a1) at (3.45,-1.67) {Estudar as áreas e locar o poço};
+  \etapa{a1}{1}
+  \node[atividade=1.72cm] (b1) at (5.7,-3.25) {Emitir a anuência de perfuração};
+  \node[atividade=1.72cm] (a3) at (7.95,-1.67) {Perfurar o poço};
+  \etapa{a3}{2}
+  \node[atividade=1.72cm] (t1) at (7.95,-4.725) {Testar a vazão e a qualidade da água};
+  \node[decisao=1.2cm] (d) at (10.2,-1.67) {Poço viável?};
+  \node[atividade=1.72cm] (b2) at (12.45,-3.25) {Emitir a outorga de uso da água};
+  \node[atividade=1.72cm] (e1) at (12.45,-6.175) {Elaborar os projetos e os estudos};
+  \etapa{e1}{3}
+  \node[atividade=1.72cm] (b3) at (14.7,-3.25) {Emitir as licenças};
+  \node[atividade=1.72cm] (a4) at (14.7,-1.67) {Aprovar os projetos};
+  \node[inicio] (fim) at (14.7,-0.45) {Fim};
+  \draw[conector] (ini) -- (a1);
+  \draw[conector] (a1.east) -| (b1.north);
+  \draw[conector] (b1.east) -- ++(0.17,0) |- (a3.west);
+  \draw[conector] (a3) -- (t1);
+  \draw[conector] (t1.east) -| (d.south);
+  \draw[conector] (d.north) |- (4.17,-0.78) -- ($(a1.north)+(0.72,0)$);
+  \node[rotulo, anchor=south, align=center] at (7.95,-0.76) {não: nova locação};
+  \draw[conector] (d.east) -| (b2.north);
+  \node[rotulo, anchor=south west, align=center] at ($(d.east)+(0.05,0.02)$) {sim};
+  \draw[conector] (b2) -- (e1);
+  \draw[conector] (e1.east) -| (b3.south);
+  \draw[conector] (b3) -- (a4);
+  \draw[conector] (a4) -- (fim);
+\end{tikzpicture}
+\end{document}

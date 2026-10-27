@@ -1,0 +1,63 @@
+\documentclass[border=2pt]{standalone}
+\input{estilo}
+\begin{document}
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-1.5);
+  \fill[cinza5] (2.35,0.0) rectangle (15.8,-1.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-0.750) {Entradas};
+  \fill[cinza10] (0,-1.5) rectangle (2.35,-4.0);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-2.750) {Sanepar};
+  \fill[cinza10] (0,-4.0) rectangle (2.35,-5.45);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-4.725) {Municípios};
+  \fill[cinza10] (0,-5.45) rectangle (2.35,-6.9);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-6.175) {Associações e comunidades};
+  \fill[cinza10] (0,-6.9) rectangle (2.35,-8.4);
+  \fill[cinza5] (2.35,-6.9) rectangle (15.8,-8.4);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-7.650) {Saídas};
+  \draw[cinza20, line width=0.6pt] (0,-1.5) -- (15.8,-1.5);
+  \draw[cinza20, line width=0.6pt] (0,-4.0) -- (15.8,-4.0);
+  \draw[cinza20, line width=0.6pt] (0,-5.45) -- (15.8,-5.45);
+  \draw[cinza20, line width=0.6pt] (0,-6.9) -- (15.8,-6.9);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-8.4);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-8.4);
+  \node[documento=2.84cm] (ent1) at (4.069,-0.8) {Critérios do manual do Programa Sanepar Rural};
+  \node[numero] at ($(ent1.north west)+(-0.04,0.04)$) {1};
+  \node[documento=2.84cm] (ent2) at (7.406,-0.8) {Demanda das comunidades e dos municípios};
+  \node[numero] at ($(ent2.north west)+(-0.04,0.04)$) {1};
+  \node[documento=2.84cm] (ent3) at (10.744,-0.8) {Contrato de Concessão ou de Programa};
+  \node[numero] at ($(ent3.north west)+(-0.04,0.04)$) {2};
+  \node[documento=2.84cm] (ent4) at (14.081,-0.8) {Modelo de gestão das associações};
+  \node[numero] at ($(ent4.north west)+(-0.04,0.04)$) {5};
+  \node[documento=2.84cm] (sai1) at (4.069,-7.7) {222 sistemas coletivos implantados};
+  \node[numero] at ($(sai1.north west)+(-0.04,0.04)$) {4};
+  \node[documento=2.84cm] (sai2) at (7.406,-7.7) {Associações constituídas e capacitadas};
+  \node[numero] at ($(sai2.north west)+(-0.04,0.04)$) {5};
+  \node[documento=2.84cm] (sai3) at (10.744,-7.7) {Cerca de 43,5 mil pessoas atendidas};
+  \node[numero] at ($(sai3.north west)+(-0.04,0.04)$) {6};
+  \node[documento=2.84cm] (sai4) at (14.081,-7.7) {Contrapartida de R\$ 67,15 milhões comprovada};
+  \node[numero] at ($(sai4.north west)+(-0.04,0.04)$) {6};
+  \node[inicio] (ini) at (3.45,-1.95) {Início};
+  \node[atividade=1.72cm] (n1) at (3.45,-3.17) {Elaborar o estudo técnico};
+  \etapa{n1}{1}
+  \node[atividade=1.72cm] (n2) at (5.7,-4.725) {Assinar o Termo de Compromisso};
+  \etapa{n2}{2}
+  \node[atividade=1.72cm] (n3) at (7.95,-3.17) {Elaborar o projeto do sistema};
+  \etapa{n3}{3}
+  \node[atividade=1.72cm] (m4) at (10.2,-3.17) {Fornecer materiais e apoio técnico};
+  \node[atividade=1.72cm] (n4) at (10.2,-4.725) {Executar a obra};
+  \etapa{n4}{4}
+  \node[atividade=1.72cm] (n5) at (12.45,-6.175) {Constituir e capacitar a associação};
+  \etapa{n5}{5}
+  \node[atividade=1.72cm] (n6) at (14.7,-3.17) {Monitorar e prestar suporte pós-obra};
+  \etapa{n6}{6}
+  \node[inicio] (fim) at (14.7,-1.95) {Fim};
+  \draw[conector] (ini) -- (n1);
+  \draw[conector] (n1.east) -| (n2.north);
+  \draw[conector] (n2.east) -| (n3.south);
+  \draw[conector] (n3) -- (m4);
+  \draw[conector] (m4) -- (n4);
+  \draw[conector] (n4.east) -| (n5.north);
+  \draw[conector] (n5.east) -| (n6.south);
+  \draw[conector] (n6) -- (fim);
+\end{tikzpicture}
+\end{document}

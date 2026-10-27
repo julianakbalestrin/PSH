@@ -8,25 +8,27 @@ ELEMENTOS = [
     PL("Ações:", "3.2.2.1 Implantação dos modelos de gestão; 3.2.2.2 Trabalho técnico-social; 3.2.2.3 Implantação e "
        "reabilitação dos sistemas coletivos de abastecimento de água; 3.2.2.4 Programa Sanepar Rural; 3.2.2.5 "
        "Esgotamento sanitário nas comunidades atendidas com água; 3.2.2.6 Esgotamento sanitário em propriedades de "
-       "mananciais (área do IDR-Paraná); 3.2.2.7 Supervisão e gerenciamento das obras."),
-    P("A Atividade 3.2.2 leva água tratada e soluções de esgoto às comunidades rurais selecionadas e prepara quem vai "
-      "operar os sistemas depois das obras. O objetivo comum às sete ações é ampliar o acesso sustentável ao "
-      "abastecimento de água e ao esgotamento sanitário no meio rural do Paraná, entre 2027 e 2033 (IAT, 2026a; "
-      "IAT, 2026b). As metas somam 83 sistemas coletivos de água implantados pelo IAT, 222 sistemas do Programa "
-      "Sanepar Rural e soluções individuais de esgoto em 6.367 domicílios, com modelos de gestão que garantem a "
-      "operação, a manutenção e a tarifa."),
-    P("As ações se articulam em sequência ({fig:articulacao}). Os modelos de gestão (Ação 3.2.2.1) e o trabalho "
-      "técnico-social (Ação 3.2.2.2) vêm primeiro: pactuam a participação dos municípios, conhecem as famílias e "
-      "preparam a entidade que vai operar cada sistema. Depois, o IAT implanta os sistemas de água (Ação 3.2.2.3) e "
-      "as soluções de esgoto (Ações 3.2.2.5 e 3.2.2.6), com supervisão independente das obras (Ação 3.2.2.7), e a "
-      "Sanepar executa o Programa Sanepar Rural com recursos de contrapartida (Ação 3.2.2.4)."),
-    FIG("articulacao", "f-articulacao", "Articulação das ações da Atividade 3.2.2",
+       "mananciais (área da SEAB); 3.2.2.7 Supervisão e gerenciamento das obras."),
+    P("A atividade compreende a implantação e a reabilitação de sistemas coletivos de abastecimento de água em "
+      "comunidades rurais, as soluções de esgotamento sanitário associadas e os modelos de gestão responsáveis pela "
+      "prestação dos serviços após as obras. O objetivo comum às ações é ampliar o acesso sustentável aos serviços de "
+      "abastecimento de água e de esgotamento sanitário no meio rural do Paraná, no período de 2027 a 2033 (IAT, 2026a; "
+      "IAT, 2026b). As metas físicas compreendem 83 sistemas coletivos implantados pelo IAT, 222 sistemas do Programa "
+      "Sanepar Rural e soluções individuais de esgotamento sanitário em 6.367 domicílios."),
+    P("As ações articulam-se em sequência ({fig:articulacao}). Os modelos de gestão e o trabalho técnico-social "
+      "antecedem as obras: formalizam a adesão dos municípios, caracterizam as famílias e as condições sanitárias de "
+      "cada comunidade e estruturam a entidade gestora de cada sistema. Na sequência, o IAT implanta os sistemas de "
+      "abastecimento de água e as soluções de esgotamento sanitário, com supervisão independente das obras, e a Sanepar "
+      "executa o Programa Sanepar Rural com recursos de contrapartida."),
+    FIG("articulacao", "f-articulacao", "Articulação das ações de abastecimento de água e esgotamento sanitário rural",
         "Fonte: IAT (2026), com valores da planilha PSH_CUSTO_Consolidada (PARANÁ, 2026).",
-        alt="Diagrama que mostra como as sete ações da Atividade 3.2.2 se ligam, da preparação social e "
-            "institucional à entrega dos sistemas e aos indicadores do Componente 3."),
-    P("A {fig:crono-atividade} mostra quando cada ação acontece e quanto investe a cada ano."),
-    FIG("crono-atividade", "g-crono-atividade", "Período de execução e investimento anual das ações da Atividade 3.2.2 (R$ milhões)",
+        alt="Diagrama da articulação entre as sete ações da atividade, da preparação social e institucional à "
+            "entrega dos sistemas e aos indicadores do componente."),
+    P("A {fig:crono-atividade} apresenta o período de execução e o investimento anual de cada ação."),
+    FIG("crono-atividade", "g-crono-atividade",
+        "Período de execução e investimento anual das ações de abastecimento de água e esgotamento sanitário rural "
+        "(R$ milhões)",
         "Fonte: Planilha PSH_CUSTO_Consolidada, versão v2408 (PARANÁ, 2026). Valores arredondados; o total anual "
-        "soma os valores exatos da planilha.",
-        alt="Cronograma de 2027 a 2033 com o investimento anual de cada ação da Atividade 3.2.2 e o total por ano."),
+        "corresponde à soma dos valores exatos da planilha.",
+        alt="Cronograma de 2027 a 2033 com o investimento anual de cada ação e o total da atividade por ano."),
 ]

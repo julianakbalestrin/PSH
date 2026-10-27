@@ -1,0 +1,73 @@
+\documentclass[border=2pt]{standalone}
+\input{estilo}
+\begin{document}
+
+\begin{tikzpicture}[x=1cm,y=1cm,
+   num/.style={circle, fill=petroleo, text=white, font=\fonte{8}{9}\bfseries, inner sep=0pt,
+     minimum size=0.44cm},
+   traco/.style={draw=petroleo, line width=0.8pt},
+   cano/.style={draw=petroleo, line width=2pt},
+   nota/.style={font=\fonte{7.5}{8.8}, text=cinza80}]
+  % solo e aquífero
+  \fill[cinza5] (0,0) rectangle (15.6,-3.5);
+  \fill[petroleo12] (0,-2.35) rectangle (15.6,-3.5);
+  \fill[pattern=dots, pattern color=petroleo!60] (0,-2.35) rectangle (15.6,-3.5);
+  \draw[cinza60, line width=0.5pt] (0,-2.35) -- (15.6,-2.35);
+  \node[nota, anchor=west, fill=petroleo12, inner sep=1.5pt] at (2.3,-2.95) {aquífero (água subterrânea)};
+  \node[nota, anchor=west] at (2.3,-1.3) {solo e rocha};
+  \draw[cinza60, line width=1.2pt] (0,0) -- (15.6,0);
+  % poço
+  \fill[white] (1.25,0.3) rectangle (1.75,-3.1);
+  \draw[traco] (1.25,0.3) -- (1.25,-3.1) -- (1.75,-3.1) -- (1.75,0.3);
+  \draw[traco, dash pattern=on 2pt off 1.5pt] (1.25,-2.45) -- (1.25,-3.05);
+  \draw[traco, dash pattern=on 2pt off 1.5pt] (1.75,-2.45) -- (1.75,-3.05);
+  \fill[petroleo12] (1.27,-1.9) rectangle (1.73,-3.08);
+  \filldraw[traco, fill=white] (1.36,-2.9) rectangle (1.64,-2.45);
+  \draw[traco] (1.5,-2.45) -- (1.5,0.3);
+  \filldraw[traco, fill=white] (1.1,0.3) rectangle (1.9,0.55);
+  \node[num] at (0.65,0.85) {1};
+  % adutora até a casa química
+  \draw[cano] (1.9,0.42) -- (3.7,0.42);
+  % casa química
+  \filldraw[traco, fill=white] (3.7,0) rectangle (5.6,1.35);
+  \filldraw[traco, fill=white] (3.55,1.35) -- (4.65,1.95) -- (5.75,1.35) -- cycle;
+  \node[nota, align=center] at (4.65,0.68) {cloração\\ e controle};
+  \node[num] at (4.65,2.35) {2};
+  % ligação ao reservatório
+  \draw[cano] (5.6,0.42) -- (7.05,0.42) -- (7.05,2.75) -- (7.4,2.75);
+  % reservatório elevado
+  \draw[traco] (7.6,0) -- (7.75,2.2);
+  \draw[traco] (9.0,0) -- (8.85,2.2);
+  \draw[traco, line width=0.5pt] (7.68,1.1) -- (8.92,1.1);
+  \fill[petroleo12] (7.4,2.2) rectangle (9.2,3.05);
+  \draw[traco] (7.4,2.2) rectangle (9.2,3.6);
+  \draw[traco, line width=0.5pt] (7.4,3.05) -- (9.2,3.05);
+  \node[num] at (8.3,4.0) {3};
+  % rede de distribuição
+  \draw[cano, line width=1.6pt] (8.3,2.2) -- (8.3,-0.4) -- (14.9,-0.4);
+  \node[num] at (8.75,-0.8) {4};
+  % domicílios com hidrômetro
+  \foreach \x in {10.9, 12.65, 14.4} {
+    \draw[traco, line width=1.1pt] (\x-0.75,-0.4) -- (\x-0.75,0.15) -- (\x-0.45,0.15);
+    \node[circle, draw=petroleo, fill=white, line width=0.7pt, inner sep=1.4pt] at (\x-0.75,0.15) {};
+    \filldraw[traco, fill=white] (\x-0.45,0) rectangle (\x+0.45,0.8);
+    \filldraw[traco, fill=white] (\x-0.6,0.8) -- (\x,1.25) -- (\x+0.6,0.8) -- cycle;
+    \draw[traco, line width=0.6pt] (\x-0.15,0) rectangle (\x+0.15,0.45);
+  }
+  \node[num] at (10.15,0.75) {5};
+  \node[num] at (15.25,0.55) {6};
+  % legenda
+  \begin{scope}[shift={(9.55,4.35)}]
+    \foreach \n/\t [count=\k from 0] in {1/Poço tubular profundo com bomba submersa,
+        2/{Casa de química: desinfecção por cloração}, 3/Reservatório, 4/Rede de distribuição,
+        5/Ligação domiciliar com hidrômetro, 6/Domicílio atendido} {
+      \node[num, minimum size=0.36cm, font=\fonte{7}{8}\bfseries] at (0.18,{-0.2-\k*0.42}) {\n};
+      \node[anchor=west, font=\fonte{8}{9.4}] at (0.42,{-0.2-\k*0.42}) {\t};
+    }
+  \end{scope}
+  % anotações
+  \node[nota, align=left, anchor=west] at (1.95,-0.6) {outorga de uso e análises\\ físico-químicas e bacteriológicas};
+  \node[nota, align=center] at (12.55,-1.05) {operação e manutenção pela entidade gestora};
+\end{tikzpicture}
+
+\end{document}

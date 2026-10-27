@@ -144,7 +144,7 @@ def gantt_atividade():
         custos = CUSTOS[cod]
         rot = {k: dec(v) for k, v in custos.items()}
         nome = a["curto"] + (" (contrapartida)" if cod == "3.2.2.4" else "")
-        linhas.append((f"{cod} {nome}", list(custos.keys()), rot, dec(sum(custos.values()))))
+        linhas.append((nome, list(custos.keys()), rot, dec(sum(custos.values()))))
     tot = {}
     for cod in ACOES:
         for k, v in CUSTOS[cod].items():
@@ -174,8 +174,7 @@ def interfaces(cod, a):
     L.append(rf"""
   \path let \p1=(r1.north), \p2=(r{nr}.south), \p3=(s1.north), \p4=(s{ns}.south) in
     coordinate (cc) at ({xc + wc/2}, {{(max(\y1,\y3)+min(\y2,\y4))/2}});
-  \node[destaque={wc - 0.21:.2f}cm, minimum height=1.6cm] (A) at (cc) {{Ação {cod}\\[3pt]
-    \fonte{{8}}{{9.4}}\mdseries {tex(a['curto'])}}};""")
+  \node[destaque={wc - 0.21:.2f}cm, minimum height=1.6cm] (A) at (cc) {{{tex(a['curto'])}}};""")
     xbl = xl + wl + gap / 2
     xbr = xr - gap / 2
     for i in range(1, nr + 1):

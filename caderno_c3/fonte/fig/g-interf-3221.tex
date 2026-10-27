@@ -7,19 +7,18 @@
   \node[titulocol=5.1cm, anchor=north west] (hE) at (9.899999999999999,0) {Entrega a};
   \draw[cinza20, line width=0.6pt] (0,-0.5) -- (5.1,-0.5);
   \draw[cinza20, line width=0.6pt] (9.899999999999999,-0.5) -- (14.999999999999998,-0.5);
-  \node[caixa=4.89cm, minimum height=0.95cm, anchor=north west] (r1) at (0,-0.72) {\textbf{Atividade 3.2.1}\\ Diretrizes da política e do plano estadual de saneamento rural};
-  \node[caixa=4.89cm, minimum height=0.95cm, below=0.25cm of r1] (r2) {\textbf{Ação 3.2.2.2}\\ Cadastro, diagnóstico e termos de adesão das famílias};
-  \node[caixa=4.89cm, minimum height=0.95cm, below=0.25cm of r2] (r3) {\textbf{Ações 3.2.2.3 e 3.2.2.5}\\ Sistemas concluídos, prontos para a entrega};
-  \node[caixa=4.89cm, minimum height=0.95cm, below=0.25cm of r3] (r4) {\textbf{Ação 3.2.2.4}\\ Associações formadas pelo Programa Sanepar Rural};
-  \node[caixa=4.89cm, minimum height=0.95cm, anchor=north west] (s1) at (9.899999999999999,-0.72) {\textbf{Ação 3.2.2.2}\\ Municípios aderidos e Termos de Cooperação assinados};
-  \node[caixa=4.89cm, minimum height=0.95cm, below=0.25cm of s1] (s2) {\textbf{Ação 3.2.2.3}\\ Entidade gestora definida antes da obra de cada sistema};
-  \node[caixa=4.89cm, minimum height=0.95cm, below=0.25cm of s2] (s3) {\textbf{Ação 3.2.2.4}\\ Modelo de gestão para as associações do Sanepar Rural};
-  \node[caixa=4.89cm, minimum height=0.95cm, below=0.25cm of s3] (s4) {\textbf{UGP (Componente 4)}\\ Indicador de associações com modelo de gestão adotado};
+  \node[caixa=4.89cm, minimum height=0.95cm, anchor=north west] (r1) at (0,-0.72) {\textbf{Política estadual de saneamento rural}\\ Diretrizes da política e do plano estadual};
+  \node[caixa=4.89cm, minimum height=0.95cm, below=0.25cm of r1] (r2) {\textbf{Trabalho técnico-social}\\ Cadastro, diagnóstico e termos de adesão das famílias};
+  \node[caixa=4.89cm, minimum height=0.95cm, below=0.25cm of r2] (r3) {\textbf{Obras de abastecimento e de esgotamento}\\ Sistemas concluídos, aptos à entrega};
+  \node[caixa=4.89cm, minimum height=0.95cm, below=0.25cm of r3] (r4) {\textbf{Programa Sanepar Rural}\\ Associações constituídas nas comunidades atendidas};
+  \node[caixa=4.89cm, minimum height=0.95cm, anchor=north west] (s1) at (9.899999999999999,-0.72) {\textbf{Trabalho técnico-social}\\ Municípios aderidos e Termos de Cooperação assinados};
+  \node[caixa=4.89cm, minimum height=0.95cm, below=0.25cm of s1] (s2) {\textbf{Sistemas de abastecimento de água}\\ Entidade gestora definida antes da obra de cada sistema};
+  \node[caixa=4.89cm, minimum height=0.95cm, below=0.25cm of s2] (s3) {\textbf{Programa Sanepar Rural}\\ Modelo de gestão aplicável às associações};
+  \node[caixa=4.89cm, minimum height=0.95cm, below=0.25cm of s3] (s4) {\textbf{UGP}\\ Indicador de associações com modelo de gestão adotado};
 
   \path let \p1=(r1.north), \p2=(r4.south), \p3=(s1.north), \p4=(s4.south) in
     coordinate (cc) at (7.5, {(max(\y1,\y3)+min(\y2,\y4))/2});
-  \node[destaque=2.69cm, minimum height=1.6cm] (A) at (cc) {Ação 3.2.2.1\\[3pt]
-    \fonte{8}{9.4}\mdseries Modelos de gestão};
+  \node[destaque=2.69cm, minimum height=1.6cm] (A) at (cc) {Modelos de gestão};
   \draw[cinza60, line width=1pt] (r1.east) -- (5.574999999999999,0 |- r1.east);
   \draw[cinza60, line width=1pt] (r2.east) -- (5.574999999999999,0 |- r2.east);
   \draw[cinza60, line width=1pt] (r3.east) -- (5.574999999999999,0 |- r3.east);

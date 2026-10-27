@@ -1,0 +1,86 @@
+\documentclass[border=2pt]{standalone}
+\input{estilo}
+\begin{document}
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-1.5);
+  \fill[cinza5] (2.35,0.0) rectangle (15.8,-1.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-0.750) {Entradas};
+  \fill[cinza10] (0,-1.5) rectangle (2.35,-4.0);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-2.750) {IAT};
+  \fill[cinza10] (0,-4.0) rectangle (2.35,-5.45);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-4.725) {Municípios};
+  \fill[cinza10] (0,-5.45) rectangle (2.35,-6.9);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-6.175) {Banco Mundial};
+  \fill[cinza10] (0,-6.9) rectangle (2.35,-8.35);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-7.625) {Empresas contratadas};
+  \fill[cinza10] (0,-8.35) rectangle (2.35,-9.799999999999999);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-9.075) {Supervisora};
+  \fill[cinza10] (0,-9.799999999999999) rectangle (2.35,-11.249999999999998);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-10.525) {Entidade gestora};
+  \fill[cinza10] (0,-11.249999999999998) rectangle (2.35,-12.749999999999998);
+  \fill[cinza5] (2.35,-11.249999999999998) rectangle (15.8,-12.749999999999998);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-12.000) {Saídas};
+  \draw[cinza20, line width=0.6pt] (0,-1.5) -- (15.8,-1.5);
+  \draw[cinza20, line width=0.6pt] (0,-4.0) -- (15.8,-4.0);
+  \draw[cinza20, line width=0.6pt] (0,-5.45) -- (15.8,-5.45);
+  \draw[cinza20, line width=0.6pt] (0,-6.9) -- (15.8,-6.9);
+  \draw[cinza20, line width=0.6pt] (0,-8.35) -- (15.8,-8.35);
+  \draw[cinza20, line width=0.6pt] (0,-9.799999999999999) -- (15.8,-9.799999999999999);
+  \draw[cinza20, line width=0.6pt] (0,-11.249999999999998) -- (15.8,-11.249999999999998);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-12.749999999999998);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-12.749999999999998);
+  \node[documento=2.84cm] (ent1) at (4.069,-0.8) {Diagnóstico das comunidades};
+  \node[numero] at ($(ent1.north west)+(-0.04,0.04)$) {1};
+  \node[documento=2.84cm] (ent2) at (7.406,-0.8) {Entidade gestora pactuada};
+  \node[numero] at ($(ent2.north west)+(-0.04,0.04)$) {1};
+  \node[documento=2.84cm] (ent3) at (10.744,-0.8) {Termo de Cooperação com o município};
+  \node[numero] at ($(ent3.north west)+(-0.04,0.04)$) {1};
+  \node[documento=2.84cm] (ent4) at (14.081,-0.8) {Dados hidrogeológicos e outorga};
+  \node[numero] at ($(ent4.north west)+(-0.04,0.04)$) {2};
+  \node[documento=2.17cm] (sai1) at (3.735,-12.05) {Poços outorgados e obras licenciadas};
+  \node[numero] at ($(sai1.north west)+(-0.04,0.04)$) {2};
+  \node[numero] at ($(sai1.north west)+(0.40,0.04)$) {3};
+  \node[documento=2.17cm] (sai2) at (6.405,-12.05) {83 sistemas coletivos implantados};
+  \node[numero] at ($(sai2.north west)+(-0.04,0.04)$) {4};
+  \node[documento=2.17cm] (sai3) at (9.075,-12.05) {5.810 domicílios com água tratada};
+  \node[numero] at ($(sai3.north west)+(-0.04,0.04)$) {5};
+  \node[documento=2.17cm] (sai4) at (11.745,-12.05) {Termos de Recebimento Definitivo};
+  \node[numero] at ($(sai4.north west)+(-0.04,0.04)$) {5};
+  \node[documento=2.17cm] (sai5) at (14.415,-12.05) {Relatórios semestrais e relatório final};
+  \node[numero] at ($(sai5.north west)+(-0.04,0.04)$) {6};
+  \node[inicio] (ini) at (3.45,-1.95) {Início};
+  \node[atividade=1.72cm] (n1) at (3.45,-3.17) {Estudar e regularizar as áreas};
+  \etapa{n1}{1}
+  \node[atividade=1.72cm] (m1) at (3.45,-4.725) {Regularizar as áreas públicas};
+  \node[atividade=1.72cm] (n2) at (5.7,-3.17) {Perfurar e outorgar o poço};
+  \etapa{n2}{2}
+  \node[decisao=1.2cm] (d2) at (7.95,-3.17) {Poço viável?};
+  \node[banco=1.72cm] (b3) at (7.95,-6.175) {Emitir a não objeção, se aplicável};
+  \node[atividade=1.72cm] (n3) at (7.95,-7.625) {Elaborar os projetos};
+  \etapa{n3}{3}
+  \node[atividade=1.72cm] (n4) at (10.2,-7.625) {Executar as obras};
+  \etapa{n4}{4}
+  \node[atividade=1.72cm] (s4) at (10.2,-9.075) {Supervisionar as obras};
+  \node[atividade=1.72cm] (n5) at (12.45,-7.625) {Pré-operar e capacitar os operadores};
+  \etapa{n5}{5}
+  \node[atividade=1.72cm] (e5) at (12.45,-10.525) {Aceitar o sistema};
+  \node[atividade=1.72cm] (n6) at (14.7,-3.17) {Emitir o TRD e acompanhar a operação};
+  \etapa{n6}{6}
+  \node[inicio] (fim) at (14.7,-1.95) {Fim};
+  \draw[conector] (ini) -- (n1);
+  \draw[conector] (n1) -- (m1);
+  \draw[conector] (m1.east) -| (n2.south);
+  \draw[conector] (n2) -- (d2);
+  \draw[conector] (d2.north) -- ++(0,0.3) -| (n2.north);
+  \node[rotulo, anchor=south west, align=center] at ($(d2.north)+(0.08,0.02)$) {não};
+  \draw[conector] (d2.south) -- (b3.north);
+  \node[rotulo, anchor=north west, align=center] at ($(d2.south)+(0.08,-0.04)$) {sim};
+  \draw[conector] (b3) -- (n3);
+  \draw[conector] (n3) -- (n4);
+  \draw[conector] (n4) -- (s4);
+  \draw[conector] (s4.east) -- ++(0.13,0) |- (n5.west);
+  \draw[conector] (n5) -- (e5);
+  \draw[conector] (e5.east) -| (n6.south);
+  \draw[conector] (n6) -- (fim);
+\end{tikzpicture}
+\end{document}

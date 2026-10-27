@@ -1,4 +1,4 @@
-"""Fluxogramas detalhados, diagramas e esquemas da Atividade 3.2.2, no padrão do Guia de
+"""Fluxogramas detalhados, diagramas e esquemas da atividade, no padrão do Guia de
 Identidade Visual do MOP: processos com mais de um ator em raias, com os 8 símbolos;
 diagramas com caixas brancas e destaque em Azul-escuro; esquemas em traço simples na cor
 do Caderno C3 (Azul-petróleo).
@@ -39,22 +39,22 @@ F["f-articulacao"] = r"""
   \draw[cinza20, line width=0.6pt] (5.6,-0.32) -- (10.4,-0.32);
   \draw[cinza20, line width=0.6pt] (11.65,-0.32) -- (15.6,-0.32);
 
-  \node[outra] (x1) at (2.35,-1.25) {\textbf{Atividade 3.2.1}\\ política e plano estadual de saneamento rural};
-  \node[outra] (x3) at (7.6,-1.25) {\textbf{Subcomponente 1.1}\\ outorga, SIGARH e águas subterrâneas};
+  \node[outra] (x1) at (2.35,-1.25) {\textbf{Política estadual}\\ diretrizes e plano de saneamento rural};
+  \node[outra] (x3) at (7.6,-1.25) {\textbf{Recursos hídricos}\\ outorga, SIGARH e águas subterrâneas};
 
-  \node[acao] (a1) at (2.35,-3.3) {\textbf{3.2.2.1 Modelos de gestão}\\ associações, tarifa e 3 unidades regionais\\ R\$ 6,90 mi};
-  \node[acao] (a2) at (2.35,-5.6) {\textbf{3.2.2.2 Trabalho técnico-social}\\ mobilização, cadastro e adesão\\ R\$ 6,47 mi};
-  \node[outra] (x2) at (2.35,-7.9) {\textbf{Subcomponente 2.3}\\ Planos Integrados de Propriedade (IDR-Paraná)};
+  \node[acao] (a1) at (2.35,-3.3) {\textbf{Modelos de gestão}\\ associações, tarifa e 3 unidades regionais\\ R\$ 6,90 mi};
+  \node[acao] (a2) at (2.35,-5.6) {\textbf{Trabalho técnico-social}\\ mobilização, cadastro e adesão\\ R\$ 6,47 mi};
+  \node[outra] (x2) at (2.35,-7.9) {\textbf{Componente 2}\\ Planos Integrados de Propriedade};
 
-  \node[acao] (b1) at (7.6,-3.3) {\textbf{3.2.2.3 Sistemas de água}\\ 83 sistemas, 5.810 domicílios\\ R\$ 107,90 mi};
-  \node[acao] (b2) at (7.6,-5.6) {\textbf{3.2.2.5 Esgoto nas comunidades}\\ 4.067 domicílios\\ R\$ 32,54 mi};
-  \node[acao] (b3) at (7.6,-7.9) {\textbf{3.2.2.6 Esgoto em mananciais}\\ 2.300 domicílios (área do IDR-Paraná)\\ R\$ 18,40 mi};
-  \node[acao] (b4) at (7.6,-10.2) {\textbf{3.2.2.4 Programa Sanepar Rural}\\ 222 sistemas\\ R\$ 67,15 mi de contrapartida};
+  \node[acao] (b1) at (7.6,-3.3) {\textbf{Sistemas de abastecimento de água}\\ 83 sistemas, 5.810 domicílios\\ R\$ 107,90 mi};
+  \node[acao] (b2) at (7.6,-5.6) {\textbf{Esgotamento nas comunidades}\\ 4.067 domicílios\\ R\$ 32,54 mi};
+  \node[acao] (b3) at (7.6,-7.9) {\textbf{Esgotamento em mananciais}\\ 2.300 domicílios (área da SEAB)\\ R\$ 18,40 mi};
+  \node[acao] (b4) at (7.6,-10.2) {\textbf{Programa Sanepar Rural}\\ 222 sistemas\\ R\$ 67,15 mi de contrapartida};
 
   % supervisão das obras: faixa ao lado das ações com obras
   \fill[azulEscuro] (9.8,-2.55) rectangle (10.4,-8.65);
   \node[rotate=90, text=white, font=\fonte{8}{9.4}, align=center] at (10.1,-5.6)
-    {\textbf{3.2.2.7 Supervisão das obras}\\ R\$ 10,79 mi};
+    {\textbf{Supervisão das obras}\\ R\$ 10,79 mi};
 
   \node[res] (c1) at (13.62,-3.3) {\textbf{Sistemas entregues às entidades gestoras}};
   \node[res] (c2) at (13.62,-5.6) {Operação com tarifa e apoio das unidades regionais};
@@ -66,7 +66,7 @@ F["f-articulacao"] = r"""
   \draw[conector] (a1) -- node[lig, above=2pt] {entidade\\ gestora} (b1);
   \draw[conector] ($(a2.east)+(0,0.3)$) -- ++(0.42,0) |- ($(b1.west)+(0,-0.42)$);
   \node[lig, rotate=90] at (4.71,-4.75) {diagnóstico};
-  \draw[conector] ($(a2.east)+(0,-0.25)$) -- node[lig, below=2pt] {domicílios\\ sem esgoto} ($(b2.west)+(0,-0.25)$);
+  \draw[conector] ($(a2.east)+(0,-0.25)$) -- node[lig, below=2pt] {domicílios\\ sem\\ esgoto} ($(b2.west)+(0,-0.25)$);
   \draw[conector] (b1) -- node[lig, right=2pt] {mesmas\\ comunidades} (b2);
   \draw[conector] (x2) -- node[lig, above=2pt] {domicílios\\ indicados} (b3);
   \draw[conector] (a1.west) -- (0.12,0 |- a1.west) |- (b4.west);
@@ -79,7 +79,7 @@ F["f-articulacao"] = r"""
   % legenda
   \begin{scope}[shift={(0.2,-11.55)}]
     \fill[azulEscuro] (0,0) rectangle (0.45,0.3);
-    \node[anchor=west] at (0.55,0.15) {Ações da Atividade 3.2.2};
+    \node[anchor=west] at (0.55,0.15) {Ações da atividade};
     \draw[cinza60, line width=0.7pt, fill=white] (4.6,0) rectangle (5.05,0.3);
     \node[anchor=west] at (5.15,0.15) {Outras partes do Programa};
     \node[documento=0.25cm, minimum height=0.38cm, inner ysep=1pt] at (9.75,0.15) {};
@@ -180,10 +180,10 @@ def f_entrega():
     R.no("ini", "inicio", "EMP", col(1), "Início", dy=CIMA)
     R.ativ("e1", "EMP", 1, "Pré-operar e testar o sistema", dy=BAIXO)
     R.ativ("e2", "EMP", 2, "Capacitar os operadores locais", dy=BAIXO)
-    R.ativ("i1", "IAT", 3, "Fazer a reunião de entrega", dy=BAIXO)
+    R.ativ("i1", "IAT", 3, "Realizar a reunião de entrega", dy=BAIXO)
     R.ativ("g1", "GES", 3, "Assinar o termo de aceite")
     R.ativ("i2", "IAT", 4, "Emitir o TRD", dy=BAIXO)
-    R.ativ("g2", "GES", 5, "Operar e informar os dados")
+    R.ativ("g2", "GES", col(5) - 0.5, "Operar e informar os dados")
     R.no("s1", "sistema=1.5cm", "IAT", col(6), "SIGARH e GeoPR", dy=BAIXO)
     R.no("fim", "inicio", "IAT", col(6), "Fim", dy=CIMA)
     R.seta("(ini) -- (e1)")
@@ -208,7 +208,7 @@ def f_instalacao():
     R.ativ("s1", "SUP", 3, "Acompanhar a instalação")
     R.ativ("i2", "IAT", 4, "Verificar o sistema", dy=BAIXO)
     R.no("d", "decisao=1.45cm", "IAT", col(5), "Aprovado?", dy=BAIXO)
-    R.ativ("x1", "EMP", 5, "Corrigir as falhas", dy=BAIXO)
+    R.ativ("x1", "EMP", 5, "Corrigir as não conformidades", dy=BAIXO, w=2.12)
     R.no("doc", "documento=1.62cm", "IAT", col(6) + 0.12, "Sistema validado e registrado", dy=BAIXO)
     R.no("fim", "inicio", "IAT", col(6) + 0.12, "Fim", dy=CIMA)
     R.seta("(ini) -- (e1)")
@@ -235,7 +235,7 @@ def f_medicao():
     R.ativ("a1", "IAT", 3, "Auditar os documentos", dy=-BAIXO)
     R.no("a2", atv(), "IAT", col(4), r"Verificar \textit{in loco}", dy=-BAIXO)
     R.ativ("m3", "EMP", 5, "Consolidar a medição final do lote", dy=BAIXO)
-    R.ativ("a3", "IAT", 6, "Amostrar e pagar", dy=-BAIXO)
+    R.ativ("a3", "IAT", 6, "Verificar por amostragem e pagar", dy=-BAIXO)
     R.no("fim", "inicio", "IAT", col(6), "Fim", dy=-CIMA)
     R.seta("(ini) -- (m1)")
     R.seta("(m1.east) -| (p1.north)")
@@ -314,14 +314,14 @@ F["f-selecao-comunidades"] = funil(
      "Pedido do município ao IAT ou associação com sistema a complementar",
      "Sem impedimento à perfuração: aquífero, geologia, qualidade da água e restrições legais"],
     r"\textbf{Seleção preliminar: 83 comunidades}\\ \fonte{8}{9.4}5.810 domicílios, cerca de 16,3 mil pessoas",
-    r"A lista final é confirmada pelo trabalho técnico-social (Ação 3.2.2.2) e pela viabilidade do poço (Etapa 2 da Ação 3.2.2.3).")
+    r"A lista final é confirmada pelo trabalho técnico-social e pela viabilidade do poço.")
 
 F["f-selecao-mananciais"] = funil(
     ["Microbacias prioritárias do PSH-PR",
      "Mananciais de abastecimento público selecionados por critério quali-quantitativo",
      "Domicílios rurais permanentes ocupados (Censo 2022 e CNEFE)",
      "Domicílios sem destinação adequada do esgoto",
-     "Propriedade com diagnóstico e adesão ao PSH-PR e às ações do IDR-Paraná"],
+     "Propriedade com diagnóstico e adesão ao PSH-PR e às ações da SEAB"],
     r"\textbf{2.236 domicílios em nove mananciais}\\ \fonte{8}{9.4}2.300 adotados para o dimensionamento",
     r"O arredondamento absorve as incertezas das bases, as variações cadastrais e as demandas futuras.")
 
@@ -385,7 +385,7 @@ F["f-esquema-saa"] = r"""
   % legenda
   \begin{scope}[shift={(9.55,4.35)}]
     \foreach \n/\t [count=\k from 0] in {1/Poço tubular profundo com bomba submersa,
-        2/{Casa química: cloração da água}, 3/Reservatório, 4/Rede de distribuição,
+        2/{Casa de química: desinfecção por cloração}, 3/Reservatório, 4/Rede de distribuição,
         5/Ligação domiciliar com hidrômetro, 6/Domicílio atendido} {
       \node[num, minimum size=0.36cm, font=\fonte{7}{8}\bfseries] at (0.18,{-0.2-\k*0.42}) {\n};
       \node[anchor=west, font=\fonte{8}{9.4}] at (0.42,{-0.2-\k*0.42}) {\t};

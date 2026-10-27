@@ -14,7 +14,7 @@ from openpyxl.styles import Alignment
 from ocorrencias import levantar
 
 ORIG, SAIDA = sys.argv[1], sys.argv[2]
-HOJE = dt.datetime(2026, 10, 26)
+HOJE = dt.datetime(2026, 10, 27)
 RESP = "A designar – IAT (Atividade 3.2.2)"
 CONSULTA = "Consulta preliminar em 23/10/2026, em fontes secundárias; o acesso aos portais oficiais não estava disponível."
 

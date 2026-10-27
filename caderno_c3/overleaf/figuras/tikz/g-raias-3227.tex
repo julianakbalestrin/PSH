@@ -1,0 +1,67 @@
+\documentclass[border=2pt]{standalone}
+\input{estilo}
+\begin{document}
+\begin{tikzpicture}[x=1cm, y=1cm]
+  \fill[cinza10] (0,0.0) rectangle (2.35,-1.5);
+  \fill[cinza5] (2.35,0.0) rectangle (15.8,-1.5);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-0.750) {Entradas};
+  \fill[cinza10] (0,-1.5) rectangle (2.35,-3.25);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-2.375) {IAT};
+  \fill[cinza10] (0,-3.25) rectangle (2.35,-4.7);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-3.975) {Banco Mundial};
+  \fill[cinza10] (0,-4.7) rectangle (2.35,-6.15);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-5.425) {Supervisora};
+  \fill[cinza10] (0,-6.15) rectangle (2.35,-7.6000000000000005);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-6.875) {Executores das obras};
+  \fill[cinza10] (0,-7.6000000000000005) rectangle (2.35,-9.100000000000001);
+  \fill[cinza5] (2.35,-7.6000000000000005) rectangle (15.8,-9.100000000000001);
+  \node[raiarotulo, text width=2.1cm] at (1.175,-8.350) {Saídas};
+  \draw[cinza20, line width=0.6pt] (0,-1.5) -- (15.8,-1.5);
+  \draw[cinza20, line width=0.6pt] (0,-3.25) -- (15.8,-3.25);
+  \draw[cinza20, line width=0.6pt] (0,-4.7) -- (15.8,-4.7);
+  \draw[cinza20, line width=0.6pt] (0,-6.15) -- (15.8,-6.15);
+  \draw[cinza20, line width=0.6pt] (0,-7.6000000000000005) -- (15.8,-7.6000000000000005);
+  \draw[cinza20, line width=0.6pt] (0,0) rectangle (15.8,-9.100000000000001);
+  \draw[cinza20, line width=0.6pt] (2.35,0) -- (2.35,-9.100000000000001);
+  \node[documento=2.84cm] (ent1) at (4.069,-0.8) {Termo de Referência da supervisão};
+  \node[numero] at ($(ent1.north west)+(-0.04,0.04)$) {1};
+  \node[documento=2.84cm] (ent2) at (7.406,-0.8) {Contratos e cronogramas das obras};
+  \node[numero] at ($(ent2.north west)+(-0.04,0.04)$) {2};
+  \node[documento=2.84cm] (ent3) at (10.744,-0.8) {Projetos aprovados e licenças};
+  \node[numero] at ($(ent3.north west)+(-0.04,0.04)$) {2};
+  \node[documento=2.84cm] (ent4) at (14.081,-0.8) {Requisitos ambientais e sociais das obras};
+  \node[numero] at ($(ent4.north west)+(-0.04,0.04)$) {3};
+  \node[documento=2.84cm] (sai1) at (4.069,-8.4) {Não conformidades registradas e tratadas};
+  \node[numero] at ($(sai1.north west)+(-0.04,0.04)$) {3};
+  \node[documento=2.84cm] (sai2) at (7.406,-8.4) {Medições verificadas};
+  \node[numero] at ($(sai2.north west)+(-0.04,0.04)$) {4};
+  \node[documento=2.84cm] (sai3) at (10.744,-8.4) {Relatórios mensais aprovados};
+  \node[numero] at ($(sai3.north west)+(-0.04,0.04)$) {4};
+  \node[documento=2.84cm] (sai4) at (14.081,-8.4) {Relatório final de supervisão};
+  \node[numero] at ($(sai4.north west)+(-0.04,0.04)$) {5};
+  \node[inicio] (ini) at (2.95,-2.375) {Início};
+  \node[atividade=1.72cm] (n1) at (4.7,-2.375) {Contratar a supervisora};
+  \etapa{n1}{1}
+  \node[banco=1.72cm] (b1) at (4.7,-3.975) {Emitir a não objeção, se aplicável};
+  \node[atividade=1.72cm] (n2) at (4.7,-5.425) {Mobilizar e elaborar o plano};
+  \etapa{n2}{2}
+  \node[atividade=1.72cm] (n3) at (6.9,-5.425) {Acompanhar as obras};
+  \etapa{n3}{3}
+  \node[atividade=1.87cm] (x3) at (6.9,-6.875) {Corrigir as não conformidades};
+  \node[atividade=1.72cm] (n4) at (9.1,-5.425) {Verificar medições e relatar};
+  \etapa{n4}{4}
+  \node[atividade=1.72cm] (a4) at (11.3,-2.375) {Aprovar os relatórios mensais};
+  \node[atividade=1.72cm] (n5) at (13.5,-5.425) {Apoiar o recebimento e encerrar};
+  \etapa{n5}{5}
+  \node[inicio] (fim) at (15.2,-5.425) {Fim};
+  \draw[conector] (ini) -- (n1);
+  \draw[conector] (n1) -- (b1);
+  \draw[conector] (b1) -- (n2);
+  \draw[conector] (n2) -- (n3);
+  \draw[conector] (n3) -- (x3);
+  \draw[conector] (x3.east) -| (n4.south);
+  \draw[conector] (n4.east) -| (a4.south);
+  \draw[conector] (a4.east) -| (n5.north);
+  \draw[conector] (n5) -- (fim);
+\end{tikzpicture}
+\end{document}
